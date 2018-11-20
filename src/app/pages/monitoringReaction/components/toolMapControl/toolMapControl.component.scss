@@ -1,0 +1,131 @@
+@import '../../../../theme/sass/motumVariables';
+
+mr-tool-map-control-component {
+  $font-size-icons: 17px;
+  $font-size-text: 11px;
+  $gray-tabs: $motum-grey-partner;
+
+  // ------------
+  // Tools menu
+  // ------------
+
+  .min-icon-format{
+    font-size: 5px !important;
+    position: absolute;
+    left: -3px;
+    bottom: -3px;
+  }
+  .motum-tool-map__menu {
+    list-style: none;
+    border-radius: 7px;
+    padding: 0;
+
+    li, a {
+      color: $motum-black-partner;
+    }
+    i {
+      font-size: $font-size-icons;
+    }
+    &.skin-black {
+      background-color: $motum-black-menu;
+    }
+
+    .m-menu-item {
+      position: relative;
+
+      padding: 6px;
+      display: block;
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      border-bottom: 1px solid $motum-black-partner;
+
+      &.active {
+        background-color: $motum-blue-partner;
+        .i-active {
+          color: $motum-white;
+        }
+      }
+
+      .m-menu__link {
+        display: table;
+        table-layout: fixed;
+        text-decoration: none;
+        position: relative;
+        vertical-align: middle;
+        width: 100%;
+      }
+
+      .m-menu__submenu {
+        &.animated {
+          -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+        }
+        position: absolute;
+        display: block;
+        width: 272px;
+        margin: 0 auto;
+
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        -webkit-transform-style: preserve-3d;
+        z-index: 6;
+
+        background-color: #fff;
+
+        // Watch animations
+        // -----
+        &.left {
+          right: 100%;
+          left: auto;
+          top: 0;
+        }
+      }
+    }
+    .m-menu-item:first-child {
+      padding: 8px 6px 6px 6px;
+      &.active {
+        border-radius: 0 7px 0 0;
+      }
+    }
+    .m-menu-item:last-child {
+      border-bottom: 0;
+      padding: 6px 6px 8px 6px;
+    }
+  }
+
+  .adjust-size {
+    width: 31.5px;
+    margin-bottom: 40px;
+  }
+
+  // ---------------
+  // Overriding
+  // ---------------
+
+  //.motum-i {
+  //  font-size: inherit !important;
+  //  text-rendering: auto !important;
+  //  -webkit-font-smoothing: antialiased !important;
+  //  -moz-osx-font-smoothing: grayscale !important;
+  //
+  //  text-decoration: inherit !important;
+  //  width: unset !important;
+  //  margin-right: unset !important;
+  //  line-height: 1.2rem !important;
+  //  margin-left: unset !important;
+  //  text-align: center !important;
+  //  font-variant: normal !important;
+  //  text-transform: none !important;
+  //}
+
+  hr {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // ----------------------
+  // Search result list
+  // ----------------------
+  
+}

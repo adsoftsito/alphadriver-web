@@ -1,0 +1,47 @@
+<div class="{{this.clickCloseMenu}}" (click)="closeMenuDashlet()"></div>
+<div class="dashletContent">
+  <div class="itemGridHeader">
+    <div class="styleTitleHeader">
+        <div>{{dataDashlet.titleHeader}}</div>
+    </div>
+    <div class="styleToolsHeader">
+      <div>
+        <div class="dateDashlet">
+            <input type="text" class="configDate" value="{{inputDateMy}}">
+        </div>
+        <div class="iconCalendar">
+          <i class="motum-i tm-e925" aria-hidden="true"></i>
+        </div>
+        <div class="iconMenuContext">
+          <i class="motum-i tm-e915" aria-hidden="true" (click)="openMenu(this.menuDashlet)"></i>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <hr class="hrDashlet">
+  <div class="row">
+        <div class="col-md-12 titleDashlet">{{ dataDashlet.title }}</div>
+        <div class="col-md-12 subTitleDashlet">{{ dataDashlet.subtitle }}</div>
+        <div class="col-md-12 chart" id="chart{{recibeI}}"></div>
+  </div>
+
+  <div class="itemGridFooter">
+    <div class="styleIconFooter">
+      <div class="back">
+          <i class="motum-i tm-e916" aria-hidden="true"></i>
+      </div>
+      <div class="home">
+          <i class="motum-i tm-e917" aria-hidden="true"></i>
+      </div>
+      <div class="iconExpantFooter" (click)="dashletDetails()">
+        <i class="motum-i tm-e9f0" aria-hidden="true" ></i>
+      </div>
+    </div>
+  </div>
+  
+  <app-menu-dashlet 
+      [reciveMenuDashlet]="menuDashlet" 
+      [reciveItemMenu]="reciveItem" 
+      (sendDeleteDashlet)="removeItem($event)">
+    </app-menu-dashlet>
+</div>

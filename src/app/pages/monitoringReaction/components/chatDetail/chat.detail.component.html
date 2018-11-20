@@ -1,0 +1,91 @@
+<div class="motum-chat-detail" >
+  <div class="detail-main">
+      <div class="btn-close">
+        <i class="motum-i tm-e912" (click)="close()" style="cursor: pointer;"></i>
+      </div>
+      <div class="avatar-vihicle">
+        <i class = "motum-i tm-e945 icon-user-vehicle {{circleColor}}" ></i>
+      </div>
+      <div class="data-center">
+        <p>
+          <b>38411</b><br>
+          <a>{{'pages.monitoringreaction.vihivledescription.available' | translate}}</a>
+        </p>
+      </div>
+  </div>
+  <div class="detail-members">
+    <div class="control-detail-members">
+      <label (click) ="isMerbers = !isMerbers" for="detail-members">{{'pages.monitoringreaction.chatdetail.members' | translate}} <i class="ion-chevron-down"></i></label>
+    </div>
+    <div *ngIf="isMerbers" class="people-list" id="people-list">
+       <ul>
+         <li *ngFor="let item of memberList" class="clearfix" id="1531760562032">
+            <img src="{{item.pictureURL}}" alt="avatar">
+            <div class="about">
+                <div class="name">{{item.name}}</div>
+            </div>
+        </li>
+        <li class="clearfix" id="1531760562032">
+           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg" alt="avatar">
+           <div class="about">
+               <div class="name">Daniel Álvarez</div>
+           </div>
+           </li>
+           <li class="clearfix" id="1531760562032">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="avatar">
+              <div class="about">
+                  <div class="name">Pedro García</div>
+              </div>
+          </li>
+          <li class="clearfix" id="1531760562032">
+             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg" alt="avatar">
+             <div class="about">
+                 <div class="name">Name dummy (tú)</div>
+             </div>
+         </li>
+       </ul>
+   </div>
+  </div>
+  <div class="detail-files">
+    <div class="control-detail-gallery">
+      <label (click) ="isGallery = !isGallery"  for="detail-gallery">{{'pages.monitoringreaction.chatdetail.sharedphotos' | translate}} <i class="ion-chevron-down"></i></label>
+    </div>
+    <div *ngIf="isGallery" class="gallery">
+      <article>
+        <div class="main-content-gallery">
+          <div class="body-gallery">
+            <div *ngFor="let item of gallery" class="item-colum-gallery">
+              <a target="_blank" href="{{item.url}}" class="thumbnail">
+                <img src="{{item.url}}" alt="imge">
+              </a>
+            </div>
+            <div class="item-colum-gallery">
+              <img src="https://i.pinimg.com/736x/cb/5e/5d/cb5e5df05080e926adefae742b7c33aa.jpg" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="https://i.pinimg.com/474x/a8/ba/08/a8ba08c799ca50b42201539e1bb094b1--heavy-metal-heavy-equipment.jpg" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="http://cdn4.clasificados.com/ni/pictures/photos/000/029/251/original_20160318_11_8153.jpg" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLbNrxE9d1j3BMYdLXwGbC4jnXrxb-vvTb8jJZvssacV7GJwf" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="http://i14.wikimapia.org/?x=9638&y=15959&zoom=15&type=map&lng=0" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="http://cuauhtemoc.infored.com.mx/files/photos/2/r/a/2/t/2ra2t.jpg" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="https://i.pinimg.com/736x/cb/5e/5d/cb5e5df05080e926adefae742b7c33aa.jpg" alt="avatar">
+            </div>
+            <div class="item-colum-gallery">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZs0ao5OFLHfLxViJ0wPSQTmqpgBbUjrr6p00YwfQY2cEorrwj" alt="avatar">
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

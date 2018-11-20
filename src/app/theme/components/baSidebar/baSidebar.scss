@@ -1,0 +1,252 @@
+@import '../../sass/conf/conf';
+
+$sidebar-scroll-width: 4px;
+$angle-left: '\f100';
+$angle-right: '\f101';
+@mixin default-sublist() {
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: none;
+  &.expanded {
+    display: block;
+  }
+  > ba-menu-item > li {
+    display: block;
+    float: none;
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+    a {
+      display: block;
+      text-shadow: none;
+      font-size: 13px;
+      text-decoration: none;
+      color: $sidebar-text;
+      padding-left: 52px;
+      height: auto;
+      line-height: 29px;
+      &:hover {
+        color: $primary;
+      }
+    }
+    &.selected:not(.with-sub-menu) > a {
+      border: none;
+      background-color: $primary;
+      &:hover {
+        color: $sidebar-text;
+      }
+    }
+
+  }
+}
+
+:host /deep/ {
+  .al-sidebar {
+    width: $sidebar-width;
+    top: $top-height;
+    left: 0;
+    z-index: 1001;
+    display: block;
+    min-height: 100%;
+    background-color: $sidebar;
+    height: 100%;
+    position: fixed;
+    border-right-style: solid;
+    border-right-width: 5px;
+    border-right-color: $primary;
+  }
+
+  .al-sidebar-list {
+    margin: 0;
+    overflow: hidden;
+    padding: 0px 0 0 0;
+    list-style: none;
+  }
+
+  .al-sidebar-sublist .subitem-submenu-list {
+    padding-left: 15px;
+  }
+
+  .subitem-submenu-link {
+    .fa {
+      top: 7px;
+    }
+  }
+
+  .al-sidebar-list-item {
+    display: block;
+    position: relative;
+    float: none;
+    padding: 0;
+    &.selected:not(.with-sub-menu) {
+      background-color: $primary;
+      a.al-sidebar-list-link {
+        color: $default;
+        b {
+          color: $default;
+        }
+      }
+      .iconMenuClass{
+        color: white;
+      }
+    }
+  }
+
+  .ba-sidebar-item-expanded {
+    > ul.al-sidebar-sublist {
+      display: block !important;
+    }
+
+  }
+
+  .al-sidebar-list-item, .ba-sidebar-sublist-item {
+    &.ba-sidebar-item-expanded {
+      > .al-sidebar-list-link {
+        b {
+          transform: rotate(180deg);
+        }
+      }
+
+      > .al-sidebar-sublist {
+        display: block;
+      }
+    }
+  }
+
+  a.al-sidebar-list-link {
+    display: flex;
+    width: 190px;
+    height: 39.812px;
+    padding-left: 31.821px;
+    text-shadow: none;
+    font-size: 12px;
+    
+    text-decoration: none;
+    color: white;
+    line-height: 38px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom-style: ridge;
+    border-bottom-width: 1px;
+    /*
+    n the above lines of code, the 100% 0 100% 0/3px 0 3px 0 represents the size of the gradient border
+    on each side (read as [top] [right] [bottom] [left]). Originally it was 0 0 100% 0/0 0 3px 0.
+    */
+    border-image: linear-gradient(to right, rgba(68,69,71, 1) 1%, rgba(68,69,71, 1) 90%)
+                  0 0 100% 0/50px 0 2px 1px  stretch;
+    &:hover {
+      color: $primary;
+      b {
+        color: $primary;
+      }
+    }
+    i {
+      margin-right: 19px;
+      width: 16px;
+      display: inline-block;
+      line-height: 2.2;
+    }
+    b {
+      display: block;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      text-shadow: none;
+      font-size: 18px;
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      padding: 0;
+      text-align: center;
+      color: $sidebar-text;
+      transition: transform 0.2s linear;
+    }
+  }
+  .iconMenuClass {
+    display: flex;
+    width: 61.853px;
+    height: 39.812px;
+    padding-left: 27.5px;
+    text-shadow: none;
+    font-size: 12px;
+    
+    text-decoration: none;
+    color: $sidebar-text;
+    line-height: 38px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom-style: ridge;
+    border-bottom-width: 1px;
+    /*
+    n the above lines of code, the 100% 0 100% 0/3px 0 3px 0 represents the size of the gradient border
+    on each side (read as [top] [right] [bottom] [left]). Originally it was 0 0 100% 0/0 0 3px 0.
+    */
+    border-image: linear-gradient(to right, rgba(68,69,71, 1) 1%, rgba(68,69,71, 1) 90%)
+                  0 0 100% 0/50px 0 2px 1px  stretch;
+    &:hover {
+      color: $primary;
+      b {
+        color: $primary;
+      }
+    }
+    i {
+      margin-right: 19px;
+      width: 16px;
+      display: inline-block;
+      line-height: 2.2;
+    }
+    b {
+      display: block;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      text-shadow: none;
+      font-size: 18px;
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      padding: 0;
+      text-align: center;
+      color: $sidebar-text;
+      transition: transform 0.2s linear;
+    }
+  }
+
+  .slimScrollBar, .slimScrollRail {
+    border-radius: 0 !important;
+    width: $sidebar-scroll-width !important;
+    left: $sidebar-width - $sidebar-scroll-width;
+  }
+
+  .al-sidebar-sublist {
+    @include default-sublist();
+  }
+
+  .sidebar-hover-elem {
+    width: $sidebar-scroll-width;
+    background: $primary;
+    position: absolute;
+    top: -150px;
+    left: $sidebar-width - $sidebar-scroll-width;
+    transition: all 0.5s ease;
+    transition-property: top, height;
+    height: 42px;
+    display: block;
+  }
+
+  .sidebar-select-elem {
+    display: block;
+    top: 94px;
+  }
+
+  .menu-collapsed {
+    .slimScrollBar, .slimScrollRail {
+      display: none !important;
+    }
+  }
+}

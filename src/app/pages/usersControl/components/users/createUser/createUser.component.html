@@ -1,0 +1,516 @@
+<motum-modal-form *ngIf="windowPosition != null" [align]="windowPosition" [hasTabs]="true" [cols]="2">
+  <ng-template #modalPassword let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+      <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+    </div>
+    <h5 class="modal-title"> {{'pages.confirmationwindow.header' | translate }} </h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{ 'pages.confirmationwindow.content' | translate}} {{userModel.email}} {{ 'pages.confirmationwindow.contents' | translate}}</p>
+  </div>
+  <div class="modal-footer window-center-align">
+    <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindow.sendbutton' | translate}}</button>
+  </div>
+</ng-template>
+
+    <div modal-form-header>
+        <div class="row" *ngIf="editar && windowPosition === 'right'">
+          <div class="motum-avatar-section">
+            <motum-avatar [name]="initials"
+                          [type]="'NAME'"></motum-avatar>
+          </div>
+          <div class="motum-avatar-labelEdit">
+              <div class="name">
+                  {{userModel.name}}
+                </div>
+                <div>
+                  {{userModel.rol}}
+                </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!editar">
+          <div class="motum-avatar-section">
+            <motum-avatar [name]="'motum-i tm-e930'"
+                          [textColor]="'#ffffff'"
+                          [bgColor]="'#16d7ff'"
+                          [isIconResize]="true"
+                          [hasBorder]="false"
+                          [type]="'ICON'"></motum-avatar>
+          </div>
+          <div>
+            <div class="motum-avatar-labelCreate">{{ title | translate }}</div>
+          </div>
+        </div>
+    </div> <!--END MODAL-FORM-HEADER-->
+    <div modal-form-content>
+        <ngb-tabset  #t="ngbTabset" [justify]="'end'" [activeId]="activeTab" (tabChange)="activeTab = $event.nextId">
+            <ngb-tab  id="tabUser" title="{{ users | translate }}">
+                <ng-template ngbTabContent>
+
+                  <div class="tab-content">
+                      <div class="motum-content-title">
+                        <div *ngIf="editar">{{ editUserTrans | translate }}</div>
+                        <div *ngIf="!editar">{{ createUserTrans | translate }}</div>
+                      </div>
+
+                      <div class="row motum-content-body">
+                          <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
+                              <span class="motum-w500">{{ personalInformation | translate }}</span>
+                              <div class="motum-inputs-section">
+                                  
+                                      <div class="row motum-label-input first animated fadeIn">
+                                          <div class="col-md-12 motum-w500">
+                                              <label for="inputAccountUsername">{{userNameTrans | translate }}</label>
+                                          </div>
+                                          <div class="col-md-12 col-sm-12">
+                                              <div class="form-group has-success motum-inputForm">
+                                                  <input #inputName [(ngModel)]="userModel.name" type="text" class="form-control input-sm" id="inputName" [ngModelOptions]="{standalone: true}" required>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="row motum-label-input animated fadeIn">
+                                          <div class="col-md-12 motum-w500">
+                                              <label for="inputAccountUsername">{{surnamesUser | translate }}</label>
+                                          </div>
+                                          <div class="col-md-12 col-sm-12">
+                                              <div class="has-success motum-inputForm">
+                                                  <input [(ngModel)]="userModel.lastname" type="text" type="text" class="form-control input-sm" id="inputLastName" [ngModelOptions]="{standalone: true}" required>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    
+                                    <div class="motum-top-spacing"></div>
+                                    <hr class="hr">
+                              </div>
+                              <div class="motum-top-spacing-two"></div>
+                            <span class="motum-w500">{{ contactInformation | translate }}</span>
+                            <div class="motum-inputs-section">
+                                    <div class="row motum-label-input first animated fadeIn">
+                                        <div class="col-md-12 motum-w500">
+                                            <label>{{ phoneUser | translate }}</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group has-success motum-inputForm motum-intl-tel-input">
+                                                <motum-intl-tel-input [id]="'tm-intl-tel-input-fixed'"
+                                                [cssClasses]="'form-control input-sm'"></motum-intl-tel-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row motum-label-input animated fadeIn">
+                                        <div class="col-md-12 motum-w500">
+                                            <label for="inputsm">{{ emailAccountUser | translate }}</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group has-success motum-inputForm">
+                                                <input [(ngModel)]="userModel.email" type="email" type="text" class="form-control input-sm" id="inputEmail" [ngModelOptions]="{standalone: true}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                            </div>
+                          </div> <!-- End first col-->
+                          <div class="col-lg-6 col-md-12 col-sm-12 motum-second-col">
+                              <span class="motum-w500">{{ accountInformationUser | translate }}</span>
+                              <div class="motum-inputs-section">
+                                  
+                                      <div class="row radiOptions motum-radio-btn">
+                                          <div class="col-md-12 col-sm-12">
+                                            <div class="form-check">
+                                              <label ><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" (click)="send(flagCheckAccount)" [checked]="flagCheckAccount"><span class="overlay"></span>{{ sendInvitation | translate }}</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-12 col-sm-12">
+                                              <div class="form-check radio-item">
+                                                <label ><input type="radio" name="optionsRadios" id="optionsRadios9" value="option2" (click)="createPassUser(flagCreatePassUser)" [checked]="flagCreatePassUser"><span class="overlay"></span>{{ createUserAndPass | translate }}</label>
+                                              </div>
+                                          </div>
+                                      </div> <!--End Radio btn-->
+                                      <div class="row motum-label-input animated fadeIn">
+                                        <div class="col-md-12 motum-w500">
+                                            <label for="inputAccountUsername">{{ usernameUser | translate }}</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group has-success motum-inputForm">
+                                                <input [(ngModel)]="userModel.username" type="text" class="form-control input-sm" id="inputUserName" [ngModelOptions]="{standalone: true}" required>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="row motum-label-input animated fadeIn">
+                                        <div class="col-md-12 motum-w500">
+                                            <label for="inputAccountUsername">{{ passwordUser | translate }}</label>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class=" has-success motum-inputForm">
+                                                <input [(ngModel)]="userModel.password" type="text" class="form-control input-sm" id="inputPassword" [ngModelOptions]="{standalone: true}" required>
+                                            </div>
+                                            <div class="motum-top-spacing"></div>
+                                            <div *ngIf="!editar" class="motum-sendInvitation">
+                                                <button type="button" (click)="generatePassword()" class="motum-btnSendInvitation">{{ generatePasswordUser | translate }}</button>
+                                            </div>
+                                            <div *ngIf="editar" class="motum-sendInvitation">
+                                                <button type="button" (click)="onChangePassword(modalPassword)" class="motum-btnSendInvitation">{{ restorePassword | translate }}</button>
+                                            </div>
+                                        </div>
+                                      </div>
+    
+                                      <div class="row motum-label-input first animated fadeIn">
+                                          <div class="col-md-12 motum-w500">
+                                              <label for="inputAccountUsername">{{ accessExpires | translate }}</label>
+                                          </div>
+                                          <div class="col-md-12 col-sm-12">
+                                              <div class=" has-success motum-inputForm">
+                                                  <select [(ngModel)]="userModel.accessExpires" name="inputAccessExpires" id="inputAccessExpires" class="form-control input-sm">
+                                                      <option></option>
+                                                      <option>20 días</option>
+                                                      <option>30 días</option>
+                                                      <option>60 días</option>
+                                                      <option>120 días</option>
+                                                  </select>
+                                                </div>
+                                          </div>
+                                      </div>
+                                      <div class="motum-top-spacing"></div>
+                                      <div class="row animated fadeIn">
+                                          <div class="col-md-6 motum-w500">
+                                              <label for="inputAccountUsername">{{ status | translate }}</label>
+                                          </div>
+                                          <div class="col-md-6 col-sm-6">
+                                              <div class="material-switch pull-right">
+                                                <input [(ngModel)]="!!userModel.status" (ngModelChange)="userModel.status = $event ? 1 : 0" id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+                                                <label for="someSwitchOptionSuccess" class="label-success"></label>
+                                              </div>
+                                          </div>
+                                      </div>
+    
+                                  
+                              </div>
+                          </div> <!-- End second col-->
+                      </div> <!--End content-body-->
+                  </div> <!--End tab-content-->
+
+                </ng-template>
+            </ngb-tab> <!-- End tabUser -->
+            <ngb-tab id="tabPermissions" title="{{ permissions | translate }}">
+                <ng-template ngbTabContent>
+                  <div class="tab-content">
+                      <div class="motum-content-title">
+                        <div *ngIf="editar">{{ editUserTrans | translate }}</div>
+                        <div *ngIf="!editar">{{ createUserTrans | translate }}</div>
+                      </div>
+
+                      <div class="row motum-content-body"> 
+                        <div class="col-lg-12 col-md-12 col-sm-12 motum-border-left">
+                          <span class="motum-w500">{{ productsPlatforms | translate }}</span>
+                          <div class="motum-section-permissions">
+                              <div class="row" [style.marginBottom.px]="3">
+                                <div class="col-md-6 col-sm-6">
+                                  <label class="title-list-one motum-w500">{{ available | translate }}</label>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                  <label class="title-list-two motum-w500">{{ selected | translate }}</label>
+                                </div>
+                              </div>
+                              <dual-list class="custom-double-list" [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
+                              [(destination)]="confirmed" [format]="format" [disabled]="disabled"></dual-list>
+                              <div class="window-section-double-space"></div>
+                              <div class="table-responsive table-style-motum">
+                                <table class="table table-striped">
+                                  <thead class="thead-light">
+                                    <tr class="m-0">
+                                      <th class="w-25">{{ platforms | translate }}</th>
+                                      <th class="w-75">{{ roles | translate }}</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let item of confirmed">
+                                      <td>
+                                        {{item.plataform}}
+                                      </td>
+                                      <td>
+                                        <select2 class="select2Permits"  id="selectPermits"  ngDefaultControl [options]="optionsPermits" [width]="'100%'" [cssImport]=true  required>
+                                          <option *ngFor="let item2 of item.permissions">{{item2.permission}}</option>
+                                        </select2>
+                                      </td>
+                                    </tr>
+                                    <ng-template [ngIf]="confirmed.length < 1">
+                                      <tr *ngFor="let item of confirmedDummi">
+                                        <td>
+                                          {{item.plataform}}
+                                        </td>
+                                        <td>
+                                          <select2 class="select2Permits"  id="selectPermits"  ngDefaultControl [options]="optionsPermits" [width]="'100%'" [cssImport]=true  required>
+                                            <option value=" " *ngFor="let item2 of item.permissions">{{item2.permission}}</option>
+                                          </select2>
+                                        </td>
+                                      </tr>
+                                    </ng-template>
+                                  </tbody>
+                                </table>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div> <!--End tab-content-->
+                </ng-template>
+            </ngb-tab> <!-- End tabPermissions -->
+            <ngb-tab id="tabInterface" title="{{ interface | translate }}">
+                <ng-template ngbTabContent>
+                  <div class="tab-content">
+                      <div class="motum-content-title">
+                        <div *ngIf="editar">{{ editUserTrans | translate }}</div>
+                        <div *ngIf="!editar">{{ createUserTrans | translate }}</div>
+                      </div>
+
+                      <div class="row motum-content-body">
+                          <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
+                              <span class="motum-w500">{{ regionalConfiguration | translate }}</span>
+                              <div class="motum-inputs-section-flex">
+                                  <div class="row motum-label-input first animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigCountry">{{ countryRegion | translate }}</label>
+                                      </div>
+                                      <div class="col-md-9 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.country" name="inputConfigCountry" id="inputConfigCountry" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>México</option>
+                                                  <option>España</option>
+                                                  <option>EUA</option>
+                                                  <option>Brasil</option>
+                                                </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigState">{{ state | translate }}</label>
+                                      </div>
+                                      <div class="col-md-12 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.state" name="inputConfigState" id="inputConfigState" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>Veracruz</option>
+                                                  <option>Oaxaca</option>
+                                              </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigCity">{{ city | translate }}</label>
+                                      </div>
+                                      <div class="col-md-12 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.city" name="inputConfigCity" id="inputConfigCity" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>Orizaba</option>
+                                                  <option>Juchitán</option>
+                                              </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="">{{ unitSystem | translate }}</label>
+                                      </div>
+                                      <div class="col-md-12 col-sm-12">
+                                          <div class="form-group has-success has-feedback motum-btn-group">
+                                              <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)" style="width: 100%;">
+                                                <button type="button" class="btn motum-botton">{{ metric | translate }}</button>
+                                                <button type="button" class="btn motum-botton" >{{ measuresUSImperial | translate }}</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="">{{ measurementOfFuelConsumption | translate }}</label>
+                                      </div>
+                                      <div class="col-md-12 col-sm-12">
+                                          <div class="form-group has-success has-feedback motum-btn-group">
+                                              <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)">
+                                                <button type="button" class="btn motum-botton">L/100km</button>
+                                                <button type="button" class="btn motum-botton">Km/L</button>
+                                                <button type="button" class="btn motum-botton">MPG (US)</button>
+                                                <button type="button" class="btn motum-botton">MPG (Imp)</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigDateFormat">{{ dateFormat | translate }}</label>
+                                      </div>
+                                      <div class="col-md-9 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.dateFormat" name="inputConfigDateFormat" id="inputConfigDateFormat" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>mm/dd/aaa</option>
+                                                  <option>dd/mm/aaa</option>
+                                                  <option>aa/mm/dd</option>
+                                              </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigHourFormat">{{ hourFormat | translate }}</label>
+                                      </div>
+                                      <div class="col-md-9 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.timeFormat" name="inputConfigHourFormat" id="inputConfigHourFormat" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>hh:mm:ss tt</option>
+                                                  <option>hh:mi:ss</option>
+                                                  <option>hhmi</option>
+                                              </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigTimeZone">{{ timeZone | translate }}</label>
+                                      </div>
+                                      <div class="col-md-9 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.timeZone" name="inputConfigTimeZone" id="inputConfigTimeZone" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>UTC-6 Mexico City</option>
+                                                  <option>UTC–7</option>
+                                                  <option>UTC-8</option>
+                                                  <option>UTC-5</option>
+                                              </select>
+                                            </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigCoin">{{ coin | translate }}</label>
+                                      </div>
+                                      <div class="col-md-9 col-sm-12">
+                                          <div class="has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.currency" name="inputConfigCoin" id="inputConfigCoin" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>Peso Mexicano (MXN)</option>
+                                                  <option>Dólar estadounidense (USD)</option>
+                                                  <option>Euro (€)</option>
+                                                  <option>Libra esterlina (£)</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+    
+                              </div>
+                          </div> <!--End first col-->
+    
+                          <div class="col-lg-6 col-md-12 col-sm-12 motum-second-col">
+                              <div class="motum-inputs-section">
+                                  <div class="motum-top-spacing-two"></div>
+                                  <div class="row motum-label-input first animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigLanguage">{{ language | translate }}</label>
+                                      </div>
+                                      <div class="col-md-10 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.language" name="inputConfigLanguage" id="inputConfigLanguage" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>Español</option>
+                                                  <option>Inglés</option>
+                                                  <option>Hindi</option>
+                                                  <option>Árabe</option>
+                                                  <option>Portugués</option>
+                                                  <option>Bengalí</option>
+                                                  <option>Ruso</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="">{{ weekStartsIn | translate }}</label>
+                                      </div>
+                                      <div class="col-md-10 col-sm-12">
+                                          <div class="has-success has-feedback motum-btn-group">
+                                              <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)">
+                                                <button type="button" class="btn motum-botton">{{ saturday | translate }}</button>
+                                                <button type="button" class="btn motum-botton">{{ sunday | translate }}</button>
+                                                <button type="button" class="btn motum-botton">{{ monday | translate }}</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="motum-top-spacing"></div>
+                                  <hr class="hr">
+                                 
+                              </div> <!--End motum-inputs-section-->
+                              <div class="motum-top-spacing-two"></div>
+                              <span class="motum-w500">{{ userInterfaceConfiguration | translate }}</span>
+                              <div class="motum-inputs-section">
+                                  <div class="row motum-label-input first animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigInitPage">{{ homepage | translate }}</label>
+                                      </div>
+                                      <div class="col-md-10 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.homePage" name="inputConfigInitPage" id="inputConfigInitPage" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>Dashboard</option>
+                                                  <option>monitoring-and-reaction</option>
+                                                  <option>usersControl</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row motum-label-input animated fadeIn">
+                                      <div class="col-md-12 motum-w500">
+                                          <label for="inputConfigLogOut">{{ logOut | translate }}</label>
+                                      </div>
+                                      <div class="col-md-10 col-sm-12">
+                                          <div class="form-group has-success motum-inputForm">
+                                              <select [(ngModel)]="userModel.interface.sessionTimeout" name="inputConfigLogOut" id="inputConfigLogOut" class="form-control input-sm">
+                                                  <option></option>
+                                                  <option>15 min</option>
+                                                  <option>30 min</option>
+                                                  <option>60 min</option>
+                                                  <option>Nunca</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div> <!--End second col-->
+                      </div> <!--End content-body-->
+                  </div> <!--End tab-content-->
+
+                </ng-template>
+
+            </ngb-tab> <!-- End tabInterface -->
+        </ngb-tabset>
+    </div> <!--END MODAL-FORM-CONTENT-->
+    <div class="motum-floating-btns" align="right" modal-form-footer>
+        
+          <button motum-button
+          [color]="'danger'"
+          [outline]="true"
+          routerLink="/pages/usersControl/users">
+          {{ cancel | translate }}
+          </button>
+
+          <button motum-button
+          *ngIf="activeTab=='tabPermissions' || activeTab=='tabInterface'"
+          (click)="activeTab=='tabInterface' ? t.select('tabPermissions'):'' || activeTab=='tabPermissions' ? t.select('tabUser'):''"
+          [outline]="true"
+          [color]="'grey'">{{activeTab=='tabPermissions' ? (back | translate) : (back | translate)}}</button>
+
+          <button motum-button
+          color="secondary"
+          (click)="activeTab=='tabUser' ? t.select('tabPermissions'):''|| activeTab=='tabPermissions' ? t.select('tabInterface'):'' || activeTab=='tabInterface' ?  createUser():createUser()">
+          {{activeTab=='tabUser' ? (next | translate):(accept | translate) || activeTab=='tabPermissions' ? (next | translate):(accept | translate) || activeTab=='tabInterface' ? (save | translate):''}}
+          </button>
+        
+    </div> <!--END MODAL-FORM-FOOTER-->
+</motum-modal-form>

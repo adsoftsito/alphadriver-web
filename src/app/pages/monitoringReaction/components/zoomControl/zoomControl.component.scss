@@ -1,0 +1,58 @@
+@import "../../../../theme/sass/motumVariables";
+
+$font-size-icons: 18px;
+
+/** Mixins */
+@mixin zoom-control-props($sizeW, $sizeH) {
+  position: absolute;
+  z-index: 999999999;
+  min-width: $sizeW;
+  min-height: $sizeH;
+  border: 2px solid $motum-black-menu;
+  border-radius: 7px;
+  cursor: pointer;
+}
+@mixin zoom-control-buttons-or-icon($isButton) {
+  @if($isButton) {
+    color: $motum-black-partner;
+    background-color: $motum-black-menu;
+    position: relative;
+    width: 26.5px;
+    height: 28px;
+    display: block;
+  } @else {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/** Classes */
+.adjust-position {
+  position: relative;
+}
+
+.zoom-control {
+  @include zoom-control-props(28px, 56px);
+  .plus {
+    text-align: center;
+    padding-top: 5px;
+    @include zoom-control-buttons-or-icon(true);
+    border-bottom: 1px solid $motum-black-partner;
+    i.fa {
+      @include zoom-control-buttons-or-icon(false);
+      font-size: $font-size-icons;
+    }
+  }
+  .minus {
+    text-align: center;
+    padding-top: 5px;
+    @include zoom-control-buttons-or-icon(true);
+    i.fa {
+      @include zoom-control-buttons-or-icon(false);
+      font-size: $font-size-icons;
+    }
+  }
+}

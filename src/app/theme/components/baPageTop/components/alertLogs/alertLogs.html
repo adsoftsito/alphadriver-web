@@ -1,0 +1,51 @@
+<div class="alertLogs">
+    <ba-card>
+       <div class="row containtToolBarTable">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div>
+
+                <div class="toolbarTable">
+                  <form class="row form-inline align-items-center">
+                      <div class="btn-group">
+                        <motum-group-btn id="BG" [buttonsArray]="btnArray" (selectedItem)="changeSelectedItem($event)">
+                        </motum-group-btn>
+                      </div>
+                    <div class="col-1 col-sm-1 onApClick">
+                      <i class="motum-i tm-e98e"></i>
+                    </div>
+                    <div class="col-1 col-sm-1 onApClick">
+                      <i class="motum-i tm-e91c" (click)='exportToExcel();'></i>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-5 col-lg-5 col-md-5 .hidden-sm"></div>
+            <!--Boton Search-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 containtBtnSearch">
+              <motum-search-input
+              [styleInput]="'table'"
+              [placeholder]="'pages.userControl.client_user.busqueda' | translate"
+              [defaultWidthPercent]=100
+              (changesSearchValue)="onFilterChanged($event)">
+              </motum-search-input>
+            </div>
+          </div>
+      <hr class="hrAgGrid">
+          <div class="row">
+            <!--Table-->
+            <div class="col-md-12 col-sm-12 col-lg-12" >
+                    <ag-grid-angular *ngIf="translated" style="width: 100%;  height: calc(100vh - 203px);"
+                    class="ag-theme-material"
+                    [gridOptions] = "gridOptions"
+                    [pagination]="true"
+
+                    (gridReady)="onGridReady($event)"
+                    (cellClicked)="onCellClicked($event)">
+                    </ag-grid-angular>
+            </div>
+          </div>
+    </ba-card>
+
+</div>
+      

@@ -1,0 +1,177 @@
+
+<fo-filter-selection *ngIf="flagFilterSelection"
+                      [flagOperationStatus]="flagOperationStatus"
+                      [flagPointsInterest]="flagPointsInterest"
+                      [flagTypeVehicle]="flagTypeVehicle"
+                      [flagServiceStatus]="flagServiceStatus"
+                      (sendOptions)="selectionOptions($event)"
+                      (sendOptionsPI)="selectionOptionsPI($event)"
+                      (sendOptionsTV)="selectionOptionsTV($event)"
+                      (sendOptionsSS)="selectionOptionsSS($event)"
+                      (closeFS)="closeFS()"
+                      [chipsSelectedInterestPoint]="chipsPointsInterest"
+                      [chipsSelectedServiceStatus]="chipsServiceStatus"
+                      [chipsSelectedTypeVehicle]="chipsTypeVehicle"
+                      [mainDataModel]="unitFilteringOptions"
+></fo-filter-selection>
+<motum-fleet-selection *ngIf="flagFleetSelection"
+(closeSelection)="closeSelection()"
+></motum-fleet-selection>
+<div class="header">
+  <div class="col-md-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+            <div class="iconOptions"> <span class="motum-i tm-e97b options"></span></div>
+        </div>
+        <div class="title">
+            {{ filteringOptions | translate }}
+        </div>
+    </div>
+    <span><span class="motum-i tm-e912 closeFiltering" (click)="openFilteringOptions(flagCloseFiltering = false)"></span></span>
+  </div>
+</div>
+<div class="content {{flagFilterSelection ? 'expand' : ''}} {{flagFleetSelection ? 'expandFS' : ''}}">
+  <div class="col-md-12 col-sm-12 listContent">
+    <div class="row">
+      <div class="filters">
+        {{ selectedFilters | translate }}
+      </div>
+      <div class="noFilters">
+          <div class="selectedFilters">{{chipsVehicleStatus.length + chipsTypeVehicle.length + chipsServiceStatus.length + chipsPointsInterest.length + chipsOperationStatus.length}}</div>
+      </div>
+    </div>
+    <hr class="hr-title">
+  </div>
+  <div class=""><!-- Start row list -->
+      <div class="listCollapse" data-toggle="collapse" href="#collapseExample" (click)="clickAngle = !clickAngle">
+        <div class="secctionTitle">
+        {{ fleetTree | translate }}
+        </div>
+        <span class="iconAngle">
+          <i class="motum-i tm-e90e {{clickAngle ? 'up' : 'down'}}" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="sectionFiltering">
+          <div class="chips">
+            <div class="chip" *ngFor="let chip of chipsFleetTree; let i = index">
+              {{ chip.label }}
+              <i class="motum-i tm-e912 closeChip"></i>
+            </div>
+          </div>
+
+          <button class="motum-btn save editBtn {{flagFleetSelection ? 'selectedEditBtn' : ''}}" (click)="showFleetSelection()">Editar</button>
+
+        </div>
+      </div>
+      <hr class="hrList">
+  </div><!-- End row list -->
+  <div class=""><!-- Start row list -->
+    <div class="listCollapse" data-toggle="collapse" href="#vehicleStatus" (click)="vehicleStatus = !vehicleStatus">
+      <div class="secctionTitle">
+        {{ vehicleStatusTrans | translate }}
+      </div>
+      <span class="iconAngle">
+        <i class="motum-i tm-e90e {{vehicleStatus ? 'up' : 'down'}}" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class="collapse" id="vehicleStatus">
+      <div class="sectionFiltering">
+        <div *ngIf="unitFilteringOptions" class="chips checkboxes">
+          <label *ngFor=" let item of unitFilteringOptions[0].vehicleStatus"  class="container {{ item.checked ? 'selectLabel' : 'defaultLabel'  }}" >{{ filteringOptionsTranslate + item.label | translate}}
+              <input type="checkbox" (click)="checkboxVehicleStatus(item, $event)" [checked]="item.checked">
+              <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <hr class="hrList">
+</div><!-- End row list -->
+<div class=""><!-- Start row list -->
+  <div class="listCollapse" data-toggle="collapse" href="#operationStatus" (click)="operationStatus = !operationStatus">
+    <div class="secctionTitle">
+      {{ operationStatusTrans | translate }}
+    </div>
+    <span class="iconAngle">
+      <i class="motum-i tm-e90e {{operationalStatus ? 'up' : 'down'}}" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="collapse" id="operationStatus">
+      <div class="sectionFiltering">
+        <div class="chips checkboxes">
+          <label *ngFor="let item of unitFilteringOptions[0].operationalStatus" class="container {{ item.checked ? 'selectLabel' : 'defaultLabel'  }}" >{{item.label}}
+              <input type="checkbox" (click)="checkboxOperationalStatus(item, $event)" [checked]="item.checked">
+              <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+  </div>
+  <hr class="hrList">
+</div><!-- End row list -->
+<div class=""><!-- Start row list -->
+  <div class="listCollapse" data-toggle="collapse" href="#pointsInterest" (click)="pointsInterest = !pointsInterest">
+    <div class="secctionTitle">
+      {{ pointsInterestTrans | translate }}
+    </div>
+    <span class="iconAngle">
+      <i class="motum-i tm-e90e {{pointsInterest ? 'up' : 'down'}}" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="collapse" id="pointsInterest">
+    <div class="sectionFiltering">
+      <div class="chips">
+        <div class="chip" *ngFor="let chip of chipsPointsInterest; let i = index">
+          {{ chip.label }}
+          <i *ngIf="!flagPointsInterest" class="motum-i tm-e912 closeChip" (click)="deleteChipPI(chip)"></i>
+        </div>
+      </div>
+      <button class="motum-btn save editBtn {{flagPointsInterest ? 'selectedEditBtn' : ''}}" (click)="showPointsInterest()">Editar</button>
+    </div>
+  </div>
+  <hr class="hrList">
+</div><!-- End row list -->
+<div class=""><!-- Start row list -->
+  <div class="listCollapse" data-toggle="collapse" href="#typeVehicle" (click)="typeVehicle = !typeVehicle">
+    <div class="secctionTitle">
+      {{ typeVehicleTrans | translate }}
+    </div>
+    <span class="iconAngle">
+      <i class="motum-i tm-e90e {{typeVehicle ? 'up' : 'down'}}" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="collapse" id="typeVehicle">
+    <div class="sectionFiltering">
+      <div class="chips">
+        <div class="chip" *ngFor="let chip of chipsTypeVehicle; let i = index">
+          {{ chip.label }}
+          <i *ngIf="!flagTypeVehicle" class="motum-i tm-e912 closeChip" (click)="deleteChipTV(chip)"></i>
+        </div>
+      </div>
+      <button class="motum-btn save editBtn {{flagTypeVehicle ? 'selectedEditBtn' : ''}}" (click)="showTypeVehicle() " >Editar</button>
+    </div>
+  </div>
+  <hr class="hrList">
+</div><!-- End row list -->
+<div class=""><!-- Start row list -->
+  <div class="listCollapse" data-toggle="collapse" href="#serviceStatus" (click)="serviceStatus = !serviceStatus">
+    <div class="secctionTitle">
+      {{ serviceStatusTrans | translate }}
+    </div>
+    <span class="iconAngle">
+      <i class="motum-i tm-e90e {{serviceStatus ? 'up' : 'down'}}" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="collapse" id="serviceStatus">
+    <div class="sectionFiltering">
+      <div class="chips">
+        <div class="chip" *ngFor="let chip of chipsServiceStatus; let i = index">
+          {{ chip.label }}
+          <i *ngIf="!flagServiceStatus" class="motum-i tm-e912 closeChip" (click)="deleteChipSS(chip)"></i>
+        </div>
+      </div>
+      <button class="motum-btn save editBtn {{flagServiceStatus ? 'selectedEditBtn' : ''}}" (click)="showServiceStatus() " >Editar</button>
+    </div>
+  </div>
+  <hr class="hrList">
+</div><!-- End row list -->
+</div>

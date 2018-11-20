@@ -1,0 +1,43 @@
+<div id="idAppMenuDiv" class="motum-open-appMenu" *ngIf="showBtnOpen" (click)="changeSizeOpen()">
+        <span id="idAppMenuIcon" class="motum-i tm-e995"></span>
+</div>
+<div id="idAppMenuDiv" class="motum-close-appMenu" *ngIf="showBtnClose" (click)="changeSizeClose()">
+        <span id="idAppMenuIcon" class="motum-i tm-e994"></span>
+</div>
+<div id="idAppMenu" class="applicationMenu animated fadeIn {{changeWidth}}" @togglingMenu >
+    <div id="idContentMenu" class="content-menu {{menuClass1}}" *ngIf="arrayAppMenu1">
+            
+              <div id="idContentRow" class="row">
+               
+                  <div id="idColMd" class="col-md-6 col-xs-6 menu-app-font-color" *ngFor="let data of arrayAppMenu1; let i=index">
+                      <div id="idIconMenu" class="iconAppMenu">
+                          <div class="iconApp" (mouseover)="data._id=true" (mouseleave)="data._id=false">
+                              <!-- {{data.colorHover}} -->
+                              <i routerLink="{{data.url}}" class="{{data.icon}}" (click)="itemClick(data); data._id=false" [ngStyle]="{'color': data._id == true ? data.colorHover : ''}"></i>
+                          </div>
+                      </div>
+                      <label id="idLabelMenu" for="" class="font-medium-menu-app">{{ data.label }}</label>
+                      
+                   </div>
+              </div>
+            
+    </div>
+
+    <div id="idContentMenu2" class="content-menu {{menuClass2}}" *ngIf="arrayAppMenu2 && showBtnClose">
+            
+              <div id="idContentRow2" class="row">
+               
+                  <div id="idColMd2" class="col-md-6 col-xs-6 menu-app-font-color" *ngFor="let data2 of arrayAppMenu2; let i=index">
+                      <div id="idIconMenu2" class="iconAppMenu">
+                            <div class="iconApp" (mouseover)="data2._id=true" (mouseleave)="data2._id=false">
+                                <i routerLink="{{data2.url}}" class="{{data2.icon}}" (click)="itemClick(data2); data2._id=false" [ngStyle]="{'color': data2._id == true ? data2.colorHover : ''}"></i>
+                            </div>
+                      </div>
+                      <label id="idLabelMenu2" for="" class="font-medium-menu-app">{{ data2.label }}</label>
+                      
+                   </div>
+              </div>
+            
+    </div>
+  
+</div>

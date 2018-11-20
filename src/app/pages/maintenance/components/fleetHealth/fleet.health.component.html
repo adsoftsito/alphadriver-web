@@ -1,0 +1,83 @@
+<!-- <div class="row">
+<div class="col-md-12">
+<motum-filter-sorter-component *ngIf="configurationFilters"
+[listElements] = "configurationFilters"
+
+(listElementsChange) = "filterChange($event)">
+</motum-filter-sorter-component>
+</div>
+
+[ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu', 'borderLeft']"
+</div> -->
+
+<!-- <div class="motum-grid-container m-cover"> -->
+  <div class="motum-grid-item m-row-12 m-column-12 m-item-z-index-5">
+    <div class="al-content">
+      <div class="widgets">
+        <div class="row">
+          <div class="col-md-6 space-right">
+            <motum-graphics-information-component *ngIf="chartGroups"
+            [chartData] = "chartGroups"
+            [configuration] = "chartGroupsConfiguration"
+            [graphicId] = "'chart-groups'"
+            [graphicTitle] = "chartGroupsTitle"
+            [heightVh] = "17"
+
+            [categories] = "categories"
+            (categoryChange) = "getDataCategoryGroups($event)">
+          </motum-graphics-information-component>
+        </div>
+        <div class="col-md-6 space-lefth">
+          <motum-graphics-information-component *ngIf="chartFailures"
+              [chartData] = "chartFailures"
+              [configuration] = "chartFailuresConfiguration"
+              [graphicId] = "'chart-failures'"
+              [graphicTitle] = "chartFailuresTitle"
+              [heightVh] = "17"
+
+              [categories] = "categories"
+              (categoryChange) = "getDataCategoryFailures($event)">
+            </motum-graphics-information-component>
+          </div>
+        </div>
+
+      <div class="row">
+          <div class="col-md-6 space-right">
+            <motum-table-information-component *ngIf="dataTableVehicles"
+              [table] = "dataTableVehicles"
+              [heightVh] = "40"
+              [pagination]="true"
+
+              (onCellClick) = "healthVehicle($event)">
+            </motum-table-information-component>
+          </div>
+          <div class="col-md-6 space-lefth">
+              <motum-table-information-component  *ngIf="dataTableFailures"
+              [table] = "dataTableFailures"
+              [heightVh] = "40"
+              [pagination]="true"
+              (onCellClick) = "faultCodes($event)">
+            </motum-table-information-component>
+          </div>
+        </div>
+
+        <div class="m-item-z-index-5">
+            <floatbutton
+              [isPlus] = "false"
+              [configFloatButton] ="configFloatButton"
+              (primaryButtonClick)="openOrCloseFiltering($event)">
+            </floatbutton>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+<div class="motum-absolute-menu">
+  <div class="motum-grid-container m-cover">
+
+    <mr-filtering-options *ngIf="flagFilterin"
+    [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu', 'borderLeft']"
+    (closeFiltering)="closeFiltering($event)"></mr-filtering-options>
+
+  </div>
+</div>

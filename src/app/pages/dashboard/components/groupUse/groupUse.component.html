@@ -1,0 +1,126 @@
+<div class="col-md-12">
+                          
+    <ba-card>
+        <div class="header">
+            <div class="title">
+                Utilización del grupo
+            </div>
+            <hr class="hrDashlet">
+        </div><!--  End header -->
+        
+        <div class="row dashletsContent"> 
+            <div class="col-md-12 btnGroupDashlet">
+                
+                <motum-group-btn
+                    [buttonsArray]="btnGroup"
+                    [id]="idGroupVehicle"
+                    
+                    (selectedItem)="groupVehicle($event)"
+                    ></motum-group-btn>
+                <motum-group-btn class="btnGroupTime"
+                    [buttonsArray]="btnTime"
+                    [id]="idWeekMonthYear"
+
+                    (selectedItem)="time($event)"
+                    ></motum-group-btn>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <ba-card>
+                            <div class="header graph">
+                                <div class="title">
+                                    {{dataGroupUse[0].title}}
+                                </div>
+                                <hr class="hrDashlet">
+                                <div id="chart0" class="fuelIndicator"></div>
+                              </div><!--  End header -->
+                        </ba-card>
+                    </div>
+                    <div class="col-md-12">
+                        <ba-card>
+                            <div class="header graph">
+                                <div class="title">
+                                    {{dataGroupUse[1].title}}
+                                </div>
+                                <div class="styleToolsHeader" *ngIf="showTools">
+                                      <!-- <div class="dateDashlet">
+                                          <input type="text" class="configDate" value="{{inputDateMy}}">
+                                      </div> -->
+                                      <div class="sortAsc">
+                                        <i class="motum-i tm-e9a9" aria-hidden="true"></i>
+                                      </div>
+                                      <div class="sortDesc">
+                                        <i class="motum-i tm-e9aa" aria-hidden="true"></i>
+                                      </div> 
+                                    
+                                </div>
+                                <hr class="hrDashlet">
+                                <div class="titleChart">
+                                    <span  class="total">Promedio Km recorridos<br>89.5</span>
+                                    <span  class="value">Total: 9,402.17 Km</span>
+                                  </div>
+                                <div id="chart1" class="fuelIndicator"></div>
+                            </div><!--  End header -->
+                        </ba-card>
+                    </div>
+                </div><!--  End row -->
+            </div>
+            <div class="col-md-6">
+                <ba-card>
+                    <div class="header search">
+                        <div class="title">
+                            {{dataGroupUse[2].title}}
+                        </div>
+                        <!-- <div *ngIf="showTools" class="form-group col-sm-5 has-success has-feedback motum-search-input inputSearch animated fadeIn"> -->
+                        <div *ngIf="showTools" class="searchInput animated fadeIn">
+                            <!-- <input id="inputSuccess2"
+                                   type="text"
+                                   class="form-control search-input-form"
+                                   [placeholder]=" 'pages.userControl.client_user.busqueda' | translate "
+                                   aria-describedby="inputSuccess2Status">
+                            <i class="motum-i tm-e91f form-control-feedback font-size-search iconSearch" aria-hidden="true" (click)="unClick()"></i>
+                            <span id="inputSuccess2Status" class="sr-only">(success)</span> -->
+                            <motum-search-input
+
+                                    [styleInput]="'table'"
+                                    [placeholder]="search | translate"
+                                    [defaultWidthPercent]=100
+                                    (changesSearchValue)="onFilterChanged($event)">
+
+                            </motum-search-input>
+                        </div>
+                    </div><!--  End header -->
+                    <hr class="hrDashlet">
+                    <div class="mileageGroup">
+                            <table class="table-header">
+                                    <thead>
+                                        <tr>
+                                          <td>Grupo</td>
+                                          <td>Km</td>
+                                          <td>Vehículos</td>
+                                          <td>Total de viajes</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr *ngFor="let data of dataGroupUse[2].dataTable">
+                                          <td>{{data.group}}</td>
+                                          <td>{{data.km}}</td>
+                                          <td>{{data.vehicle}}</td>
+                                          <td>{{data.total}}</td>
+                                       </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </ba-card>
+            </div>
+        </div><!--  End row -->
+        <div class="footer">
+            <span class="compress">
+                <i class="motum-i tm-e9f1" aria-hidden="true" (click)="dashletDetails(true)"></i>
+            </span>
+        </div>
+    </ba-card>
+</div>

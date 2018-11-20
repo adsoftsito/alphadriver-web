@@ -1,0 +1,13 @@
+<ba-card>
+    <motum-group-tree [treeData] = "test" (formData)="getFormData($event)"  [editedData]="editedModel"></motum-group-tree>
+    <!--
+     @params
+     type     name     type/model
+      input - iColors: [colorName:string,color:string,borderColor:string]
+      input - iGroupModel: {idGroup: string; groupName: string; father: string; color: string; borderColor: string;}
+      output - setGroup: {idGroup: string; groupName: string; father: string; color: string; borderColor: string;}
+      output - deleteGroup: id:idGroup;
+    -->
+
+    <form-group-component *ngIf = "editorEnabled" [iColors] = null  [iGroupModel]="groupsModel"  (setGroup) = "getEditedData($event)" (deleteGroup) = doDeleteGroup($event) (hasBeenClose)=closeModal($event)> </form-group-component>
+</ba-card>

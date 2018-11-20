@@ -1,0 +1,43 @@
+<div *ngIf="dataVehicleSelected !=null"class="section-flex-config">
+
+    <div class="scroll-content-info">
+      <div class="section-flex">
+        <div class="titlesection-operator">
+          <b>{{'pages.monitoringreaction.operator.operator' | translate}}</b>
+          <hr>
+          <a class="titletext">{{'pages.monitoringreaction.operator.name' | translate}}:</a> <span class="information">{{dataVehicleSelected.name}} {{dataVehicleSelected.lastName}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.employeenumber' | translate}}:</a><span class="information">{{dataVehicleSelected.employeeNumber}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.company' | translate}}:</a><span class="information">{{dataVehicleSelected.companyName}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.assignedvehicle' | translate}}:</a><span class="information">{{dataVehicleSelected.assignedVehicle}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.rol' | translate}}:</a><span class="information"> {{dataVehicleSelected.rol}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.comments' | translate}}:</a><span class="information"> {{dataVehicleSelected.comment}}</span><br>
+        
+          <div  class="body-secction-position">
+          <b>{{'pages.monitoringreaction.operator.contact' | translate}}</b>
+          <hr>
+          <span class="information">{{'pages.monitoringreaction.operator.address' | translate}}:
+           {{dataVehicleSelected.address.street}},{{dataVehicleSelected.address.number}}, {{dataVehicleSelected.address.colony}},
+            {{dataVehicleSelected.address.zip}}, {{dataVehicleSelected.address.state}}, {{dataVehicleSelected.address.municipality}}
+  
+            <!-- Calle abcd, número 2, col. abcdenfth CP, 94733, Orizaba, Ver. -->
+          </span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.phone' | translate}}:</a><span class="information">   {{dataVehicleSelected.phoneNumber}}</span><br>
+          <a class="titletext">{{'pages.monitoringreaction.operator.email' | translate}}:</a><span class="information">   {{dataVehicleSelected.email}}juanlara@abcd.com.mx</span><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="section-flex-end-footter">
+      <div class="position-bottom-group">
+        <button motum-button color="primary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.operator.sendmessage' | translate}}</button>
+        <button motum-button color="secondary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.operator.assignoperator' | translate}}</button>  
+        <!-- <button class="motum-btn next change-property-btn-left">{{'pages.monitoringreaction.operator.sendmessage' | translate}}</button>
+        <button class="motum-btn save change-property-btn-right" >{{'pages.monitoringreaction.operator.assignoperator' | translate}}</button> -->
+      </div>
+    </div>
+  
+  </div>
+  
+  

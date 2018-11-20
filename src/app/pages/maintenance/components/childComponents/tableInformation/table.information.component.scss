@@ -1,0 +1,138 @@
+@import '../../../../../theme/sass/styles/styles';
+
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+@include tm-install-global() {
+  $label-font-weigth: 500;
+  $label-font-size: 11px;
+
+  $orders-blue-hover: tm-theme(color-primary);
+  $background-table-odd: tm-theme(tables-odd-row-color);
+  $table-hover: tm-theme(tables-hover-row-color);
+  $table-selected: tm-theme(tables-selected-row-color);
+  $table-selected-group: tm-theme(list-selected-row-color);
+  motum-table-information-component {
+    .max-height-component {
+      max-height: 500px;
+    }
+    label {
+      font-weight: $label-font-weigth;
+      font-size: $label-font-size;
+    }
+    .form-group {
+      margin-bottom: 0.8rem;
+      margin-top: 0.3rem;
+      padding: 0;
+    }
+    .an-spaces {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+    .calendar-lbl-container{
+      font-size: 10px;
+      padding-right: 6px;
+    }
+    .calendar-btn-container{
+      margin-left: 25px;
+      cursor: pointer;
+      margin-right: 7px;
+      color: $orders-blue-hover !important;
+    }
+
+    ba-card {
+      .card {
+        border-radius: 12px  !important;
+        box-shadow: -1px 1px 25px -2px rgba(0, 0, 0, 0.25) !important;
+        margin-bottom: 15px;
+        margin-top: 12px;
+      }
+      .card > .card-body {
+        padding: 10px 8px 0;
+      }
+    }
+    .onApClick {
+      padding-right: 7px;
+      padding-left: 3px;
+      cursor: pointer;
+    }
+    .onApClick:hover{
+      color: $orders-blue-hover;
+    }
+    .motum-hover-name:hover {
+      color: $orders-blue-hover;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .ag-header-cell, .ag-header-group-cell {
+      padding-left: 5px !important;
+      padding-right: 7px !important;
+      line-height: 40px;
+    }
+    .ag-cell {
+      padding-left: 7px !important;
+      padding-right: 7px !important;
+      float: right;
+    }
+    .ag-cell-focus {
+      border: 0px solid;
+    }
+    .ag-header-row {
+      border-top: 1px solid #e0e0e0;
+    }
+    .ag-header-cell-label {
+      float: right;
+    }
+    .ag-row-selected {
+      background-color: $table-selected !important;
+    }
+    .ag-row-hover{
+      background-color:  $table-hover !important;
+    }
+    .ag-row-group-expanded{
+      background-color: $table-selected-group !important;
+    }
+    .ag-row:nth-of-type(even){
+      background-color:  $background-table-odd;
+    }
+    .footer-table-counter{
+      margin-left: 14px;
+      margin-top: -9px;
+      font-size: 12px;
+    }
+    // .ag-paging-panel > span.ag-paging-row-summary-panel {
+    //   margin-left: 0px !important;
+    //   width: 25% !important;
+    //   display: block;
+    // }
+    // .ag-paging-panel > span.ag-paging-page-summary-panel {
+    //   margin-left: 0px !important;
+    //   width: 50% !important;
+    //   text-align: center !important;
+    // }
+    // .ag-paging-panel {
+    //   justify-content: left !important;
+    //   border: none;
+    //   height: 0px;
+    //   margin-top: 15px;
+    // }
+    .ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+      display: none;
+    }
+
+    .ag-theme-material .ag-paging-panel {
+      justify-content: center !important;
+      @include paging-outside(15px);
+    }
+  }
+}
+
+$font-family: 'Rubik', sans-serif;
+$secondary-font-family: 'Rubik', sans-serif;
+$font-size: 11px;
+$secondary-font-size: 9.64px;
+$secondary-foreground-color: rgba(0,0,0,0.7);
+
+@import '~ag-grid/src/styles/ag-grid.scss';
+@import '~ag-grid/src/styles/ag-theme-material';

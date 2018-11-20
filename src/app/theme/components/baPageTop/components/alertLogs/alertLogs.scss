@@ -1,0 +1,90 @@
+.alertLogs{
+    // padding: 100px 0px 30px 57px;
+    position: absolute;
+    height: 100%;
+    padding: 8px 15px 8px 15px;
+    height: calc(100vh - 66px);
+    width: 100%;
+    z-index: 20;
+    background-color: #f6f6f6;
+    
+    .hrAgGrid{
+        margin-bottom: 0px !important;
+    }
+}
+
+
+:host /deep/ {
+    .card{
+        margin: 36.134px 18.966px 0px 10.966px;
+        border-radius: 10px;
+        overflow: hidden !important; 
+        }
+    .card > .card-body{
+        padding: 30px 0px 0px !important;
+    }
+    .ag-theme-material .ag-header-cell{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .ag-layout-normal .ag-header-row{
+        color: darkslategray !important;
+        font-size: 10px !important;
+    }
+    .ag-theme-material .ag-header-cell-label{
+        width: auto !important;
+        float: none !important;
+        display: grid !important;
+        text-align: center !important;
+    }
+    .ag-theme-material .ag-paging-panel{
+        justify-content: center !important;
+    }
+    .ag-theme-material .ag-cell{
+        padding-left: 3px !important;
+        padding-right: 3px !important;
+        text-align: center !important;
+        font-size: 10px !important;
+    }
+    .ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+        display: none;
+    }
+
+    .ag-theme-material .ag-icon-desc{
+        display: none !important;
+    }
+    .ag-theme-material .ag-icon-asc{
+        display: none !important;
+    }
+
+    .containtToolBarTable{
+        //margin-bottom: 12.452px;
+        padding-top: 12.452px;
+        margin-top: -37px;
+        margin-bottom: -6px;
+    }
+
+    .toolbarTable{
+        display: inline-block;
+        margin-left: 12.847px;
+        margin-top: 7.35px;
+    }
+
+    .btn-group{
+        display: inline!important;
+        margin-left: 15.339px;
+     }
+
+     .onApClick{
+         cursor: pointer;
+     }
+
+     .form-group{
+        margin-bottom: 0 !important;
+      }
+
+    .containtBtnSearch{
+        padding-right: 30px;
+        margin-top: 1px;
+    }
+}

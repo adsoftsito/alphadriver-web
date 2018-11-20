@@ -1,0 +1,24 @@
+<ba-card>
+<div class="row">
+  <!--Table-->
+  <div class="col-md-12 col-sm-12 col-lg-12">
+			<ngb-tabset (tabChange)="beforeChange($event)" #t="ngbTabset" [justify]="'justified'">
+				<ngb-tab *ngFor="let item of categories; let index = index;" id="{{item.key}}" title="{{item.title}}">
+					<ng-template ngbTabContent>
+					</ng-template>
+				</ngb-tab>
+			</ngb-tabset>
+
+		<p [class.title-class] = "!categories" *ngIf = "graphicTitle">{{graphicTitle}}</p>
+    <div *ngIf="graphicId" [id]="graphicId" [style.width.%]="98" [style.height.vh]="heightVh" class = "max-height-component"></div>
+
+		<div class="row any-spaces">
+			<label for=""></label>
+			<div *ngIf="configuration.export.divId" [id]="configuration.export.divId" >
+				<i class="motum-i tm-e91c"></i>
+			</div>
+		</div>
+  </div>
+
+</div>
+</ba-card>

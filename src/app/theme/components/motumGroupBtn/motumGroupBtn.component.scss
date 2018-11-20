@@ -1,0 +1,55 @@
+@import '../../sass/styles/styles';
+
+$gray: #cbcbcb;
+$strong-gray: #434444;
+$blue: #4283d1;
+$font-title: 11px;
+$font-content: 13.2px;
+$white: #fff;
+$low-gray: #dadada;
+$low-gray-one: #f6f6f6;
+$low-gray-two: #d3d3d3;
+$low-gray-three: #b2b2b2;
+$low-gray-four: #c6c6c6;
+$gray-light: #c5c5c4;
+$strong-grey: #878787;
+$intense-gray: #575756;
+$blue: #7054ff;
+$blue-light: #1d70b8;
+$orange: #eb860d;
+$orange-light: #F39200;
+$yellow: #F8B43A;
+$yellow-light: #ffc033;
+$red: #e20815;
+$red-light: #E6332A;
+$green: #2fd15d;
+@include tm-install-component () {
+
+  .btn-group button {
+    background-color: #f6f6f6;
+    border: 1px solid rgba(134,134,134,0.4);
+    color: #868686;
+    font-size: 11.4px;
+    line-height: 1;
+    height: 23.065px;
+    cursor: pointer;
+    float: left;
+  }
+
+  .btn-group button:hover {
+    background-color: #B1B1B1;
+    color: #F6F6F6;
+  }
+
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  .btn-group button.active {
+
+    background-color: #B1B1B1 !important;
+    color: #F6F6F6 !important;
+    border: 1px solid rgba(134,134,134,1);
+  }
+
+
+}

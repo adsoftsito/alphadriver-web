@@ -1,0 +1,278 @@
+
+<div class="info-window">
+    <div class="info-window-header" *ngIf="unit">
+        <!--<ng-template #tooltipGroups>-->
+            <!--<label *ngFor="let group of unit.groups">{{group.label}}</label>-->
+        <!--</ng-template>-->
+
+        <!--<div class="header-position groupLabel"-->
+             <!--placement="left"-->
+             <!--[ngbTooltip]="tooltipGroups">-->
+            <!--<span>{{unit.groups.length}}</span>-->
+        <!--</div>-->
+        <div class="header-position groupLabel" id="{{unit.economicNumber + 'G'}}">
+            <span>{{unit.groups.length}}</span>
+        </div>
+
+        <span class="header-position">{{unit.economicNumber}} - {{unit.operationalState}} - {{unit.motumProductName}}</span>
+    </div>
+    <div class="info-window-container">
+        <!--Info Window detail-->
+        <div class="info-window-detail">
+            <ul>
+                <!--Row 1-->
+                <li class="borderBottom">
+                    <div class="row info-window-row">
+                        <div class="col-md-12 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container">
+                                    <div><i class="motum-i tm-e923 able-color-alert"></i></div>
+                                    <div>Conduciendo durante: {{unit.onTravelTime}} hr</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End Row 1-->
+                <!--row 2-->
+                <li class="borderBottom">
+                    <div class="row info-window-row">
+                        <div class="col-md-12 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container" *ngIf="unit.address">
+                                    <div><i class="motum-i tm-e929 info-window-icon-color"></i></div>
+                                    <div>{{unit.address.city}} {{unit.address.state}} {{unit.address.country}}</div>
+                                    <div class="location"><i class="motum-i tm-e938"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End Row 2-->
+                <!--row 3-->
+                <li class="borderBottom">
+                    <div class="row info-window-row">
+                        <div class="col-md-6 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container" *ngIf="unit.address">
+                                    <div><i class="motum-i tm-e908 info-window-icon-color"></i></div>
+                                    <div>{{unit.speed}} {{unit.measurementUnit}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container" *ngIf="unit.address">
+                                    <div><i class="motum-i tm-e98a info-window-icon-color"></i></div>
+                                    <div>Hibrido - <span>Celular</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End row 3-->
+                <!--row 4-->
+                <li class="borderBottom">
+                    <div class="row info-window-row">
+                        <div class="col-md-7 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container" *ngIf="unit.address">
+                                    <div><i class="motum-i tm-e925 info-window-icon-color"></i></div>
+                                    <div>{{unit.lastDate}} - {{unit.lastHour}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 info-window-non-padding">
+                            <div class="info-window-item line">
+                                <div class="info-window-item-container" *ngIf="unit.address">
+                                    <div><i class="motum-i tm-e98d info-window-icon-color"></i></div>
+                                    <div>{{unit.status.label}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End row 4-->
+                <!--row 5-->
+                <li class="borderBottomAndLine">
+                    <div class="info-window-item line">
+                        <div class="d-flex justify-content-between">
+                            <ng-template #e1><label>Puerta izq - Abierta</label></ng-template>
+                            <ng-template #e2><label>Puerta der - Cerrada</label></ng-template>
+                            <ng-template #e3><label>Buzzer - Abierto</label></ng-template>
+                            <ng-template #e4><label>Claxon - Cerrado</label></ng-template>
+                            <ng-template #e5><label>Cinturón - Abierto</label></ng-template>
+
+                            <span>Entrada:</span>
+                            <div  placement="top" [ngbTooltip]="e1">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="e2">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="e3">
+                                <span><div class="sensor-off"></div>0</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="e4">
+                                <span><div class="sensor-off"></div>0</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="e5">
+                                <span><div class="sensor-off"></div>0</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End row 5-->
+                <!--row 6-->
+                <li class="borderBottomAndLine">
+                    <div class="info-window-item line">
+                        <div class="d-flex justify-content-between">
+                            <ng-template #s1><label>Puerta izq - Abierta</label></ng-template>
+                            <ng-template #s2><label>Puerta der - Cerrada</label></ng-template>
+                            <ng-template #s3><label>Buzzer - Abierto</label></ng-template>
+                            <ng-template #s4><label>Claxon - Cerrado</label></ng-template>
+                            <ng-template #s5><label>Cinturón - Abierto</label></ng-template>
+
+                            <span class="exit-sensor">Salida:</span>
+                            <div  placement="top" [ngbTooltip]="s1">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="s2">
+                                <span><div class="sensor-off"></div>0</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="s3">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="s4">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                            <div  placement="top" [ngbTooltip]="s5">
+                                <span><div class="sensor-on"></div>1</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End row 6-->
+                <!--row 7-->
+                <li class="borderBottomAndLine">
+                    <div class="info-window-item line">
+                        <div class="d-flex justify-content-between">
+                            <ng-template #t1><label>Temperatura - 100.15°C</label></ng-template>
+                            <ng-template #t2><label>Temperatura - 100.23°C</label></ng-template>
+                            <ng-template #t3><label>Temperatura - 100.45°C</label></ng-template>
+                            <ng-template #t4><label>Temperatura - 100.29°C</label></ng-template>
+                            <ng-template #t5><label>Temperatura - 100.64°C</label></ng-template>
+                            <span>Sensor:</span>
+                            <div class="temperatureAlert1" placement="top" [ngbTooltip]="t1">
+                                <span >100ºC</span>
+                            </div>
+                            <div class="temperatureAlert2"  placement="top" [ngbTooltip]="t2">
+                                <span>100ºC</span>
+                            </div>
+                            <div class="temperatureAlert1" placement="top" [ngbTooltip]="t3">
+                                <span>100ºC</span>
+                            </div>
+                            <div class="temperatureAlert1" placement="top" [ngbTooltip]="t4">
+                                <span>100ºC</span>
+                            </div>
+                            <div class="temperatureAlert1" placement="top" [ngbTooltip]="t5">
+                                <span>100ºC</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--End row 7-->
+                <!--row 8-->
+                <li>
+                    <div class="info-window-item line">
+                        <ul>
+                            <li>
+                                <a href="javascript;" class="iw-item-container">
+                                    <span class="iw-item-icon alert-message-bg">
+                                        <i class="motum-i tm-e91a"></i>
+                                    </span>
+                                    <span class="iw-item-text">22</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript;" class="iw-item-container">
+                                    <span class="iw-item-icon alert-danger-bg">
+                                        <i class="motum-i tm-e978"></i>
+                                    </span>
+                                    <span class="iw-item-text">22</span>
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="javascript;" class="iw-item-container">
+                                    <span class="iw-item-icon alert-warning-2-bg">
+                                        <i class="motum-i tm-e978"></i>
+                                    </span>
+                                    <span class="iw-item-text">22</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript;" class="iw-item-container">
+                                    <span class="iw-item-icon alert-warning-1-bg">
+                                        <i class="motum-i tm-e978"></i>
+                                    </span>
+                                    <span class="iw-item-text">22</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript;" class="iw-item-container">
+                                    <span class="iw-item-icon alert-info-bg">
+                                        <i class="motum-i tm-e978"></i>
+                                    </span>
+                                    <span class="iw-item-text">22</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--End row 8-->
+                <!--row 9-->
+                <li>
+                    <div class="margin-img" id='viewStreetUrl'>
+                        <img [src]="viewStreetUrl" alt="viewStreet" class="img-responsive">
+                    </div>
+                </li>
+                <!--End row 9-->
+            </ul>
+        </div>
+        <!--End Info Window detail-->
+        <!--Info window options-->
+        <div class="info-window-options">
+            <ul>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Paro de motor</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Ruta recorrida</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Vehículo más cercano</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Crear Punto de Interés</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Asignar operador</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">PING</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Reporte mecánico</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Auxilio carretero</div>
+                </li>
+                <li (click)="withoutFunctionality()">
+                    <div class="info-window-item line">Centros de servicio</div>
+                </li>
+            </ul>
+        </div>
+        <!--End Info window options-->
+    </div>
+</div>

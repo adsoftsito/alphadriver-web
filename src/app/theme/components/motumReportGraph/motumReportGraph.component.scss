@@ -1,0 +1,51 @@
+@import '../../sass/styles/styles';
+
+$gray: #cbcbcb;
+$strong-gray: #565655;
+$light-gray: #ececec;
+
+
+@include tm-install-component (){
+    $color: tm-theme(card-background);
+
+    .cardGraph{
+        padding-left: 0;
+        padding-right: 0;
+        height: auto;
+        width: 100%;
+        border: 2px solid $gray;
+        border-radius: 5px;
+    
+        &.smallChar{
+            width: 30% !important;
+        }
+    
+        .cardGraphTitle{
+            background-color: $light-gray;
+            height: 30px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+    
+            .cardTitle{
+                font-size: 12px;
+                font-weight: bold;
+                color: $strong-gray;
+                padding: 5px 0 0 6px;
+            }
+            .cardSubtitle{
+                font-size: 12px;
+                font-weight: bold;
+                color: $strong-gray;
+                padding: 5px 11px 0 6px;
+            }
+        }
+    }
+    .smallChar{
+        width: 30% !important;
+    }
+    
+} //end @include
+
+

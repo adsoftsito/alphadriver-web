@@ -1,0 +1,76 @@
+<ng2-toasty></ng2-toasty>
+<form #frmTree="ngForm">
+  <div class="row">
+    <div class="col-md-7 col-sm-12">
+
+
+      <div class="card">
+        <div class="card-block">
+          <input #txtFilterTree name="txtFilterTree" type="text" class="form-control form-control-rounded" [hidden]="modoSeleccion != 1" placeholder="Flota..." (keyup)="tree.filter(txtFilterTree.value)">
+          <div class="row ">
+            <div class="col-md-6">
+              <input #txtFilterTree2 name="txtFilterTree2" type="text" class="form-control form-control-rounded " [hidden]="modoSeleccion != 2" placeholder="Flota..." (keyup)="tree.filter(txtFilterTree2.value)">
+            </div>
+            <div class="col-md-6"> 
+              <input #txtFilterTree name="txtFilterTree" type="text" class="form-control form-control-rounded " [hidden]="modoSeleccion != 2" placeholder="Vehiculos..." (keyup)="tree.filterVehiculos(txtFilterTree.value)">
+            </div>
+          </div>
+
+          <div class="content-card-block">
+            <tree #tree [data]="arbolFlotas"></tree>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-5 col-sm-12">
+
+      <div class="card">
+        <div class="card-block">
+          <input name="txtFilterList" type="text" [(ngModel)]="filtroSeleccinados" [hidden]="modoSeleccion != 1" class="form-control form-control-rounded" placeholder="Flota...">
+          <input name="txtFilterList" type="text" [(ngModel)]="filtroSeleccinados" [hidden]="modoSeleccion != 2" class="form-control form-control-rounded" placeholder="Vehiculos...">
+
+          <div class="content-card-block">
+
+
+            <table class="table table-hover">
+
+              <tbody [hidden]="modoSeleccion != 1">
+                <tr *ngFor="let subflota of subflotas | filterFlotas: filtroSeleccinados" class="no-top-border">
+                  <td class="align-left">{{subflota.name}}</td>
+                  <td class="align-right">
+
+                    <button type="button" class="btn btn-danger btn-icon btn-xs btn-middle-row" title="Remover" (click)="subflota.checked=false">
+                          <i class="fa fa-times"></i>
+                    </button>
+
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody [hidden]="modoSeleccion != 2">
+                <tr *ngFor="let unidad of unidades | filterUnidades: filtroSeleccinados" class="no-top-border">
+                  <td class="align-left">{{unidad.name}}</td>
+                  <td class="align-right">
+
+                    <button type="button" class="btn btn-danger btn-icon btn-xs btn-middle-row" title="Remover" (click)="unidad.checked=false">
+                          <i class="fa fa-times"></i>
+                    </button>
+
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</form>

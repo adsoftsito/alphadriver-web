@@ -1,0 +1,73 @@
+
+<!-- blue html square --->
+
+<div class="group-tooltip" id="{{unitMarker.economicNumber + 'GT'}}">
+        <div class="group-tooltip-arrow">
+
+        </div>
+
+        <div *ngFor="let group of unitMarker.groups" style="margin-top: 8px;">
+            <span>{{this.group.label}}</span>
+        </div>
+</div>
+<div id="{{unitMarker.economicNumber}}" class="infowindow-style">
+
+    <i (click)="closeInfoWindow(unitMarker.economicNumber)" class="motum-i tm-e912 info-window-close" ></i>
+    <mr-info-window-detail-component
+
+            [unit]="unitMarker">
+    </mr-info-window-detail-component>
+</div>
+
+<div id="{{unitMarker.economicNumber + 'T'}}" class="tooltip-info {{tooltipColor}}" [style.minWidth.px]="sumaTotal">
+    <div> {{unitMarker.economicNumber}}</div>
+    <div  *ngIf="vehicleLabels[1].selected"> - {{unitMarker.speed}}  KM/H</div>
+    <div  *ngIf="vehicleLabels[2].selected"> - {{unitMarker.status.label}}</div>
+    <div  *ngIf="vehicleLabels[3].selected" class="iw-item-container">
+               <i class="icon-alert motum-i tm-e983 {{hasAlerts}}"></i>
+                                </div>
+    <div *ngIf="vehicleLabels[4].selected"  class="iw-item-container {{hasMessages}}">
+               <i class="icon-message motum-i tm-e982"></i>
+                                </div>
+</div>
+<svg id="{{unitMarker.economicNumber + 'L'}}" class="tooltip-link ">
+    <line ngClass="{{tooltipColorStroke}}" style="stroke-width: 2px;" x1="10" x2="80" y1="30" y2="-50"></line>
+</svg>
+
+<div *ngIf="markerVisualization == 'POINTER'" class="custom-marker "  [style.zIndex]="6" style="position: absolute;" (click)="openInfoWindow(unitMarker.economicNumber)">
+    <div class="motum-rotate-{{unitMarker.directionGrade}}">
+        <i *ngIf="status == 'InMotion-1' && !interestPointColor && !engineStop"  class="rotate-pointer motum-i tm-e9ff {{unitMarker.status.code}}-m"  [style.fontSize.px]="22"></i>
+    </div>
+    <i *ngIf="status == 'On-1' && !interestPointColor && !engineStop"  class="motum-i tm-ea00 {{unitMarker.status.code}}-m"  [style.fontSize.px]="20"></i>
+    <i *ngIf="status == 'Stop-1' && !interestPointColor && !engineStop " class="motum-i tm-ea00 {{unitMarker.status.code}}-m"  [style.fontSize.px]="20"></i>
+    <i *ngIf="status == 'Off-1' && !interestPointColor && !engineStop"  class="motum-i tm-ea00 {{unitMarker.status.code}}-m"  [style.fontSize.px]="20"></i>
+    <div *ngIf="interestPointColor && !engineStop"  style="width: 25px; height: 25px;">
+        <i class="motum-i tm-e923" [style.color]="'white'" style="font-size: 20px; position: absolute;"></i>
+        <i *ngIf="status == 'InMotion-1'" class="motum-i tm-ea02" [style.color]="interestPointColor" [style.fontSize.px]="23" style="position: absolute"></i>
+        <i *ngIf="status != 'InMotion-1'" class="motum-i tm-ea01" [style.color]="interestPointColor" [style.fontSize.px]="20" style="position: absolute"></i>
+    </div>
+    <div *ngIf="engineStop"  style="width: 25px; height: 25px;">
+        <i *ngIf="status == 'InMotion-1'" class="motum-i tm-e923" [style.color]="'black'" style="font-size: 23px; position: absolute;"></i>
+        <i *ngIf="status != 'InMotion-1'" class="motum-i tm-ea00" [style.color]="'black'" style="font-size: 23px; position: absolute;"></i>
+        <i class="motum-i tm-ea04" [style.color]="'white'" [style.fontSize.px]="12" style="position: absolute; left: 5.5px; top: 6px;"></i>
+    </div>
+</div>
+
+<div *ngIf="markerVisualization == 'VEHICLE' " class="marker-vehicle">
+
+    <div *ngIf="!interestPointColor && !engineStop"  class="car-marker-container {{unitMarker.status.code}}-m" (click)="openInfoWindow(unitMarker.economicNumber)">
+        <div *ngIf="status == 'InMotion-1'" class="marker-custom-car marker-on-moving-{{unitMarker.directionGrade}}" ></div>
+        <img *ngIf="!interestPointColor" class="car-style" src="../../../assets/img/units/vehículo-02.png">
+    </div>
+    <div *ngIf="interestPointColor && !engineStop" class="car-marker-container {{unitMarker.status.code}}-m" [style.backgroundColor]="interestPointColor" (click)="openInfoWindow(unitMarker.economicNumber)">
+        <div *ngIf="status == 'InMotion-1'" class="marker-custom-car marker-on-moving-{{unitMarker.directionGrade}}" ></div>
+        <i class="motum-i tm-e9ed marker-interest-point" [style.color]="'white'"></i>
+
+    </div>
+    <div *ngIf="engineStop" class="car-marker-container {{unitMarker.status.code}}-m" [style.backgroundColor]="'#000000'" (click)="openInfoWindow(unitMarker.economicNumber)">
+        <div *ngIf="status == 'InMotion-1'" class="marker-custom-car marker-on-moving-{{unitMarker.directionGrade}}" ></div>
+        <i class="motum-i tm-ea04 marker-interest-point" [style.color]="'white'"></i>
+
+    </div>
+
+</div>

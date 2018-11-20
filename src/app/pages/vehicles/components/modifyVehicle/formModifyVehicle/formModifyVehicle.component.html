@@ -1,0 +1,25 @@
+<motum-modal-form [align]="'right'">
+    <div modal-form-header class="adjust-vertical-header-elements">
+
+        <motum-avatar class="inlining-block"
+                      [name]="_clientName"
+                      [type]="_avatarType"></motum-avatar>
+
+        <div class="inlining-block header-container-align">
+            <div class="three-dots-text-cut"><span class="header-title" title="{{_clientName}}">{{_clientName}}</span></div>
+            <div class="three-dots-text-cut"><span class="header-subtitle" title="Distribuidor">Distribuidor</span></div>
+        </div>
+    </div>
+    <div modal-form-content>
+        Form
+    </div>
+    <div modal-form-footer
+         class="adjust-vertical-footer-elements"
+         align="right">
+        <button motum-button
+                [outline]="true"
+                [color]="'danger'">{{_CANCEL_LABEL | translate}}</button>
+        <button motum-button
+                [color]="'secondary'">{{_SAVE_LABEL | translate}}</button>
+    </div>
+</motum-modal-form>

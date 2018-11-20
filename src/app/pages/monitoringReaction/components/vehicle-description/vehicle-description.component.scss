@@ -1,0 +1,241 @@
+@import "../../../../theme/sass/motumVariables";
+
+mr-vehicle-description{
+
+
+.container-header{
+  background-color: $motum-black-partner;
+}
+
+.avatar-vihicle{
+  width: 48px;
+  height: 48px;
+  margin-top: 15.719px;
+  margin-left: 20.601px;
+  margin-right: 18.517px;
+  margin-bottom: 14.967px;
+  background-color: $motum-white;
+  border-radius: 100%;
+  text-align: center;
+  display: inline-block;
+  line-height: 2em;
+  font-family: Calibri;
+  color: $motum-white;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 5px solid $motum-white;
+  cursor: pointer;
+}
+
+.greencircle{
+  margin-left: -2px !important;
+  border-radius: 100%;
+  border: 2px solid $motum-green-login-button;
+  box-shadow: 0 0 0 1px $motum-green-border !important;
+  margin-top: -2px;
+  width: 43px;
+  height: 43px;
+}
+
+.purplecircle{
+  margin-left: -2px !important;
+  border-radius: 100%;
+  border: 2px solid $motum-grey-group-active;
+  box-shadow: 0 0 0 1px $motum-grey-border !important;
+  margin-top: -2px;
+  width: 43px;
+  height: 43px;
+}
+
+.orangecircle{
+  margin-left: -2px !important;
+  border-radius: 100%;
+  border: 2px solid $motum-green-login-button;
+  box-shadow: 0 0 0 1px $motum-green-border !important;
+  margin-top: -2px;
+  width: 43px;
+  height: 43px;
+}
+
+.graycircle{
+  margin-left: -2px !important;
+  border-radius: 100%;
+  border: 2px solid $motum-grey-group-active;
+  box-shadow: 0 0 0 1px $motum-grey-border !important;
+  margin-top: -2px;
+  width: 43px;
+  height: 43px;
+}
+
+
+
+.change-icon-property{
+  font-size: 29px !important;
+  color: $motum-black;
+  margin-left: 1px !important;
+  margin-top: 5px !important;
+}
+
+.position-right-data{
+  position: absolute;
+  margin-left: 89px;
+  font-size: 12px;
+  top: 25.972px;
+  // bottom: 22.914px;
+  color: $motum-white;
+}
+
+
+
+.changeproperticons{
+  font-size: 18px !important;
+  position: relative;
+  display: inline !important;
+  line-height: 1 !important;
+}
+
+
+.nav.nav-tabs > li:first-of-type a{
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  color: $motum-grey-border-group;
+}
+.nav.nav-tabs > li:first-of-type a:hover{
+  color: $motum-white;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+  background-color: $motum-black-partner !important;
+  color: $motum-white !important;
+  background-color:  $motum-black-partner !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+
+}
+.nav.nav-tabs > li > a:hover{
+  background-color:  $motum-grey-group-active !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.nav.nav-tabs > li > a{
+  color: $motum-grey-border-group;
+}
+.nav.nav-tabs > li > a #alert{
+  color: $motum-red;
+}
+.nav.nav-tabs > li > a:hover #alert{
+  color: $motum-white !important;
+  background-color:  $motum-grey-group-active !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.nav-tabs .nav-link.active #alert, .nav-tabs .nav-item.show .nav-link #alert{
+  color: $motum-white !important;
+}
+
+.tab-content{
+  padding: 0 !important;
+  border-top: 1px solid  $motum-grey-border-group;
+}
+
+
+.nav-item{
+  background-color: $motum-white;
+}
+.nav-link{
+  padding: 0.5em 0em  !important;
+}
+
+.changeSizeTabs{
+  width: 45% !important;
+}
+
+
+body a{
+  color: $motum-black-partner;
+}
+
+
+.position-icon-top-rigth{
+  margin-right: 10.574px;
+  margin-top: 9.985px;
+  color: $motum-white;
+  font-size: 8.937px !important;
+  float: right;
+}
+
+@media (max-width: 1280px){
+  .changeproperticons{
+    font-size: 13px !important;
+    right: 0 !important;
+  }
+  .changeproperticons-alert{
+    font-size: 10px !important;
+    top: 2px;
+  }
+
+  .nav-link{
+    padding: 0.4em 0.3em  !important;
+  }
+}
+
+// a{
+//   font-family: $motum-font-family-rubik;
+//   font-size: 11px;
+// }
+// b{
+//   font-family: $motum-font-family-rubik-medium;
+//   font-size: 14px;
+// }
+
+a#status{
+  font-family: $motum-font-family-rubik;
+  font-size: 11px;
+}
+a#economicNumber{
+  font-family: $motum-font-family-rubik-medium;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.clase-prueba .nav.nav-tabs{
+  width: 50% !important;
+}
+.change-width-chat .nav.nav-tabs{
+  width: 50% !important;
+}
+.change-width-tabs .nav.nav-tabs{
+  width: 33.33% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,279 @@
+@import "../../../../theme/sass/motumVariables";
+
+
+
+.motum-chatbox, .chatlogs, hr {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color:#c6c6c6;
+}
+
+.motum-chatbox {
+	width: 100%;
+	min-width: 200px;
+	height: calc(100vh - 185px) !important;
+	background: $motum-white;
+	padding: 10px 10px 0px;
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chatlogs {
+	padding: 10px;
+	width: 100%;
+  height: calc(100% - 45px);
+	flex-grow: 2;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.chatlogs::-webkit-scrollbar {
+	width: 5px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background: rgba(0,0,0,.1);
+}
+
+.chat {
+	display: flex;
+	flex-flow: column wrap;
+	margin-bottom: 4px;
+  justify-content: space-between;
+}
+.message-out {
+  align-items: flex-end;
+  .message-info{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+    margin-right: 10px;
+  }
+}
+.chat-date {
+  align-items: center;
+  .message-info{
+    margin-right: 10px;
+  }
+}
+.message-in {
+  align-items: flex-start;
+  .message-info{
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+    margin-left: 10px;
+  }
+}
+.chat .user-photo{
+  width: 25px;
+  height: 25px;
+	border-radius: 50%;
+}
+.chat .message-info {
+	font-size: 11px;
+	color: $motum-grey-partner;
+	.hour-label{
+		margin: 7px;
+		i {
+			font-size: 18px;
+		}
+	}
+}
+.chat-more-options-list {
+	.list-group-item {
+		font-size: 11px;
+		padding: 0.3rem 1.25rem;
+		border: 0px solid rgba(0, 0, 0, 0.125);
+	}
+	a {
+		color:$motum-grey-partner;
+	}
+	a:hover {
+		background-color: $motum-border-input;
+	}
+}
+.chat .chat-message {
+	max-width: 48%;
+	padding: 5px;
+	margin: 0px 10px 10px;
+	border-radius: 3px;
+	color: $motum-white;
+	font-size: 13px;
+	position: relative;
+	line-height: 1.3;
+	-ms-word-break: break-all;
+	word-break: break-all;
+	// word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+.chat-date .chat-message{
+	background: $motum-white;
+	color: $motum-grey;
+}
+.message-in .chat-message {
+	background: $motum-grey-group;
+  color: $motum-grey;
+}
+
+.message-in .chat-message:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 12px;
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-top-color: $motum-grey-group;
+	border-bottom: 0;
+	margin-left: -7px;
+	margin-bottom: -5px;
+}
+.message-out .chat-message {
+	background: $motum-blue-partner;
+}
+.message-out .chat-message:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 4px;
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-top-color: $motum-blue-partner;
+	border-bottom: 0;
+	margin-left: -7px;
+	margin-bottom: -5px;
+}
+.chat-form {
+	//margin: 5px;
+	margin: 0.85em;
+	flex-grow: 1;
+	max-height: 50px;
+	display: flex;
+	align-items: flex-start;
+}
+.chat-form .custom-popover .popover-header {
+	display: none;
+}
+.chat-form .custom-popover .popover {
+	border: 0px;
+	-webkit-box-shadow: -1px 3px 30px -2px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 3px 30px -2px rgba(0,0,0,0.75);
+	box-shadow: -1px 3px 30px -2px rgba(0,0,0,0.75);
+}
+.chat-form textarea {
+	background: $motum-white;
+	width: 100%;
+	border: 0px solid $motum-border-input;
+	border-radius: 3px;
+	resize: none;
+	padding: 5px 15px;
+	font-size: 13px;
+	color: $motum-grey;
+  height: 35px;
+}
+
+.chat-form textarea:focus {
+	background: $motum-white;
+	border: 1px solid $motum-blue-partner;
+}
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+	margin-bottom: 0rem;
+}
+//
+// .inputfile:focus + label,
+// .inputfile + label:hover {
+//     background-color: red;
+// }
+
+.chat-form .chat-buttons {
+	background: $motum-white;
+	padding: 5px 5px;
+	font-size: 18px;
+	color:#b2b2b2;
+	border: none;
+	margin: 3px 3px;
+	//margin: 0.7em 0.5em;
+	border-radius: 5px;
+	cursor: pointer;
+  outline: none;
+}
+
+.chat-form .chat-buttons:hover {
+	//background: $motum-grey-partner;
+	color:$motum-blue-partner;
+}
+.chat-form .chat-buttons:active {
+	color: $motum-blue-partner;
+}
+.chat-btn-send-active{
+	background: $motum-white;
+	padding: 5px 5px;
+	font-size: 18px;
+	border: none;
+	margin: 3px 3px;
+	//margin: 0.7em 0.5em;
+	border-radius: 5px;
+	cursor: pointer;
+  outline: none;
+	color: $motum-blue-partner;
+}
+.chat-form  .btn-confirm {
+	color: $motum-white;
+	background-color: #2244d7;
+	border-color: #2244d7;
+  white-space: nowrap;
+	border-radius: 30px;
+	margin: 5px 3px;
+	//margin: 0.5em 0.18em;
+	padding:0.22rem 0.53rem;
+	font-size: 0.7rem;
+}
+
+.chat-division{
+	background-color:#d3d3d3;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+    background-color: $motum-grey-group;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: $motum-grey-group;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+    background-color: $motum-grey-radio;
+}
+@media screen and (max-width: 600px) {
+	.chat-form textarea {
+		padding: 0px;
+	}
+	.chat-form .chat-buttons {
+		padding: 3px 3px;
+		font-size: 15px;
+		margin: 3px 2px;
+	}
+	.chat-form .btn-confirm {
+		margin: 5px 2px;
+    padding: 0.2rem 0.1rem;
+    font-size: 10px;
+	}
+}

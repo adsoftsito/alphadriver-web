@@ -1,0 +1,50 @@
+<div class="al-content">
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <ba-card>
+
+                <div class="row" >
+
+                    <div class="col-md-3 border-right-motum"
+                        *ngIf="toggledTree"
+                        [@togglingTree]="treeState">
+                        <form>
+                            <div class="form-group">
+                                <input type="text"
+                                    class="form-control"
+                                    id="treeSearchInput"
+                                    aria-describedby="searchIntoTree"
+                                    placeholder="Buscar reporte"
+                                    #filterInputModel
+                                    (keyup)="onFilterTreeChanged(filterInputModel.value)">
+                            </div>
+                        </form>
+
+                        <tree-root #tree [nodes]="reportTree"
+                            (activate)="onActivate($event)"></tree-root>
+                    </div>
+
+                    <div class="dock-motum-parent"
+                        (click)="toggleTreeReports()">
+                        <i class="dock-motum-child"
+                            [ngClass]="toggledTree ? 'motum-i tm-e911' : 'motum-i tm-e910'"
+                        ></i>
+                    </div>
+
+                    <div [ngClass]="toggledTree ? 'col-md-9' : 'col'">
+                        <app-report-filters *ngIf="reportSelected; else reportNotSelected"
+                            [retrivedPath]="partialUrl"
+                            [title]="titleReportFilter"></app-report-filters>
+                        <ng-template #reportNotSelected >
+                        <label translate>{{'reports.selectReport'}}</label>
+                        </ng-template>
+                    </div>
+
+                </div>
+
+            </ba-card>
+        </div>
+    </div>
+</div>
+</div>

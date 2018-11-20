@@ -1,0 +1,80 @@
+@import '../../../../../theme/sass/_motumVariables';
+
+.iconPosition{
+  position: absolute;
+
+  &.ellipsis{
+    right: 38px;
+    top: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    height: 30px;
+    width: 25px;
+    z-index: 10;
+  }
+
+}
+.options{
+  font-size: 14px;
+  position: absolute;
+  top: 8px;
+  right: 5px;
+}
+.download{
+  position: absolute;
+  left: 25px;
+  top: 4px;
+  color: $motum-grey-titles;
+}
+.print{
+  position: absolute;
+  left: 25px;
+  top: 35px;
+  color: $motum-grey-titles;
+}
+
+.menu{
+    font-size: 11px;
+    background-color: #ffffff;
+    border: 0px;
+    border-style: solid;
+    width: 123px;
+    height: 61px;
+    right: 19px;
+    top: -7px;
+    margin-top: 45px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 25px;
+    box-shadow: 8px 5px 15px 2px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 101;
+  }
+  .menu:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(21.5% - 10px);
+    top: -10px;
+    border-style: solid;
+    border-width: 0px 15px 16px 15px;
+    border-color: transparent transparent #ffffff transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+  }
+  
+  .dropdown-item{
+    text-align: left !important;
+  }
+  .dropdown-menu{
+    min-width: unset !important;
+  }
+  .dropdown-divider{
+    margin: 1.5rem 0 !important;
+    background-color: #dadada !important;
+  }
+  
+  .animated{
+    animation-duration: 0.3s !important;
+    animation-fill-mode: both !important;
+  }

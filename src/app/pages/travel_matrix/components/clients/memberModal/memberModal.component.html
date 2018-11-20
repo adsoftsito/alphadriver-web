@@ -1,0 +1,98 @@
+  <motum-modal-form [align]="'right'" [cols]="3">
+      <ng-template #confirmEditUser let-c="close" let-d="dismiss">
+          <div class="modal-header">
+              <div class="motum-modal-icon">
+                  <i class="ion-checkmark-round changeofproperties"></i>
+              </div>
+              <h5 class="modal-title">{{'pages.modalChanges.header' | translate }}</h5>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body modalBody">
+              <p>{{'pages.modalChanges.content' | translate }} usermodel {{'pages.modalChanges.contents' | translate }}</p>
+          </div>
+          <div class="modal-footer centerModal">
+              <button type="button" class="btn motum-btn-confirm " (click)="c(true)">{{'pages.modalChanges.accept' | translate }}</button>
+          </div>
+        </ng-template>
+        <router-outlet></router-outlet>
+      <div modal-form-header>
+        <div class="row">
+          <div class="avatarSection">
+            <motum-avatar [name]="'AT'"
+                          [type]="'COMPANY'"></motum-avatar>
+          </div>
+          <div class="labelsAvatar">
+              <div>
+                  ATR
+                </div>
+                <div> 
+                  Transportista
+                </div>
+          </div>
+        </div>
+          </div>
+          <div modal-form-content>
+              <div class="bodyMembers">
+                  <div class="bodyTitle">
+                    INTEGRANTES
+                  </div>
+                  <div class="bodyTable">
+                    <div class="iconsTable">
+                      <div class="checkboxMembers"> 
+              
+                        <form class="row form-inline align-items-center">
+                            <div class="form-group col-sm-1">
+                                <div class="checkbox">
+                                    <ba-checkbox [(ngModel)]="isSelectable"
+                                                 [label]="' '"
+                                                 (change)="makeSelectableRows()"
+                                                 [ngModelOptions]="{standalone: true}">
+                                    </ba-checkbox>
+                                </div>
+                            </div>
+              
+                            <div class="form-group col-sm-1 animated fadeIn"
+                                 (click)="addMember()"
+                                 >
+                                <i class="motum-i tm-e92e newMember"></i>
+                            </div>
+              
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                      <ag-grid-angular style="width: 100%;  height: calc(100vh - 288px);"
+                      class="ag-theme-material"
+                      [gridOptions] = "gridOptions"
+                      [getContextMenuItems]="getContextMenuItems"
+                      [components]="components"
+                      [rowSelection]="rowSelection"
+            
+                      [suppressRowClickSelection]="true"
+                      [suppressAggFuncInHeader]="true"
+                      [enableColResize]="true"
+                      [animateRows]="true"
+                      [enableFilter]="true"
+            
+                      (rowClicked)="onRowClicked($event)"
+                      (gridReady)="onGridReady($event)"
+                      (cellClicked)="onCellClicked($event)"
+                      (bodyScroll)="onBodyScroll($event)">
+                      </ag-grid-angular>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div modal-form-footer>
+            <div class="closeBtn"> 
+              <button motum-button
+              color="danger"
+              outline="false"
+              (click)="closeMembers()">
+                Cerrar
+              </button>
+            </div>
+          </div>
+</motum-modal-form>

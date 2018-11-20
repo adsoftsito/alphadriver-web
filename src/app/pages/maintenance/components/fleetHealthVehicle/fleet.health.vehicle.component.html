@@ -1,0 +1,53 @@
+<!-- <div class="row">
+<div class="col-md-12">
+<motum-filter-sorter-component *ngIf="configurationFilters"
+[listElements] = "configurationFilters"
+
+(listElementsChange) = "filterChange($event)">
+</motum-filter-sorter-component>
+</div>
+</div> -->
+<div class="motum-grid-item m-row-12 m-column-12 m-item-z-index-5">
+  <div class="al-content">
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-6 space-right">
+          <motum-graphics-information-component *ngIf="chartGroups"
+          [chartData] = "chartGroups"
+          [configuration] = "chartGroupsConfiguration"
+          [graphicId] = "'chart-groups'"
+          [graphicTitle] = "chartGroupsTitle"
+          [heightVh] = "17"
+          [categories] = "categories">
+        </motum-graphics-information-component>
+      </div>
+      <div class="col-md-6 space-lefth table-and-graph">
+        <motum-table-information-component *ngIf="dataTableGroupComponent"
+        [table] = "dataTableGroupComponent"
+        [heightVh] = "20"
+        [pagination]="false"
+
+        (onCellClick) = 'faultCodes($event)'>
+      </motum-table-information-component>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <motum-table-information-component  *ngIf="dataTableFailures"
+      [table] = "dataTableFailures"
+      [pagination]="false"
+      [heightVh] = "39">
+    </motum-table-information-component>
+  </div>
+  </div>
+  <div class="m-item-z-index-5">
+      <floatbutton
+        [isPlus] = "false"
+        [configFloatButton] ="configFloatButton"
+        (primaryButtonClick)="openOrCloseFiltering($event)">
+      </floatbutton>
+  </div>
+  </div>
+  </div>
+</div>

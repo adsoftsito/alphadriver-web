@@ -1,0 +1,113 @@
+<div class="container-main row custom-row">
+        <div class="prev-arrow">
+            <i id="prev-arrow" class="motum-i tm-e90e" (click)="doClickLess($event)"></i>
+        </div>
+
+        <div *ngIf="pagedArray[1]"  class="next-arrow">
+            <i id="next-arrow" class="motum-i tm-e90e " (click)="doClick($event)"></i>
+        </div>
+
+        <div *ngIf="pagedArray.length > 0" class='list'>
+            <div *ngFor="let page of pagedArray" class='animated fadeIn item pages-driver'>
+                <div class="d-flex flex-wrap">
+                    <motum-ranking-card *ngFor="let card of page" class="w-20" rankingType="incidents" [iconClass]="card.icon" [firstLbl]="card.name" [firstLblContent]="card.amount"></motum-ranking-card>
+                </div>
+            </div>
+
+        </div>
+
+  </div>
+
+<div class="row  main-container">
+    <div class="col-md-12">
+        <div class="box-shadow">
+            <div class="table-container">
+                <div class="row protect-row-height">
+
+                    <div class="col-lg-5 col-md-2 col-sm-8 col-xs-8 col-8 row" style=" padding-left: 30px;">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 row icons-container" style="margin-top: -7px; padding-right: 0px; padding-left: 0px;" >
+                                <motum-group-btn
+
+                                        class="d-inline-block"
+                                        id="BG"
+                                        [buttonsArray]="btnArray"
+                                        (selectedItem)="onChangeSelected($event)">
+
+                                </motum-group-btn>
+
+                            <div class="d-block-inline icon-style test">
+                                <i class="motum-i tm-e91c i-style" (click)="exportToExel()"></i>
+                            </div>
+                            <div class="d-block-inline icon-style test">
+                                <i class="motum-i tm-e91b i-style" (click)="getDriversData()"></i>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-4 text-right" style="padding-left: 0px; padding-right: 0px;">
+                        <div *ngIf="selectedTab == 'BG1'" class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
+                            <span class="calendar-lbl-container">{{calendarLabel}}</span>
+                            <i class="motum-i tm-e925"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-11 col-xs-11 col-11" style="padding-right: 0px; margin-top: -3px">
+                        <motum-search-input
+
+                                [styleInput]="'table'"
+                                [placeholder]="search | translate"
+                                [defaultWidthPercent]=100
+                                (changesSearchValue)="onFilterChanged($event)">
+
+                        </motum-search-input>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: -10px;">
+
+                    <div class="col-md-12 col-sm-12 col-lg-12"  (clickOutside)="clickOutside($event)" >
+                        <ag-grid-angular *ngIf="hasLoadTranslateLabel"
+                                         style=""
+                                         class="ag-theme-material table-ag"
+                                         [gridOptions] = "gridOptions"
+                                         [rowSelection]="rowSelection"
+                                         [suppressRowClickSelection]="true"
+                                         [suppressAggFuncInHeader]="true"
+                                         [enableColResize]="true"
+                                         [pagination]="true"
+                                         [animateRows]="true"
+                                         (cellClicked)="onCellClicked($event)"
+                                         (rowClicked)="onRowClicked($event)"
+                                         (gridReady)="onGridReady($event)">
+                        </ag-grid-angular>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer-table-counter">{{'pages.ranking.records' | translate}} {{tableDriversCount}}</div>
+
+
+<!--
+        HOW TO IMPLEMENT CALENDAR INTO YOUR COMPONENT
+        1. CREATE A LOCAL VAR TO SHOW/DESTROY YOUR CALENDAR DINAMICALLY I.E showCalendarModal
+        2. CREATE A METHOD TO HANDLE CALENDAR CLOSING
+        3. IF YOU WANT TO HAVE PERSISTENT CALENDAR DATA YOU MUST DECLARE TWO VARS TO STORE USER SELECTED RANGE & DATE OPTION
+        4. CREATE TWO METHODS TO STORE USER SELECTED DATA INTO YOUR VARS
+
+        YOU CAN GET A FORMATTED DATA LABEL FOR YOUR COMPONENTS USING (calendarLabel) OUTPUT
+        YOU CAN GET A MOMENT FROM USER SELECTED DATA USING (selectedRange) OUTPUT
+
+-->
+<motum-modal-date-picker *ngIf="showCalendarModal"
+                         (selectedOption)="getSelectedOption($event)"
+                         (hasBeenClosed)="modalClosed()"
+                         (selectedRange)="getSelectedRange($event)"
+                         (calendarLabel)="getCalendarLabel($event)"
+                         [userDefinedOption]="selectedOption"
+                         [userDefinedRange]="selectedRange">

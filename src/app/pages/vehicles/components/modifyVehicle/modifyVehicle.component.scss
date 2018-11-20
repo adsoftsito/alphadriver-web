@@ -1,0 +1,42 @@
+@import '../../../../theme/sass/styles/styles';
+
+$div-box-display: inline-block;
+$font-size: 10px;
+
+@include tm-install-global() {
+  v-modify-vehicles-component.col-md-12 {
+    .buttonsBoxContainer {
+      display: $div-box-display;
+      margin-left: 12.842px;
+    }
+
+    .font-size-normal {
+      font-size: $font-size;
+    }
+
+    label.custom-checkbox {
+      margin-top: 10px;
+    }
+
+    .custom-checkbox input[type="checkbox"] + span::before {
+      font-family: "MotumIcons";
+      content: "\e90f";
+      border: 0;
+      font-size: 15px;
+      min-width: 17px;
+      margin-top: 1px;
+    }
+
+    .custom-checkbox input[type="checkbox"]:checked + span::before {
+      content: "";
+      border-radius: 15%;
+      min-width: 17px;
+      background-image: url("../../../../../assets/fonts/themeMotum/iconsFont/icons-svg/checkbox-checked.svg") !important;
+    }
+
+    hr {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

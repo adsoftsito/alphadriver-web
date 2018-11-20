@@ -1,0 +1,98 @@
+@import "../../sass/styles/styles";
+
+$form-backdrop-bg: tm-theme(form-modal-backdrop-color-bg);
+$form-color-bg: tm-theme(form-modal-color-bg);
+$form-height: tm-theme(form-modal-height);
+$form-shadow: tm-theme(form-modal-shadow);
+$form-header-color-bg: tm-theme(form-modal-color-header);
+
+$form-header-height: 80px;
+$form-header-height-with-tabs: 55px;
+$form-footer-height: 76px;
+
+@include tm-install-global() {
+  motum-modal-form {
+    .page-modal-form-backdrop {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 904;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: $form-backdrop-bg;
+    }
+    .modal-top-padding {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 66px 0 0 0;
+    }
+    .modal-form-container {
+      background-color: $form-color-bg;
+      position: fixed;
+      height: $form-height;
+      z-index: 1001;
+      top: 66px !important;
+      box-shadow: $form-shadow;
+      overflow-y: auto;
+      overflow-x: hidden;
+      //we use 2% because it has a problem with main menu
+      width: 48%;
+      left: 27%;
+    }
+    .right {
+      //we use 2% because it has a problem with main menu
+      width: 48%;
+      left: 52%;
+    }
+    .w-3 {
+      //we use 2% because it has a problem with main menu
+      width: 77%;
+      left: 23%;
+    }
+
+    //Header container and footer
+    .modal-form-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      height: $form-header-height;//80
+      background-color: $form-header-color-bg;
+      &.hasTabs {
+        height: $form-header-height-with-tabs;//55
+      }
+    }
+    .modal-form-content {
+      position: absolute;
+      top: $form-header-height;
+      bottom: $form-footer-height;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      &.hasTabs {
+        top: $form-header-height-with-tabs;//55
+      }
+      &.withoutFooter {
+        bottom: 0;
+      }
+    }
+    .modal-form-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      height: $form-footer-height;
+      &.withoutFooter {
+        height: 0;
+      }
+    }
+  }
+}

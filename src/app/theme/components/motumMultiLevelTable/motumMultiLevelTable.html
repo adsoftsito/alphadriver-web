@@ -1,0 +1,102 @@
+<div class="table-responsive table-style-motum-multilevel one-table">
+  <table class="table table-striped">
+    <thead>
+      <tr class="thead-motum-light-gray">
+        <th></th>
+        <th>#</th>
+        <th>{{'pages.userControl.clients.formOrders.quantity' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.plan' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.partNumber' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.product' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.charge' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.duration' | translate }}</th>
+        <th>{{'pages.userControl.clients.formOrders.erp' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item2 of productsList; let indice2 = index;">
+        <tr class="thead-motum-white-with-buttons">
+          <td>
+            <span [attr.id]="'accordion-' + indice2"  class="btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne-'+ indice2" aria-expanded="true" aria-controls="collapseOne">
+              <i class="motum-i tm-mu tm-v-down"></i>
+            </span>
+          </td>
+          <td>{{indice2 + 1}}</td>
+          <td>{{item2.quantity}}</td>
+          <td>{{item2.plan}}</td>
+          <td>{{item2.partNumber}}</td>
+          <td>{{item2.product}}</td>
+          <td>{{item2.charge}}</td>
+          <td>{{item2.duration}}</td>
+          <td>{{item2.folioERP}}</td>
+          <td>
+            <button type="button" class="table-add-button" (click) = "addVehicle(indice2)">
+              <i class="motum-i tm-mu tm-plus"></i>
+            </button>
+          </td>
+        </tr>
+        <tr [attr.id]="'collapseOne-' + indice2" class="collapse" aria-labelledby="headingOne" [attr.data-parent]="'#accordion-'+ indice2">
+          <td></td>
+          <td colspan="9" class="content-table" >
+            <table class="table table-striped table-double">
+              <thead>
+                <tr class="thead-motum-light-gray-2">
+                  <th>{{'pages.userControl.clients.formOrders.businessName' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.economic' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.plates' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.vin' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.brand' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.model' | translate }}</th>
+                  <th>{{'pages.userControl.clients.formOrders.year' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of item2.listVehicleDispositive; let indice = index;">
+                  <td>
+                    <input [(ngModel)]="item.vehicle.businessName" type="text" class="form-control input-sm" required>
+                  </td>
+                  <td>
+                    <input [(ngModel)]="item.vehicle.economic" type="text" class="form-control input-sm" required>
+                  </td>
+                  <td>
+                    <input [(ngModel)]="item.vehicle.plates" type="text" class="form-control input-sm" required>
+                  </td>
+                  <td>
+                    <input [(ngModel)]="item.vehicle.vin" type="text" class="form-control input-sm" required>
+                  </td>
+                  <td>
+                    <select2 (valueChanged)="valueChangedVehicleBrand($event, indice2, indice)" class="customSelectSingle" ngDefaultControl [options]="options" [width]="'100%'" [cssImport]=true  required>
+                      <option value="item.vehicle.brand">{{item.vehicle.brand}}</option>
+                      <option value="Kenworth">Kenworth</option>
+                      <option value="Volvo">Volvo</option>
+                      <option value="Test">Test</option>
+                    </select2>
+                  </td>
+                  <td>
+                    <select2 (valueChanged)="valueChangedVehicleModel($event, indice2, indice)" class="customSelectSingle" ngDefaultControl [options]="options" [width]="'100%'" [cssImport]=true  required>
+                      <option value="item.vehicle.model">{{item.vehicle.model}}</option>
+                      <option value="T600">T600</option>
+                      <option value="D12">D12</option>
+                      <option value="T800">T800</option>
+                    </select2>
+                  </td>
+                  <td>
+                    <select2 (valueChanged)="valueChangedVehicleYear($event, indice2, indice)" class="customSelectSingle" ngDefaultControl [options]="options" [width]="'100%'" [cssImport]=true  required>
+                      <option value="item.vehicle.year">{{item.vehicle.year}}</option>
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                      <option value="2016">2016</option>
+                      <option value="2015">2015</option>
+                      <option value="2014">2014</option>
+                    </select2>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

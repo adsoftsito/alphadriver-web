@@ -1,0 +1,21 @@
+<div class="page-modal-form-backdrop">
+    <div class="modal-top-padding">
+        <div class="modal-form-container"
+             [ngClass]="{'right': align === 'right', 'w-3': cols === 3}">
+
+            <div class="modal-form-header"
+                 [ngClass]="{hasTabs: willContentTabs}">
+                <ng-content select="[modal-form-header]" ></ng-content>
+            </div>
+            <div class="modal-form-content"
+                 [ngClass]="{hasTabs: willContentTabs, withoutFooter: !willContentFooter}">
+                <ng-content select="[modal-form-content]"></ng-content>
+            </div>
+            <div class="modal-form-footer"
+                 [ngClass]="{withoutFooter: !willContentFooter}">
+                <ng-content select="[modal-form-footer]"></ng-content>
+            </div>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

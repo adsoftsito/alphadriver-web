@@ -1,0 +1,102 @@
+@import '../../sass/styles/styles';
+
+$white: #fff;
+$blue: #1b79d0;
+$gray: #cbcbcb;
+$light-gray: #ececec;
+$light-gray-one: #f4f4f4;
+$strong-gray: #565655;
+$light-green: #d6f9e1;
+$light-red: #ffd5d6;
+
+
+@include tm-install-component (){
+    $color: tm-theme(card-background);
+
+    .title{
+        height: 40px;
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+    
+    .trColorTable{
+        tr:nth-child(odd) {
+                    background-color: $light-gray-one;
+                }
+    }
+    .trColorFailures{
+        tr:nth-child(even) {
+                    background-color: $light-gray-one;
+                }
+    }
+    
+    .tableBottomRadius{
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+    .tableTopRadius{
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+    }
+    .dangerColorTr{
+        tr:nth-child(2){
+            background: $light-red !important;
+        }
+    }
+    .successColor{
+        tr:nth-child(2){
+            background: $light-green !important;
+        }
+    }
+    .dangerColor{
+        tr:nth-child(2){
+            background: $light-red !important;
+        }
+    }
+    
+    .reportTable{
+        text-align: center;
+        background: $gray;
+        border-radius: 5px;
+        overflow: hidden;
+    
+        .header{
+            background-color: $blue !important;
+            color: $white;
+            font-size: 12px;
+            .thHeader{
+                padding: 9px 12px 4px;
+            }
+            th {
+                font-weight: bold;
+                text-align: left;
+            }
+            div {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        .subHeader{
+            background-color: $light-gray;
+            color: $strong-gray;
+            font-weight: bold;
+            
+            td{
+                padding: 7px;
+            }
+        }
+    
+    }
+    
+    tbody tr{
+        background: $white;
+    }
+    .table-bordered, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+        border: 2px solid $gray  !important;
+    }
+
+
+} //end @include
+
+
+

@@ -1,0 +1,118 @@
+<aside  [@slideInOut] = 'menuBarState'  class="al-sidebar-menu"
+ [ngClass]="parts" sidebarResize>
+   <!-- <span id='close' class="pull-right clickable"  data-effect="fadeOut">
+     <i (click) = "toggleMenu(0)" [ngClass]="menuBarState === 'out' ? 'ion-chevron-left': 'ion-chevron-right'"></i>
+   </span> -->
+
+   <div #topContent class="allcontent">
+      <div id='title'>
+        <h5 *ngIf="title">{{title.title | translate }}</h5>
+      </div>
+
+      <menu-item-component *ngIf="showMenuList"
+        (comunicationOut)="comunicatioOutMenuItem($event)"
+        [comunicationInSoon]='contMenuBar'
+        [comunicationIn]='contBar'
+        [configuration] ='configuration'>
+      </menu-item-component>
+
+    <div *ngIf="showMenuUsers" class="content-menu">
+        <div [ngClass]="parts == 'one' ? 'row': 'col-md-6'">
+          <div class="row">
+            <div class="col-md-6 col-xs-6">
+              <i routerLink="/pages/usersControl/users" class="motum-i tm-mu tm-admin-users"></i><br>
+              <label for="">Usuarios</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i routerLink="/pages/usersControl/clients-products" class="motum-i tm-mu tm-admin-clients"></i><br>
+              <label for="">Clientes</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-licenses"></i><br>
+              <label for="">Licencias</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-groups"></i><br>
+              <label for="">Grupos</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-sims"></i><br>
+              <label for="">SIMS</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-services"></i><br>
+              <label for="">Alta Servicios</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-units"></i><br>
+              <label for="">Unidades</label>
+            </div>
+            <div class="col-md-6 col-xs-6">
+              <i class="motum-i tm-mu tm-admin-motum"></i><br>
+              <label for="">Motum</label>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <br>
+    <div *ngIf="showMenuList" class="allcontent" class="col-md-10">
+      <input (click) = "changeParts('one')" class="btn btn-outline-primary" type="button" value="Una">
+      <input (click) = "changeParts('two')" class="btn btn-outline-primary" type="button" value="Dos">
+      <input (click) = "changeParts('three')" class="btn btn-outline-primary" type="button" value="Tres">
+      <input (click) = "changeParts('four')" class="btn btn-outline-primary" type="button" value="Cuatro">
+    </div>
+
+    <!--div *ngIf="showMenuDashboard">
+        <div class="space"></div>
+          <div>
+            <h2>Arrastre un elemento al Dashboard</h2>
+            <ul class="list-group">
+              <li draggable="true" id="{{item.id}}"  [dragData]="item" (onDragStart)="closeMenu();" *ngFor="let item of items"   class="list-group-item">
+                <div>
+                  <i class="fa fa-th-large fa-2x" aria-hidden="true"></i>
+                </div>
+                {{item.nomClient}}
+              </li>
+            </ul>
+          </div>
+    </div-->
+    <!-- <div *ngIf="showMenuDashboard">
+        <div>
+          <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-10 col-sm-10 has-feedback">
+                    <select type="text" class="form-control btnMenuDrag" placeholder="Mis plantillas">
+                    <option>Recibidas</option>
+                    <option>Compartidas</option>
+                    </select>
+                    <i class="fa fa-angle-down fa-2x form-control-feedback btnAngleDown" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                  <div class="btnTemplates">
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                    <span class="tooltipTemplates">Nueva plantilla</span>
+                  </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px"></div>
+              <div *ngFor="let item of items">
+                  <div class="row" draggable="true" [dragData]="item">
+                      <div class="col-md-3 col-sm-3 iconMenuTemplates">
+                          <i class="fa fa-th-large fa-2x" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-md-9 col-sm-9 itemDrag">
+                          {{item.nomClient}}
+                      </div>
+                  </div>
+                  <div class="hrDrag">
+                    <hr class="hrDragMenu">
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div> -->
+
+  </div>
+</aside>

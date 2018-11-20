@@ -1,0 +1,139 @@
+<router-outlet></router-outlet>
+<div class="motum-cover-all-container">
+
+    <div class="motum-grid-container m-cover"><!-- First level -->
+        <div class="motum-grid-item m-row-12 m-column-12"><!-- First level -->
+
+            <div class="motum-grid-container m-cover motum-relative-container"><!-- Second level -->
+
+                <div class="motum-open-button " *ngIf="!showListUnits" (click)="buttonCloseOpen(true)">
+                    <span class="motum-i tm-e90e"></span>
+                </div>
+
+                <div id="agm-map" class="motum-grid-item m-row-12 m-column-12 m-item-z-index-5" >
+                    <div class="motum-fixed-map-tools m-item-z-index-5">
+                        <mr-tool-map-control-component [mapElement]="_el"
+                                                       (vehicleViews)="changeMarkerType($event)"
+                                                       (listOfPoints)="loadPointsOfView($event)"
+                                                       (setMonitoringLocation)="setLocationMap($event)"
+                                                       (trafficLayerView)="trafficLayerView($event)"
+                                                       (optionViewMap)="optionVisualizeMap($event)"
+                                                        (refreshMap)="refreshMap()"
+
+                                                       (vehicleLabels)="getVehicleLabels($event)"
+                                                       [unitsPosition] = "unitMarkers"
+                                                       (viewClusters)="setClusters($event)"
+
+                        ></mr-tool-map-control-component>
+                        <mr-zoom-control-component (clickedButton)="motumZoomControls($event)"></mr-zoom-control-component>
+                    </div>
+                <agm-map #motumAgm style="width: 100%; height: 100%;"
+                         [latitude]="latitude"
+                         [longitude]="longitude"
+                         [zoomControl]="zoomControl"
+                         [streetViewControl]="streetViewControl"
+                          (zoomChange)="zoomChange($event)"
+                         [styles]="mapStyles"
+                         [mapTypeId]="viewMap"
+                         (mapReady)="showTrafficLayer($event)"
+                         [zoom]="zoom">
+
+                    <agm-marker-cluster
+
+                                *ngIf="viewClusters"
+                                imagePath="../../assets/img/theme/icon/monitoringReaction/m"
+                                imageExtension="png"
+
+                                >
+                        <agm-overlay class="overlay-marker"
+                                     *ngFor      = "let unitMarker of unitMarkers"
+                                     [latitude]  = "unitMarker.lat"
+                                     [longitude] = "unitMarker.lng" >
+
+                            <motum-custom-marker-overlay *ngIf="unitMarker"
+
+                                                          [vehicleLabels]="vehicleLabels"
+                                                          [unitMarker]="unitMarker"
+                                                          [(userIsDragging)]="userIsDragging"
+                                                          [markerVisualization]="markerVisualization">
+
+                            </motum-custom-marker-overlay>
+
+                         </agm-overlay>
+                    </agm-marker-cluster>
+
+                    <ng-container *ngIf="!viewClusters">
+                        <agm-overlay class="overlay-marker"
+
+                                     *ngFor      = "let unitMarker of unitMarkers"
+                                     [latitude]  = "unitMarker.lat"
+                                     [longitude] = "unitMarker.lng" >
+
+                            <motum-custom-marker-overlay *ngIf="unitMarker"
+
+                                                         [vehicleLabels]="vehicleLabels"
+                                                         [unitMarker]="unitMarker"
+                                                         [(userIsDragging)]="userIsDragging"
+                                                         [markerVisualization]="markerVisualization">
+
+                            </motum-custom-marker-overlay>
+                        </agm-overlay>
+                    </ng-container>
+
+                    <agm-polygon *ngFor = "let points of listOfPaths"
+
+                    strokeColor="dodgerBlue" fillColor="skyBlue"
+                    [paths]="points.paths"
+                    [editable]="geoFenceEditable"
+                    [visible]="points.selected"
+                    (polyClick)="editGeoFence($event)">
+
+                    </agm-polygon>
+                </agm-map>
+
+                </div>
+
+
+                <div class="motum-absolute-menu" >
+                    <div class="motum-grid-container m-cover" (propertyChangeWindows)="openFilteringTools($event)"><!-- Third level -->
+
+                        <!--Here goes our components-->
+                        <mr-list-units *ngIf="showListUnits" @togglingMenu
+                             [ngClass]="['motum-grid-item', MR_HTML_CLASSES.MENU_1, 'm-item-z-index-5 background-menu']"
+                             [listUnits]="unitMarkers"
+                             [groups]="groups"
+                             [changeIconColor]="sendChangeIconColor"
+                             [seletedColorUnit]="seletedColorUnit"
+                             [flagSelectedColor]="flagSelected"
+                             (sendUnit)="sendUnit($event)"
+                             (openFiltering)="openFiltering($event)"
+                             (buttonClose)="buttonCloseOpen($event)"
+                             (filterSelected)="showListFiltered($event)"
+                             (valueSearch)="searching($event)"
+                             ></mr-list-units>
+
+                        <mr-filtering-options *ngIf="flagFilterin"
+                                [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu', 'borderLeft']"
+                                (closeFiltering)="closeFiltering($event)"></mr-filtering-options>
+
+                        <mr-vehicle-description *ngIf="flagUnitDataVehicle"
+                                                [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu', 'borderLeft']"
+                                                [unitInformation]="unitDataVehicle"
+                                                (closeVehicleDescription)="closeVehicleDescription($event)"></mr-vehicle-description>
+
+                        <chat-detail-motum-component *ngIf="flagUnitDataVehicle && isChatDetail"
+                          [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_2, 'm-item-z-index-6 background-menu', 'borderLeft']"
+                          (closeChatDetail) = (closeChatDetail())
+                          [circleColor] = "colorCircleDetail">
+                        </chat-detail-motum-component>
+                    </div><!-- End Third level -->
+                </div>
+
+
+
+            </div><!-- End Second level -->
+
+        </div><!-- End First level -->
+    </div><!-- End First level -->
+
+</div>

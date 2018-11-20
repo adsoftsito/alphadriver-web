@@ -1,0 +1,22 @@
+<ng-container *ngIf="configuration.menuList">
+  <div class="space">
+  </div>
+  <li *ngFor="let item of configuration.menuList; index as i;" id="al-sidebar-list" class="al-sidebar-list-item" >
+    <a (click)="toggleNewBar(i)" class="al-sidebar-list-link">
+        <i>{{item.label}}</i>
+    </a>
+    <!-- <a (click)="toggleNewBar(0)" class="al-sidebar-list-link">
+            <i>Sub menu 1</i>
+    </a>
+    <a (click)="toggleNewBar(1)" class="al-sidebar-list-link">
+        <i>Sub menu 2</i>
+    </a>
+    <a (click)="toggleNewBar(2)" class="al-sidebar-list-link">
+        <i>Sub menu 3</i>
+    </a>
+    <a (click)="toggleNewBar(3)" class="al-sidebar-list-link">
+        <i>Localizar unidad</i>
+    </a> -->
+  </li>
+</ng-container>
+      <menu-bar-component (comunicationOut)="ComunicationOutMenuBar($event)" [listaToShow] ='elementList' [comunicationIn]='comunicationInSoon'></menu-bar-component>

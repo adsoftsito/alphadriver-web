@@ -1,0 +1,310 @@
+<ng-template #windowDetailOrder let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="row">
+      <div>
+        <div class="avatar {{setColorAvatar}}">{{initials}}</div>
+      </div>
+      <div>
+        <div class="nameUser">{{accountName}}</div>
+        <div class="rolUser">Pedido {{orderNumber}}</div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="modal-body">
+    <hr class="hr-properties">
+    <div class="table-responsive table-style-motum-multilevel ">
+      <table class="table table-striped">
+        <thead>
+          <tr class="thead-motum-light-gray">
+            <th></th>
+            <th>#</th>
+            <th>{{'pages.userControl.clients.formOrders.quantity' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.plan' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.partNumber' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.product' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.charge' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.duration' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.erp' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.date' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.installed' | translate }}</th>
+            <th>{{'pages.userControl.clients.formOrders.status' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let productItem of productsList; let indice3 = index;">
+            <tr class="thead-motum-white-with-buttons">
+            <td>
+              <button class="btn-link" (click)="acc.toggle('first-accordion-' + indice3)">
+                <i class="motum-i tm-mu tm-v-down"></i>
+              </button>
+            </td>
+            <td>{{indice3 + 1}}</td>
+            <td>{{productItem.quantity}}</td>
+            <td>{{productItem.plan}}</td>
+            <td>{{productItem.numberPart}}</td>
+            <td>{{productItem.product}}</td>
+            <td>{{productItem.charge}}</td>
+            <td>{{productItem.duration}}</td>
+            <td>{{productItem.folioERP}}</td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="11" class="content-table">
+              <ngb-accordion #acc="ngbAccordion">
+                <ngb-panel [id] ="'first-accordion-' + indice3" >
+                  <ng-template ngbPanelContent>
+                    <table class="table table-double">
+                      <thead>
+                        <tr class="thead-motum-light-gray-2">
+                          <th></th>
+                          <th>#</th>
+                          <th>F.S Cliente</th>
+                          <th>F.S Global</th>
+                          <th>Suscripción</th>
+                          <th>{{'pages.userControl.clients.formOrders.businessName' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.economic' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.plates' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.vin' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.brand' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.model' | translate }}</th>
+                          <th>{{'pages.userControl.clients.formOrders.year' | translate }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let vehicleList of productItem.listVehicleDispositive; let indice2 = index;">
+                          <tr class="tr-motum-white">
+                            <td>
+                              <!-- <button class="btn-link" (click)="acc2.toggle('second-accordion-' + indice3 + '-'+ indice2)">
+                                <i class="motum-i tm-mu tm-v-down"></i>
+                              </button> -->
+                              <span [attr.id]="'accordion-' + indice2+ '-' + indice3"  class="btn-link" data-toggle="collapse" [attr.data-target]="'#second-accordion-' + indice2 + '-' + indice3" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="motum-i tm-mu tm-v-down"></i>
+                              </span>
+                            </td>
+                            <td>
+                              {{indice2 + 1}} <!-- FIXME: Id pedido  -->
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.businessName}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.economic}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.plates}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.vin}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.brand}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.model}}
+                            </td>
+                            <td>
+                              {{vehicleList.vehicle.year}}
+                            </td>
+                          </tr>
+                          <tr  [attr.id]="'second-accordion-'+ indice2 + '-' + indice3" class="collapse" aria-labelledby="headingOne" [attr.data-parent]="'accordion-' + indice2 + '-' + indice3">
+                          <!-- <tr> -->
+                            <td></td>
+                            <td></td>
+                            <td colspan="10" class="content-table" >
+                              <!-- <ngb-accordion #acc2="ngbAccordion">
+                                <ngb-panel [id] ="'second-accordion-' + indice3 + '-'+ indice2" >
+                                  <ng-template ngbPanelContent> -->
+                                    <table class="table table-double">
+                                      <thead>
+                                        <tr class="thead-motum-light-gray-2">
+                                          <th>#</th>
+                                          <th>{{'pages.userControl.clients.formOrders.builder' | translate }}</th>
+                                          <th>{{'pages.userControl.clients.formOrders.model' | translate }}</th>
+                                          <th>{{'pages.userControl.clients.formOrders.variant' | translate }}</th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <ng-container *ngFor="let dispositiveList of vehicleList.dispositive; let indice = index;">
+                                          <tr class="tr-motum-white">
+                                            <td>
+                                              {{indice + 1}}  <!-- FIXME: Id pedido  -->
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.builder}}
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.model}}
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.variant}}
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.date}}
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.numberPart}}
+                                            </td>
+                                            <td>
+                                              {{dispositiveList.status}}
+                                            </td>
+                                          </tr>
+                                        </ng-container>
+                                      </tbody>
+                                    </table>
+                                  <!-- </ng-template>
+                                </ngb-panel>
+                              </ngb-accordion> -->
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary window-btn-size button-border-red" (click)="c(false)">Cerrar</button>
+</div>
+</ng-template>
+<ba-card>
+  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-lg-4 col-xs-6 col-6"> <!--se cambio de 8 a 10 last-->
+
+      <div>
+
+
+
+      <div class="checkboxClients"> <!--no se cambio-->
+
+        <form class="row form-inline align-items-center">
+          <div class="form-group col-sm-1 col-xs-1 col-1 onApClick">
+            <i class="motum-i tm-e91c"  (click) = 'exportToExel();'></i>
+          </div>
+          <div class="form-group col-sm-1 col-xs-1 col-1 onApClick">
+            <i class="motum-i tm-e91b i-style" (click)="getOrdersData()"></i>
+          </div>
+          <div class="form-group col-sm-1 col-xs-1 col-1">
+            <div class="checkbox">
+              <ba-checkbox [(ngModel)]="isSelectable"
+              [label]="' '"
+              (change)="makeSelectableRow()"
+              [ngModelOptions]="{standalone: true}">
+            </ba-checkbox>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick"
+        (click)="onRemoveSelected()"
+        *ngIf="isSelectable">
+        <i class="motum-i tm-u tm-e922 table-tools-icons-margin"></i>
+      </div>
+
+      <div class="form-group col-sm-1 col-xs-1 col-1animated fadeIn onApClick"
+      *ngIf="isSelectable"
+      (click)="onAbleDisableSelected(false)">
+      <i class="motum-i tm-u tm-e924 table-tools-icons-margin"></i>
+    </div>
+
+    <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick"
+    *ngIf="isSelectable"
+    (click)="onAbleDisableSelected(true)">
+    <i class="motum-i tm-e923 table-tools-icons-margin"></i>
+  </div>
+  <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick"
+  *ngIf="isSelecRow"
+  (click) = "createOrder()">
+  <i class="motum-i tm-e9e5 table-tools-icons-margin"></i>
+</div>
+<div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick"
+*ngIf="isSelecRow">
+<i class="motum-i tm-e930 table-tools-icons-margin"></i>
+</div>
+
+</form>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-5 col-sm-6 col-xs-6 col-6"> <!--se cambio de 4 a 2 last-->
+      <div class="animated fadeIn calendar-btn-container-1" (click)="showCalendar()">
+          <span class="calendar-lbl-container">{{calendarLabel}}</span>
+          <i class="fa fa-calendar"></i>
+      </div>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12 col-12" style="margin-top: 1px;">
+      <motum-search-input
+
+              [styleInput]="'table'"
+              [placeholder]="search | translate"
+              [defaultWidthPercent]=100
+              (changesSearchValue)="onFilterChanged($event)">
+
+      </motum-search-input>
+</div>
+</div>
+<hr class="hrClients">
+<div class="row">
+  <!--Table-->
+  <div class="col-md-12 col-sm-12 col-lg-12" >
+    <ag-grid-angular style="width: 100%; height: calc(97vh - 190px);"
+    class="ag-theme-material"
+    [gridOptions] = "gridOptions"
+    [rowSelection]="rowSelection"
+
+    [icons]="customIcons"
+
+    [suppressRowClickSelection]="true"
+    [suppressAggFuncInHeader]="true"
+    [enableColResize]="true"
+    [pagination]="true"
+    [animateRows]="true"
+    [enableFilter]="true"
+
+    (cellClicked)="onCellClicked($event)"
+    (rowClicked)="onRowClicked($event)"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+
+</div>
+</div>
+</ba-card>
+
+<div class="footer-table-counter">{{'pages.ranking.records' | translate}} {{tableCount}}</div>
+
+<motum-modal-date-picker *ngIf="showCalendarModal"
+                         (selectedOption)="getSelectedOption($event)"
+                         (hasBeenClosed)="modalClosed()"
+                         (selectedRange)="getSelectedRange($event)"
+                         (calendarLabel)="getCalendarLabel($event)"
+                         [userDefinedOption]="selectedOption"
+                         [userDefinedRange]="selectedRange">
+
+</motum-modal-date-picker>

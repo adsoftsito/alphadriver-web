@@ -1,0 +1,79 @@
+@import "../../../../../theme/sass/styles/styles";
+
+$title-text-size: 15px;//tm-theme(font-size-2);
+$subtitle-text-size: 12px;//tm-theme(font-size-3);
+
+$header-text-color: tm-theme(color-white);
+$header-container-width: calc(20vw - 0px);
+
+// --------- MEDIA QUERY (min-width: 576px)sm  ------------
+// --------- MEDIA QUERY (min-width: 768px)md  ------------
+$header-container-width-md: calc(30vw - 0px);
+// --------- MEDIA QUERY (min-width: 992px)lg  ------------
+// --------- MEDIA QUERY (min-width: 1200px)xl ------------
+
+@include tm-install-component() {
+  .adjust-vertical-header-elements {
+    height: inherit;
+    padding: 16px 22px;
+  }
+  .adjust-vertical-footer-elements {
+    height: inherit;
+    padding: 21px 40px;
+  }
+  .inlining-block {
+    display: inline-block;
+  }
+
+  .header-container-align {
+    position: relative;
+    height: 100%;
+    width: $header-container-width;
+    margin-left: 12px;
+    div {
+      position: absolute;
+      top: 50%;
+      color: $header-text-color;
+      height: 100%;
+      width: $header-container-width;
+
+      span.header-title {
+        font-size: $title-text-size;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      span.header-subtitle {
+        font-size: $subtitle-text-size;
+      }
+    }
+    div:first-child {
+      margin-top: -14px;
+    }
+    div:last-child {
+      margin-top: 2px;
+    }
+  }
+
+  .three-dots-text-cut {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  div[modal-form-content] {
+    height: 100%;
+    background: red;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header-container-align {
+      width: $header-container-width-md;
+    }
+
+    .header-container-align {
+      div {
+        width: $header-container-width-md;
+      }
+    }
+  }
+}

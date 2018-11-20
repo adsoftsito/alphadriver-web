@@ -1,0 +1,63 @@
+@import '../../sass/styles/styles';
+
+$white: #fff;
+$blue: #1b79d0;
+$gray: #cbcbcb;
+$light-gray: #ececec;
+$light-gray-one: #EDEDED;
+$strong-gray: #575756;
+$light-green: #d6f9e1;
+$light-red: #ffd6d6;
+
+
+@include tm-install-component (){
+    $color: tm-theme(card-background);
+
+    .dashletCard{
+        width: 18%;
+        height: 100%;
+        // background: antiquewhite;
+        // border-radius: 10px;
+        display: inline-block;
+        margin: 0px 5px;
+    }
+    
+    .headerCard{
+        text-align: center;
+        font-size: 9px;
+        color: white;
+        // background: #1C87BB;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+    .bodyCard{
+        text-align: center;
+        font-size: 9px;
+        background: #f6f6f6;
+        color: #a5a5a5;
+        
+        .bodyCard{
+            padding: 2px;
+        }
+        .quantity{
+            font-size: 29px;
+            color: #565655;
+            font-weight: 500;
+            padding: 11px;
+        }
+    }
+    .footerCard{
+        font-size: 9px;
+        text-align: end;
+        padding-right: 6px;
+        background: #ececec;
+        color: #a5a5a5;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+
+} //end @include
+
+
+

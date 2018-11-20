@@ -1,0 +1,106 @@
+/**
+ * Colors palette
+ */
+$motum-border-input: #E5E5E5;
+// Strong
+$motum-blue: #2244d7;//Background login color
+// Light
+$motum-blue-partner: #146ef9;
+
+$motum-green: #00d573;// Strong
+$motum-green-partner: #80eab9;// Light
+$motum-green-login-button: #00d673;// Login button bg
+$motum-green-sidebar: #3fc46f;// Light
+
+$motum-white: #fff; //if the background color is #808080
+$motum-black: #000;
+$motum-black-menu: #131417;
+$motum-black-partner: #808080;
+
+$motum-grey: #565655;// Strong
+$motum-grey-hover: #F6F5F4;// Strong
+$motum-grey-partner: #999999;// Light
+$motum-grey-group: #F6F6F6; //dafault botton
+$motum-grey-border-group: #CCCCCC; //border dafault botton
+$motum-grey-group-active: #B2B2B2; //botton group active
+$motum-grey-radio: #B5B5B5; //border color radio botton
+$motum-grey-titles: #575756; //titles in text boxes and after :, if the background color is #c6c6c6 o #dadada
+$motum-text-grey: #878787; //color text
+$motum-light-grey: #F6F6F6;// Light
+$motum-background-tooltip: #868686;
+$motum-background-table-odd: #EDEDEC;
+
+$motum-pink: #c579ee;// Strong
+$motum-pink-partner: #bc60ed;// Light
+$motum-pink-sidebar: #c679ef;
+
+$motum-light-pink: #ffafaf;// Strong
+$motum-light-pink-partner: #ffc5c5;// Light
+
+$motum-red: #ff3031;// Strong  wizar cancel button, border color and text
+$motum-red-partner: #ff4344;// Light
+$motum-red-popover: #db394f;// Popover text
+$motum-red-popover-bg: #f4dfe6;// Popover background
+
+$motum-orange: #ff9419;// Strong
+$motum-orange-partner: #ffa538;// Light
+$motum-orange-popover: #ffa102;// Popover text
+$motum-orange-popover-bg: #efe7dc;// Popover background
+
+$motum-yellow: #fff003;// Strong
+$motum-yellow-partner: #fff95a;// Light
+$motum-yellow-sensor-on: #f4d658;// Light
+
+
+$motum-light-green: #33df69;// Strong
+$motum-light-green-partner: #2dff73;// Light
+
+$motum-cyan: #5ce2d7;// Strong
+$motum-cyan-partner: #73fff3;// Light
+
+$motum-light-blue: #16b8e8;// Strong
+$motum-light-blue-partner: #16d7ff;// Medium
+$motum-light-blue-sidebar: #3edbf3;// Light
+$motum-light-blue-sidebar-medium: #50ACFF;// Medium
+$motum-background-light-blue-btn-send: #daeeff;
+$motum-border-light-blue-btn-send: #1e7aca;
+
+$motum-purple: #654ede;// Strong
+$motum-purple-partner: #7155ff;// Light
+$motum-purple-sidebar: #6666f7;// Light
+$motum-purple-checkbox: #8bb9ef; //Light
+$motum-purple-options: #7766D9; //Light
+
+$motum-deep-grey: #353535;// Strong
+$motum-deep-grey-partner: #424242;// Light
+
+$motum-purple-unit: #a263d3; //avatar monitoring
+$motum-purple-border: #713499; //border
+$motum-grey-border: #969696; //border
+$motum-green: #2fd15d; //avatar monitoring
+$motum-green-border: #2ebc53; //border
+$motum-orange-border: #ed8014; //border
+$motum-green-marker: #b6d643; //green marker
+$motum-red-marker: #ea4524; //red marker
+$motum-blue-marker: #2d9eea; //blue marker
+
+
+
+
+
+/**
+ * Shadows
+ */
+$motum-shadow-color-login: #133baa;
+$motum-box-shadow-card-login: 0 5px 10px $motum-shadow-color-login, 10px 22px 20px $motum-shadow-color-login, 21px 22px 50px $motum-shadow-color-login !default;
+
+$motum-shadow-color-login-admin: #D9D9D9;
+$motum-shadow-color-login-admin-bg: #f5f3f3;
+$motum-box-shadow-card-login: 0 5px 10px $motum-shadow-color-login-admin-bg, 10px 22px 20px $motum-shadow-color-login-admin, 21px 22px 50px $motum-shadow-color-login-admin-bg !default;
+
+/**
+ * Fonts Types
+ */
+$motum-font-family-rubik: 'Rubik', sans-serif;//normal
+$motum-font-family-rubik-medium: 'Rubik', sans-serif;
+$motum-font-family-rubik-bold: 'Rubik', sans-serif;

@@ -1,0 +1,19 @@
+@import "all";
+
+// ------------------------------
+// GLOBAL MIXIN
+// ------------------------------
+@mixin tm-install() {
+  @include tm-install-global() {
+    @content;
+  }
+}
+// ---------------------------
+// HERE GOES ALL THEMES, BY DEFAULT IS MOTUM
+// ---------------------------
+$tm-enabled-themes: (default);
+//$tm-enabled-themes: (default, freightliner, hesa);
+
+$tm-themes: tm-register-theme((), default, default);
+//$tm-themes: tm-register-theme((), freightliner, freightliner);
+//$tm-themes: tm-register-theme((), hesa, hesa);

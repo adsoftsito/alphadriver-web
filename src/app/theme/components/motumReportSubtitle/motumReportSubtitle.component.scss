@@ -1,0 +1,32 @@
+@import '../../sass/styles/styles';
+
+$yellow: #f8b133;
+$white: #fff;
+
+@include tm-install-component (){
+    $color: tm-theme(card-background);
+
+    .cardGraphTitle{
+        background-color: $color !important;
+    }
+
+    .subtitleReport{
+        position: relative;
+        top: 20px;
+        left: -22px;
+        border: 0px;
+        background: $yellow;
+        height: 25px;
+        width: auto;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        text-align: right;
+        padding-left: 65px;
+        padding-right: 15px;
+        color: $white;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+}// end @include
+

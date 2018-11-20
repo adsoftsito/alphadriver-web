@@ -1,0 +1,368 @@
+@import '../../sass/styles/styles';
+@import '../../sass/motumVariables';
+
+$gray: #cbcbcb;
+$strong-gray: #434444;
+$blue: #4283d1;
+$font-title: 11px;
+$font-content: 13.2px;
+$white: #fff;
+$low-gray: #dadada;
+$low-gray-one: #f6f6f6;
+$low-gray-two: #d3d3d3;
+$low-gray-three: #b2b2b2;
+$low-gray-four: #c6c6c6;
+$gray-light: #c5c5c4;
+$strong-grey: #878787;
+$intense-gray: #575756;
+$blue: #7054ff;
+$blue-light: #1d70b8;
+$orange: #eb860d;
+$orange-light: #F39200;
+$yellow: #F8B43A;
+$yellow-light: #ffc033;
+$red: #e20815;
+$red-light: #E6332A;
+$green: #2fd15d;
+@include tm-install-component (){
+
+
+
+    .ranking-card-box {
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 10px;
+      background-color: white;
+      padding: 7px;
+      padding-left: 25px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+      -moz-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+      box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+    }
+
+    .ranking-container-1{
+      border-left: 1px solid $gray;
+        }
+
+  .ranking-container-2{
+    border-right: 1px solid $gray;
+      display: inline-block;
+
+
+    .content {
+      font-size: 15px;
+      font-weight: 400;
+      display: block;
+
+    }
+  }
+
+  .trophy-font-1{
+    color: #772911;
+  }
+  .trophy-font-2{
+    color: #4f5051;
+  }
+  .trophy-font-3{
+    color: #d38a01;
+  }
+  .trophy-font-4{
+    color: #42565b;
+  }
+
+  .ranking-container-4 {
+    padding-left: 50px;
+  }
+
+  .update-pos{
+    width: 50px;
+    padding-top: 5px;
+
+    padding-bottom: 6px;
+  }
+
+  .ranking-container-3{
+    padding-left: 10%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 79%;
+  }
+
+
+  .ranking-container-5 {
+    padding-top: 0px;
+    padding-bottom: 5px;
+    padding-left: 6%;
+    border-left: 1px solid $gray;
+  }
+  .scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    .card-box {
+      display: inline-block;
+    }
+  }
+
+  .padding-img {
+    width: 100%;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .drivers-card{
+    padding-left: 2px;
+  }
+
+  .round-img{
+    color: #146ef9;
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .trophy-container{
+
+  }
+
+  .trophy{
+    height: 50px;
+    margin-top: 10px;
+    padding-left: 18px;
+    }
+
+   .trophy-text {
+     position: absolute;
+     left: 32px;
+     top: 18px;
+     font-weight: 700;
+     font-size: 12px;
+   }
+   .trophy-block{
+     margin-left: -20px;
+     width: 50px;
+     height: 50px;
+     position: relative;
+   }
+    .title {
+
+    padding-top: 14px;
+    font-size: $font-title;
+    font-weight: 500;
+    display: block;
+    padding-bottom: 8px;
+    }
+
+  .title-1 {
+    height: 20px;
+
+    display: table;
+    font-size: $font-title;
+    font-weight: 500;
+
+    span {
+      vertical-align: middle;
+      display: table-cell;
+    }
+
+  }
+
+    .content {
+    font-size: $font-content;
+    font-weight: 400;
+
+    }
+
+  .rankingNumber{
+    position: absolute;
+    bottom: 0;
+    right: 18%;
+    padding-top: 3px;
+    font-size: 10px;
+    font-weight: 500 !important;
+    text-align: center;
+    border-radius: 100px;
+    border: 2px solid white;
+    background-color: #146ef9;
+    width: 25px;
+    height: 25px;
+    color: white;
+  }
+    .avatar-1 {
+
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+  .refresh-icon{
+    padding-left: 13%;
+    padding-right: 5%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+   .main-picture {
+
+       border-radius: 100px;
+       height: 61px;
+     }
+  .star-picture {
+    width: 50px;
+    padding-bottom: 5px;
+    margin-top: -18px;
+
+
+  }
+  .rating{
+    display: inline-block;
+    position: relative;
+     top: 0px;
+    left: 10px;
+    font-size: 15px;
+
+    .star {
+      position: relative;
+      display: inline-block;
+      color: $low-gray-two;
+    }
+    .full {
+      color: $yellow;
+
+    }
+    .half {
+      position: absolute;
+      display: inline-block;
+      overflow: hidden;
+      color: $yellow;
+    }
+
+  }
+  @media only screen and (min-width: 699px) and  (max-width: 990px){
+    .ranking-card-box{
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .ranking-container-5{
+      border-left: none;
+      text-align: center;
+
+    }
+  }
+  @media only screen and (min-width: 1171px) {
+    .update-container{
+      text-align: left;
+
+    }
+
+
+  }
+  @media only screen and (max-height: 780px) {
+    .ranking-container-5 {
+        .title-1{
+          font-size: 9px;
+        }
+    }
+  }
+  @media only screen and (max-width: 780px) {
+    .col-img{
+      display: none;
+    }
+    .score-container{
+     margin-top: 0px;
+
+    }
+    .ranking-container-5{
+      border-left: none;
+      text-align: center;
+      .title-1{
+
+        text-align: center;
+        display: block;
+        span{
+          display: block;
+        }
+      }
+    }
+
+    .trophy-container{
+      text-align: center;
+    }
+    .ranking-container-4 {
+      padding-left: 0px;
+      text-align: center;
+    }
+
+  }
+  @media only screen and (min-width: 700px) and (max-width: 750px) {
+    .update-container{
+      margin-top: 0px;
+    }
+  }
+
+  @media only screen and (min-width: 750px) and (max-width: 990px) {
+    .rankingNumber{
+     right: 35%;
+    }
+    .avatar-container {
+      width: 100%;
+      position: relative;
+      text-align: center;
+    }
+    .ranking-container-5 {
+
+      text-align: center;
+      .title-1 {
+        display: block;
+        margin: 0;
+        height: 15px;
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 750px) and (max-width: 1350px) {
+    .ranking-container-1 {
+      border: none;
+    }
+    .ranking-container-2 {
+      padding-top: 3%;
+      padding-bottom: 2%;
+    }
+
+    .update-container{
+      padding-top: 8%;
+      text-align: center;
+    }
+
+    .ranking-container-3{
+      text-align: center;
+    }
+    .trophy-container{
+      margin-top: 5px;
+      text-align: center;
+    }
+    .ranking-container-3{
+
+      padding-left: 2%;
+      text-overflow: clip;
+      white-space: normal;
+      overflow: auto;
+    }
+    .trophy-block{
+      margin-top: -14px;
+        margin-left: -15px;
+    }
+
+
+
+
+  }
+
+
+}

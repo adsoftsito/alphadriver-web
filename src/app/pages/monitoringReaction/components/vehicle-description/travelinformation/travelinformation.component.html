@@ -1,0 +1,122 @@
+<div *ngIf="unitDetail!=null" class="section-flex-config">
+  <div class="scroll-content-info">
+        <div class="titlesection-travelinformation">
+          <b>{{'pages.monitoringreaction.travelinformation.travelinformation' | translate}} #{{unitDetail.tripNumber}}</b>
+          <hr class="title-separator">
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.origin' | translate}}:</a><span class="information"> {{unitDetail.origin}}</span ><br>
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.destination' | translate}}:</a><span class="information" > {{unitDetail.destination}} </span ><br>
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.route' | translate}}:</a><span class="information" > {{unitDetail.route}}</span ><br>
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.distance' | translate}}:</a><span class="information"> {{unitDetail.distance.km}} km ({{unitDetail.distance.mi}} mi)</span ><br>
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.traveltime' | translate}}:</a><span class="information"> {{unitDetail.travelTime.hour}} horas {{unitDetail.travelTime.minute}} minutos</span ><br>
+          <a class="titletext">{{'pages.monitoringreaction.travelinformation.tea' | translate}}:</a><span class="information" > {{unitDetail.tea.hour}} horas {{unitDetail.tea.minutes}} minutos</span >
+
+      </div>
+  </div>
+
+ 
+            <div class="scroll-content-info-section">
+                <div class="position-container-element-content">
+                    <div class="col-md-12 col-sm-12">
+                        <hr>
+                        <div *ngFor="let data of unitDetail.timeline">
+                            <div *ngIf="data.label === 'Fin de viaje' ">
+                                <div class="position-center-section-content">
+                                    <strong>{{data.label}}</strong><a class="titletext">  {{data.date}}, {{data.time}}</a>
+                                </div>  
+                                <div class="total-hours-traveled">
+                                    <a class="titletext">  {{data.totalTime.hour}}h {{data.totalTime.minute}}m </a>
+                                </div>                               
+                                <ul class="timeline-list">
+                                    <div *ngFor="let detail of data.points">
+                                      
+                                        <li *ngIf="detail.hasDone === true " class="full">
+                                            <a class="titletext">{{detail.address}}</a>
+                                        </li>
+                                        <li *ngIf="detail.hasDone === false " class="empty">
+                                            <a class="titletext">{{detail.address}}</a>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div *ngIf="data.label === 'Detenido'">
+                                <hr>
+                                <ul class="timeline-list-arrested">
+                                    <li>
+                                        <div class="change-padding-bootstrap-title">
+                                           <strong>{{data.label}}</strong><a class="titletext">  {{data.date}}, {{data.time}}</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!---->
+                            <div *ngIf="data.label === 'En viaje'"> 
+                                <hr>
+                                <div class="position-center-section-content">
+                                    <strong>{{data.label}}</strong><a class="titletext">  {{data.date}}, {{data.time}}</a>
+                                 </div>
+                                 <div class="total-hours-traveled">
+                                        <a class="titletext">  {{data.totalTime.hour}}h {{data.totalTime.minute}}m</a>
+                                 </div> 
+                                <ul class="timeline-list">
+                                    <div *ngFor="let detail of data.points">
+                                            <li *ngIf="detail.hasDone === true " class="full">
+                                                <a class="titletext">{{detail.address}}</a>
+                                            </li>
+                                            <li *ngIf="detail.hasDone === false " class="empty">
+                                                <a class="titletext">{{detail.address}}</a>
+                                            </li>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <div *ngIf="data.label === 'Inicio de viaje'">
+                                <hr>
+                                    <div class="position-center-section-content">
+                                        <strong>{{data.label}}</strong><a class="titletext">  {{data.date}}, {{data.time}}</a>
+                                     </div>
+                                     <div class="total-hours-traveled">
+                                            <a class="titletext">  {{data.totalTime.hour}}h {{data.totalTime.minute}}m</a>
+                                    </div> 
+                                    <ul class="timeline-list">
+                                        <div *ngFor="let detail of data.points">
+                                            <li *ngIf="detail.hasDone === true" class="full">
+                                                <a class="titletext">{{detail.address}}</a>
+                                            </li>
+                                            <li *ngIf="detail.hasDone === false " class="empty">
+                                                <a class="titletext">{{detail.address}}</a>
+                                            </li>
+                                        </div>
+                                    </ul>
+                            </div>
+
+
+
+                            <div *ngIf="data.label === 'Apagado' ">
+                                    <hr>
+                                    <div class="position-time-off">
+                                        <a class="titletext">{{data.totalTime.hour}}h {{data.totalTime.minute}}m</a>  
+                                    </div>
+                                    <ul class="timeline-list-off">
+                                        <li>
+                                            <div class="change-padding-bootstrap-title">
+                                             <strong>{{data.label}}</strong><a class="titletext">  {{data.date}}, {{data.time}}</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    <hr>
+                </div>
+            </div>
+      </div>  
+
+
+  <div class="section-flex-end-footter">
+    <div class="position-bottom-group">
+        <button motum-button color="primary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.travelinformation.plannedroute' | translate}}</button>
+        <button motum-button color="secondary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.travelinformation.routetraveled' | translate}}</button>
+        <!-- <button class="motum-btn next chage-property-btn-left">{{'pages.monitoringreaction.travelinformation.plannedroute' | translate}}</button> -->
+        <!-- <button class="motum-btn save chage-property-btn-right">{{'pages.monitoringreaction.travelinformation.routetraveled' | translate}}</button>     -->
+      </div>
+    </div>
+
+</div>

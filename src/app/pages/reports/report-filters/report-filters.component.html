@@ -1,0 +1,108 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <ba-card cardTitle="{{ title | uppercase }}" baCardClass="with-scroll">
+
+            <form class="row form-inline ng-untouched ng-pristine ng-valid">
+                <div *ngIf = "title.indexOf('VEHICULO') >= 0" class="form-group col-sm-2 col-md-3 col-4">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary fa fa fa-automobile" (click)="showComponent(2)"
+                            *ngIf = "title.indexOf('VEHICULO') >= 0"></button>
+                      </span>
+                      <input type="text"
+                          class="form-control"
+                          placeholder="Vehículo"
+                          [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="inputVehicleModel">
+                    </div>
+                </div>
+                <div *ngIf = "title.indexOf('OPERADORES') >= 0 && drivers?.drivers != undefined " class="form-group col-sm-2 col-md-3 col-4">
+                    <div class="input-group">
+                      <combo-box [listData]="drivers?.drivers"
+                      [displayField]="'name'"
+                      [valueField]="'id'"
+                      [localFilter] = "'true'"
+                      [clearOnSelect] = "'true'"
+                      [inputPlaceholder] = "'Operador'"
+                      [localFilterCaseSensitive] = "false"
+                      (onSelect) = "filterSelectList($event)"
+                      [noMatchesText] = "'Sin resultados'">
+                      </combo-box>
+                    </div>
+                </div>
+                <div *ngIf = "title.indexOf('FLOTAS') >= 0" class="form-group col-sm-2 col-md-3 col-4">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary fa fa fa-automobile" (click)="showComponent(1)"
+                            *ngIf = "title.indexOf('FLOTAS') >= 0"></button>
+                      </span>
+                      <input type="text"
+                          class="form-control"
+                          placeholder="Flota"
+                          [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="inputFleetModel">
+                    </div>
+                </div>
+                <div class="form-group col-sm-2 col-md-2 col-4">
+                    <div class="input-group">
+                        <input type="number"
+                            class="form-control"
+                            placeholder="Año"
+                            [(ngModel)]="yearModel"
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="clearFilters()"
+                            #inputYearModel>
+                    </div>
+                </div>
+                <div class="form-group col-sm-2 col-md-2 col-4">
+                    <div class="input-group">
+                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0"
+                        [(ngModel)]="selectMountModel"
+                        [ngModelOptions]="{standalone: true}"
+                        (change)="onSelectedMount()">
+                        <option [ngValue]="undefined" selected translate>{{'reports.month'}}</option>
+                            <option *ngFor="let month of months; let i = index"
+                            value="{{month.id}}">{{month.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 col-4">
+                    <div class="input-group">
+                      <select class="custom-select mb-2 mr-sm-2 mb-sm-0"
+                          [(ngModel)]="selectWeekModel"
+                          [ngModelOptions]="{standalone: true}">
+                          <option [ngValue]="undefined" selected translate>{{'reports.week'}}</option>
+                          <option *ngFor="let week of weeks; let i = index"
+                              value="{{week}}">{{week}}</option>
+                      </select>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group col-sm-2 col-md-3">
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary" (click)="startReport()" translate>{{'reports.consult'}}</button>
+                </div>
+            </div>
+                <div class="col-md-12">
+                    <hr>
+                    <ngb-alert  type="success" *ngIf="staticAlertsucess" (close)="staticAlertsucess = false">
+                      {{ alertsucess }}
+                    </ngb-alert>
+                    <ngb-alert  type="danger" *ngIf="staticAlertClosed" (close)="staticAlertClosed = false">
+                      {{ alertReason }}
+                    </ngb-alert>
+                </div>
+            <div class="row" >
+              <div class="col-md-12 col-sm-12 col-12">
+                  <report-conduct-operator *ngIf="reportOperatorConduct" [dataprovider]="dataReport"></report-conduct-operator>
+                  <report-conduct-vehicle *ngIf="reportVehicleConduct" [dataprovider]="dataReport"></report-conduct-vehicle>
+                  <report-security-vehicle *ngIf="reportVehicleSecurity" [dataprovider]="dataReport"></report-security-vehicle>
+                  <report-security-conductor *ngIf="reportOperatorSecurity" [dataprovider]="dataReport"></report-security-conductor>
+                  <report-conduct-fleet *ngIf="reportFleetConduct" [dataprovider]="dataReport"></report-conduct-fleet>
+              </div>
+            </div>
+        </ba-card>
+    </div>
+</div>

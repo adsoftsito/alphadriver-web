@@ -1,0 +1,153 @@
+
+@import '../../theme/sass/motumVariables';
+
+@media screen and (min-width: 1620px) {
+  .row.shift-up {
+    > * {
+      margin-top: -573px;
+    }
+  }
+}
+@media screen and (max-width: 1620px) {
+  .card.feed-panel.large-card {
+    height: 824px;
+  }
+}
+.user-stats-card {
+  .card-title {
+    padding: 0 0 15px;
+  }
+}
+.blurCalendar {
+  height: 475px;
+}
+.company{
+  // color: #28bde9;
+}
+
+// yo agregué los estilos de abajo para el drag and drop
+ .dnd-drag-start {
+  -moz-transform:scale(0.8);
+  -webkit-transform:scale(0.8);
+  transform:scale(0.8);
+  opacity:0.7;
+  border: 2px dashed #000;
+}
+.dnd-drag-enter {
+  opacity:0.7;
+  border: 2px dashed #000;
+}
+.dnd-drag-over {
+  border: 2px dashed #000;
+}
+.dnd-sortable-drag {
+-moz-transform:scale(0.9);
+-webkit-transform:scale(0.9);
+transform:scale(0.9);
+opacity:0.7;
+border: 1px dashed #000;
+}
+
+//style Gridster
+gridster{
+  // height: 800px !important;
+  height: calc(100vh - 150px) !important;
+  background-color: #F0F3F4;
+}
+gridster-item{
+  //display: flex !important;
+  //align-items: center !important;
+  //justify-content: center !important;
+  border-radius: 10px !important;
+  //box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.09) !important;
+  // padding: 15px 15px !important;
+  padding: 15px 10px !important;
+}
+
+
+item-container{
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/*.itemGird{
+  //height: 379px !important;
+}
+style de angular-drag-drop
+ Draggable*/
+.drag-border {
+  border: #ff525b dashed 2px;
+}
+.drag-handle {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+.drag-handle:active { 
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Droppable */
+.drag-hint-border {
+  border: #3c763d dashed 2px;
+}
+.drag-over-border {
+  border: #fbbc05 dashed 2px;
+}
+.drag-transit {
+  border: #3500FF dashed 2px;
+}
+
+
+.ba-back-top[_ngcontent-c3]{
+  display: none !important;
+}
+
+.m-item-z-index-5 {
+  z-index: 5;
+}
+.m-item-z-index-6 {
+  z-index: 6;
+}
+
+.dashboard-content{
+  padding: 15px 30px 0px 35px;
+
+  .dashboardTitle{
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+
+.motum-absolute-menu {
+  position: absolute;
+  top: auto;
+  left: 0;
+  height: calc(100vh - 66px);
+  width: 100%;
+}
+.background-menu {
+  background-color: white;
+  box-shadow: 15px 3px 48px -7px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.motum-fixed-float-button{
+  position: fixed;
+  padding: 30px;
+  top: auto;
+  left: auto;
+  right: 0;
+}
+
+
+

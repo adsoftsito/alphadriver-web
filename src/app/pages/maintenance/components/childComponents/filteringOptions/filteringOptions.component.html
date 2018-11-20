@@ -1,0 +1,64 @@
+
+<fo-filter-selection *ngIf="flagFilterSelection"
+[flagOperationStatus]="flagOperationStatus"
+[flagPointsInterest]="flagPointsInterest"
+[flagTypeVehicle]="flagTypeVehicle"
+[flagServiceStatus]="flagServiceStatus"
+(sendOptions)="selectionOptions($event)"
+(sendOptionsPI)="selectionOptionsPI($event)"
+(sendOptionsTV)="selectionOptionsTV($event)"
+(sendOptionsSS)="selectionOptionsSS($event)"
+(closeFS)="closeFS()"
+></fo-filter-selection>
+<motum-fleet-selection *ngIf="flagFleetSelection"
+(closeSelection)="closeSelection()"
+></motum-fleet-selection>
+<div class="header">
+  <div class="col-md-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+            <div class="iconOptions"> <span class="motum-i tm-e97b options"></span></div>
+        </div>
+        <div class="title">
+            {{ filteringOptions | translate }}
+        </div>
+    </div>
+    <span><span class="motum-i tm-e912 closeFiltering" (click)="openFilteringOptions(flagCloseFiltering = false)"></span></span>
+  </div>
+</div>
+<div class="content {{flagFilterSelection ? 'expand' : ''}} {{flagFleetSelection ? 'expandFS' : ''}}">
+  <div class="col-md-12 col-sm-12 listContent">
+    <div class="row">
+      <div class="filters">
+        {{ selectedFilters | translate }}
+      </div>
+      <div class="noFilters">
+          <div class="selectedFilters">6</div>
+      </div>
+    </div>
+    <hr class="hr-title">
+  </div>
+  <div class=""><!-- Start row list -->
+      <div class="listCollapse" data-toggle="collapse" href="#collapseExample" (click)="clickAngle = !clickAngle">
+        <div class="secctionTitle">
+        {{ fleetTree | translate }}
+        </div>
+        <span class="iconAngle">
+          <i class="motum-i tm-e90e {{clickAngle ? 'up' : 'down'}}" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="sectionFiltering">
+          <div class="chips">
+            <div class="chip" *ngFor="let chip of chipsFleetTree; let i = index">
+              {{ chip.label }}
+              <i class="motum-i tm-e912 closeChip"></i>
+            </div>
+          </div>
+
+          <!-- <button class="motum-btn save editBtn {{flagFleetSelection ? 'selectedEditBtn' : ''}}" (click)="showFleetSelection()">Editar</button> -->
+
+        </div>
+      </div>
+  </div><!-- End row list -->
+</div>

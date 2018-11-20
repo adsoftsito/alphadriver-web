@@ -1,0 +1,105 @@
+<div *ngIf="unitDetail!=null" [class]="changeClassModal">
+    <div  class="section-flex">
+        <div class="scroll-content-info">
+      
+          <div class="section-flex-config">
+      
+            <div class="titlesection">
+            <div class="col-md-12 col-sm-12">
+              <div class="row">
+                <!-- <div class="col-md-1 col-sm-1"></div> -->
+                <div class="col-md-10 col-sm-10 mechanicInfo">
+                    <b>Información Mecánica</b>
+                </div>
+                <div class="col-md-1 col-sm-1"></div>
+              </div>
+            <hr class="hrHeader">
+            
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 change-property-col-md-6">
+                    <a class="titletext">{{brand|translate}}:</a><span  class="information">{{unitDetail.mechanicalInfo.trademark}}</span ><br>
+                    <a class="titletext">{{year|translate}}:</a> <span  class="information" >{{unitDetail.mechanicalInfo.year}}</span ><br>
+                    <a class="titletext">{{brandMotor |translate}}:</a> <span  class="information" >{{unitDetail.mechanicalInfo.motor.trademark}}</span ><br>
+                    <a class="titletext">{{year |translate}}: </a><span >{{unitDetail.mechanicalInfo.motor.year}}</span ><br>
+                  </div>
+                  <div class="col-md-6 col-sm-6 change-property-col-md-6">
+                    <a class="titletext">{{model |translate}}:</a> <span  class="information" >{{unitDetail.mechanicalInfo.model}}</span ><br>
+                    <a class="titletext">{{plates |translate}}:</a><span class="information" >{{unitDetail.mechanicalInfo.plates}}</span ><br>
+                    <a class="titletext">{{modelMotor|translate}}:</a> <span class="information" >{{unitDetail.mechanicalInfo.motor.model}}</span ><br>
+                    <a class="titletext">{{hoursMotor|translate}}:</a> <span class="information" >{{unitDetail.mechanicalInfo.motor.hour}} h</span ><br>
+                  </div>
+                </div>
+      
+              <div class="row"> 
+                <div class="col-md-12 col-sm-12 change-property-col-md-6"> 
+                   <div style="column-gap: 40px; column-count: 1;">
+                      <a class="titletext">VIN:</a><span  class="column-width">{{unitDetail.mechanicalInfo.vin}}</span >
+                   </div>
+                    <a class="titletext">{{transmissionBrand|translate}}:</a> <span  class="information">{{unitDetail.mechanicalInfo.trademarTransmission}}</span ><br>
+                    <a class="titletext">{{transmissionModel|translate}}:</a> <span  class="information">{{unitDetail.mechanicalInfo.modelTransmission}}</span ><br>
+                    <a class="titletext">{{brakes |translate}}:</a><span  class="information" >{{unitDetail.mechanicalInfo.brake}}</span ><br>
+                    <a class="titletext">{{odometer|translate}}:</a> <span  class="information">{{unitDetail.mechanicalInfo.odometer}} km</span >
+                    <a class="titletext">&nbsp;&nbsp;&nbsp;{{combustible|translate}}:</a> <span  class="information">{{unitDetail.mechanicalInfo.combustible}} L</span ><br>
+                    <a class="titletext">{{maintPreventive|translate}}:</a><span  class="information" >{{unitDetail.mechanicalInfo.preventiveMaintenanceStatus}} </span ><br>
+                    <a class="titletext">{{carrier |translate}}:</a> <span  class="information" >{{unitDetail.mechanicalInfo.carrier}}</span ><br>
+                    <a class="titletext">{{operation |translate}}:</a> <span  class="information">{{unitDetail.mechanicalInfo.operationStatus}}</span ><br>
+                    <a class="titletext">{{diagnosticStatus|translate}}:</a> <span  class="information" >{{unitDetail.mechanicalInfo.diagnosticStatus}}</span ><br>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="body-secction-vehicle">
+                  <b>{{vehicularHealth |translate}}</b>
+                  <hr>
+                  <div class="btn-group">
+                        <button class="btn-vehicle-pistachio color-pistachio">{{unitDetail.vehicularHealth.optimum}}</button>
+                        <button class="change-button color-green">{{unitDetail.vehicularHealth.maintenanceSoon}}</button>
+                        <button class="change-button color-yellow">{{unitDetail.vehicularHealth.maintenanceNow}}</button>
+                        <button class="change-right-button color-red">{{unitDetail.vehicularHealth.greaterDanger}}</button>
+                  </div>
+                </div>
+            </div>
+
+            <div class="position-container-group-btn">
+              <div class="row_ content-group">
+                <div class="change-property-col-md-6" style="margin-left:-9px;"><!--class="col-md-6 col-sm-6 change-property-col-md-6" -->
+                  <i class=" motum-i tm-ea00 icon-health icon-color-red"></i>&nbsp;<span class="titletext">{{probablyGreaterDamage|translate}}</span><br>
+                  <i class=" motum-i tm-ea00 icon-health icon-color-green"></i>&nbsp;<span class="titletext" >{{soonMaint|translate}}</span><br>
+                  <!-- <button class="colorimetry-indicator color-red"></button><span class="titletext">{{probablyGreaterDamage|translate}}</span><br>
+                  <button class="colorimetry-indicator color-green"></button><a class="titletext" >{{soonMaint|translate}}</a><br> -->
+                </div>
+      
+                <div class="change-property-col-md-6"><!--class="col-md-6 col-sm-6 change-property-col-md-6"-->
+                  <i class=" motum-i tm-ea00 icon-health icon-color-yellow " ></i>&nbsp;<span class="titletext">{{nowMaint|translate}}</span><br>
+                  <i class=" motum-i tm-ea00 icon-health icon-color-pistachio"></i>&nbsp;<span class="titletext">{{optimalMaint|translate}}</span><br>
+
+                  <!-- <button class="colorimetry-indicator color-yellow"></button><a class="titletext">{{nowMaint|translate}}</a><br>
+                  <button class="colorimetry-indicator color-pistachio"></button><a class="titletext">{{optimalMaint|translate}}</a><br> -->
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     
+        
+      
+        <div class="section-flex-end-footter {{changeClass}}" id="buttonsMechanical">
+          <div class="position-bottom-group">
+             <button motum-button color="primary" round="false" style="padding:0px 10px;">{{fleetHealth |translate}}</button>
+             <button motum-button [color]="color" round="false" style="padding:0px 10px;" (click)="openActiveFaults(damper)">{{activeFaults |translate}}</button>
+            
+            <!-- <button class="motum-btn next chage-property-btn-left">{{fleetHealth |translate}}</button> 
+            <button [class]="changeClass" (click)="openActiveFaults(damper)">{{activeFaults |translate}}</button> -->
+          </div>
+         
+          
+        </div>
+       
+  
+    </div>
+

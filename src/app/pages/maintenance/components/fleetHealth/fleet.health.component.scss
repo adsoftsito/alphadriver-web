@@ -1,0 +1,43 @@
+@import '../../../../theme/sass/styles/styles';
+
+.space-right {
+  padding-right: 10px !important;
+}
+.space-lefth {
+  padding-left: 10px !important;
+}
+@media screen and (max-width: 760px) {
+  .space-right {
+    padding-right: 12px !important;
+  }
+  .space-lefth {
+    padding-left: 15px !important;
+  }
+}
+.filterSelection {
+  right: 25%;
+  background-color: white;
+  top: 79px;
+}
+.motum-absolute-menu {
+  position: absolute;
+  top: auto;
+  left: 0;
+  height: calc(100vh - 66px);
+  width: 100%;
+}
+.al-content {
+    padding: 16px 21px 0px 21px;
+}
+.m-item-z-index-5 {
+  z-index: 5;
+}
+.m-item-z-index-6 {
+  z-index: 6;
+}
+.table-and-graph{
+  margin-top: -10px;
+}
+@include tm-install-global() {
+
+}

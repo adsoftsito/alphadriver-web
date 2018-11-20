@@ -1,0 +1,509 @@
+@import "../../../../theme/sass/motumVariables";
+@import '../../../../theme/sass/styles/styles';
+
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+$motum-official-grey-1: $motum-grey-group-active;
+$motum-official-grey-2: #c4c4c4;
+$motum-official-grey-3: #f1f1f1;
+
+$motum-official-green-1: $motum-light-green;
+
+$motum-official-blue-1: $motum-blue-partner;
+$motum-official-blue-2: #f3f8ff;
+
+$motum-background-cell-zebra: rgba(246, 246, 246, 0.5);
+
+.footer-table-counter{
+  margin-left: 5px;
+  margin-top: 18px;
+  font-size: 12px;
+}
+
+.onApClick {
+  cursor: pointer;
+}
+
+.onApClick:hover{
+  color: $motum-official-blue-1;
+}
+
+.window-order-view {
+  .modal-lg {
+    max-width: 88vw;
+  }
+  .modal-body {
+    margin: 0px 30px;
+    min-height: 250px;
+    padding: 0px 15px;
+  }
+  .modal-header {
+    margin: 0px 25px;
+  }
+  .modal-footer{
+    margin: 20px 30px;
+  }
+  .btn {
+    outline: none !important;
+  }
+  .hr-properties {
+    width: 98%;
+    border-width: 2px;
+  }
+}
+
+
+.motum-hover-name:hover {
+  color: $motum-official-blue-1;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+  display: none;
+}
+
+.ag-theme-material .ag-paging-panel {
+  justify-content: center !important;
+  @include paging-outside(30px);
+}
+
+/**
+* Icons for table tools
+*/
+// .table-tools-icons-margin {
+//   margin-bottom: 12px;
+//   margin-top: 10px;
+// }
+
+.motum-i.tm-u.tm-trash.table-tools-icons-margin {
+  color: $motum-official-grey-1;
+  font-size: 16px;
+
+  &:hover {
+    color: inherit;
+  }
+}
+.motum-i.tm-mu.tm-activity.table-tools-icons-margin {
+  color: $motum-official-grey-1;
+  font-size: 16px;
+  color: inherit;
+}
+.motum-i.tm-mu.tm-client-avatar.table-tools-icons-margin {
+  color: $motum-official-grey-1;
+  font-size: 16px;
+  color: inherit;
+}
+.fa .fa-calendar {
+  color: $motum-official-grey-1;
+  font-size: 16px;
+
+  &:hover {
+    color: inherit;
+  }
+}
+.motum-i.tm-u.tm-disable.table-tools-icons-margin {
+  color: $motum-official-grey-2;
+}
+
+.motum-i.tm-u.tm-able.table-tools-icons-margin {
+  color: $motum-official-green-1;
+}
+
+
+label.custom-checkbox {
+  margin-top: 10px;
+}
+
+/**
+* Modify ag-grid classes
+*/
+.ag-row-hover {
+  background-color: $motum-official-blue-2 !important;
+}
+
+.ag-theme-material .ag-cell-focus {
+  border: 0 solid $motum-official-grey-1 !important;
+}
+.ag-theme-material .ag-row:nth-of-type(even){
+  background-color:  $motum-background-cell-zebra;
+}
+
+
+  .ag-theme-material {
+    position: relative;
+    .ag-icon-checkbox-checked{background-image: none !important; }
+    .ag-icon-checkbox-unchecked{background-image: none !important;}
+
+    .ag-icon-checkbox-checked:after{
+      top: -15px;
+      position: absolute;
+      font-size: 14px;
+      font-family: 'MotumIcons';
+      content: "\e91e" !important;
+      color: #3381f8 !important;
+
+    }
+
+    .ag-icon-checkbox-unchecked:after{
+      position: absolute;
+      top: -15px;
+      font-size: 14px;
+      font-family: 'MotumIcons';
+      content: "\e91d" !important;
+      color: #3381f8 !important;
+
+    }
+
+    .ag-row-selected{
+      background-color: $motum-official-blue-2 !important;
+    }
+
+  }
+
+
+
+.nameUser{
+  margin-top: 10px;
+  margin-left: 7px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.rolUser{
+  // margin-top: 5px;
+  margin-left: 7px;
+  font-size: 12px;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
+  margin-top: 8px;
+  margin-left: 30px;
+  margin-right: 8px;
+  background-color: $motum-light-blue-partner;
+  border-radius: 100%;
+  border: 2px solid $motum-white;
+  text-align: center;
+  display: inline-block;
+  line-height: 2em;
+  font-family: Calibri;
+  color: $motum-white;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &.azulB{
+    background-color: #8fa2d0 !important;
+  }
+  &.amarillo{
+    background-color: #ffc604 !important;
+  }
+  &.rojo{
+    background-color: #e54335 !important;
+  }
+  &.morado{
+    background-color: #475b97 !important;
+  }
+  &.verde{
+    background-color: #9cbf34 !important;
+  }
+  &.rosa{
+    background-color: #ee666f !important;
+  }
+  &.verdeF{
+    background-color: #19b592 !important;
+  }
+  &.rosaF{
+    background-color: #9150ae !important;
+  }
+}
+// start motum-multilevel-table
+.btn-link {
+  font-size: 18px;
+  color: $motum-grey-partner !important;
+  outline: none !important;
+}
+.table-add-button {
+  background: $motum-blue-partner;
+  padding: 3px 3px;
+  font-size: 10px;
+  color: $motum-white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  line-height: 10px;
+}
+
+@include tm-install-global() {
+
+  $orders-white-color: tm-theme(orders-white-color);
+  $orders-tabs-gray-color: tm-theme(orders-tabs-gray-color);
+  $orders-border-table-with-buttons: tm-theme(orders-border-table-with-buttons);
+  $orders-black-color: tm-theme(orders-black-color);
+  $orders-color-light-blue: tm-theme(orders-color-light-blue);
+  $orders-color-green: tm-theme(orders-color-green);
+  $orders-border-input: tm-theme(orders-border-input);
+
+  .table-striped {
+    width: 99%;
+  }
+  .table-style-motum-multilevel .table td {
+    font-size: 9px;
+    cursor: pointer;
+  }
+  .table-style-motum-multilevel .table th {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .table-style-motum-multilevel .table thead {
+    color: $orders-white-color;
+    background-color: $orders-tabs-gray-color;
+  }
+  .table-style-motum-multilevel .table > tbody > tr > td {
+    line-height: 24px !important;
+    text-align: center;
+    padding: 0 !important;
+  }
+  .table-style-motum-multilevel .table > tbody > tr {
+    height: 0px !important;
+  }
+  .table-style-motum-multilevel .table > thead > tr > th {
+    line-height: 0px !important;
+    text-align: center;
+  }
+  .table-responsive .table-style-motum-multilevel {
+    padding: 10px 29px 0px 15px;
+  }
+  .table-style-motum-multilevel td:first-child  {
+    border-left: 0px solid $orders-border-table-with-buttons !important;
+  }
+  .table-style-motum-multilevel td  {
+    border-top: 0 !important;
+    border-bottom: 1px solid $orders-border-table-with-buttons !important;
+  }
+  .table-style-motum-multilevel td:last-child  {
+    border-right: 1px solid $orders-border-table-with-buttons !important;
+  }
+  .table-double .table > tbody > tr > td {
+    border-left: 1px solid $orders-border-input !important;
+    border-right: 1px solid $orders-border-input !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  .table-style-motum-multilevel th:first-child { border-top-left-radius: 5px; }
+  .table-style-motum-multilevel th:last-child { border-top-right-radius: 5px; }
+  .table-style-motum-multilevel th:only-child { border-top-right-radius: 5px;
+    border-top-left-radius: 5px; }
+
+    .table-style-motum-multilevel tr:last-child td:first-child { border-bottom-left-radius: 5px; }
+    .table-style-motum-multilevel tr:last-child td:last-child { border-bottom-right-radius: 5px; }
+    .table-style-motum-multilevel tr:last-child td:only-child { border-bottom-right-radius: 5px;border-bottom-left-radius: 5px; }
+
+    .table-double th:first-child { border-top-left-radius: 0px; }
+    .table-double th:last-child { border-top-right-radius: 0px; }
+    .table-double th:only-child { border-top-right-radius: 0px;
+      border-top-left-radius: 0px; }
+
+      .table-double tr:last-child td:first-child { border-bottom-left-radius: 0px; }
+      .table-double tr:last-child td:last-child { border-bottom-right-radius: 0px; }
+      .table-double tr:last-child td:only-child { border-bottom-right-radius: 0px;border-bottom-left-radius: 0px; }
+
+      .thead-motum-light-gray {
+        color: $orders-black-color !important;
+        background-color: $orders-border-table-with-buttons !important;
+        font-size: 10px;
+      }
+      .thead-motum-light-gray-2 {
+        color: $orders-black-color !important;
+        background-color: $orders-border-table-with-buttons !important;
+        font-size: 9px;
+      }
+      .thead-motum-white-with-buttons {
+        color: $orders-black-color !important;
+        background-color: $orders-white-color !important;
+      }
+      .thead-motum-white-with-buttons td {
+        font-size: 10px !important;
+      }
+
+      .tr-motum-white {
+        color: $motum-black !important;
+        background-color: $motum-white !important;
+      }
+      .tr-motum-white td {
+        font-size: 11px !important;
+        background-color: $motum-white;
+        border-right: 1px solid $orders-border-input !important;
+      }
+      .tr-motum-white td:first-child {
+        border-right: 0px solid $orders-border-input !important;
+        border-left: 1px solid $orders-border-input !important;
+      }
+      .tr-motum-white td:last-child {
+        border-right: 0px solid $orders-border-input !important;
+      }
+      .tr-motum-white th, td {
+        border: 0px solid;
+      }
+    }
+    .content-table .card {
+      box-shadow: none !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      .card-header{
+        display: none !important;
+      }
+      .card-body {
+        padding: 0;
+      }
+    }
+    //end motum-multilevel-table
+    .window-btn-size {
+      line-height: 9px;
+      padding: 0.28rem 0.3rem;
+    }
+    .button-border-red{
+      color: $motum-red-partner !important;
+      background-color: white !important;
+      border-radius: 12px !important;
+      border: 1px solid $motum-red-partner !important;
+    }
+    client-Order-component.col-md-12 {
+      .custom-checkbox input[type="checkbox"]:checked + span::before {
+        content: "\e91e";
+        color: #3381f8;
+        border-radius: 15%;
+        min-width: 17px;
+      }
+
+      .custom-checkbox input[type="checkbox"] + span::before {
+        font-family: "MotumIcons";
+        content: "\e91d";
+        border: 0;
+        font-size: 15px;
+        min-width: 17px;
+        margin-top: 1px;
+      }
+
+      .calendar-btn-container-1{
+        float: right;
+        margin-left: 9px;
+        margin-top: 12px;
+        cursor: pointer;
+      }
+      .calendar-lbl-container{
+        font-size: 10px;
+        padding-right: 8px;
+        margin-top: -3px;
+      }
+
+      .calendar-btn-container:hover{
+        color: $motum-official-blue-1 !important;
+      }
+      .card{
+        //  margin: 44.134px 50.966px;
+        margin: 36.134px 18.966px 0px 10.966px;
+        border-radius: 10px;
+        -webkit-box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+        -moz-box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+        box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+      }
+      .card > .card-body{
+        padding: 0.398px 11.866px;
+      }
+      .motum-i.tm-u.tm-search:before{
+        font-size: 15px;
+      }
+      .btn-with-icon i{
+        margin-right: 7px;
+        margin-left: -4px;
+      }
+
+      .hrClients{
+        margin-top: 0.846px;
+        margin-bottom: 0px;
+      }
+
+      .btnCreateClients{
+        display: inline;
+      }
+      .checkboxClients{
+        margin-top: 2px;
+        display: inline-block;
+        margin-left: 12.842px;
+      }
+      .ag-header-cell, .ag-header-group-cell {
+        padding-left: 5px !important;
+        padding-right: 7px !important;
+      }
+      .ag-cell {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+      }
+    }
+
+    .motum-modal-confirm .modal-header .motum-modal-icon{
+      width: 36px !important;
+      height: 30px !important;
+    }
+
+    .changeofproperties{
+      font-size: 20px;
+      margin-left: 7px;
+      margin-top:  4px;
+    }
+
+    .modal-footer{
+      justify-content: flex-end !important;
+    }
+
+    .chagepropertiesbtn{
+      width: 87px !important;
+      line-height: 5px !important;
+      height: 25px !important;
+    }
+
+    .btn{
+      transition: none !important;
+    }
+
+    .chagepropertiesbtncancel{
+      width: 73px !important;
+      height: 25px !important;
+      line-height: 5px !important;
+    }
+
+    .btn:hover{
+      transform: none !important;
+    }
+
+    .form-group{
+      margin-bottom: 0! important;
+    }
+    .motum-badge {
+      background-color: $motum-blue-partner;
+      color: $motum-white;
+
+      padding: 1px 10px;
+      border-radius: .75rem;
+      font-size: 10px;
+    }
+    .expiration-color {
+      color: $motum-red-partner;
+    }
+    .ag-row-selected {
+      // background-color: red !important;
+    }
+
+
+    $font-family: 'Rubik', sans-serif;
+    $secondary-font-family: 'Rubik', sans-serif;
+    $font-size: 11px;
+    $secondary-font-size: 9.64px;
+    $secondary-foreground-color: rgba(0,0,0,0.7);
+
+    @import '~ag-grid/src/styles/ag-grid.scss';
+    @import '~ag-grid/src/styles/ag-theme-material';

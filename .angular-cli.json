@@ -1,0 +1,100 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "ng2-admin"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface.scss",
+        "../node_modules/normalize.css/normalize.css",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/ionicons/scss/ionicons.scss",
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/chartist/dist/chartist.css",
+        "../node_modules/fullcalendar/dist/fullcalendar.css",
+        "../node_modules/handsontable/dist/handsontable.full.css",
+        "../node_modules/ng2-slim-loading-bar/style.css",
+        "app/theme/theme.scss",
+        "../node_modules/ag-grid/src/styles/ag-grid.scss",
+        "../node_modules/ag-grid/src/styles/theme-fresh.scss",
+        "../node_modules/ag-grid/src/styles/theme-blue.scss",
+        "../node_modules/ag-grid/src/styles/theme-bootstrap.scss",
+        "../node_modules/ag-grid/src/styles/theme-material.scss",
+        "../node_modules/ag-grid/src/styles/theme-dark.scss",
+        "../node_modules/intl-tel-input/build/css/intlTelInput.css",
+        "../src/assets/css/daterangepicker.css",
+        "styles.scss",
+        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css",
+        "../node_modules/amcharts3/amcharts/plugins/export/export.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/select2/dist/js/select2.full.js",
+        "../node_modules/easy-pie-chart/dist/jquery.easypiechart.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/tether/dist/js/tether.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/handsontable/dist/handsontable.full.js",
+        "../node_modules/chroma-js/chroma.js",
+        "../node_modules/ag-grid/dist/ag-grid.js",
+        "../node_modules/amcharts3/amcharts/amcharts.js",
+        "../node_modules/amcharts3/amcharts/gantt.js",
+        "../node_modules/amcharts3/amcharts/serial.js",
+        "../node_modules/amcharts3/amcharts/pie.js",
+        "../node_modules/amcharts3/amcharts/themes/light.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/export.min.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/libs/fabric.js/fabric.min.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/libs/FileSaver.js/FileSaver.min.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/libs/jszip/jszip.min.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/libs/pdfmake/pdfmake.min.js",
+        "../node_modules/amcharts3/amcharts/plugins/export/libs/xlsx/xlsx.min.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {
+    }
+  }
+}

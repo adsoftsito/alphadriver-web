@@ -1,0 +1,45 @@
+<div [style.width] = "widthType" *ngIf="isTypeTables || isTypeDefault" [ngClass]="{'motum-search-input-in-tables': isTypeTables,
+   'motum-search-input-default': isTypeDefault}"
+    class="form-group has-success has-feedback">
+
+    <input type="text"
+           [(ngModel)]="modelSearchInput"
+           class="form-control search-input-form-component"
+           [placeholder]="placeholder"
+           aria-describedby="inputSuccess2Status"
+           (keyup) = "changesSearchValueInput.next($event);">
+
+    <i *ngIf="iconSearch && (!modelSearchInput || !iconReset)"
+       [style.width.px]="space"
+       [style.before.fontSize.px]="17"
+       class="{{classIconSearch}} form-control-feedback font-size-search-component"
+       aria-hidden="true">
+     </i>
+
+    <button *ngIf="modelSearchInput && iconReset" class="{{classIconReset}} close" (click)="callReset(); modelSearchInput = null;" ></button>
+    <span class="sr-only">(success)</span>
+</div>
+
+<div *ngIf="isTypeTooltip" class="search-component">
+  <form class="row form-inline ng-untouched ng-pristine ng-valid" novalidate="">
+    <div [style.width] = "widthType" class="motum-search-input-tools col-md-12 form-group has-success has-feedback">
+
+          <input type="text" spellcheck="off"
+               [(ngModel)]="modelSearchInput"
+               class="form-control search-input-form-component"
+               [placeholder]="placeholder"
+               [ngModelOptions]="{standalone: true}"
+               aria-describedby="inputSuccess2Status"
+               (keyup) = "changesSearchValueInput.next($event);">
+
+          <i *ngIf="iconSearch && !modelSearchInput"
+            [style.width.px]="space"
+            class="{{classIconSearch}} form-control-feedback font-size-search-component"
+            aria-hidden="true">
+          </i>
+
+          <button *ngIf="modelSearchInput && iconReset" class="{{classIconReset}} close" (click)="callReset(); modelSearchInput = null;" ></button>
+          <span class="sr-only">(success)</span>
+    </div>
+  </form>
+</div>

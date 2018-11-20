@@ -1,0 +1,48 @@
+@import '../../../../../theme/sass/motumVariables';
+
+.menuDashlet{
+    background-color: #fff;
+    display: flex;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 212px;
+    border-top-left-radius: 5px;
+    padding-top: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0px 0px 22px 10px rgba(0, 0, 0, 0.1);
+
+    ul{
+        list-style-type: none;
+        padding-left: 30px;
+        cursor: pointer;
+    }
+}
+
+/*.nemuListDashlet{
+    padding: 38px 1px 0px 1px;
+    line-height: 26px;
+    color: #716363;
+  }
+.hrMenuDashlet{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 185px;
+    margin-left: 12px;
+    margin-top: 21px;
+}*/
+
+//estilos con bootstrap´
+.itemDashlet{
+    padding: 0px 12px 0px;
+    line-height: 26px;
+    color: #716363;
+    cursor: pointer;
+}
+.hrMenuDashlet{
+border: 1px solid rgba(0, 0, 0, 0.1);
+width: 183px;
+margin-top: 21px;
+}

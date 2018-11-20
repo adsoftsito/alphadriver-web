@@ -1,0 +1,52 @@
+<ba-card>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-lg-12">
+    <div class="form-group col-sm-12 col-xs-12 col-12 an-spaces">
+      <div>  <!--  content left -->
+        <label>{{tableTitle}}</label>
+        <i *ngIf="enableUpdate" class="motum-i tm-e91b onApClick" (click) = 'update();'></i>
+        <i *ngIf="enableExport" class="motum-i tm-e91c onApClick"  (click) = 'exportToExel();'></i>
+      </div>
+      <div>  <!--  content right -->
+        <div *ngIf="enableCalendar" class="animated fadeIn calendar-btn-container" (click)="showCalendarTable()">
+            <span class="calendar-lbl-container">{{calendarLabelTable}}</span>
+            <i class="motum-i tm-e925"></i>
+        </div>
+        <motum-modal-date-picker *ngIf="showCalendarModalTable"
+                                 (selectedOption)="getSelectedOptionTable($event)"
+                                 (hasBeenClosed)="modalClosedTable()"
+                                 (selectedRange)="getSelectedRangeTable($event)"
+                                 (calendarLabel)="getCalendarLabelTable($event)"
+                                 [userDefinedOption]="selectedOptionTable"
+                                 [userDefinedRange]="selectedRangeTable">
+
+        </motum-modal-date-picker>
+      </div>
+    </div>
+    <ag-grid-angular class = "max-height-component" [style.width.%]="100" [style.height.vh]="heightVh"
+      class="ag-theme-material"
+      [gridOptions] = "gridOptions"
+      [rowSelection]="rowSelection"
+      [columnDefs]="columnDefs"
+      [rowData]="rowData"
+
+      [isFullWidthCell]="isFullWidthCell"
+      [getRowHeight]="getRowHeight"
+      [getNodeChildDetails]="getNodeChildDetails"
+      [suppressRowClickSelection]="false"
+      [suppressAggFuncInHeader]="true"
+      [enableColResize]="true"
+      [pagination]="pagination"
+      [animateRows]="animateRows"
+      [enableFilter]="enableFilter"
+      [fullWidthCellRendererFramework]="getFullWidthCellRenderer()"
+
+      (cellClicked)="onCellClicked($event)"
+      (rowClicked)="onRowClicked($event)"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+
+</div>
+</div>
+</ba-card>
+  <div *ngIf="pagination" class="footer-table-counter">{{recordsCount}}: {{totalRows}}  </div>

@@ -1,0 +1,76 @@
+  <div *ngIf="unitDetail!=nul" class="col-md-12 col-sm-12">
+       <div class="row">
+          <div class="col-md-1 col-sm-1"></div>
+          <div class="col-md-11 col-sm-11">
+            <div class="positon-top-text-title">
+              <a class="titletext">{{'pages.monitoringreaction.alert-vehicle.lastupdate' | translate}}: <strong>{{updateDate | date: 'dd/MM/yyyy  hh:mm': timezone}}</strong></a>
+              <div class="position-top-title-right" > 
+                  <i class="motum-i tm-e91b change-icon-property-update" (click)="updateDataAlerts()"></i>
+              </div>
+            </div>          
+          </div>
+       </div>
+  </div>
+  <hr>
+ <div *ngIf="unitDetail!=null"class="section-flex-config">
+    <div class="scroll-content-info">
+      <div class="section-flex">
+        <div *ngFor="let data of unitDetail.alerts">
+            <div class="col-md-12 col-sm-12">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <div class="positon-center-icon-alert">
+                        <i class="motum-i tm-e978 change-icon-property"></i>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                     <div  *ngIf="data.isResolved === true ">
+                        <div class="center">
+                            <strong>{{ data.label}}</strong><br>
+                            <a class="titletext">{{data.date}} - {{data.time}}</a>
+                        </div>
+                     </div> 
+                     
+                     <div *ngIf="data.isResolved === false ">
+                        <div class="center">
+                          <a class="titletext">{{ data.label}}</a><br>
+                          <a class="titletext">{{data.date}} - {{data.time}}</a>
+                        </div>
+                      </div>
+      
+                  </div>
+                  <div class="col-md-4 col-sm-4 change-padding-bootstrap-btn-alert-drange">
+                   <div *ngIf="data.isResolved === false ">
+                      <div class="position-center-btn-drange">
+                          <button class="motum-btn cancel change-color-btn-drange" >{{'pages.monitoringreaction.alert-vehicle.solve'|translate}}</button>
+                      </div>
+                   </div>
+                   <div *ngIf="data.isResolved === true">
+                   </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="section-flex-end-footter">
+        <div class="position-bottom-group">
+            <button motum-button color="primary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.alert-vehicle.solveall' | translate}}</button>
+            <button motum-button color="secondary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.alert-vehicle.attendall' | translate}}</button>
+          <!-- <button class="motum-btn next chage-property-btn-left">{{'pages.monitoringreaction.alert-vehicle.solveall' | translate}}</button>
+          <button class="motum-btn save chage-property-btn-right">{{'pages.monitoringreaction.alert-vehicle.attendall' | translate}}</button>     -->
+        </div>
+      </div>
+  
+
+
+  </div>
+
+
+ 
+
+

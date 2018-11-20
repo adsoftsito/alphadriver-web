@@ -1,0 +1,224 @@
+@import '../../sass/styles/styles';
+@include tm-install-component() {
+  // Put here all you css styles
+  $color-border-and-focus: tm-theme(search-color-border-and-focus);
+  $color-icon-search: tm-theme(search-color-icon);
+  $motum-white: tm-theme(color-white);
+  $background-input-in-tables: tm-theme(search-background-in-tables);
+  $color-grey-tools: tm-theme(search-color-grey-tools);
+
+  .form-group {
+      margin-bottom: 0rem;
+  }
+  .motum-search-input-in-tables {
+    input {
+      border: 1px solid $motum-white !important;
+      background-color: $background-input-in-tables !important;
+    }
+
+    input:focus {
+      border: 1px solid $color-border-and-focus !important;
+      background-color: $motum-white !important;
+    }
+
+    input:focus + i {
+      color: $color-border-and-focus !important;
+    }
+    i:before {
+      font-size: 14px;
+    }
+    i {
+      line-height: 23px !important;
+      width: 30px;
+      color: $color-icon-search !important;
+    }
+    //icon cancel en el input
+    .form-control .search-input-form-component,.close{
+      position: relative;
+      padding: 10px;
+    }
+    .search-input-form-component {
+      height: 26.18px;
+      margin-top: 5px;
+      font-size: 11px;
+      border-radius: 5px;;
+    }
+    .font-size-search-component {
+      font-size: 15px;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: 0;
+    }
+    .close{
+      border:1px solid transparent;
+      background-color: transparent;
+      display: inline-block;
+      vertical-align: middle;
+      outline: 0;
+      cursor: pointer;
+      position: absolute;
+      right: 9px;
+      margin:auto;
+      padding: 0.2em;
+      font-size: 12px;
+      color:$color-grey-tools !important;
+      opacity: 0.9;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: -20px
+    }
+  }
+
+  .motum-search-input-default {
+    input {
+      border: 0px !important;
+      background-color: $motum-white !important;
+    }
+
+    input:focus {
+      border: 1px solid $color-border-and-focus !important;
+      background-color: $motum-white !important;
+    }
+
+    i {
+      line-height: 23px !important;
+      width: 30px;
+      color: $color-icon-search !important;
+    }
+    i:before {
+      font-size: 14px;
+    }
+    input:focus + i {
+      color: $color-border-and-focus !important;
+    }
+    //icon cancel en el input
+    .form-control .search-input-form-component,.close{
+      position: relative;
+      padding: 10px;
+    }
+    .search-input-form-component {
+      height: 24.379px !important;
+      margin-top: 5px;
+      font-size: 11px;
+      border-radius: 5px;;
+    }
+    .font-size-search-component {
+      font-size: 15px;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: 0;
+    }
+    .close{
+      border:1px solid transparent;
+      background-color: transparent;
+      display: inline-block;
+      vertical-align: middle;
+      outline: 0;
+      cursor: pointer;
+      position: absolute;
+      right:9px;
+      margin:auto;
+      padding: 0.2em;
+      font-size: 12px;
+      color:$color-grey-tools !important;
+      opacity: 0.9;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: -20px
+    }
+  }
+  .search-component {
+    width: 100%;
+    height: 30px;
+    padding: 6px;
+    background-color: $color-grey-tools !important;
+    .form-inline .form-group input {
+      width: 100%;
+    }
+    .close{
+      border:1px solid transparent;
+      background-color: transparent;
+      display: inline-block;
+      vertical-align: middle;
+      outline: 0;
+      cursor: pointer;
+      position: absolute;
+      right:20px;
+      margin:auto;
+      padding: 0.2em;
+      font-size: 12px;
+      color:$color-grey-tools !important;
+      opacity: 0.9;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: -20px
+    }
+  }
+  .motum-search-input-tools {
+    // ----------------------
+    // Search input container
+    // ----------------------
+    .search-input-form-component {
+      height: 12px;
+      margin-top: 0;
+      font-size: 11px;
+      border-radius: 8px;
+    }
+    .search-input-form-dummye {
+      display: none;
+    }
+    .font-size-search-component {
+      font-size: 15px;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: -5px;
+    }
+    //icon cancel en el input
+    .form-control .search-input-form-component,.close{
+      position: relative;
+      padding: 10px;
+    }
+    input {
+      border: 1px solid transparent !important;
+      background-color: $background-input-in-tables !important;
+    }
+    input:focus {
+      border: 1px solid $color-border-and-focus !important;
+      background-color: $motum-white !important;
+    }
+    input:focus + i {
+      color: $color-border-and-focus !important;
+    }
+    i:before {
+      font-size: 0.65em;
+    }
+    i {
+      line-height: 23px !important;
+      width: 30px;
+      color: $color-icon-search !important;
+    }
+    .close{
+      border:1px solid transparent;
+      background-color: transparent;
+      display: inline-block;
+      vertical-align: middle;
+      outline: 0;
+      cursor: pointer;
+      position: absolute;
+      right:20px;
+      margin:auto;
+      padding: 0.2em;
+      font-size: 0.65em;
+      color:$color-grey-tools !important;
+      opacity: 0.9;
+      padding-top: 0px;
+      padding-left: 0px;
+      margin-top: 0;
+    }
+    @media screen and (max-width: 600px) {
+      .close{
+        top: 1px;
+      }
+    }
+  }
+}

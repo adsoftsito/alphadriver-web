@@ -1,0 +1,64 @@
+<ng-template #formGroupWindow let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+    <i *ngIf="!edit" class="motum-i tm-e926 change-properties"></i>
+    <i *ngIf="edit" class="motum-i tm-e926 change-properties"></i>
+  </div>
+    <h5 class="modal-title" *ngIf="edit">{{'pages.vehicles.groups.edit' | translate }}</h5>
+    <h5 class="modal-title" *ngIf="!edit">{{'pages.vehicles.groups.create' | translate }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="c(false)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>{{'pages.vehicles.groups.detail' | translate }}</label>
+    <hr>
+    <div class="margin-form">
+      <div class="row">
+        <div class="col-md-1 col-sm-1"></div>
+        <div class="col-md-6 col-sm-10">
+          <p>{{'pages.vehicles.groups.soonOf' | translate }} <b>{{groupModel.father}}</b> </p>
+          <label>{{'pages.vehicles.groups.name' | translate }}</label>
+          <p><input class="form-control" [formControl]="nameForm" type="text" [(ngModel)]="groupModel.groupName"></p>
+        </div>
+        <div class="col-md-5 col-sm-10">
+          <label>{{'pages.vehicles.groups.color' | translate }}</label>
+          <div class="main-content-colors">
+            <div class="body-colors">
+              <div *ngFor="let item of colors; let i = index;" class="item-colum-colors">
+                <button type="button" title="{{item.colorName}}" class="btn btn-default btn-circle " [ngStyle]="{'background': item.color }" (click) = "setGroupColor(item); selectedColor(i);"
+                [class.activeButton]="i == selectColorList"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn motum-btn-cancel chage-properties-btn-cancel" (click)="c(false)">{{'pages.vehicles.groups.cancel' | translate }}</button>
+    <button *ngIf="edit" type="button" class="btn motum-btn-cancel chage-properties-btn-delete" (click)="onDeleteGroup(modalDelete); c('delete');">{{'pages.vehicles.groups.delete' | translate }}</button>
+    <button [disabled] ="!nameForm.valid" type="button" class="btn motum-btn-edit-confirm chage-properties-btn" (click)="c(true)">{{'pages.vehicles.groups.save' | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #modalDelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+      <i class="motum-i tm-e922 change-properties"></i>
+    </div>
+    <h5 class="modal-title">{{'pages.vehicles.groups.delete' | translate }} {{groupModel.groupName}}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="c(false)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'pages.vehicles.groups.deleteMessage' | translate }}</p>
+    <p>{{'pages.vehicles.groups.canBeUndone' | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn motum-btn-cancel button-lg" (click)="c(false)">{{'pages.vehicles.groups.cancel' | translate }}</button>
+    <button type="button" class="btn motum-btn-delete button-lg-remove" (click)="c(true)">{{'pages.vehicles.groups.delete' | translate }}</button>
+  </div>
+</ng-template>
+<!-- <button type="button" name="button" (click)="onEditGroup()"> Show edit window</button> -->

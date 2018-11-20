@@ -1,0 +1,15 @@
+@import 'themes';
+
+@include tm-install() {}
+
+
+@mixin paging-outside($custom-margin) {
+
+  border: none !important;
+  height: 0px !important;
+  margin-top: $custom-margin;
+
+}
+
+
+

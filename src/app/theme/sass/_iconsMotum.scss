@@ -1,0 +1,603 @@
+@font-face {
+  font-family: 'MotumIcons';
+  src: url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.eot?r4iczs');
+  src: url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.eot?r4iczs#iefix') format('embedded-opentype'),
+  url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.woff2?r4iczs') format('woff'),
+  url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.ttf?r4iczs') format('truetype'),
+  url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.woff?r4iczs') format('woff'),
+  url('/assets#{$fonts-root}themeMotum/iconsFont/font/motumicon.svg?r4iczs#MotumIcons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.motum-i {
+  display: inline-block;
+  font-family: "MotumIcons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // --------------
+  // Icons sizes
+  // --------------
+  &.tm-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+  }
+  &.tm-1x {
+    font-size: 1.1em;
+  }
+  &.tm-2x {
+    font-size: 2em;
+  }
+  &.tm-3x {
+    font-size: 3em;
+  }
+  &.tm-4x {
+    font-size: 4em;
+  }
+  &.tm-5x {
+    font-size: 5em;
+  }
+  &.tm-fw {
+    width: 1.28571429em;
+    text-align: center;
+  }
+
+  // -------------
+  // Icons classes
+  // -------------
+  &.tm-e91b:before {
+    content: "\e91b";
+  }
+  &.tm-e91c:before {
+    content: "\e91c";
+  }
+  &.tm-e91d:before {
+    content: "\e91d";
+  }
+  &.tm-e91e:before {
+    content: "\e91e";
+  }
+  &.tm-e98f:before {
+    content: "\e98f";
+  }
+  &.tm-e91f:before {
+    content: "\e91f";
+  }
+  &.tm-e922:before {
+    content: "\e922";
+  }
+  &.tm-e921:before {
+    content: "\e921";
+  }
+  &.tm-e920:before {
+    content: "\e920";
+  }
+  &.tm-e923:before {
+    content: "\e923";
+  }
+  &.tm-e924:before {
+    content: "\e924";
+  }
+  &.tm-e925:before {
+    content: "\e925";
+  }
+  &.tm-e926:before {
+    content: "\e926";
+  }
+  &.tm-e911:before {
+    content: "\e911";
+  }
+  &.tm-e910:before {
+    content: "\e910";
+  }
+  &.tm-e990:before {
+    content: "\e990";
+  }
+  &.tm-e991:before {
+    content: "\e991";
+  }
+  &.tm-e994:before {
+    content: "\e994";
+  }
+  &.tm-e995:before {
+    content: "\e995";
+  }
+  &.tm-e90e:before {
+    content: "\e90e";
+  }
+  &.tm-e90f:before {
+    content: "\e90f";
+  }
+  &.tm-e912:before {
+    content: "\e912";
+  }
+  &.tm-e913:before {
+    content: "\e913";
+  }
+  &.tm-e914:before {
+    content: "\e914";
+  }
+  &.tm-e933:before {
+    content: "\e933";
+  }
+  &.tm-e934:before {
+    content: "\e934";
+  }
+  &.tm-e915:before {
+    content: "\e915";
+  }
+  &.tm-e916:before {
+    content: "\e916";
+  }
+  &.tm-e917:before {
+    content: "\e917";
+  }
+  &.tm-e9f2:before {
+    content: "\e9f2";
+  }
+  &.tm-e9f3:before {
+    content: "\e9f3";
+  }
+  &.tm-e93f:before {
+    content: "\e93f";
+  }
+  &.tm-e9eb:before {
+    content: "\e9eb";
+  }
+  &.tm-e9ef:before {
+    content: "\e9ef";
+  }
+  &.tm-e943:before {
+    content: "\e943";
+  }
+  &.tm-e9f0:before {
+    content: "\e9f0";
+  }
+  &.tm-e9f1:before {
+    content: "\e9f1";
+  }
+  &.tm-e90a:before {
+    content: "\e90a";
+  }
+  &.tm-e9ee:before {
+    content: "\e9ee";
+  }
+  &.tm-e9ed:before {
+    content: "\e9ed";
+  }
+  &.tm-e9fa:before {
+    content: "\e9fa";
+  }
+  &.tm-e979:before {
+    content: "\e979";
+  }
+  &.tm-e9e8:before {
+    content: "\e9e8";
+  }
+  &.tm-e9e9:before {
+    content: "\e9e9";
+  }
+  &.tm-e9ea:before {
+    content: "\e9ea";
+  }
+  &.tm-e985:before {
+    content: "\e985";
+  }
+  &.tm-e928:before {
+    content: "\e928";
+  }
+  &.tm-e9a3:before {
+    content: "\e9a3";
+  }
+  &.tm-e9a4:before {
+    content: "\e9a4";
+  }
+  &.tm-e9a5:before {
+    content: "\e9a5";
+  }
+  &.tm-e9a8:before {
+    content: "\e9a8";
+  }
+  &.tm-e9a9:before {
+    content: "\e9a9";
+  }
+  &.tm-e9aa:before {
+    content: "\e9aa";
+  }
+  &.tm-e929:before {
+    content: "\e929";
+  }
+  &.tm-e9bb:before {
+    content: "\e9bb";
+  }
+  &.tm-e9bc:before {
+    content: "\e9bc";
+  }
+  &.tm-e9bd:before {
+    content: "\e9bd";
+  }
+  &.tm-e9be:before {
+    content: "\e9be";
+  }
+  &.tm-e98e:before {
+    content: "\e98e";
+  }
+  &.tm-e978:before {
+    content: "\e978";
+  }
+  &.tm-e941:before {
+    content: "\e941";
+  }
+  &.tm-ea00:before {
+    content: "\ea00";
+  }
+  &.tm-e97b:before {
+    content: "\e97b";
+  }
+  &.tm-e97c:before {
+    content: "\e97c";
+  }
+  &.tm-e982:before {
+    content: "\e982";
+  }
+  &.tm-e983:before {
+    content: "\e983";
+  }
+  &.tm-e984:before {
+    content: "\e984";
+  }
+  &.tm-e986:before {
+    content: "\e986";
+  }
+  &.tm-e98a:before {
+    content: "\e98a";
+  }
+  &.tm-e98b:before {
+    content: "\e98b";
+  }
+  &.tm-e98d:before {
+    content: "\e98d";
+  }
+  &.tm-ea01:before {
+    content: "\ea01";
+  }
+  &.tm-ea02:before {
+    content: "\ea02";
+  }
+  &.tm-ea03:before {
+    content: "\ea03";
+  }
+  &.tm-ea04:before {
+    content: "\ea04";
+  }
+  &.tm-e9f7:before {
+    content: "\e9f7";
+  }
+  &.tm-e9fe:before {
+    content: "\e9fe";
+  }
+  &.tm-e9ff:before {
+    content: "\e9ff";
+  }
+  &.tm-e9f6:before {
+    content: "\e9f6";
+  }
+  &.tm-e92a:before {
+    content: "\e92a";
+  }
+  &.tm-e9bf:before {
+    content: "\e9bf";
+  }
+  &.tm-e9b2:before {
+    content: "\e9b2";
+  }
+  &.tm-e9c0:before {
+    content: "\e9c0";
+  }
+  &.tm-e918:before {
+    content: "\e918";
+  }
+  &.tm-e9c2:before {
+    content: "\e9c2";
+  }
+  &.tm-e9c3:before {
+    content: "\e9c3";
+  }
+  &.tm-e936:before {
+    content: "\e936";
+  }
+  &.tm-e94d:before {
+    content: "\e94d";
+  }
+  &.tm-e9c6:before {
+    content: "\e9c6";
+  }
+  &.tm-e9b3:before {
+    content: "\e9b3";
+  }
+  &.tm-e980:before {
+    content: "\e980";
+  }
+  &.tm-e949:before {
+    content: "\e949";
+  }
+  &.tm-e99a:before {
+    content: "\e99a";
+  }
+  &.tm-e999:before {
+    content: "\e999";
+  }
+  &.tm-e998:before {
+    content: "\e998";
+  }
+  &.tm-e97d:before {
+    content: "\e97d";
+  }
+  &.tm-e97e:before {
+    content: "\e97e";
+  }
+  &.tm-e981:before {
+    content: "\e981";
+  }
+  &.tm-e940:before {
+    content: "\e940";
+  }
+  &.tm-e97f:before {
+    content: "\e97f";
+  }
+  &.tm-e99b:before {
+    content: "\e99b";
+  }
+  &.tm-e9b4:before {
+    content: "\e9b4";
+  }
+  &.tm-e901:before {
+    content: "\e901";
+  }
+  &.tm-e902:before {
+    content: "\e902";
+  }
+  &.tm-e904:before {
+    content: "\e904";
+  }
+  &.tm-e905:before {
+    content: "\e905";
+  }
+  &.tm-e900:before {
+    content: "\e900";
+  }
+  &.tm-e907:before {
+    content: "\e907";
+  }
+  &.tm-e908:before {
+    content: "\e908";
+  }
+  &.tm-e909:before {
+    content: "\e909";
+  }
+  &.tm-e906:before {
+    content: "\e906";
+  }
+  &.tm-e9c7:before {
+    content: "\e9c7";
+  }
+  &.tm-e9c8:before {
+    content: "\e9c8";
+  }
+  &.tm-e9c9:before {
+    content: "\e9c9";
+  }
+  &.tm-e99f:before {
+    content: "\e99f";
+  }
+  &.tm-e9a0:before {
+    content: "\e9a0";
+  }
+  &.tm-e9a1:before {
+    content: "\e9a1";
+  }
+  &.tm-e9a2:before {
+    content: "\e9a2";
+  }
+  &.tm-e9ca:before {
+    content: "\e9ca";
+  }
+  &.tm-e9b5:before {
+    content: "\e9b5";
+  }
+  &.tm-e9cc:before {
+    content: "\e9cc";
+  }
+  &.tm-e9cd:before {
+    content: "\e9cd";
+  }
+  &.tm-e9ce:before {
+    content: "\e9ce";
+  }
+  &.tm-e9cf:before {
+    content: "\e9cf";
+  }
+  &.tm-e9d0:before {
+    content: "\e9d0";
+  }
+  &.tm-e9d1:before {
+    content: "\e9d1";
+  }
+  &.tm-e9d2:before {
+    content: "\e9d2";
+  }
+  &.tm-e9d3:before {
+    content: "\e9d3";
+  }
+  &.tm-e90b:before {
+    content: "\e90b";
+  }
+  &.tm-e927:before {
+    content: "\e927";
+  }
+  &.tm-e9b6:before {
+    content: "\e9b6";
+  }
+  &.tm-e9d4:before {
+    content: "\e9d4";
+  }
+  &.tm-e9d5:before {
+    content: "\e9d5";
+  }
+  &.tm-e9d6:before {
+    content: "\e9d6";
+  }
+  &.tm-e9b7:before {
+    content: "\e9b7";
+  }
+  &.tm-e9d7:before {
+    content: "\e9d7";
+  }
+  &.tm-e9d8:before {
+    content: "\e9d8";
+  }
+  &.tm-e9d9:before {
+    content: "\e9d9";
+  }
+  &.tm-e945:before {
+    content: "\e945";
+  }
+  &.tm-e9da:before {
+    content: "\e9da";
+  }
+  &.tm-e9dc:before {
+    content: "\e9dc";
+  }
+  &.tm-e9db:before {
+    content: "\e9db";
+  }
+  &.tm-e9b9:before {
+    content: "\e9b9";
+  }
+  &.tm-e9dd:before {
+    content: "\e9dd";
+  }
+  &.tm-e9de:before {
+    content: "\e9de";
+  }
+  &.tm-e9df:before {
+    content: "\e9df";
+  }
+  &.tm-e92b:before {
+    content: "\e92b";
+  }
+  &.tm-e9e0:before {
+    content: "\e9e0";
+  }
+  &.tm-e9e1:before {
+    content: "\e9e1";
+  }
+  &.tm-e9e2:before {
+    content: "\e9e2";
+  }
+  &.tm-e90c:before {
+    content: "\e90c";
+  }
+  &.tm-e90d:before {
+    content: "\e90d";
+  }
+  &.tm-e93c:before {
+    content: "\e93c";
+  }
+  &.tm-e9ba:before {
+    content: "\e9ba";
+  }
+  &.tm-e9e4:before {
+    content: "\e9e4";
+  }
+  &.tm-e9e5:before {
+    content: "\e9e5";
+  }
+  &.tm-e9e6:before {
+    content: "\e9e6";
+  }
+  &.tm-e92c:before {
+    content: "\e92c";
+  }
+  &.tm-e92d:before {
+    content: "\e92d";
+  }
+  &.tm-e92e:before {
+    content: "\e92e";
+  }
+  &.tm-e92f:before {
+    content: "\e92f";
+  }
+  &.tm-e930:before {
+    content: "\e930";
+  }
+  &.tm-e931:before {
+    content: "\e931";
+  }
+  &.tm-e932:before {
+    content: "\e932";
+  }
+  &.tm-e903:before {
+    content: "\e903";
+  }
+  &.tm-e93e:before {
+    content: "\e93e";
+  }
+  &.tm-e9ad:before {
+    content: "\e9ad";
+  }
+  &.tm-e9ae:before {
+    content: "\e9ae";
+  }
+  &.tm-e9af:before {
+    content: "\e9af";
+  }
+  &.tm-e9ab:before {
+    content: "\e9ab";
+  }
+  &.tm-e93b:before {
+    content: "\e93b";
+  }
+  &.tm-e93d:before {
+    content: "\e93d";
+  }
+  &.tm-e919:before {
+    content: "\e919";
+  }
+  &.tm-e91a:before {
+    content: "\e91a";
+  }
+  &.tm-e988:before {
+    content: "\e988";
+  }
+  &.tm-e9cb:before {
+    content: "\e9cb";
+  }
+  &.tm-e98c:before {
+    content: "\e98c";
+  }
+  &.tm-e93a:before {
+    content: "\e93a";
+  }
+  &.tm-e939:before {
+    content: "\e939";
+  }
+  &.tm-e938:before {
+    content: "\e938";
+  }
+  &.tm-e935:before {
+    content: "\e935"
+  }
+  &.tm-e937:before {
+    content: "\e937"
+  }
+}

@@ -1,0 +1,84 @@
+<ng-template #motorStop let-c="close" let-d="dismiss">
+    <div class="modal-header">
+    </div>
+    <div class="modal-body">
+      <div class="row">
+          <div class="content-img">
+              <div class="circulo"><i class="fa fa-shield icon" style="color:black"></i></div>
+          </div>
+      </div>
+      <form >
+        <div class="container">
+            <div class="row vdivide section-vehicle">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <a class="title-text">Estado actual del vehículo</a><br>
+                  <a class="title-text">Ubicación:</a><strong>80 Km/h</strong><br>
+                  <a class="title-text">Velocidad:</a><br><strong></strong>
+                  <a class="title-text">Ignición:</a><br><strong>Encendido</strong>
+                  <a class="title-text">Tipo de señal:</a><br><strong></strong>
+                  <a class="title-text">Última posición:</a><br><strong></strong>
+                  <a class="title-text">Estado:</a><br><strong></strong>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <a class="title-text">Información del vehículo:</a><br>
+                  <a class="title-text">S1:</a><strong></strong><br>
+                  <a class="title-text">Número económico:</a><strong></strong><br>
+                  <a class="title-text">Transportista:</a><strong></strong><br>
+                  <a class="title-text">Tipo de vehículo:</a><strong>Tractocamión</strong><br>
+                  <a class="title-text">Dispositivo:</a><strong>MotumST600</strong><br>
+                  <a class="title-text">Riesgo:</a><strong></strong><br>
+                </div>
+              </div>
+        </div>
+        <hr  style="background-color: white !important; margin-top: 0!important">
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-group">
+              <a for="comment" class="title-text">Comentario:</a>
+              <input type="text"  class="form-control input-motor-stop" #comment id="comment">
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-8 col-md-8 section-date">
+            <a class="title-text">Emisor:</a><strong>Antitamper</strong><br>            
+            <a class="title-text">Fecha de último envío:</a><strong>2018/09/25 - 17:22:00 h - Celular</strong><br>
+            <a class="title-text">Fecha de última aplicación:</a><strong>-</strong><br>
+          </div>
+        </div>
+        <hr  style="background-color: white !important;">
+        <div class="row">
+          <!--Section Signal-->
+          <div class="col-xl-4 col-lg-4 col-md-4">          
+            <div class="form-radio">
+                <a class="title-text">Usar: </a>
+                <label>
+                    <input type="radio" name="optionsRadios" id="signalHybrid" value="2">
+                    <span class="overlay"></span>
+                </label>
+                <strong>Celular</strong>
+            </div>         
+            <div class="form-radio signal">
+                <label>
+                    <input type="radio" name="optionsRadios" id="signalsatellite" value="1">
+                    <span class="overlay"></span>
+                </label>
+                <strong>Híbrido</strong>
+            </div>
+          </div>
+          <!--Section Signal end-->
+          <div class="col-xl-8 col-lg-8 col-md-8">
+            <a class="title-text">Para proceder, es necesario ingresar su contraseña</a><br>
+            <input type="password" #password class="input-border-bottom" placeholder="contraseña"><br><br>
+            <!--botones-->
+            <div class="d-flex justify-content-between">
+             <button type="button" class="btn cancel" (click)="c('Close click')">Cancelar</button>
+             <button type="button" class="btn desactivate-engine-stop">Desactivar paro de motor</button>
+             <button type="button" class="btn activate-engine-stop">Activar paro de motor</button>
+            </div>
+
+            <!--end botones-->
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+<!--End modal vehicle-->

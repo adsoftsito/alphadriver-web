@@ -1,0 +1,14 @@
+<div id='title' >
+ <div class="content-top clearfix">
+   <ul class="breadcrumb al-breadcrumb">
+    <label class="al-bussines">{{companyName}} </label>
+    <li *ngFor="let breadcrumb of breadcrumbs; let i = index" class="breadcrumb-item">
+      <label class="al-tit" *ngIf="i==0"> / </label>
+      <label class="al-title" *ngIf="i==0" translate> {{ breadcrumb.label}}</label>
+      <label class="al-middle"  *ngIf="i > 0 && i !== breadcrumbs.length-1" translate>{{ breadcrumb.label}}</label>
+      <label [ngClass]="{ 'lastComponentList': (breadcrumb.action) , 'al-middle': (!breadcrumb.action) }" *ngIf="i !== 0 && i == breadcrumbs.length-1 && (breadcrumb.action || !breadcrumb.action)" translate>{{ breadcrumb.label}}</label>
+    </li>
+  </ul>
+  </div>
+  <!--buttonBack></buttonBack-->
+</div>

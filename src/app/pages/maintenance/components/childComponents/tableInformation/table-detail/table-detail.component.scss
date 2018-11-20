@@ -1,0 +1,66 @@
+@import '../../../../../../theme/sass/styles/styles';
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+@include tm-install-global(){
+
+  $gray-color: tm-theme(color-grey-18);
+  $gray-color2: tm-theme(color-grey-19);
+
+    motum-table-detail-component{
+          .ag-header-cell {
+            border: 1px solid $gray-color !important;
+            background-color: $gray-color2 !important;
+            line-height: 18px;
+        }
+        .ag-header-cell-label {
+            justify-content: center; // text-align header center
+         }
+
+         .ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+           display: none;
+         }
+        .full-width-panel {
+            position: relative;
+            background: #fafafa;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top:-9px;
+        }
+
+        .ag-cell {
+          line-height: 24px;
+          border-left: 1px solid $gray-color !important;
+        }
+        .ag-cell:first-child {
+          border-right: 1px solid $gray-color !important;
+        }
+
+
+        // .full-width-details {
+        //     float: left;
+        //     padding: 5px;
+        //     margin: 5px;
+        //     width: 150px;
+        // }
+
+        .full-width-grid {
+            margin-left: 25px;
+            padding-top: 7px;
+            box-sizing: border-box;
+            display: block;
+            height: 100%;
+        }
+
+    }
+
+}
+
+$font-family: 'Rubik', sans-serif;
+$secondary-font-family: 'Rubik', sans-serif;
+$font-size: 11px;
+$secondary-font-size: 9.64px;
+$secondary-foreground-color: rgba(0,0,0,0.7);
+
+@import '~ag-grid/src/styles/ag-grid.scss';

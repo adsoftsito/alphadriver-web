@@ -1,0 +1,314 @@
+@import "../../../../../theme/sass/motumVariables";
+
+
+.titlesection-travelinformation{
+    padding-left: 42.8883px;
+    padding-right: 42.883px; 
+    margin-top: 15.67px; 
+    color: gray;
+    font-size: 11px;
+}
+
+
+b{
+    color: #575756;
+    font-family: $motum-font-family-rubik-medium;
+    font-size: 11px;
+    font-weight: 500 !important;
+}
+
+.titletext{
+    margin-top: 10px; 
+    color: #878787 !important;
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+}
+
+.change-property-a{
+    margin-top: 10px; 
+    color: #878787 !important;
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.title-separator{
+    margin-top: 9.417px !important;
+    margin-bottom: 10px !important;
+    color: gray;
+}
+
+strong{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color: #575756;
+    font-weight: 500 !important;
+}
+
+.information{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color: #575756;
+}
+.position-bottom-group{
+    // float: right;
+    // font-size: 9px;
+    // margin-top: 30px;
+    // font-family: $motum-font-family-rubik;
+
+    float: right;
+    font-family: $motum-font-family-rubik;
+    margin-top:20px;
+    //position:fixed;
+}
+
+.section-flex-config{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: calc(100vh - 238px) !important;
+    /***when the dynamic container width***/
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/
+ }
+ 
+ .section-flex-end-footter{
+    //  flex-grow: 1;
+    //  max-height: 0px;
+    //  padding-bottom: 15px;
+
+     flex-grow: 1;
+     max-height: 0px;
+     padding-bottom: 15px;
+     padding-right: 25px;
+     display: flex !important;
+     justify-content: flex-end;
+ }
+ 
+ .section-flex{
+     flex-grow: 2;
+ }
+
+ 
+ .scroll-content-info{
+     height: 40%;
+     overflow-y: auto;
+     
+ }
+
+ .scroll-content-info-section{
+    height: 67%;
+    overflow-y: auto;
+    
+}
+
+.change-property-li{
+    margin-top: -18px;
+    margin-bottom: -22px;
+    margin-left: -6px;
+}
+
+.change-property-li-ul{
+    margin-top: -18px;
+    margin-bottom: -22px;
+    margin-left: -2px;
+}
+hr{
+     margin-top: 0 !important;
+     color: gray;
+ }
+
+.center-text-change-content2{
+    margin-top: -12px;
+    width: 56px;
+}
+
+ .chage-property-btn-right{
+    margin-right: 11px;
+    width: 70px; 
+    margin-right: 41.172px;
+ }
+ .chage-property-btn-left{
+    margin-right: 11px;
+    width: 70px; 
+ }
+
+.change-padding-bootstrap{
+    padding-right: 0px !important;
+    padding-left: 11px !important;  
+}
+
+.center-text-change{
+    width: 56px;
+}
+
+.remove-properties-hr{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.change-padding-bootstrap-title{
+    margin-top: -11px;
+    margin-bottom: -12px;
+}
+
+.position-center-section-content{
+    margin-top: -13px;
+    margin-left: 70px;
+}
+
+.position-container-element-content{
+    margin-bottom: -27px;
+}
+
+.data-property-change{
+    margin-top: 10px; 
+    color: #878787 !important;
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+
+
+.timeline-list-arrested{
+    position: relative;
+    margin-left: 30px;
+    list-style-type: none;
+  }
+  
+  .timeline-list-arrested li {
+      position: relative;
+  }
+  .timeline-list-arrested li:before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: -1.3em;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: none repeat scroll 0% 0% $motum-pink;
+  }
+
+
+.timeline-list-off{
+   position: relative;
+   margin-left: 32px;
+   list-style-type: none;
+}
+
+.timeline-list-off li {
+    position: relative;
+  
+}
+.timeline-list-off li:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: -1.3em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: none repeat scroll 0% 0% #575756;
+  }
+
+
+
+
+.timeline-list {
+    position: relative;
+    margin-left: 30px;
+    list-style-type: none;
+    margin-bottom: 4px;
+ 
+  &:before {
+	content: "";
+     border-left: 1px solid $motum-grey-radio;
+     left: 1.66rem;
+     top: 1em;
+     height: 100%;
+     position: absolute;
+     bottom: 0;
+     z-index: -1;
+	}
+
+	&:after {
+	content: "";
+    clear:both;
+	position: absolute;
+	bottom: -14px;
+	left: 1.35em;
+	width: 17px;
+	height: 17px;
+    background: none repeat scroll 0% 0% $motum-white;
+    z-index: -1;
+	}
+}
+
+.empty{
+	margin:0 0 0.2em 0;
+    position: relative;
+
+}
+
+.empty:before {
+	content: "";
+	position: absolute;
+	top: 7px;
+	left: -1.18em;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+    background: $motum-white ;
+    border: 1px solid $motum-grey-radio;
+}
+
+
+.full{
+	margin:0 0 0.2em 0;
+    position: relative;
+
+}
+
+.full:before {
+	content: "";
+	position: absolute;
+	top: 7px;
+	left: -1.18em;
+	width: 8px;
+	height: 8px;
+    border-radius: 50%; 
+    background: $motum-grey-radio;
+    border: 1px solid $motum-grey-radio;
+   
+}
+
+.total-hours-traveled{
+    float: left;
+    margin-top: 11px;
+}
+.position-time-off{
+    float: left;
+    margin-top: -12px;
+}
+
+@media (max-width:769px){
+    .section-flex-end-footter{
+        padding-right: 0px;
+        text-align: center;
+    }
+    .position-bottom-group{
+        padding-bottom: 28px;
+        margin-top:0px;
+    }
+}

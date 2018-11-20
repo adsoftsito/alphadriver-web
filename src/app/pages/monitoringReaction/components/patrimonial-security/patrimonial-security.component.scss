@@ -1,0 +1,881 @@
+@import "../../../../theme/sass/styles/styles";
+@import "../../../../theme/sass/motumVariables";
+//@import "./motor-stop/motor-stop.component.scss";//estilo de la ventana modal
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+
+
+@include tm-install-global(){
+
+ 
+$motum-official-grey-1: $motum-grey-group-active;
+$motum-official-grey-2: #c4c4c4;
+$motum-official-grey-3: #f1f1f1;
+$motum-grey-4:#9d9d9c;//ese color no esta en motum variables
+$motum-grey-5:#dadada;//ese color lo tiene la variable login
+$motum-official-green-1: $motum-light-green;
+$motum-official-blue-1: #136df8;
+
+//$motum-official-blue-1: $motum-blue-partner;
+
+.ag-row-hover {
+  background-color: tm-theme(tables-hover-row-color) !important;
+}
+.ag-row-selected {
+  background-color: tm-theme(tables-selected-row-color) !important;
+}
+.ag-row-group-expanded{
+  background-color: tm-theme(list-selected-row-color) !important;
+}
+
+.custom-checkbox input[type="checkbox"] + span::before {
+  font-family: "MotumIcons";
+  content: "\e91d";
+  border: 0;
+  font-size: 15px;
+  min-width: 17px;
+  margin-top: 1px;
+}
+
+
+.custom-checkbox input[type="checkbox"]:checked + span::before {
+  content: "\e91e";
+  color: #3381f8;
+  border-radius: 15%;
+  min-width: 17px;
+}
+
+
+
+.ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+  display: none;
+}
+
+// .ag-theme-material .ag-paging-panel {
+//   justify-content: center !important;
+// }
+
+/**
+* Icons for table tools
+*/
+// .table-tools-icons-margin {
+//   margin-bottom: 12px;
+//   margin-top: 10px;
+// }
+
+
+.motum-i.tm-u.tm-disable.table-tools-icons-margin {
+  color: $motum-official-grey-2;
+}
+
+.motum-i.tm-u.tm-able.table-tools-icons-margin {
+  color: $motum-official-green-1;
+}
+
+
+
+label.custom-checkbox {
+  margin-top: 10px;
+}
+
+/**
+* Modify ag-grid classes
+*/
+
+.ag-theme-material .ag-cell-focus {
+  border: 0 solid $motum-official-grey-1 !important;
+}
+
+.ag-row:nth-of-type(even){
+  background-color:  tm-theme(tables-odd-row-color);//zebra
+}
+.ag-theme-material {
+  position: relative;
+  .ag-icon-checkbox-checked{background-image: none !important; }
+  .ag-icon-checkbox-unchecked{background-image: none !important;}
+
+  .ag-icon-checkbox-checked:after{
+    top: -15px;
+    position: absolute;
+    font-size: 14px;
+    font-family: 'MotumIcons';
+    content: "\e91e" !important;
+    color: #3381f8 !important;
+
+  }
+  .ag-icon-checkbox-unchecked:after{
+    position: absolute;
+    top: -15px;
+    font-size: 14px;
+    font-family: 'MotumIcons';
+    content: "\e91d" !important;
+    color: #3381f8 !important;
+
+  }
+}
+ .cell-motum-hover-statusMotorStop:hover{
+  color:tm-theme(color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  & span i{
+    color:tm-theme(color-primary);
+    cursor: pointer; 
+   }
+}
+//Start style icons Status stopMotor
+.status-on{
+  color:tm-theme(color-yellow-2);
+  font-size:8px;
+}
+.status-off{
+    color: $motum-grey-4;
+    font-size:8px;
+}
+//End style icons Status stopMotor
+
+/****Icons Signal**/
+.signal-type-Icon{
+  font-size:14px !important;
+  color:tm-theme(color-light-blue-2)!important;
+}
+.with-signal{
+  font-size:14px !important;
+  color:tm-theme(color-light-blue-2);
+}
+.no-signal{
+  font-size:14px !important;
+  color:$motum-grey-4;
+}
+
+/**********/
+/***risk***/
+.risk-level {
+  width:7px;
+  height:14px;
+  border-radius:2px;
+  color:$motum-grey-5;
+  display:inline-block;
+  margin-right: 4px;
+}
+.low{
+  color: $motum-yellow-sensor-on;
+}
+.medium{
+  color: #f39200;
+}
+.high{
+  color: #e30613;
+}
+
+
+
+.ag-theme-material .ag-header-row{
+  font-weight: 500 !important;
+}
+
+.ag-theme-material .ag-paging-panel {
+  justify-content: center !important;
+  @include paging-outside(30px);
+}
+
+/// AG-GRID IN MODAL*****************************************/
+#inModal .ag-header-cell{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  //line-height: 24px;
+  color:tm-theme(color-white) !important;
+  border:none !important;
+  }
+  #inModal .ag-cell{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+ }
+
+  #inModal .ag-header{
+    border-bottom:5px solid white;
+    border:none;
+  }
+  #inModal .ag-header-row {
+    border-bottom:none;
+  }
+
+#inModal .ag-row:nth-of-type(even){//zebra
+  background-color:#1a1a1e;
+}
+#inModal .ag-row{//border row
+  border:none !important;
+}
+
+#inModal .ag-row-hover{
+
+  background-color:$motum-grey-4 !important;
+}
+
+//**********************************************************/
+.modal-vehicle-motor-stop .modal-lg .modal-content {
+ 
+  font-family: $motum-font-family-rubik;
+  background-color: transparent !important;
+  border:none;
+  color: tm-theme(color-white);
+  //line-height: 1.9;
+  //font-size:0.9em;
+  line-height: 1.7;
+  font-size:16px;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding:0;
+}
+.modal-vehicle-motor-stop .modal-dialog{
+  max-width: 800px!important;
+  min-width: 320px !important;
+  width: 100% !important;
+   margin-top: 23px;
+}
+.modal-vehicle-motor-stop .modal-content  .modal-body{
+background-color: transparent;
+}
+
+.section-operation{
+  display: inline-flex;
+  -ms-flex-wrap: inherit;
+  -ms-flex-pack: center;
+  //justify-content: center;
+  justify-content: space-evenly;
+  //margin-left: -37px !important;
+  //margin-right: -60px;
+  padding-left: 0px;
+  position: initial;
+  font-size:10px;
+
+
+}
+.buttonOperation{
+  //margin:0.1px!important;
+  margin-left:1px !important;
+}
+
+//
+  /****style elements in modal ****/
+///////////////////////////
+.modalMotorStopMassive > .modal-dialog {
+  max-width: 1200px !important;//1490px !important;
+  min-width: 320px !important;
+  width: 100% !important;
+}
+.modalMotorStopMassive >.modal-dialog .modal-content{
+  background-color:transparent !important;
+  color:tm-theme(color-white);
+  border:none !important;
+}
+.footer-motorStopMassive{
+  justify-content: center;
+  align-items:normal;
+}
+
+.operation-section{
+  padding-left:3%;
+}
+
+
+//
+$grey-btn : #3c3c3b;
+///line divide 2 columns
+.row.vdivide [class*='col-']:not(:last-child):after {
+    background-color:tm-theme(color-white);
+    width: 1px;
+    content: "";
+    display:block;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    min-height: 70px;
+  }
+  
+  .title-text{
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+    /***when the dynamic container width***/
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/    
+  }
+ 
+  .information_security{
+    font-size:11px;
+    font-weight: 500;
+    word-wrap: break-word;
+    /***when the dynamic container width***/
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/
+    
+
+  }
+  .hr-motor-stop{
+     color:tm-theme(color-white);;
+  }
+  .section-status-vehicle{
+    margin-bottom: 1%;
+    padding-left: 0px;
+  }
+  .section-info-vehicle{
+    padding-left:45px;
+  }
+  .section-signal{
+    margin-top: 5px;
+  }
+  .signalUse{
+    margin-right: 8px;
+  }
+  .section-date{
+    //padding-left:25px !important;
+    padding-left: 9% !important;
+  }
+
+  .input-motor-stop{
+      background-color: transparent !important;
+      color:tm-theme(color-white);
+      font-size:11px;
+  }
+  .input-motor-stop:focus{
+    border-color:tm-theme(color-white) !important;
+    color:tm-theme(color-white) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color:tm-theme(color-white) !important;
+}
+//check box radio
+.input-check-container {
+    display: block;
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    // Hide default checkbox
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      display: none;
+    }
+
+    &.check{
+      display: table-cell;
+      width: 20px;
+    }
+    &.outCheck{
+      display: table-cell;
+      width: 20px;
+      position: relative;
+      left: 10px;
+      top: 3px;
+    }
+
+    // Create custom checkbox: grey cuadro
+    .checkmark {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      height: 10px;
+      width: 10px;
+      background-color:tm-theme(color-white);
+      border-radius: 3px;
+      border: 1px solid $motum-purple-checkbox;
+    }
+    input:checked ~ .checkmark {
+      background-color: tm-theme(color-primary);
+      border: none;
+    }
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    /* Show the checkmark when checked */
+    input:checked ~ .checkmark:after {
+      display: block;
+    }
+    /* Style the checkmark/indicator */
+    .checkmark:after {
+      left: 3px;
+      width: 4px;
+      height: 7px;
+      border: solidtm-theme(color-white);
+      border-width: 0px 1px 1px 0;
+      -webkit-transform: rotate(36deg);
+      -ms-transform: rotate(36deg);
+      transform: rotate(36deg);
+    }
+  }
+
+  .input-radio-container {
+    display: block;
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    // Hide default checkbox
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      display: none;
+    }
+
+    &.check{
+      display: table-cell;
+      width: 20px;
+
+    }
+    
+    // Create custom checkbox: grey cuadro
+    .radioStyle {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      height: 11px;
+      width: 11px;
+      background-color: tm-theme(color-white);
+      border-radius: 10px;
+      border: 1px solid  tm-theme(color-white);
+    }
+    input:checked ~ .radioStyle {
+        left: 1px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        background-color:tm-theme(color-white);
+    }
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .radioStyle:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    /* Show the checkmark when checked */
+    input:checked ~ .radioStyle:after {
+      display: block;
+    }
+    /* Style the checkmark/indicator */
+    .radioStyle:after {
+    
+    }
+  }
+  .form-radio{
+    display: table;
+   // margin-right: -20px;
+    label{
+      margin-bottom: 0 !important;
+    }
+    .overlay {
+        // width: 12px;
+        // height: 12px;
+        // margin-right: 8px;
+        // padding-top: 3px;
+        // display: inline-block;
+        // position: relative;
+        // top: -2px;
+        // border: 1px solid tm-theme(color-white);
+        // border-radius: 100%;
+        // vertical-align: middle;
+        // padding-left: 5.6px;
+
+        width: 12px;
+        height: 12px;
+        margin-right: 8px;
+        padding-top: 3px;
+        display: block;
+        position: relative;
+        top: 3px;
+        border: 1px solid #ffffff;
+        border-radius: 100%;
+        padding-left: 6.6px;
+      }
+      input {
+        display: none;
+      }
+      input:checked + span:before {
+        width: 8px;
+        height: 8px;
+        content: " ";
+        background-color: tm-theme(color-white);
+        border-radius: 100%;
+        // margin-left: -0.3rem;
+        margin-left: -5.1px;
+        position: absolute;
+        margin-top: -2px;
+      }
+    }
+//end radio
+
+
+.input-border-bottom {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid tm-theme(color-white);
+    color:tm-theme(color-white);;
+    width:100%;
+    font-size:11px;
+  }
+//buttons 
+.btnMotor{
+  white-space: nowrap;
+	border-radius: 30px;
+	padding:0.22rem 0.53rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow:none !important;
+  display:inline-block;
+}
+
+.btn_{
+  white-space: nowrap;
+	border-radius: 30px;
+	padding:0.22rem 0.53rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow:none !important;
+  display:inline-block;
+}
+
+.d-flex_{
+    display: inline !important;
+}
+.cancel{
+    background-color: tm-theme(color-white);
+    color:$motum-grey-partner;
+}
+.cancel:active:focus{
+    background-color: transparent;
+    border-color:tm-theme(color-white);
+    color:tm-theme(color-white);
+}
+.desactivate-engine-stop{
+    background-color: $grey-btn !important;
+    color:$motum-grey-partner;
+}
+
+.activate-engine-stop{
+    background-color:tm-theme(button-color-danger-bg) !important;
+    padding:0.22rem 0.53rem;
+    color:$motum-grey-partner;
+}
+.activate-engine-stop:hover, .activate-engine-stop::after{
+  background-color: transparent !important;
+  border-color:tm-theme(button-color-danger-bg);
+  outline: none;
+  color:tm-theme(button-color-danger-bg);
+}
+.circle {
+    width: 80px;
+    height: 80px;
+    background-color: tm-theme(color-white);;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    font-size:35px;
+    text-align: center;
+}
+
+.content-img-center{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2%;
+}
+
+
+.icon-modal{
+  color: #131319;
+  font-size: 43px;
+  text-align: center;
+  margin-top: 20px;
+  
+}
+/********************************style elements in modal end****/
+
+@media only screen and (max-width: 600px){
+  .card{
+   // background-color: #3c3c3b;
+     margin: 36.134px 18.966px 0px 10.966px;
+     margin-bottom: 0px;
+     margin-top: 0px;
+  }
+  .section-status-vehicle, .section-info-vehicle{
+    padding-left:0px;
+  }
+
+  /****modal 1 vehicle*******/
+ .row.vdivide [class*='col-']:not(:last-child):after{
+    display:none;
+  }
+
+  .modal-vehicle-motor-stop .modal-content-dialog{
+    margin:0px;
+  }
+  .modal-vehicle-motor-stop .modal-lg .modal-content {
+    margin-left:0.2px;
+    margin-right:0.2px;
+    margin-top:0px;
+  }
+  .section-operation{
+    display: flow-root;
+    flex-wrap: inherit;
+  }
+  .buttonOperation{
+    padding-top:0.2px!important;
+  }
+}
+@media (width: 1440px){
+    /****modal 1 vehicle*****/
+    .content-img-center{
+      padding-bottom: 5%;
+    }
+    .modal-vehicle-motor-stop .modal-dialog {
+      max-width: 1000px;
+      margin-top:78px;
+      font-size: larger;
+  }
+  .modal-vehicle-motor-stop .modal-lg .modal-content{
+    margin-left: 0px;
+    margin-right:0px;
+  }
+  .section-info-vehicle {
+    padding-left: 70px; 
+  }
+
+}
+  @media(width: 1280px){
+    /****modal 1 vehicle*****/
+    .content-img-center{
+      padding-bottom: 5%;
+    }
+    .modal-vehicle-motor-stop .modal-dialog {
+      max-width: 1000px;
+      margin-top:80px;
+      font-size: larger;
+  }
+  .modal-vehicle-motor-stop .modal-lg .modal-content{
+    margin-left: 32px;
+    margin-right:32px;
+  }
+  }
+  @media(width: 1024px){
+    /****modal 1 vehicle*****/
+    .content-img-center{
+      padding-bottom: 3%;
+    }
+    .modal-vehicle-motor-stop .modal-dialog {
+      max-width: 1000px;
+      margin-top:2px;
+      font-size: larger;
+  }
+  .modal-vehicle-motor-stop .modal-lg .modal-content{
+    margin-left: 0px;
+    margin-right:0px;
+  }
+  .modal-vehicle-motor-stop .modal-header{
+    padding: 0px;
+  }
+    
+  }
+/*******/
+patrimonial-security{
+  
+  
+
+  .ag-header-cell, .ag-header-group-cell {
+    padding-left: 5px !important;//5,7
+    padding-right: 0px !important;
+    line-height: 24px;
+   // background: red;
+  }
+  
+  .ag-cell {
+    padding-left: 4px !important;//7,7
+    padding-right: 4px !important;
+    float: right;
+  }
+  .ag-paging-panel > span.ag-paging-row-summary-panel {
+    margin-left: 0px !important;
+    width: 25% !important;
+    display: block;
+  }
+  .ag-paging-panel > span.ag-paging-page-summary-panel {
+    margin-left: 0px !important;
+    width: 50% !important;
+    text-align: center !important;
+  }
+  .ag-paging-panel {
+    justify-content: left !important;
+    border: none;
+    height: 0px;
+    margin-top: 15px;
+    }
+
+.ag-theme-material .ag-header-cell-resize {
+  position: absolute;
+  right: -8px;
+  width: 16px;
+  z-index: 4;
+  top: -16px;
+}
+
+/*style that the cell will have when the checkbox is show*/
+.ag-theme-material .ag-selection-checkbox span, .ag-theme-material .ag-group-expanded span, .ag-theme-material .ag-group-contracted span {
+  margin-right: 3px;
+}
+
+.footer-table-counter{
+  margin-left: -4px;
+  margin-top: 16px;
+  font-size: 12px;
+}
+ .card{
+   margin:36.134px 0px 0px -8.034px;
+    border-radius: 10px;
+
+  }
+  .card > .card-body{
+    //padding: 0.398px 11.866px !important; 
+    padding: 6.398px 21.866px !important;
+    margin-left:-8px;
+    margin-right:-8px;
+ }
+  .motum-i.tm-u.tm-search:before{
+    font-size: 15px;
+  }
+  .form-group{
+    margin-bottom: 0 !important;
+  }
+
+  .btnShowModal{
+    display: inline;
+  }
+  .btn-group{
+    display: inline!important;
+    margin-left: 15.339px;
+ }
+  .onApClick {
+    cursor: pointer;
+  }
+/***Button stop motor**/
+button.motum-btn-motor-stop{
+  white-space: nowrap;
+  //border-radius: 30px;
+  border-radius: 8px;
+	padding:0.22rem 0.53rem;
+  //font-size: 0.7rem;
+  font-size:11px;
+  margin-left:10px;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow:none !important;
+  display:inline-block;
+  color:tm-theme(color-white) !important;
+  background-color:tm-theme(button-color-danger-bg);
+
+}
+button.motum-btn-motor-stop:hover {
+  background-color: tm-theme(color-white) !important;
+  border-color: tm-theme(button-color-danger-bg) !important;
+  transform: scale(1) !important;
+  color: tm-theme(button-color-danger-bg) !important;
+}
+/****/
+.searchContent{
+  width: 100% !important;
+}
+  .checkboxUnits{
+    display: inline-block;
+    margin-left: 12.847x;
+  }
+  
+  .hrPatrimonialSecurity{
+    margin-top: 0.846px;
+    margin-bottom: 0px;
+
+    margin-top: 0.846px;
+    margin-bottom: 0px;
+  }
+
+  .motum-i.tm-u.tm-search:before{
+    font-size: 15px;
+  }
+
+  .calendar-lbl-container {
+    font-size: 10px;
+    padding-right: 8px;
+    margin-top: -3px;
+  }
+
+  .calendar-btn-container {
+    margin-top: 10px;
+    text-align: right;
+    padding-top: 5px;
+    margin-right: -9px;
+  }
+
+  .calendar-btn-container:hover {
+    color: $motum-official-blue-1 !important;
+  }
+  
+}
+
+//  .ag-row-selected {
+//   background-color: tm-theme(tables-selected-row-color);
+// }
+
+  
+.modal-backdrop.show {
+  opacity: 0.9;
+}
+.modal-backdrop {
+  background-color: #131319;
+}
+.search-box{
+  padding-left: 0;
+}
+}
+
+$font-family: 'Rubik', sans-serif;
+$secondary-font-family: 'Rubik', sans-serif;
+$font-size: 11px;
+$secondary-font-size: 9.64px;
+$secondary-foreground-color: rgba(0,0,0,0.7);
+
+@import '~ag-grid/src/styles/ag-grid.scss';
+@import '~ag-grid/src/styles/ag-theme-material';

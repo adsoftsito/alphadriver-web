@@ -1,0 +1,159 @@
+@import '../../../../theme/sass/motumVariables';
+  .itemGridHeader{
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      height: 13px;
+      max-height: 100%;
+      place-content: center space-between;
+      align-items: center;
+      //border-bottom: 3px solid #abc2ff;
+      //background-color: #fbbc05;
+  }
+  .styleTitleHeader{
+    font-size: 10px;
+    font-weight: 500;
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      position: absolute;
+      top: 8px;
+  }
+  .styleToolsHeader{
+    width: 100px;
+  }
+
+  .dateDashlet{
+    display: flex;
+    position: absolute;
+    right: 68px;
+    top: 3px;
+    font-size: 14.8px;
+  }
+  .iconCalendar{
+    font-size: 15px;
+    display: flex;
+    position: absolute;
+    right: 25px;
+    top: 7px;
+    color: $motum-grey-border-group;
+    cursor: pointer;
+  }
+  .iconMenuContext{
+    display: flex;
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    color: $motum-grey-border-group;
+    cursor: pointer;
+    z-index: 101;
+  }
+  .itemGridContent{
+      display: flex;
+      //background-color: #709ee4;
+      align-items: center;
+      justify-content: center;
+  }
+  .itemGridFooter{
+    flex-direction: row;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    place-content: center flex-end;
+    -ms-flex-align: center;
+    align-items: center;
+    //background-color: green;
+  }
+  .styleIconFooter{
+    flex-direction: row;
+    box-sizing: border-box;
+    
+    display: flex;
+  }
+  .back{
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    color: $motum-grey-border-group;
+  }
+  .home{
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    color: $motum-grey-border-group;
+  }
+  .iconExpantFooter{
+    padding: 0 10px 4px;
+    color: $motum-grey-border-group;
+    cursor: pointer;
+    font-size: 10px;
+  }
+ 
+  .titleDashlet{
+    text-align: center;
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .subTitleDashlet{
+    text-align: center;
+    font-size: 10px;
+  }
+  .chart{
+    // font-size: 11px;
+    position: absolute;
+    top: 57px;
+    bottom: 15px;
+  }		
+
+  .hrDashlet{
+    border: 1px solid $motum-light-blue;
+    margin-top: 2px;
+    margin-bottom: 5px;
+  }
+  .closeMenuDashlet{
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 212px;
+    z-index: 1;
+  }
+  .amcharts-pie-slice {
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition-duration: 0.3s;
+    transition: all .3s ease-out;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    cursor: pointer;
+    box-shadow: 0 0 30px 0 #000;
+  }
+  
+  .amcharts-pie-slice:hover {
+    transform: scale(1.1);
+    filter: url(#shadow);
+  }	
+  
+
+  .configDate{
+		background: #fff !important;  
+		border: none !important; 
+		outline: none !important;
+    text-align: center !important;
+    margin-top: 7px !important;
+    width: 173px;
+    font-family: $motum-font-family-rubik;
+    font-size: 14px;
+	}
+
+
+	.configDate:focus{
+		background: #fff !important; 
+		border: none !important; 
+		outline: none !important;
+	}

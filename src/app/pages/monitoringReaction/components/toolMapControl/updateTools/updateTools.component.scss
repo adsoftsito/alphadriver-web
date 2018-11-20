@@ -1,0 +1,77 @@
+@import '../../../../../theme/sass/motumVariables';
+
+mr-update-tools-component {
+  .motum-update-form {
+    text-align: left;
+    padding: 7px;
+
+    .input-check-container {
+      display: block;
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 0;
+      cursor: pointer;
+      font-size: 11px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      // Hide default checkbox
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        display: none;
+      }
+  
+      &.check{
+        display: table-cell;
+        width: 20px;
+      }
+      &.outCheck{
+        display: table-cell;
+        width: 20px;
+        position: relative;
+        left: 10px;
+        top: 3px;
+      }
+  
+      // Create custom checkbox: grey cuadro
+      .checkmark {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        height: 10px;
+        width: 10px;
+        background-color: $motum-white;
+        border-radius: 3px;
+        border: 1px solid $motum-purple-checkbox;
+      }
+      input:checked ~ .checkmark {
+        background-color: $motum-blue-partner;
+        border: none;
+      }
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      /* Show the checkmark when checked */
+      input:checked ~ .checkmark:after {
+        display: block;
+      }
+      /* Style the checkmark/indicator */
+      .checkmark:after {
+        left: 3px;
+        width: 4px;
+        height: 7px;
+        border: solid $motum-white;
+        border-width: 0px 1px 1px 0px;
+        -webkit-transform: rotate(36deg);
+        -ms-transform: rotate(36deg);
+        transform: rotate(36deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "../../theme/sass/motumVariables";
+@import "../../theme/sass/styles/styles";
+
+monitoring-and-reaction-component {
+
+
+  .m-item-z-index-5 {
+    z-index: 5;
+  }
+  .m-item-z-index-6 {
+    z-index: 6;
+  }
+
+  // --------------------
+  // POSITION PROPERTIES
+  // --------------------
+  .motum-fixed-map-tools {
+    position: fixed;
+    padding-right: 30px;
+    padding-top: 30px;
+    top: auto;
+    left: auto;
+    right: 0;
+
+  }
+  .gmnoprint{
+    display: none !important;
+  }
+  .motum-absolute-menu {
+    position: absolute;
+    top: auto;
+    left: 0;
+    height: calc(100vh - 66px);
+    width: 100%;
+  }
+
+  .background-menu {
+  background-color: white;
+  box-shadow: 15px 3px 48px -7px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 15px 3px 48px -7px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 15px 3px 48px -7px rgba(0, 0, 0, 0.15);
+  }
+
+  .borderLeft{
+    border-left: 1px solid rgba(0, 0, 0, 0.19);
+  }
+
+}

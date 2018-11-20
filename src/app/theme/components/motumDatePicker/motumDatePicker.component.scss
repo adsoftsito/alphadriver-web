@@ -1,0 +1,305 @@
+@import '../../sass/styles/styles';
+@import '../../sass/motumVariables';
+
+
+
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+$font-family: 'Rubik', sans-serif;
+$motum-official-grey-1: #b3b3b3;
+$motum-official-blue-1: #136df8;
+$motum-official-blue-2: #f3f8ff;
+$gray: #cbcbcb;
+$strong-gray: #434444;
+$blue: #4283d1;
+$font-title: 11px;
+$font-content: 13.2px;
+$white: #fff;
+$low-gray: #dadada;
+$low-gray-one: #f6f6f6;
+$low-gray-two: #d3d3d3;
+$low-gray-three: #b2b2b2;
+$low-gray-four: #c6c6c6;
+$gray-light: #c5c5c4;
+$strong-grey: #878787;
+$intense-gray: #575756;
+$blue: #7054ff;
+$blue-light: #1d70b8;
+$orange: #eb860d;
+$orange-light: #F39200;
+$yellow: #F8B43A;
+$yellow-light: #ffc033;
+$red: #e20815;
+$red-light: #E6332A;
+$green: #2fd15d;
+$motum-background-cell-zebra: rgba(246, 246, 246, 0.5);
+$font-color: #4d4d4d;
+
+.calendar-container{
+  margin-left: 30px;
+  position: relative;
+  background-color: white;
+  width: 211px;
+  height: 212px;
+
+  border-radius: 10px;
+  text-align: center;
+  -webkit-box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 5px -1px rgba(0,0,0,0.75);
+
+}
+
+.calendar-six-weeks{
+  height: 247px !important;
+}
+
+.calendar-header{
+  height: 28.156px;
+  font-size: 10px;
+}
+
+.header-content{
+  padding-top: 7px;
+  font-weight: 500;
+
+}
+
+.arrow-left{
+  font-size: 8px;
+  font-weight: 600;
+  left: 10px;
+  top: 9px;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+.arrow-left:hover, .arrow-right:hover{
+  color: $motum-blue;
+  cursor: pointer;
+}
+.arrow-right{
+  font-weight: 600;
+  right: 10px;
+  top: 9px;
+  font-size: 8px;
+  position: absolute;
+  transform: rotate(270deg);
+}
+
+.calendar-weekdays-container {
+  height: 25.67px;
+  font-size: 10px;
+  font-weight: 600;
+  border-top: 1px solid rgba(171,171,171,0.4);
+  border-bottom: 1px solid rgba(171,171,171,0.4);
+
+}
+
+.calendar-days-container {
+  height: 31.63px;
+}
+.calendar-num-content {
+  height: 31.63px;
+  font-size: 10px;
+
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 14.28% !important;
+  flex: 0 0 14.28% !important;
+  max-width: 14.28%;
+}
+
+.calendar-day-content {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 14.28% !important;
+  flex: 0 0 14.28% !important;
+  max-width: 14.28%;
+
+}
+
+.calendar-num-format {
+  width: 100%;
+
+  position: relative;
+  cursor: pointer;
+
+}
+
+.range {
+  background-color: tm-theme(tables-selected-row-color);
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.range:hover:before{
+  content:"";
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  background-color: tm-theme(tables-selected-row-color);
+  width: 35.5px;
+  height: 17.5px;
+}
+
+
+.start:before{
+  content:"";
+  position: absolute;
+  right: 0px;
+  background-color: tm-theme(tables-selected-row-color);
+  width: 22.5px;
+  height: 21px;
+}
+.end:before{
+  content:"";
+  position: absolute;
+  left: 0px;
+  background-color: tm-theme(tables-selected-row-color);
+  width: 22.5px;
+  height: 21px;
+}
+
+.start, .end, .selected {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 30px;
+  height: 30px;
+  background-color: $motum-blue;
+  padding: 0;
+  border-radius: 100px;
+}
+
+.calendar-num-format {
+
+  &.end {
+    &.selected:hover:before {
+      content:"";
+      position: absolute;
+      top: 4.5px;
+      left: 0px;
+      background-color: tm-theme(tables-selected-row-color);
+      width: 23px !important;
+      height: 21px;
+      border: none;
+      border-radius: 0;
+    }
+  }
+    &.start:hover {
+      &.selected:hover:before {
+        content:"";
+        position: absolute;
+        top: 4.5px;
+        left: 8px;
+        background-color: tm-theme(tables-selected-row-color);
+        width: 23px;
+        height: 21px;
+        border: none;
+        border-radius: 0;
+      }
+    }
+    &.selected:hover:before {
+      content:"";
+      position: absolute;
+      top: 4.5px;
+      left: 8px;
+      background-color: rgba(0,0,0,0);
+      width: 23px;
+      height: 21px;
+      border: none;
+      border-radius: 0;
+    }
+    &.end:hover:before{
+      content:"";
+      position: absolute;
+      top: 4.5px;
+      left: 0px;
+      background-color: tm-theme(tables-selected-row-color);
+      width: 23px;
+      height: 21px;
+      border: none;
+      border-radius: 0;
+
+    }
+  &.start:hover:before{
+    content: "";
+    position: absolute;
+    top: 4.5px;
+    left: 8px;
+    background-color: tm-theme(tables-selected-row-color);
+    width: 23px;
+    height: 21px;
+    border: none;
+    border-radius: 0;
+
+  }
+
+
+  &.range:hover:before{
+    top: -4px;
+
+
+  }
+  &.range:hover{
+    &.start:before{
+      content:"";
+      position: absolute;
+      top: 4.5px;
+      left: 8px;
+      background-color: tm-theme(tables-selected-row-color);
+      width: 23px;
+      height: 21px;
+      border: none;
+      border-radius: 0;
+
+    }
+    &.range:hover{
+      &.end:before{
+        content:"";
+        position: absolute;
+        top: 4px;
+        left: 0px;
+        background-color: tm-theme(tables-selected-row-color);
+        width: 23px;
+        height: 21px;
+        border: none;
+        border-radius: 0;
+
+      }
+    }
+
+
+
+
+    }
+
+
+}
+.calendar-num-format:hover:before {
+  content:"";
+  position: absolute;
+  top: -7px;
+  left: 1px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid $motum-blue;
+  border-radius: 100px;
+  cursor: pointer;
+}
+.calendar-is-same {
+
+  font-weight: 500;
+}

@@ -1,0 +1,124 @@
+@import '../../sass/conf/conf';
+@import '../../../theme/sass/motumVariables';
+:host /deep/ {
+
+  #title{
+    font-family: $motum-font-family-rubik;
+    line-height: 25px;
+    max-width: 66%;
+    width: 65%;
+    float: left;
+
+    font-weight: bold;
+    margin: 14px 0 0 30px;
+  }
+  // breadcrumb
+  .content-top {
+    padding-top: 0px;
+    margin-top: 6px;
+    // padding-bottom: 13px;
+  }
+  label {
+    margin-bottom: 0rem;
+  }
+  .lastComponentList{
+    color: #2abeea !important;
+    font-family: $motum-font-family-rubik-medium;
+    font-size: 10px;
+  }
+
+  label.al-tit{
+    font-family: $motum-font-family-rubik-bold;
+    font-weight: $font-bold;
+    color: $default-text;
+    float: left;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-right: 8px;
+  }
+  
+  label.al-title {
+    font-family: $motum-font-family-rubik-bold;
+    font-weight: 500;
+    color: $default-text;
+    float: left;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+  label.al-middle{
+    color: $default-text;
+    font-family: $motum-font-family-rubik-medium;
+    font-weight: 400;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    opacity: 0.9;
+  }
+  label.al-bussines {
+    font-weight: 700;
+    color: $default-text;
+    font-family: $motum-font-family-rubik-medium;
+    float: left;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-right: 8px;
+  }
+  .al-breadcrumb {
+    background: none;
+    color: $default-text;
+    padding: 0;
+    margin: 0;
+    float: left;
+    padding-top: 0px;
+    li {
+      font-size: 12px;
+      font-weight: $font-normal;
+      a {
+        color: $primary-light;
+      }
+
+      &.breadcrumb-item.active {
+        color: $default-text;
+      }
+    }
+  }
+
+  .al-look {
+    float: right;
+    margin-right: 10px;
+    padding-top: 0px;
+    > a {
+      font-size: 12px;
+    }
+  }
+  // end breadcrumb
+
+
+  #imgSvg{
+    fill: #146ef9;
+    width: 7px;
+    height: 7px;
+  }
+
+  .routinback{
+    color: #146ef9;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+
+
+}

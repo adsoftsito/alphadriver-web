@@ -1,0 +1,64 @@
+//@import "../../../../theme/sass/styles/styles";
+@import "../../.././../../theme/sass/styles/styles";
+$alert-background:#ff4344;
+
+@include tm-install-global(){
+    alert-component{
+
+      .alert-motor-stop {
+        position:fixed; 
+        top: 0px; 
+        left: 0px; 
+        height:66px;    
+        width: 100%;
+        min-width: 320px;
+        z-index:9999; 
+        display: flex;
+        justify-content: space-between;
+        flex-flow: wrap;
+        border-radius:none;
+
+        color:tm-theme(color-white);
+        background-color: $alert-background;      
+      }
+      .alertMessage{
+        margin-left: 6%;
+        padding:10px;
+      }    
+      
+    .message-download{
+        color:tm-theme(color-white);
+        font-weight: 500;
+        word-wrap: break-word;
+        text-decoration: underline !important;
+        text-decoration-color:tm-theme(color-white) !important;
+    }
+    .btnAlert{
+      background-color: transparent!important;
+      border-color:tm-theme(color-white);
+      color:tm-theme(color-white);
+
+    }
+    .btnMotor{
+      white-space: nowrap;
+      border-radius: 30px;
+      padding:0.22rem 0.53rem;
+      font-size: 0.7rem;
+      cursor: pointer;
+      outline: none !important;
+      box-shadow:none !important;
+      display:inline-block;
+    }
+
+      @media only screen and (max-width: 600px){
+        .alertMessage{
+          padding:0px;
+          margin-left:0px;        
+        }
+        .alert-motor-stop{
+          height:80px;
+          padding: 0.1rem 1.25rem;
+        }
+      }
+    }
+}

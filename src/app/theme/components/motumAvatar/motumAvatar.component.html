@@ -1,0 +1,25 @@
+<!-- ONLY NAME -->
+<div *ngIf="name && type === _TYPE_NAME"
+     [ngStyle]="_ngStyle"
+     class="motum-avatar avatar-bg-{{_firstLetter}}">
+    <span *ngIf="textSize"
+          [style.font-size.px]="textSize">{{name | initialName:nameType }}</span>
+    <span *ngIf="!textSize">{{name | initialName:nameType }}</span>
+</div>
+
+<!-- ONLY IMG -->
+<img *ngIf="name && type === _TYPE_IMG"
+     src="{{name}}"
+     alt="{{name}}"
+     [ngStyle]="_ngStyle"
+     class="motum-avatar-img">
+
+<!-- ONLY ICON -->
+<div *ngIf="name && type === _TYPE_ICON"
+     class="motum-avatar-icon avatar-bg-{{_firstLetter}}"
+     [ngStyle]="_ngStyle">
+    <i *ngIf="textSize"
+       [style.font-size.px]="textSize"
+       class="{{name}}"></i>
+    <i *ngIf="!textSize" class="{{name}}"></i>
+</div>

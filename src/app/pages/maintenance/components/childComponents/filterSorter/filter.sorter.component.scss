@@ -1,0 +1,123 @@
+@import '../../../../../theme/sass/styles/styles';
+
+@include tm-install-global() {
+  $label-font-size: 12px;
+  $label-font-weigth: 500;
+
+  $orders-border-input: tm-theme(orders-border-input);
+  $orders-tabs-gray-2-color: tm-theme(orders-tabs-gray-2-color);
+  $orders-blue-default: tm-theme(orders-buttons-primary-color);
+  $white-color: tm-theme(orders-white-color);
+  $light-gray: tm-theme(orders-light-gray);
+
+  motum-filter-sorter-component {
+    .form-control,
+    .form-control-feedback {
+      color: $orders-tabs-gray-2-color !important;
+    }
+    .form-control:focus{
+      border-color: $orders-blue-default !important;
+    }
+    .form-control {
+      border: 1.4px solid $orders-border-input !important;
+    }
+    .filter-element{
+      padding-right: 35px;
+      padding-left: 35px;
+    }
+    .filter-content {
+      margin-bottom: 10px;
+    }
+    .filter-content .filter-element:first-child {
+      padding-left: 5px;
+    }
+    .filter-content .filter-element:last-child {
+      padding-right: 5px;
+    }
+    .category-filter {
+      font-size: 13px;
+      font-weight: $label-font-weigth;
+    }
+    .input-sm {
+      font-size: 11px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      height: 1.3rem !important;
+    }
+    label {
+      margin-bottom: 0rem;
+      font-weight: $label-font-weigth;
+      font-size: $label-font-size;
+    }
+    ba-card {
+      .card {
+        border-radius: 12px  !important;
+        box-shadow: -1px 1px 25px -2px rgba(0, 0, 0, 0.25) !important;
+        margin-bottom: 15px;
+      }
+      .card > .card-body {
+        padding: 10px 8px;
+      }
+    }
+  }
+  .select2-design {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .select2-container--classic .select2-selection--multiple {
+      border: 1px solid $orders-border-input !important;
+      height: auto !important;
+      min-height: 16px;
+  }
+  // .select2-design .select2-container--classic.select2-container--open .select2-selection--multiple {
+  //     border: 0px solid !important;
+  // }
+  // .select2-design .select2-container .select2-search--inline .select2-search__field {
+  //     background-color: transparent;
+  // }
+  .select2-design .select2-container--classic .select2-selection--multiple .select2-selection__choice {
+      background-color: $orders-blue-default !important;
+      color: $white-color;
+      font-size: 10px;
+      border-radius: 10px;
+      margin-right: 2px;
+      margin-top: 1px;
+      border: 0;
+      border-color: transparent;
+  }
+  .select2-container .select2-search--inline .select2-search__field {
+    margin-top: 1px;
+  }
+  .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove {
+    color: $white-color;
+    float: right;
+    margin-left: 5px !important;
+  }
+  // .select2-container--classic.select2-container--open .select2-selection--multiple{
+  //   border: 1px solid #a6c733 !important;
+  // }
+  .select2-container--classic .select2-results__option--highlighted {
+    background-color:$orders-border-input;
+    color:$white-color;
+  }
+
+  // .select2-container--classic.select2-container--open .select2-dropdown{
+  //   border-color:#a6c733;
+  // }
+
+  .select2-container--classic .select2-results__option--highlighted[aria-selected] {
+    background-color:$light-gray !important;
+    color: $white-color !important;
+    font-size: 11px;
+  }
+  .select2-results__option[aria-selected]{
+    font-size: 11px;
+  }
+  .select2-results__option .select2-results__option--highlighted {
+    background-color:$light-gray !important;
+    color:$white-color !important;
+  }
+  .select2-container--classic .select2-selection--multiple .select2-selection__choice__remove {
+    margin-right: 3px !important;
+  }
+}

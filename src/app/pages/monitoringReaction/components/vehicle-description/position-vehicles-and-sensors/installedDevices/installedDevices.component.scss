@@ -1,0 +1,76 @@
+.content-devices{
+    position: absolute;
+    right: 0;
+    top: 80px;
+    background-color: white;
+    padding: 14px 35px 30px 35px;
+    width: 50%;
+    height: calc(100vh - 146px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 1px solid rgba(0, 0, 0, 0.19);
+
+    .titleDevices{
+        font-size: 11px;
+        font-weight: 500;
+        margin-bottom: 0px !important;
+        line-height: 1.6;
+    }
+    .selectedDevices{
+        width: 18px;
+        height: 18px;
+        background-color: #4d4d4d;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 1.3em;
+        color: #fff;
+        font-size: 14px;
+        margin-left: 9px;
+    }
+
+    .titleTable{
+        font-size: 11px;
+        font-weight: 500;
+        margin-bottom: 2px;
+    }
+    .hrTable{
+        margin: 0 !important;
+        border: .5px solid #e0e0e0;
+        border-radius: 1px;
+    }
+    .divTable{
+        margin-top: 15px;
+    }
+    .deviceTable{
+        width: 100%;
+        font-size: 11px;
+
+        .trTitle{
+            background: white !important;
+
+            .t0{
+                padding-left: 19px;
+            }
+        }
+
+        .headerTable{
+            font-weight: 500;
+            padding: 4px 0 10px;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2
+        }
+        .first-tr{
+            width: 20%;
+            padding-left: 19px;
+        }
+        .last-tr{
+            text-align: center
+        }
+    }
+    
+    
+    
+
+}

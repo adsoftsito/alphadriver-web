@@ -1,0 +1,314 @@
+//Icon any modal
+@import "~bootstrap/scss/_variables.scss";
+
+.motum-modal-icon {
+  background-color: $default;
+  border-radius: 50%;
+  font-size: 17px;
+  margin-right: 20px;
+}
+//Modal delete
+.motum-modal-delete .modal-lg {
+  top: 25%;
+  width: 34%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.motum-modal-delete .modal-header {
+  background-color: $motum-red;
+  color: $default;
+  height: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding: 0px 15px 0 15px;
+  .motum-modal-icon {
+    color: $motum-red;
+  }
+}
+.motum-modal-delete .close {
+  color: $default;
+  font-weight: 200;
+  opacity: 1;
+}
+
+.motum-modal-delete .modal-body {
+  padding: 50px 70px 30px 70px;
+  color: #A8A8A8;
+}
+
+.motum-modal-delete .modal-content {
+  border-radius: 8px;
+}
+//Confirm modal
+.motum-modal-confirm .modal-lg {
+  top: 25%;
+  width: 34%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.motum-modal-confirm .modal-header {
+  background-color: $primary;
+  color: $default;
+  height: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding: 0px 15px 0 15px;
+  .motum-modal-icon {
+    color: $primary;
+  }
+}
+.motum-modal-confirm .close {
+  color: $default;
+  font-weight: 200;
+  opacity: 1;
+}
+
+.motum-modal-confirm .modal-body {
+  padding: 50px 70px 30px 70px;
+  color: #A8A8A8;
+}
+
+.motum-modal-confirm .modal-content {
+  border-radius: 8px;
+}
+//Modal edit
+.motum-modal-edit  .modal-lg {
+  top: 25%;
+  width: 34%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.motum-modal-edit .modal-header {
+  background-color: $motum-grey-partner;
+  color: $default;
+  height: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding: 0px 15px 0 15px;
+  .motum-modal-icon {
+    color: $motum-grey-partner;
+  }
+}
+.motum-modal-edit .close {
+  color: $default;
+  font-weight: 200;
+  opacity: 1;
+}
+
+.motum-modal-edit .modal-body {
+  padding: 0px 15px 40px 22px;
+  color: $motum-grey;
+}
+
+.motum-modal-edit .modal-content {
+  border-radius: 8px;
+}
+
+//Boton delete
+.motum-btn-edit-confirm {
+  color: $motum-white;
+  background-color: $motum-grey;
+  border-color: $motum-grey;
+  border-radius: 30px;
+  line-height: 14px;
+  padding: 0.4rem .4rem;
+  font-size: 0.8rem;
+}
+
+.motum-btn-edit-confirm:hover,
+.motum-btn-edit-confirm:focus,
+.motum-btn-edit-confirm:active,
+.motum-btn-edit-confirm.active,
+.open .dropdown-toggle.motum-btn-edit-confirm {
+  color: $motum-white;
+  background-color: $motum-grey;
+  border-color: $motum-grey;
+}
+
+.motum-btn-edit-confirm:active,
+.motum-btn-edit-confirm.active,
+.open .dropdown-toggle.motum-btn-edit-confirm {
+  background-image: none;
+}
+
+.motum-btn-edit-confirm.disabled,
+.motum-btn-edit-confirm[disabled],
+fieldset[disabled] .motum-btn-edit-confirm,
+.motum-btn-edit-confirm.disabled:hover,
+.motum-btn-edit-confirm[disabled]:hover,
+fieldset[disabled] .motum-btn-edit-confirm:hover,
+.motum-btn-edit-confirm.disabled:focus,
+.motum-btn-edit-confirm[disabled]:focus,
+fieldset[disabled] .motum-btn-edit-confirm:focus,
+.motum-btn-edit-confirm.disabled:active,
+.motum-btn-edit-confirm[disabled]:active,
+fieldset[disabled] .motum-btn-edit-confirm:active,
+.motum-btn-edit-confirm.disabled.active,
+.motum-btn-edit-confirm[disabled].active,
+fieldset[disabled] .motum-btn-edit-confirm.active {
+  background-color: $motum-grey;
+  border-color: $motum-grey;
+}
+// .modal-backdrop {
+//   @include backgroundColor();
+// }
+// .modal-backdrop.show {
+//   opacity: 0.7;
+// }
+//Boton delete
+.motum-btn-delete {
+  color: #FFFFFF;
+  background-color: $motum-red;
+  border-color: $motum-red;
+  border-radius: 30px;
+  line-height: 14px;
+  padding: 0.4rem .4rem;
+  font-size: 0.8rem;
+}
+
+.motum-btn-delete:hover,
+.motum-btn-delete:focus,
+.motum-btn-delete:active,
+.motum-btn-delete.active,
+.open .dropdown-toggle.motum-btn-delete {
+  color: #FFFFFF;
+  background-color: #FF0000;
+  border-color: $motum-red;
+}
+
+.motum-btn-delete:active,
+.motum-btn-delete.active,
+.open .dropdown-toggle.motum-btn-delete {
+  background-image: none;
+}
+
+.motum-btn-delete.disabled,
+.motum-btn-delete[disabled],
+fieldset[disabled] .motum-btn-delete,
+.motum-btn-delete.disabled:hover,
+.motum-btn-delete[disabled]:hover,
+fieldset[disabled] .motum-btn-delete:hover,
+.motum-btn-delete.disabled:focus,
+.motum-btn-delete[disabled]:focus,
+fieldset[disabled] .motum-btn-delete:focus,
+.motum-btn-delete.disabled:active,
+.motum-btn-delete[disabled]:active,
+fieldset[disabled] .motum-btn-delete:active,
+.motum-btn-delete.disabled.active,
+.motum-btn-delete[disabled].active,
+fieldset[disabled] .motum-btn-delete.active {
+  background-color: $motum-red;
+  border-color: $motum-red;
+}
+
+.motum-btn-delete .badge {
+  color: $motum-red;
+  background-color: #FFFFFF;
+}
+
+//Boton confirm
+.motum-btn-confirm {
+  color: #FFFFFF;
+  background-color: $primary;
+  border-color: $primary;
+  border-radius: 30px;
+  line-height: 14px;
+  padding: 0.28rem 0.3rem;
+  font-size: 0.8rem;
+}
+
+.motum-btn-confirm:hover,
+.motum-btn-confirm:focus,
+.motum-btn-confirm:active,
+.motum-btn-confirm.active,
+.open .dropdown-toggle.motum-btn-confirm {
+  color: #FFFFFF;
+  background-color: #146ef9;
+  border-color: $primary;
+}
+
+.motum-btn-confirm:active,
+.motum-btn-confirm.active,
+.open .dropdown-toggle.motum-btn-confirm {
+  background-image: none;
+}
+
+.motum-btn-confirm.disabled,
+.motum-btn-confirm[disabled],
+fieldset[disabled] .motum-btn-confirm,
+.motum-btn-confirm.disabled:hover,
+.motum-btn-confirm[disabled]:hover,
+fieldset[disabled] .motum-btn-confirm:hover,
+.motum-btn-confirm.disabled:focus,
+.motum-btn-confirm[disabled]:focus,
+fieldset[disabled] .motum-btn-confirm:focus,
+.motum-btn-confirm.disabled:active,
+.motum-btn-confirm[disabled]:active,
+fieldset[disabled] .motum-btn-confirm:active,
+.motum-btn-confirm.disabled.active,
+.motum-btn-confirm[disabled].active,
+fieldset[disabled] .motum-btn-confirm.active {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.motum-btn-confirm .badge {
+  color: $primary;
+  background-color: #FFFFFF;
+}
+// Button cancel
+.motum-btn-cancel {
+  color: #A8A8A8;
+  background-color: #FFFFFF;
+  border-color: #808080;
+  border-radius: 30px;
+  line-height: 14px;
+  padding: 0.28rem 0.3rem;
+  font-size: 0.8rem;
+}
+
+.motum-btn-cancel:hover,
+.motum-btn-cancel:focus,
+.motum-btn-cancel:active,
+.motum-btn-cancel.active,
+.open .dropdown-toggle.motum-btn-cancel {
+  color: #A8A8A8;
+  background-color: #F2F2F2;
+  border-color: #808080;
+}
+
+.motum-btn-cancel:active,
+.motum-btn-cancel.active,
+.open .dropdown-toggle.motum-btn-cancel {
+  background-image: none;
+}
+
+.motum-btn-cancel.disabled,
+.motum-btn-cancel[disabled],
+fieldset[disabled] .motum-btn-cancel,
+.motum-btn-cancel.disabled:hover,
+.motum-btn-cancel[disabled]:hover,
+fieldset[disabled] .motum-btn-cancel:hover,
+.motum-btn-cancel.disabled:focus,
+.motum-btn-cancel[disabled]:focus,
+fieldset[disabled] .motum-btn-cancel:focus,
+.motum-btn-cancel.disabled:active,
+.motum-btn-cancel[disabled]:active,
+fieldset[disabled] .motum-btn-cancel:active,
+.motum-btn-cancel.disabled.active,
+.motum-btn-cancel[disabled].active,
+fieldset[disabled] .motum-btn-cancel.active {
+  background-color: #FFFFFF;
+  border-color: #808080;
+}
+
+.motum-btn-cancel .badge {
+  color: #FFFFFF;
+  background-color: #A8A8A8;
+}

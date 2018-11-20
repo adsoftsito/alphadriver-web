@@ -1,0 +1,239 @@
+<!---Modal 1 vehicle-->        
+<ng-template class="" #motorStop let-c="close" let-d="dismiss" >
+  <div class="modal-header">
+      <div class="col content-img-center"> 
+          <div class="circle"><i class="motum-i tm-ea04 icon-modal" ></i></div>
+      </div>
+  </div>
+  <div class="modal-body">
+      <div class="container">
+          <div class="row vdivide ">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 section-status-vehicle">
+                <a class="title-text">{{arrTranslate.currentStateVehicle}}</a><br>
+                <a class="title-text">{{arrTranslate.location}}:</a><span class="information_security">{{rowSelected.location}}</span><br>
+                <a class="title-text">{{arrTranslate.speed}}:</a><span class="information_security">80 km/h</span><br>
+                <a class="title-text">{{arrTranslate.ignition}}:</a><span class="information_security">Encendido</span><br>
+                <a class="title-text">{{arrTranslate.typeOfSygnal}}:</a><span class="information_security">{{labelSignal}}</span><br>
+                <a class="title-text">{{arrTranslate.lastPosition}}:</a><span class="information_security">{{rowSelected.dateOfPosition}}</span><br>
+                <a class="title-text">{{arrTranslate.state}}:</a><span class="information_security">{{labelmotorStopStatus}}</span><br>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 section-info-vehicle">
+                <a class="title-text">{{arrTranslate.vehicleInformation}}:</a><br>
+                <a class="title-text">S1:</a><span class="information_security">Paro de motor</span><br>
+                <a class="title-text">{{arrTranslateOfGeneral.numberEconomic}}:</a><span class="information_security">{{rowSelected.numberEconomic}}</span><br>
+                <a class="title-text">{{arrTranslate.carrier}}:</a><span class="information_security">{{rowSelected.carrier}}</span><br>
+                <a class="title-text">{{arrTranslate.typeOfVehicle}}:</a><span class="information_security">Tractocamión</span><br>
+                <a class="title-text">{{arrTranslateOfGeneral.device}}:</a><span class="information_security">MotumST600</span><br>
+                <a class="title-text">{{arrTranslate.risk}}:</a>
+                    <ng-template ngFor let-item [ngForOf]="numberEventsAux[0].numbers">
+                        <i class="motum-i tm-e98c risk-level" [ngClass]="item=='aux'? riskLevelClass: ''"></i>
+                    </ng-template>
+              </div>
+            </div>
+      </div>
+      <hr  style="background-color: white !important; margin-top: 0!important">
+      <form>
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <div class="form-group">
+            <a for="comment" class="title-text">{{arrTranslate.comment}}:</a>
+            <input type="text"  class="form-control input-motor-stop" #comment id="comment">
+          </div>
+        </div>
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 section-date">
+          <a class="title-text">{{arrTranslate.transmitter}}:</a><span class="information_security">Antitamper</span><br>            
+          <a class="title-text">{{arrTranslate.dateOfLastShipment}}:</a><span class="information_security">2018/09/25 - 17:22:00 h - Celular</span><br>
+          <a class="title-text">{{arrTranslate.dateOfLastApplication}}:</a><span class="information_security">-</span><br>
+        </div>
+      </div>
+      <hr  style="background-color: white !important;">
+      <div class="row">
+        <!--Section Signal-->
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 section-signal">   
+         <div class="d-flex justify-content-lg-end section-signal">
+            <div class="signalUse title-text">{{arrTranslate.use}}:</div>
+            <div>         
+               <div *ngFor="let signal of signalObject; let i=index;" class="form-radio" >
+                <div class="d-flex justify-content-md-end sig">
+                    <!-- <div  style= "margin-right: 8px;background: red; padding: 0px;margin-top: -3px;"><a *ngIf="i==0 " class="title-text">{{arrTranslate.use}}:</a></div> -->
+                    <label class="float-left">
+                        <input type="radio" name="optionsRadios"  value="option2"  
+                          [checked]="signal.selected"
+                          (change)="changeSelectSignal(signal.type)">
+                        <span class="overlay"></span>
+                    </label>
+                    <span class="search-result-text information_security">{{ signal.label | translate  }}</span>
+                </div>
+              </div>
+
+          </div>
+         </div>
+        </div>
+        <!--Section Signal end-->
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+          <a class="title-text">{{arrTranslate.labelInputModal}}</a><br>
+          <input type="password" #password id="password" class="input-border-bottom" placeholder="{{arrTranslateOfGeneral.password}}"><br><br>
+          <!--botones-->
+          <div class="section-operation">
+              <button class="buttonOperation" motum-button color="white"  (click)="c('Close click')" outline="true">{{arrTranslateOfGeneral.cancel}}</button>
+              <button  class="buttonOperation" motum-button  color="grey" [size]="large"  (click)="changeMotorStopStatus(comment.value,password.value,false)">{{arrTranslate.deactivateEngineStop}}</button>
+              <button  class="buttonOperation"  motum-button color="danger" [size]="large" (click)="changeMotorStopStatus(comment.value,password.value,true)">{{arrTranslate.activateEngineStop}}</button>
+          </div>
+
+          <!--end botones-->
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<!--End modal vehicle-->
+<!--Modal vehicle massive-->
+<ng-template #motorStopMassive id="motorStopMassive" let-c="close" let-d="dismiss" >
+  <div class="modal-body">
+      <div class="modal-header">
+          <div class="col content-img-center"> 
+              <div class="circle"><i class="motum-i tm-ea04 icon-modal" ></i></div>
+          </div>
+      </div>
+    <div class="row" >
+        <div class="col-xl-12 col-lg-12 col-md-12" style="padding:0px!important; width:100%;">          
+            <ag-grid-angular style="background-color:transparent !important;color:white !important;width:100%;height: calc(100vh - 375px);" 
+            id="inModal"
+            class="ag-theme-material" 
+            
+            [gridOptions]="gridOptionsModal"
+            [columnDefs]="columnDefs2"
+            [customIcons]="customIcons"   
+            [headerHeight]=35.5
+            [rowHeight]=30.5
+            [suppressRowClickSelection]="true"
+            [suppressAggFuncInHeader]="true"
+            [animateRows]="true"
+            
+            (gridSizeChanged)="onGridResize($event)"
+            (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+            <hr  style="background-color: white !important; margin-top: 0!important">
+        </div>
+    </div>
+      <div class="modal-footer footer-motorStopMassive">
+          <div class="form-group">
+              <a for="comment" class="title-text">{{arrTranslate.comment}}:</a>
+              <input type="text"  class="form-control input-motor-stop" #comment id="comment">
+          </div>
+          <div class="operation-section"> 
+              <a class="title-text">{{arrTranslate.labelInputModal}}</a><br>
+              <input type="password" #password class="input-border-bottom title-text" placeholder="{{arrTranslateOfGeneral.password}}"><br><br>
+              <div class="section-operation">
+                  <button class="buttonOperation" motum-button color="white"  (click)="c('Close click')" outline="true">{{arrTranslateOfGeneral.cancel}}</button>
+                  <button  class="buttonOperation" motum-button  color="grey" [size]="large"  (click)="changeMotorStopStatus(comment.value,password.value,false)">{{arrTranslate.deactivateEngineStop}}</button>
+                  <button  class="buttonOperation"  motum-button color="danger" [size]="large" (click)="changeMotorStopStatus(comment.value,password.value,true)">{{arrTranslate.activateEngineStop}}</button>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+</ng-template>
+<!--End modal vehicle massive-->
+<!--Modal-->
+<alert-component *ngIf="!authorized"></alert-component>
+
+<div class="al-content">
+
+  <div class="widgets">
+    <div class="row">
+      <div class="col-md-12"> 
+<ba-card>
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+      <div>
+        
+        <div class="checkboxUnits">
+          <form class="row form-inline align-items-center">
+              <div class="btn-group">
+              <motum-group-btn
+              id="BG"
+              [buttonsArray]="btnArray"
+              (selectedItem)="changeSelectedItem($event)">
+              </motum-group-btn>
+              </div>
+            <div class="col-1 col-sm-1 onApClick">
+              <i class="motum-i tm-e91b i-style table-tools-icons-margin" (click)="refresh()"></i>
+            </div>
+            <div class="col-1 col-sm-1 onApClick">
+              <i class="motum-i tm-e91c" (click)='exportToExel();'></i>
+            </div>
+            <div class="form-group col-sm-1 col-1" [ngClass]="showCheckBox == false? 'invisible':''">
+              <div class="checkbox custom-checkbox" style="margin-top: 4px;" >
+                <ba-checkbox [(ngModel)]="isRemember"
+                             [label]="' '"
+                             (change)="makeSelectableRow()"
+                             [ngModelOptions]="{standalone: true}">
+                </ba-checkbox>
+              </div>
+            </div>
+            <div class="btnShowModal animated fadeIn">
+                <button *ngIf="isRemember==true" motum-button color="danger" isRectangle=true  (mouseenter) ="changeClassBtnStop='true'"
+                 (mouseleave)="changeClassBtnStop=''" (click)="openModalMotorStop('massive')">{{arrTranslate.motorStop}}</button>
+              <!-- <button class="button motum-btn-motor-stop" *ngIf="isRemember==true"  (click)="openModalMotorStop('massive')">Paro de motor</button> -->            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="visibleTable == 'current'"class="col-xl-5 col-lg-5 col-md-5 .hidden-sm"></div>
+    <div *ngIf="visibleTable != 'current'"class="col-xl-3 col-lg-3 col-md-3 .hidden-sm"></div>
+    <div *ngIf="visibleTable != 'current'"class="col-xl-2 col-lg-2 col-md-2">
+      <div class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
+        <span class="calendar-lbl-container">{{calendarLabel}}</span>
+        <i class="motum-i tm-e925"></i>
+    </div>
+    </div>
+    <!--Boton Search-->
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="margin-top: 3px;">
+      <motum-search-input
+      [styleInput]="'table'"
+      [placeholder]="'pages.userControl.client_user.busqueda' | translate"
+      [defaultWidthPercent]=100
+      (changesSearchValue)="onFilterChanged($event)">
+      </motum-search-input>
+    </div>
+  </div>
+  <!--Table-->
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 " style="padding:0px!important;">
+        <hr class="hrPatrimonialSecurity"/>
+      <ps-current-table *ngIf="visibleTable == 'current'"
+       (statusCheckControl)=changeStatusControl($event)
+       (statusIsRemember)=changeStatusRemember($event)
+       (selectedOneItem)=getselectedOneItem($event)
+       (selectedItems)=getselectedItems($event)
+       (columnDefCurrent)= getColumnDef($event)
+       (totalRows)=getTotalRows($event)
+      ></ps-current-table>
+
+      <ps-log-table *ngIf="visibleTable != 'current'"
+      (statusCheckControl)=changeStatusControl($event)
+      (statusIsRemember)=changeStatusRemember($event)
+      (selectedOneItem)=getselectedOneItem($event)
+      (selectedItems)=getselectedItems($event)
+      (columnDefsLog)= getColumnDef($event)
+      (totalRows)=getTotalRows($event)
+     ></ps-log-table>
+    </div> 
+  </div>
+</ba-card>
+      <div class="footer-table-counter">{{arrTranslateOfGeneral.recordsCount}}: {{totalRows}}  </div>
+
+    </div>
+  </div>
+</div>
+
+<motum-modal-date-picker *ngIf="showCalendarModal"
+                         (selectedOption)="getSelectedOption($event)"
+                         (hasBeenClosed)="modalClosed()"
+                         (selectedRange)="getSelectedRange($event)"
+                         (calendarLabel)="getCalendarLabel($event)"
+                         [userDefinedOption]="selectedOption"
+                         [userDefinedRange]="selectedRange">
+
+</motum-modal-date-picker>

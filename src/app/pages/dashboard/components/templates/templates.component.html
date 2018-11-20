@@ -1,0 +1,38 @@
+<!-- <div class="motum-close-button" (click)="closeTemplates()">
+    <span class="motum-i tm-v-down"></span>
+</div> -->
+
+<i class="motum-i tm-e912 closeMyTemplates" (click)="closeTemplates()"></i>
+
+<div class="headerTemplate">
+  <div class="header col-md-12 col-sm-12">
+    
+    <div class="row">
+        <div class="col-md-8 col-sm-8 inputGroup">
+            <div class="has-success motum-input-form">
+                <select name="" id="inputTemplates" class="form-control input-sm select">
+                    <option>Mis plantillas</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="col-md-2 col-sm-2 offset-md-3 iconPlus">
+          <i aria-hidden="true" class="fa fa-plus-circle fa-2x"></i>
+        </div> -->
+    </div>
+  </div>
+</div>
+<div class="listTemplates">
+    <div class="item"  *ngFor="let item of items" draggable="true" [dragData]="item"> <!-- Start item -->
+        <div class="col-md-2 col-sm-2 iconAvatar">
+            <div class="iconCircle"> <span class="motum-i tm-e9a3 icon"></span></div>
+        </div>
+        
+        <div class="col-md-10 col-sm-10 information">
+          <div class="titleInf">
+            <label class="title">
+              {{ item.nomClient}}
+            </label>
+          </div>
+        </div>
+    </div> <!-- End item -->
+</div>

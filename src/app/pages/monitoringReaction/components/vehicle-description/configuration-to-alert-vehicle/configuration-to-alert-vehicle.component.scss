@@ -1,0 +1,188 @@
+@import "../../../../../theme/sass/motumVariables";
+
+
+.titlesection{
+    padding-left: 42.8883px;
+    padding-right: 42.883px; 
+    margin-top: 15.67px; 
+    color: gray;
+    font-family: $motum-font-family-rubik-medium;
+    font-size: 11px;
+    line-height: 19px;
+}
+
+b{
+    color: #575756;
+    font-family: $motum-font-family-rubik-medium;
+    font-size: 11px;
+    font-weight: 500 !important;
+}
+.titletext{
+    margin-top: 10px; 
+    color: #878787 !important;
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+}
+
+hr{
+    margin-top: 9.417px !important;
+    margin-bottom: 10px !important;
+    color: gray;
+}
+
+strong{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color: #575756;
+    font-weight: 500 !important;
+}
+.information{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color: #575756;
+}
+
+
+.strong-position-right-text{
+    /*float: right;
+    margin-top: -4px;
+    margin-right: -8px;
+    word-wrap: break-word;*/
+    float: right;
+    margin-top: -4px;
+	margin-right: 2.564102564102564%;
+  width: 48%;
+}
+
+.strong-position-left-text{
+    /*float: left;
+    margin-top: -4px;
+    margin-right: 9px;
+    word-wrap: break-word;*/
+    float: left;
+    margin-top: -4px;
+	margin-left: 0px;
+  width: 48%;
+ // clear: both;
+
+}
+
+.body-secction-vehicle{
+    margin-top: 12px;
+}
+
+.btn-vehicle-active{
+    height: 18.797px;
+    background: $motum-grey;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: $motum-white;
+    font-size: 9px;
+}
+
+.btn-vehicle{
+    height: 18.797px;
+    background: $motum-grey-border-group;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: $motum-white;
+    font-size: 9px;
+}
+
+.btn-position-right{
+    float: right;
+    width: 60px;
+    margin-top: 22.827px;
+    margin-right: 41.172px;
+    font-size: 9px;
+    font-family:  $motum-font-family-rubik;
+}
+
+.section-flex-config{
+   display: flex;
+   flex-direction: column;
+   justify-content:space-between;
+   height: calc(100vh - 238px) !important;
+       
+   /***when the dynamic container width***/
+   -ms-word-break: break-all;
+   word-break: break-all;
+   word-break: break-word;
+   -ms-hyphens: auto;
+   //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/
+}
+
+.section-flex-end-footter{
+    flex-grow: 1;
+    max-height: 40px;
+    padding-bottom: 15px;
+
+    padding-right: 28px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.section-flex{
+    flex-grow: 2;
+}
+
+.section-flex-btn-justify{
+    flex-grow: 3;
+    justify-content:space-around;
+}
+
+.scroll-content-info{
+    height: 100%;
+    overflow-y: auto;
+    
+}
+
+.change-padding-bootstrap{
+    padding-right: 0px !important;
+    padding-left: 6px !important;  
+}
+
+/*.position-content-seccion-data{
+    margin-top: 79px;
+    margin-left: -13px;
+}*/
+
+.position-bottom-group{
+    // float: right;
+    //font-size: 9px;
+    //margin-top: 15px;
+    // font-family: $motum-font-family-rubik;
+
+    float: right;
+    //font-size: 9px;
+    //margin-top: 15px;
+    font-family: $motum-font-family-rubik;
+    //position: fixed;
+
+}
+
+.chage-property-btn{
+    margin-right: 11px;
+    width: 92px;
+    margin-right: 41.172px
+ }
+
+ 
+ .content-alertsToDrive{
+    margin-top: calc(10% - 5px);
+ }
+
+ @media (max-width:769px){
+     .section-flex-end-footter{
+         padding-right: 24px;
+     }
+ }

@@ -1,0 +1,130 @@
+// Space double list and table
+.window-section-double-space {
+  padding-bottom: 2.1rem;
+}
+.window-edit {
+  background-color: $default;
+  position: fixed;
+  height: calc(100% - 66px);
+  width: 45%;
+  left: 55%;
+  z-index: 1001;
+  top: 66px !important;
+  -webkit-box-shadow: -12px 10px 17px -17px rgba(0,0,0,0.75);
+  -moz-box-shadow: -12px 10px 17px -17px rgba(0,0,0,0.75);
+  box-shadow: -12px 10px 17px -17px rgba(0,0,0,0.75);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.window-create {
+  background-color: $default;
+  position: fixed;
+  height: calc(100% - 66px);
+  width: 45%;
+  left: 29.5%;
+  z-index: 1001;
+  top: 66px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.window-edit .window-lt {
+  margin-bottom: 0px;
+}
+.window-create .window-lt {
+  margin-bottom: 0px;
+}
+.window-lt {
+  min-height: 400px;
+  height: 100%;
+}
+.window-section-separator {
+  border-right: 1px solid;
+  border-right-color:rgba(197,197,197,0.7);
+  margin: -10px 0 0 0;
+}
+.window-section-space {
+  margin-top: 0.1rem;
+  margin-bottom: 0.6rem;
+}
+.window-section-space-min {
+  margin-top: 0.0rem;
+  margin-bottom: -0.3rem;;
+}
+.window-edit .window-header {
+  background-color: $sidebar-text;
+  color: $default;
+  height: 60px;
+  padding-top: 8px;
+}
+.window-create .window-header {
+  background-color: $sidebar-text;
+  color: $default;
+  height: 60px;
+  padding-top: 8px;
+}
+.window-backdrop {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 904;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128,128,128,0.5);
+}
+.window-title {
+  padding-top: 23px;
+  padding-left: 30px;
+}
+.window-body-margin {
+  margin: 0px 15px 0 8px;
+
+}
+.window-left-margin {
+  margin: 0 0 0 8px;
+}
+.window-body {
+  height: calc(100vh  - 155px) !important;
+  margin: 10px 15px 0px 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.window-bold-style {
+  font-weight: bold;
+  font-size: 11px !important;
+}
+.window-footer {
+  bottom: 0px;
+  margin: 35px 15px 22px 15px;
+}
+.window-btn-size {
+  font-size: 0.7rem;
+}
+@media screen and (max-width: 720px) {
+  .window-edit {
+      top: 56px !important;
+      height: calc(100% - 56px);
+  }
+  .window-create {
+      top: 56px !important;
+      height: calc(100% - 56px);
+  }
+  .window-section-space {
+    margin: auto;
+  }
+  .window-edit {
+    width: 50%;
+    left: 50%;
+  }
+  .window-create {
+    width: 50%;
+    left: 24.5%;
+  }
+}

@@ -1,0 +1,294 @@
+
+@import '../../../../theme/sass/styles/styles';
+@import '../../../../theme/sass/motumVariables';
+
+$font-family: 'Rubik', sans-serif;
+$motum-official-grey-1: #b3b3b3;
+$motum-official-blue-1: #136df8;
+$motum-official-blue-2: #f6f6f6;
+$motum-official-blue-3: rgba(20,110,249,0.15);
+$gray: #cbcbcb;
+$strong-gray: #434444;
+$blue: #4283d1;
+$font-title: 11px;
+$font-content: 13.2px;
+$white: #fff;
+$low-gray: #dadada;
+$low-gray-one: #f6f6f6;
+$low-gray-two: #d3d3d3;
+$low-gray-three: #b2b2b2;
+$low-gray-four: #c6c6c6;
+$gray-light: #c5c5c4;
+$strong-grey: #878787;
+$intense-gray: #575756;
+$blue: #7054ff;
+$blue-light: #1d70b8;
+$orange: #eb860d;
+$orange-light: #F39200;
+$yellow: #F8B43A;
+$yellow-light: #ffc033;
+$red: #e20815;
+$red-light: #E6332A;
+$green: #2fd15d;
+$motum-background-cell-zebra: rgba(246, 246, 246, 0.5);
+
+
+.footer-table-counter{
+  margin-left: 5px;
+  margin-top: 18px;
+  font-size: 12px;
+}
+
+.protect-row-height{
+  min-height: 44px !important;
+}
+.main-container {
+  margin-top: 30px;
+  //padding-bottom: 30vh;
+
+}
+.table-container{
+  font-family: $font-family;
+  width: 100%;
+  height: calc(70vh - 190px);
+
+}
+
+.ba-container {
+  margin-top: 100px;
+  border-radius: 100px;
+}
+
+.download-icon{
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+
+}
+
+.search-box{
+  padding-top: 0;
+}
+.calendar-lbl-container{
+  font-size: 10px;
+  padding-right: 6px;
+
+}
+.calendar-btn-container{
+  margin-left: 25px;
+  margin-top: 5px;
+  cursor: pointer;
+  padding-top: 5px;
+
+}
+
+.calendar-btn-container:hover{
+  color: $motum-official-blue-1 !important;
+}
+
+.icon-style {
+  padding-left: 20px;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+.i-style:hover{
+  cursor: pointer;
+  color: $motum-official-blue-1;
+}
+
+
+.box-shadow{
+
+  margin-left: 0px;
+  margin-right: 0px;
+
+  background-color: white;
+  padding: 7px;
+  padding-left: 25px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+  -moz-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+  box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+
+}
+
+.card-icons{
+  font-size: 16px;
+  color: $intense-gray;
+  cursor: pointer;
+}
+.w-45 {
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 45% !important;
+  flex: 0 0 45% !important;
+  max-width: 45%;
+}
+.w-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 10% !important;
+  flex: 0 0 10% !important;
+  max-width: 10%;
+}
+
+.padding-jumbotron{
+  margin-left: 0px;
+}
+.calendar-icon {
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+.calendar-icon:hover{
+  color: $motum-official-blue-1 !important;
+}
+.date-container{
+  cursor: pointer;
+  float: right;
+}
+
+.date-container:hover{
+  color: $motum-blue-partner;
+}
+.header-box {
+  font-size: $font-title;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid $low-gray;
+}
+.card-box {
+  height: 30vh;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px;
+  background-color: white;
+  padding: 7px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+  -moz-box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+  box-shadow: 3px 0px 15px -4px rgba(0,0,0,0.34) !important;
+}
+:host /deep/ {
+
+  @media only screen and (max-height: 770px){
+    .grid-text {
+
+      margin-top: -5px;
+    }
+  }
+  @media only screen and (min-height: 910px){
+    .table-main {
+      height:  calc(65vh - 178px) !important;
+    }
+    .ag-theme-material .ag-paging-panel {
+      justify-content: center !important;
+      @include paging-outside(30px);
+    }
+  }
+  .grid-text{
+    font-family: $font-family !important;
+  }
+  .ag-header-cell{
+    padding-left: 10px;
+    padding-right: 1px;
+    border-right: 1px solid #e0e0e0;
+    text-align: center;
+    width: 100%
+  }
+  .ag-cell-label-container{
+
+    text-align: center;
+    height: 100%;
+  }
+
+  .ag-header-cell-label {
+    /*Necessary to allow for text to grow vertically*/
+    height: 100%;
+    padding:0 !important;
+    color: $motum-grey;
+    text-align: center;
+
+  }
+  .ag-header-cell, .ag-header-group-cell {
+    padding-left: 5px !important;
+    padding-right: 7px !important;
+  }
+  .ag-header-cell-text {
+    /*Necessary to allow for text to grow vertically*/
+
+    margin-top:-7px !important;
+  }
+  .ag-header-row{
+    border-top: 1px solid #e0e0e0;
+  }
+  .ag-row-selected {
+    background-color: $motum-official-blue-3 !important;
+  }
+  .ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+    display: none;
+  }
+  .ag-theme-material .ag-paging-panel {
+    justify-content: center !important;
+    @include paging-outside(35px);
+  }
+
+  /**
+  * Modify ag-grid classes
+  */
+  .ag-row-hover {
+    background-color: $motum-official-blue-2 !important;
+  }
+
+  .ag-theme-material .ag-cell-focus {
+    border: 0 solid $motum-official-grey-1 !important;
+  }
+  .ag-theme-material .ag-cell{
+    padding-right: 0px;
+
+  }
+  .ag-theme-material .ag-row:nth-of-type(even){
+    background-color:  $motum-background-cell-zebra;
+  }
+  .amcharts-chart-div a {display:none !important;}
+
+  .table-main{
+    width: 100%;
+    height:  calc(65vh - 190px);
+  }
+
+  @media only screen and (max-width: 799px) {
+    .w-45 {
+      padding-left: 10px;
+      padding-right: 10px;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 100% !important;
+      flex: 0 0 100% !important;
+      max-width: 100%;
+    }
+    .w-10 {
+      display: none;
+    }
+    .table-main{
+      width: 100%;
+    }
+    .ag-theme-material .ag-cell{
+      padding-left: 0px;
+
+    }
+
+
+  }
+
+
+}

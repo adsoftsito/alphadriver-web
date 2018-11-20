@@ -1,0 +1,143 @@
+@import '../../../../theme/sass/motumVariables';
+
+:host /deep/ {
+    .card-body{
+      padding: 5px 10px !important;
+    }
+    .card{
+        margin-bottom: 16px !important;
+        box-shadow: 2px 0px 5px 1px rgba(0, 0, 0, 0.15) !important;
+    }
+    .amcharts-chart-div a {display:none !important;}
+  
+  }
+  
+  .dashletsContent{
+    padding: 0 15px;
+  
+    .btnGroupDashlet{
+      display: flex;
+      margin-bottom: 10px;
+    }
+  }
+  .header{
+    font-size: 10px;
+
+    .title{
+      margin-top: 5px;
+    }
+  }
+
+  .styleToolsHeader{
+    width: 100px;
+  }
+
+  .sortAsc{
+    font-size: 20px;
+    display: flex;
+    position: absolute;
+    right: 42px;
+    top: 6px;
+    color: $motum-grey-border-group;
+    cursor: pointer;
+  }
+  .sortDesc{
+    font-size: 20px;
+    display: flex;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+    color: $motum-grey-border-group;
+    cursor: pointer;
+    z-index: 101;
+  }
+
+  .search{
+    display: flex;
+    justify-content: space-between;
+
+    .searchInput{
+      height: 30px;
+      margin-top: -5px;
+    }
+  }
+
+  .hrDashlet{
+    border: 1px solid $motum-grey-partner;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  .btnGroupTime{
+    position: absolute;
+    right: 15px;
+  }
+ 
+  .fuelIndicator{
+    width: 100%;
+    height: 149px;
+    
+  }
+
+  .titleChart{
+    font-size: 9px;
+    padding-bottom: 14px;
+    margin-top: 3px;
+    font-weight: 500;
+
+    .total{
+      position: absolute;
+      left: 46%;
+      text-align: center;
+    }
+    .value{
+      position: absolute;
+      right: 5%;
+    }
+  }
+  
+  .footer{
+  
+    .compress{
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 15px;
+    }
+  }
+
+  .mileageGroup{
+    margin-top: 10px;
+    height: calc(100vh - 298px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+      .table-header{
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: none;
+        width: 100%;
+        font-size: 10px;
+      }
+    thead{
+      // font-family: $motum-font-family-rubik-medium !important;
+      font-weight: 500 !important;
+      text-align: center;
+    
+      tr{
+          background-color: white !important;
+      }
+    }
+    tr:nth-child(odd) {
+      background-color: $motum-grey-group;
+    }
+
+    tbody{
+      text-align: right;
+
+      tr{
+        td:nth-child(1){
+          text-align: left !important;
+        }
+      }
+    }
+  }

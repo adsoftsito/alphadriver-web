@@ -1,0 +1,107 @@
+
+<div class="row">
+    <motum-ranking-card class="col-md-4" [mainPicture]="userData.avatar" rankingType="userInfo" [firstLbl]="userData.name" [firstLblContent]="userData.rol" secondLbl="{{userSince | translate}}" [secondLblContent]="userData.userSince.date + ' - ' + userData.userSince.time + ' h'"></motum-ranking-card>
+    <motum-ranking-card class="col-md-5" rankingType="userRanking" firstLbl="{{serviceScore | translate}}" [firstLblContent]="userData.rating" secondLbl="{{platformKnowledge | translate}}" [secondLblContent]="userData.ratingScore"></motum-ranking-card>
+    <motum-ranking-card class="col-md-3" rankingType="updated"  firstLbl="{{lastUpdate | translate}}" [firstLblContent]="date"></motum-ranking-card>
+</div>
+
+<div class="row">
+    <div class="col-md-12 main-container">
+        <div class="box-shadow">
+            <div class="table-container">
+                <div class="row protect-row-height" style="margin-top: -6px;">
+
+                    <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-12 row">
+                        <div  class="row" style="margin-top: -3px;">
+                            <motum-group-btn
+                                     class="d-inline-block motum-btn-group-style"
+                                    id="BG"
+                                    [buttonsArray]="btnArray"
+                                    (selectedItem)="changeSelectedItem($event)">
+
+                            </motum-group-btn>
+
+                            <div class="d-inline-block icon-style icons-box">
+                                <div class="d-inline-block">
+                                    <i class="motum-i tm-e91c i-style" (click)="exportToExel()"></i>
+                                </div>
+                                <div class="d-inline-block icon-style">
+                                    <i class="motum-i tm-e91b i-style" (click)="getUsersData()"></i>
+                                </div>
+                                <div class="d-inline-block icon-style">
+                                    <img class="star  star-min" src="../../../../../assets/img/theme/icon/ranking/score_false.png" (click)="setSortScore()" >
+                                </div>
+                                <div class="d-inline-block icon-style">
+                                    <img class="rate  star-min" src="../../../../../assets/img/theme/icon/ranking/rate_false.png" (click)="setSortPlatformScore()">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-2 col-4 text-right">
+                        <div *ngIf="selectedTab == 'BG1'" class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
+                            <span class="calendar-lbl-container">{{calendarLabel}}</span>
+                            <i class="motum-i tm-e925"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-8 col-xs-10 col-7" style="padding-right: 0;">
+                        <motum-search-input
+
+                                [styleInput]="'table'"
+                                [placeholder]="search | translate"
+                                [defaultWidthPercent]=100
+                                (changesSearchValue)="onFilterChanged($event)">
+
+                        </motum-search-input>
+                    </div>
+                </div>
+                <hr  style="margin-top: -5px; margin-bottom: 0;">
+                <div class="row" style="">
+
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <ag-grid-angular *ngIf="hasLoadTranslateLabel"
+                                             class="ag-theme-material table-ag-1"
+                                             [gridOptions] = "gridOptions"
+                                             [rowSelection]="rowSelection"
+                                            [suppressRowClickSelection]="true"
+                                             [suppressAggFuncInHeader]="true"
+                                             [enableColResize]="true"
+                                             [pagination]="true"
+                                             [animateRows]="true"
+                                             (cellClicked)="onCellClicked($event)"
+                                             (rowClicked)="onRowClicked($event)"
+
+                                             (gridReady)="onGridReady($event)">
+                            </ag-grid-angular>
+
+                    </div>
+                </div>
+                <div class="footer-table-counter">{{records | translate}} {{tableContentCount}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--
+        HOW TO IMPLEMENT CALENDAR INTO YOUR COMPONENT
+        1. CREATE A LOCAL VAR TO SHOW/DESTROY YOUR CALENDAR DINAMICALLY I.E showCalendarModal
+        2. CREATE A METHOD TO HANDLE CALENDAR CLOSING
+        3. IF YOU WANT TO HAVE PERSISTENT CALENDAR DATA YOU MUST DECLARE TWO VARS TO STORE USER SELECTED RANGE & DATE OPTION
+        4. CREATE TWO METHODS TO STORE USER SELECTED DATA INTO YOUR VARS
+
+        YOU CAN GET A FORMATTED DATA LABEL FOR YOUR COMPONENTS USING (calendarLabel) OUTPUT
+        YOU CAN GET A MOMENT FROM USER SELECTED DATA USING (selectedRange) OUTPUT
+
+-->
+<motum-modal-date-picker *ngIf="showCalendarModal"
+                         (selectedOption)="getSelectedOption($event)"
+                         (hasBeenClosed)="modalClosed()"
+                         (selectedRange)="getSelectedRange($event)"
+                         (calendarLabel)="getCalendarLabel($event)"
+                         [userDefinedOption]="selectedOption"
+                         [userDefinedRange]="selectedRange">
+
+</motum-modal-date-picker>

@@ -1,0 +1,34 @@
+<ng2-toasty></ng2-toasty>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title"  [hidden]="modoSeleccion != 1">Selección de flotas para filtrado</h4>
+    <h4 class="modal-title"  [hidden]="modoSeleccion != 2">Selección de vehiculos para filtrado</h4>
+    <button class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    
+    <form #formFiltro="ngForm">
+
+
+      <label class="checkbox-inline custom-checkbox nowrap" [hidden]="modoSeleccion != 1">
+          <input name="qqq" type="checkbox" [(ngModel)]="parametrosIndicador.configuracion.subflotasDirectas" (ngModelChange)="panelTree.enabledOnlyDirectSons()"/>
+          <span>Consultar flotas directas</span>
+      </label>
+
+    </form>
+  
+
+    <hr />
+
+    <panel-tree #panelTree [parametrosDashlet]="parametrosIndicador"></panel-tree>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger confirm-btn" (click)="cancel()">Cancelar</button>
+    <button type="button" class="btn btn-primary confirm-btn" (click)="apply()">Aceptar</button>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="auth-main">
+
+
+  <header class="container-logo-title">
+
+    <img id="imgSvg" xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg" src="{{iconLogin}}"/>
+    
+    <div class="header-seccion">
+      <p>{{ 'pages.login.admin' | translate}}</p>
+    </div>
+</header>
+
+<article class="container-login">
+      <div class="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+         <div class="input-group">
+          <input [formControl]="email" type="email" id="inputSuccess2" [ngClass]="{ 'someinput': (!goSesion || goSesion) ,'safarinput': (!goSesion || goSesion) ,'select-input': (!goSesion || goSesion) , 'input-validate': (email.valid), 'transparent-section': (email.valid && goSesion)}" 
+          placeholder="{{ 'pages.login.email' | translate }}"
+          >
+          <span  class="form-control-feedback center-icon" [hidden]="!goSesion"><i class="motum-i tm-u tm-edit"></i></span>
+          <div *ngIf="dangeremail" class="danger-user">{{'pages.login.dangeremail' | translate}}</div>
+          <div *ngIf="warningemail" class="warning-user">{{'pages.login.warningemail' | translate}}</div>
+         </div>
+        
+
+          <div *ngIf="goSesion">
+            <div class="input-group">
+                <input [formControl]="password" [type]="isPassword ? 'password' : 'text' " [ngClass]="{ 'somepass': (goSesion), 'someinput': (!isPassword), 'safaripass': (goSesion), 'safarinput': (!goSesion || !isPassword)  ,'select-input': (goSesion) }"  id="inputPassword3"
+                placeholder="{{ 'pages.login.password' | translate }}">
+                <span class="form-control-feedback center-icon change-eye-color" (click)="statusChange()" >
+                
+                  <i *ngIf="isPassword" class="motum-i tm-e93b change-eye-color" aria-hidden="true"></i>
+                    <i *ngIf="!isPassword" class="motum-i tm-e93d change-eye-color" aria-hidden="true"></i>
+                </span>
+                <div  *ngIf="dangerpass" class="danger-pass">{{'pages.login.dangerpass' | translate}}</div>
+              <div  *ngIf="warningpass" class="warning-pass">{{'pages.login.warningpass' | translate}}</div>
+            </div>
+           
+              
+          </div>
+          <div *ngIf="recapcha" class="captcha">
+            <re-captcha (resolved)="resolved($event)" siteKey="6LcezFUUAAAAAJRzOMGlaK96sXuMu8g9uHTsqE_m"></re-captcha>
+          </div>
+          <button class="button-login" type="submit"  *ngIf="goSesion">{{'pages.login.session' | translate}}</button>
+          <button class="button-login" type="submit" *ngIf="!goSesion">{{'pages.login.continuebutton' | translate}}</button>
+        </form>
+      </div>
+</article>
+
+
+
+   <footer class="footter">
+
+
+      <div class="focus-problems">
+          <p>{{ 'pages.login.problems' | translate}}</p>
+        </div>
+
+
+
+      <div class="footter-container">
+          <div class="top-footter">
+            <select  [(ngModel)]="selectValue" (click)="changeLanguage(selectValue)" id="top-footter-right">
+              <option value="es">{{'pages.login.spanishlanguage' | translate }}</option>
+              <option value="en">{{ 'pages.login.englishlanguage' | translate }}</option>
+          </select>
+          </div>
+      
+          <div class="bottom-footter">
+              <a routerLink="!#" id="bottom-footter-left" class="underlined">{{'pages.login.terms' | translate}}</a>
+              <i class="motum-i tm-e923 circle-bullet-bottom" aria-hidden="true"></i>
+              <a routerLink="!#" id="buttom-footter-right" class="underlined">{{ 'pages.login.politics' | translate}}</a>
+          </div>
+      </div>
+   </footer>
+   
+  
+</div>
+

@@ -1,0 +1,91 @@
+<ngb-tabset [justify]="'fill'"  (tabChange)="resetFlags($event);">
+    <!--By vehicle-->
+    <ngb-tab id="tab-searchLocation">
+        <ng-template ngbTabTitle>
+            <i class="motum-i tm-e9fa tm-x1"></i>
+        </ng-template>
+        <ng-template ngbTabContent>
+
+            <motum-search-input
+              [modelSearchInput]="filterAddressModel"
+              [styleInput] = "'tool'"
+              (changesSearchValue) = "changesSearchAddressValue($event)">
+            </motum-search-input>
+
+            <div class="list-search-result-container">
+                <a class="search-result-item" *ngFor="let address of addressList">
+                    <span class="search-result-icon">
+                        <div class="circle-icon">
+                            <i class="motum-i tm-e9fa tm-x1 icon-marker"></i>
+                        </div>
+                    </span>
+                    <span class="search-result-text" (click) = "setLocationOfAddres(address); addressList = [];">
+                        {{address.label}}
+                    </span>
+                </a>
+            </div>
+        </ng-template>
+    </ngb-tab>
+
+    <!--By direction-->
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <i class="motum-i tm-e90a tm-x1"></i>
+        </ng-template>
+        <ng-template ngbTabContent>
+
+            <motum-search-input
+              [modelSearchInput]="filterVehiclesModel"
+              [styleInput] = "'tool'"
+              (changesSearchValue) = "changesSearchVehiclesValue($event)">
+            </motum-search-input>
+
+            <div *ngIf="vehicleList" class="list-search-result-container">
+                <a class="search-result-item" *ngFor="let vehicle of vehicleList">
+                    <span class="search-result-icon">
+                        <div class="circle-icon">
+                            <i class="motum-i tm-e90a tm-x1 icon-cart"></i>
+                        </div>
+                    </span>
+                    <span class="search-result-text" (click) = "setLocationOfVehicle(vehicle); vehicleList = [];">
+                        {{vehicle.label}}
+                    </span>
+                </a>
+            </div>
+        </ng-template>
+    </ngb-tab>
+
+    <!--By interest point-->
+    <ngb-tab>
+        <ng-template ngbTabTitle >
+            <i class="motum-i tm-e9ed tm-x1"></i>
+        </ng-template>
+        <ng-template ngbTabContent>
+            <div class="search-container">
+                <form class="row form-inline">
+                    <div class="form-group col-sm-12 has-success has-feedback motum-search-input">
+                        <input type="text" #searchPI
+                               class="form-control search-input-form"
+                               (keyup)="searchInterestPointSubject.next($event);visibleIconResetPI=true;"
+                               [placeholder]=""
+                               aria-describedby="span-search-interest">
+                        <span id="span-search-interest" class="sr-only">(success)</span>
+                        <button *ngIf="visibleIconResetPI"class="motum-i tm-e912 close" (click)="searchPI.value=''; visibleIconResetPI=false; " ></button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="interestPointList" class="list-search-result-container">
+                <a class="search-result-item" *ngFor="let interestPoint of interestPointList">
+                    <span class="search-result-icon">
+                        <div class="circle-icon">
+                            <i class="motum-i tm-e9ed tm-x1 icon-tack"></i>
+                        </div>
+                    </span>
+                    <span class="search-result-text">
+                        {{interestPoint.label}}
+                    </span>
+                </a>
+            </div>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

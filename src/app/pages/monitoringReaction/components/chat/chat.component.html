@@ -1,0 +1,69 @@
+<ng-template #popMoreOptions>
+	<div class="list-group list-group-flush chat-more-options-list">
+	  <a href="#" class="list-group-item">{{'pages.monitoringreaction.chat.mechanicalreport' | translate}}</a>
+	  <a href="#" class="list-group-item">{{'pages.monitoringreaction.chat.requestred' | translate}}</a>
+	  <a href="#" class="list-group-item">{{'pages.monitoringreaction.chat.requestfreigthliner' | translate}}</a>
+		<a href="#" class="list-group-item">{{'pages.monitoringreaction.chat.prereport' | translate}}</a>
+	</div>
+</ng-template>
+<div class="container-fluid">
+	<div class="motum-chatbox">
+    <!-- <p *ngIf="chatEngine.me.uuid">Your are <strong>{{chatEngine.me.state.username}}</strong> with uuid <strong>{{chatEngine.me.uuid}}</strong></p> -->
+		<div #chatlogScroll class="chatlogs">
+			<div class="chat chat-date" >
+				<p class="message-info">{{newDateChatLog}}</p>
+			</div>
+      <!-- <div *ngFor="let message of messages">
+        <div class="chat" [ngClass]="(message.from.name == username)?'message-out':'message-in'" >
+          <p class="chat-message">{{message.content}}</p>
+          <div class="message-info"><span class="label hour-label">{{message.date}}</span><img class='user-photo' [src]="message.from.avatar"></div>
+        </div>
+      </div> -->
+			<div *ngFor="let message of messages">
+				<div class="chat" [ngClass]="message.isSelf ? 'message-out':'message-in'" >
+					<p class="chat-message">
+						​<picture *ngIf="message.data.mediaUrl">
+							<a target="_blank" href="{{message.data.mediaUrl}}">
+							  <source srcset="{{message.data.mediaUrl}}" type="image/svg+xml">
+							  <img src="{{message.data.mediaUrl}}" class="img-thumbnail" alt="...">
+							</a>
+						</picture>
+						{{message.data.text}}
+					</p>
+					<div class="message-info">
+						<span class="label hour-label">{{message.data.hour}}</span>
+						<span class="label hour-label"><i class="socicon">@</i></span>
+						<img class='user-photo' [src]="message.data.avatar">
+					</div>
+				</div>
+			</div>
+		</div>
+    <hr class="chat-division">
+		<div class="chat-form">
+			<textarea
+				[(ngModel)]="messageContent" placeholder="Escribir mensaje..."
+				#textToSend (keyup)="cambiarColor(textToSend.value)"
+				(keyup.enter)="sendButtonClick()">
+			</textarea>
+			<button type="button" class="btn btn-confirm">{{'pages.dashboard.menssage' | translate}}</button>
+			<button type="button" (clickOutside)='p.close()' class="chat-buttons" placement="top" #p="ngbPopover" [ngbPopover]="popMoreOptions" popoverClass="custom-popover">
+				<i class="motum-i tm-e99c"></i>
+			</button>
+			<div id="emojiPiker" (clickOutside)='emojiHide()' >
+				<div class="chat-buttons" (click) = 'emojiShow()'><i class="motum-i tm-e940"></i>
+				</div>
+			</div>
+			<form class="chat-buttons" method="POST" enctype="multipart/form-data">
+				<input type="file" name="file" id="file" class="inputfile" (change)="onFileChange($event)" />
+				<label for="file"><i class="motum-i tm-e998" for="file"></i></label>
+			</form>
+			<!-- <div class="chat-buttons">
+				<input type="file" name="file" id="file" class="inputfile" (change)="onFileChange($event)" />
+				<label for="file"><i class="ion-navicon" for="file"></i></label>
+			</div> -->
+			<!-- <div class="chat-buttons" (click) = "sendButtonClick()" ><i class="motum-i tm-mu tm-send"></i></div> -->
+			<div [ngClass]="changecolor?'chat-btn-send-active':'chat-buttons'" (click) = "sendButtonClick()" ><i class="motum-i tm-e999"></i></div>
+
+		</div>
+	</div>
+</div>

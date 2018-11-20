@@ -1,0 +1,102 @@
+@import '../../sass/styles/styles';
+@import '../../sass/motumVariables';
+
+
+//Modal edit
+$font-family: 'Rubik', sans-serif;
+$motum-official-grey-1: #b3b3b3;
+$motum-official-blue-1: #136df8;
+$motum-official-blue-2: #f3f8ff;
+$gray: #cbcbcb;
+$strong-gray: #434444;
+$blue: #4283d1;
+$font-title: 11px;
+$font-content: 13.2px;
+$white: #fff;
+$low-gray: #dadada;
+$low-gray-one: #f6f6f6;
+$low-gray-two: #d3d3d3;
+$low-gray-three: #b2b2b2;
+$low-gray-four: #c6c6c6;
+$gray-light: #c5c5c4;
+$strong-grey: #878787;
+$intense-gray: #575756;
+$blue: #7054ff;
+$blue-light: #1d70b8;
+$orange: #eb860d;
+$orange-light: #F39200;
+$yellow: #F8B43A;
+$yellow-light: #ffc033;
+$red: #e20815;
+$red-light: #E6332A;
+$green: #2fd15d;
+$motum-background-cell-zebra: rgba(246, 246, 246, 0.5);
+$font-color: #4d4d4d;
+
+
+.motum-modal-calendar{
+    top: 15%;
+  
+  }
+  .motum-modal-calendar  .modal-dialog{
+    max-width: 553.25px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .motum-modal-calendar .modal-header {
+    color: white;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    padding: 0px 15px 0 15px;
+    .motum-modal-icon {
+      color: $motum-grey-partner;
+    }
+  }
+  
+  
+  .motum-modal-calendar .modal-body {
+    margin-left: -5%;
+    color: $motum-grey;
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .motum-modal-calendar .modal-content {
+    border-radius: 8px;
+  }
+  
+  
+  .modal-header-1 {
+    color: white;
+    height: 30px;
+    padding-bottom: 10px;
+    display: flex !important;
+    justify-content: center;
+    font-size: 14px;
+    background-color: $motum-official-blue-1;
+    font-family: $font-family;
+  
+    .close {
+      display: flex;
+      position: absolute;
+      right:  10px;
+      color: white !important;
+      font-weight: 400;
+      opacity: 1;
+    }
+  }
+  
+  .modal-title{
+    padding-top: 6px;
+    font-size: 12px;
+    display: flex !important;
+  }
+
+
+
+
+
+

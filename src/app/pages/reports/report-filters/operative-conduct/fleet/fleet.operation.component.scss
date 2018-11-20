@@ -1,0 +1,253 @@
+.reportHeader{
+    .header{
+        // width: 60%;
+        display: flex;
+        justify-content: space-between;
+    
+        .title{
+            display: inline;
+            padding-left: 30px;
+        }
+        .period{
+            display: inline-block;
+        }
+    }
+    .section-header{
+        margin-top: -32px;
+    
+        .hr-header{
+            border-top: 2px solid #a777f5;
+            border-radius: 10px;
+        }
+    }
+}
+.subtitleAndGrade{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.reportSubtitle{
+    position: relative;
+    top: 20px;
+    left: -7px;
+}
+.width-card-information{
+    width: 24%;
+}
+.reportGraph{
+    width: 30%
+}
+.graph-size-40{
+    width: 40%
+}
+.graph-size-55{
+    width: 55%
+}
+.report-table-small{
+    width: 45%;
+}
+.report-graph-medium{
+    width: 50%;
+}
+.reportsTable{
+    padding: 100px 20px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+
+    &.reportTime{
+        padding-top: 50px !important;
+    }
+}
+
+.reportTabe{
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+}
+
+.three-report-table{
+    padding: 15px 0px 0px 0px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    .extremes{
+        width: 37%;
+    }
+
+    .half{
+        width: 37%;
+        margin: 0 17px;
+    }
+}
+
+.report-section-small{
+    padding: 50px 0 0 0;
+}
+.report-section-medium{
+    padding: 50px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reportGrade{
+    position: relative;
+    top: 15px;
+    left: -14px;
+    border: 0px;
+    background: #3a60d2;
+    height: 35px;
+    width: 212px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+
+    .reportScore{
+        position: relative;
+        top: 3px;
+        font-size: 21px;
+        font-weight: bold;
+        padding-left: 8px;
+    }
+}
+
+// .reportScoreTitle{
+//     position: relative;
+//     left: -25px;
+//     top: 7px;
+// }
+// .reportScoreSubtitle{
+//     position: relative;
+//     left: 60px;
+//     font-size: 21px;
+//     font-weight: bold;
+//     top: -8px;
+//     padding-left: 26px;
+// }
+
+.reportRequireAttention{
+    position: absolute;
+    top: 105px;
+    left: 36px;
+    border: 0px;
+    background: #1B79D0;
+    height: 55px;
+    width: 190px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    font-size: 11px;
+
+    .labelRequireAttention{
+        position: absolute;
+        left: 13px;
+        top: 11px;
+        width: 120px;
+        text-align: left;
+        font-size: 12px;
+    }
+    .noRequireAttention{
+        position: relative;
+        top: 3px;
+        left: 55px;
+        font-size: 35px;
+        font-weight: bold;
+        padding-left: 8px;
+    }
+}
+
+.subContent{
+    position: absolute;
+    top: 115px;
+    left: 240px;
+    display: grid;
+}
+.chartSeverityFleet{
+    width: 50%;
+    height: 230px;
+    overflow: hidden;
+    text-align: left;
+    position: absolute;
+    top: 80px;
+    right: 0;
+}
+.fleetHealthValues{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 360px;
+    height: 30px;
+    font-size: 12px;
+    position: relative;
+    top: 90px;
+    left: 35px;
+    line-height: 2.5;
+
+    .fleetHealthIndicator{
+        width: 14px;
+        height: 14px;
+        
+        border-radius: 100%;
+        margin-top: 7px;
+
+        &.stop{
+            background-color: #FF0021;
+        }
+        &.serviceN{
+            background-color: #FFEF03;
+        }
+        &.serviceS{
+            background-color: #33DF69;
+        }
+        &.maintenance{
+            background-color: #7B379F;
+        }
+    
+    }
+    .titleFH{
+        position: absolute;
+        left: 24px;
+    }
+    .fleetHealthHr{
+        &.stop{
+            position: absolute;
+            right: 25px;
+            width: 68%;
+        }
+        &.service{
+            position: absolute;
+            right: 25px;
+            width: 63%;
+        }
+        &.maintenance{
+            position: absolute;
+            right: 25px;
+            width: 41%;
+        }
+
+        .hrFH{
+            border: .5px solid rgba(0, 0, 0, 0.23);
+        }
+    }
+}
+
+.data-section{
+	padding-top: 50px !important;
+}
+
+@page {
+  size: letter !important;
+	margin: 0;
+}
+
+@media print {
+	.report,html{
+		margin-left: 0.3cm;
+		background-color: #FFFFFF !important;
+	}
+    .data-section{
+		page-break-inside: avoid;
+	}
+}

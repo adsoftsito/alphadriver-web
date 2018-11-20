@@ -1,0 +1,27 @@
+<!-------
+        Component needs following data to be passed (this comes from your parent component):
+
+            ArrayName = [{
+                            label: 'Button Text',
+                            selected: 'active' <--- This one must be active or empty with simple quotes
+
+                        },
+                        {
+                            label: 'Button Text ',
+                            selected: '' <--- This one must be active or empty with simple quotes
+
+                        }]
+
+           Use the following classes to override css styles:
+           .btn-group button
+           .btn-group button:hover
+           .btn-group button.active
+
+           Every button comes with a BG + index ID, like BG0 which references to Button Group on index 0
+-->
+
+
+<div class="btn-group d-flex flex-wrap" role="group" aria-label="" style="margin-top: 10px; width:100%;">
+    <button #btnGroup *ngFor="let btn of buttonsArray; let i = index" id="{{id+i}}" type="button" class="btn btn-secondary {{btn.selected}}" (click)="btnClick(btnGroup)" style="flex: auto;">{{btn.label}}</button>
+
+</div>

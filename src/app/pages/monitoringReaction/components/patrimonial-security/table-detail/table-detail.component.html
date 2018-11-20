@@ -1,0 +1,11 @@
+<div class="full-width-panel" >
+  <ag-grid-angular *ngIf ="translated"
+  id="tableDetail"
+  class="full-width-grid"
+
+      [gridOptions]="gridOptions"
+      [icons]="customIcons"
+
+      (gridSizeChanged)="onGridResize($event)">
+  </ag-grid-angular>
+</div>

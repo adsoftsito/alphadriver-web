@@ -1,0 +1,125 @@
+@import '../../../../theme/sass/_motumVariables';
+
+.headFile{
+    display: flex;
+    position: absolute;
+    top: -26px;
+    right: 5px;
+    //top: 100px;
+    //right: 35px;
+    cursor: pointer;
+}
+.menuFile{
+    background-color: #ffffff;
+    border: 0px;
+    border-style: solid;
+    width: 281px;
+    height: auto;
+    right: -10px;
+    top: -45px;
+    //right: 20px;
+    //top: 90px;
+    margin-top: 45px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 25px;
+    box-shadow: -8px 0px 14px 1px rgba(0, 0, 0, 0.09);
+    position: absolute;
+    z-index: 101;
+  }
+  .menuFile:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(8% - 10px);
+    top: -15px;
+    border-style: solid;
+    border-width: 0 10px 15px 8px;
+    border-color: transparent transparent #ffffff transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+  }
+  .avatar{
+    width: 28px;
+    height: 28px;
+    margin-top: 20px;
+    margin-left: -6px;
+    background-color: #80a982;
+    border-radius: 100%;
+    line-height: 2;
+    color: #fff;
+    font-size: 14px;
+  }
+  .arrowMenu{
+    font-size: 17px;
+    padding-top: 14px;
+    cursor: pointer;
+  }
+  .contentTitles{
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    left: -10px;
+    line-height: 1.2;
+  }
+  .title{
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+  }
+  .subTitle{
+    font-size: 15px;
+    text-align: left;
+  }
+  .newTemplate{
+    width: 28px;
+    height: 28px;
+    margin-top: 20px;
+    background-color: #b8df0c;
+    border-radius: 100%;
+    line-height: 2.2;
+    color: #fff;
+    font-size: 14px;
+  }
+  .createContentTitles{
+    position: absolute;
+    top: 26px;
+    left: -10px;
+    line-height: 1.2;
+  }
+  .createTemplateTitle{
+    font-size: 14px;
+    text-align: left;
+  }
+  .spaceBottom{
+    padding-bottom: 19px;
+  }
+  .hrTemplates{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .spaceRow{
+    padding-top: 5px;
+    padding-bottom: 4px;
+    cursor: pointer;
+  }
+  .spaceRow:hover{
+    
+    
+    .iconDelete{
+      display: block;
+      color: $motum-grey-partner;
+    }
+  }
+
+  .subMenuTemplates{
+    box-shadow:inset 0px 12px 17px -9px rgba(0, 0, 0, 0.09), inset 0px -20px 26px -18px rgba(0, 0, 0, 0.09);
+    height: 133px;
+    overflow-y: scroll;
+  }
+
+  .iconDelete{
+    font-size: 20px;
+    padding-top: 23px;
+    display: none;
+  }

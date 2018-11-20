@@ -1,0 +1,10 @@
+<div class="cardGraph">
+  <div class="cardGraphTitle">
+    <label class="cardTitle">{{ title }}</label>
+    <label class="cardSubtitle" >
+      <ng-content selected="[subtitle]"></ng-content>
+    </label>
+  </div>
+  <ng-content select="[char]"></ng-content>
+  <ng-content select="[contentChar]"></ng-content>
+</div>

@@ -1,0 +1,81 @@
+<div class="motum-interes-point">
+
+    <div *ngFor="let inPoints of interestPoint; let i = index">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="list-search-result-container background-grey" (click)=" inPoints.id = !inPoints.id">
+                <a class="search-result-item"
+                   data-toggle="collapse"
+                   data-parent="#accordion"
+                   href="#{{inPoints.label.substr(-3)+i}}"
+                   aria-expanded="true"
+                   aria-controls="collapseOne">
+                    
+                   <span class="search-result-icon">
+                        <div class="circle-icon color-white">
+                            <i class="motum-i tm-e9ed  color-icon"></i>
+                        </div>
+                    </span>
+                    <span class="search-result-text">{{ inPoints.label | translate }}</span>
+                    <span class="v-down-icon">
+                          <i class="motum-i tm-e90e {{inPoints.id ? 'rotate90' : 'rotate0'}}"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div  id="{{inPoints.label.substr(-3)+i}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="motum-list-ip" *ngFor="let point of inPoints.points; let e = index">
+                    <div class="motum-ip" id="accordion" role="tablist" aria-multiselectable="true"> 
+                        <label class="input-check-container outCheck">
+                            <input type="checkbox"
+                                [checked]="point.selected"
+                                (change)="selectAll(point, $event)">
+                            <span class="checkmark"></span>
+                            <span id="{{point.label.substr(-3)}}" class=""></span>
+                        </label>
+                        <a class="search-result-item title"
+                        data-toggle="collapse"
+                        data-parent="#accordion"
+                        href="#{{point.label.substr(-3)+e}}"
+                        aria-expanded="true"
+                        aria-controls="collapseOne" (click)="point.id = !point.id">
+                        <span class="search-result-icon">
+                            <div class="circle-icon">
+                                <i class="motum-i tm-e9ed"></i>
+                            </div>
+                        </span>
+                        <span class="search-result-text">{{ point.label | translate }}</span>
+                        <span *ngIf="point.points" class="v-down-icon">
+                            <i class="motum-i tm-e90e {{point.id ? 'rotate90' : 'rotate0'}}"></i>
+                        </span>
+                        </a>
+                    </div>
+
+                    <div *ngIf="point.points" id="{{point.label.substr(-3)+e}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="motum-subList-ip" *ngFor="let subPoint of point.points">
+                            <a class="search-result-item">
+                            <label class="input-check-container check">
+                                    <input type="checkbox"
+                                            [checked]="subPoint.selected"
+                                            (change)="selectCheck(point, subPoint, $event)"
+                                    >
+                                    <span class="checkmark"></span>
+                            </label>
+                            <span class="search-result-icon">
+                                <div class="circle-icon">
+                                    <i class="motum-i tm-e9ed"></i>
+                                </div>
+                            </span>
+                            <span class="search-result-text"> {{ subPoint.label | translate }}</span>
+                            </a>
+                        </div>
+                    </div> <!--End accordion subPoints-->
+                    
+                </div> <!--End *ngFor points-->
+
+            </div> <!-- Ends accordion points of interest -->
+
+          </div> <!--end accordion points of interest section-->
+
+    </div> <!--end *ngFor interesPoint-->
+
+</div>

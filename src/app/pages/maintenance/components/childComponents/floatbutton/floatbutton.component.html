@@ -1,0 +1,15 @@
+<div class="container-floating">
+
+  <div *ngFor="let t of titulo">
+      <ng-template #tipContent><div [translate]="t.title"></div></ng-template>
+      <div class="nd{{t.id}} nds" placement="{{direction}}" [ngbTooltip]="tipContent" (click)="openTemplates(t)">
+        <i class="{{icon}} changeIcone2" (click)="configureRoutingEvent(t.id)"></i>
+      </div>
+  </div>
+
+  <div class="floating-button" (click)="eventClickOnPrimary()">
+    <p [ngClass]="{'plus': isPlus, 'n-plus': !isPlus}" ><i class="{{icon}} changeIcone"></i></p>
+    <i [ngClass]="{'edit': isPlus, 'n-edit': !isPlus}" class=" {{iconChange}}  changeIcone1 chageColor"></i>
+  </div>
+
+</div>

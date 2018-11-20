@@ -1,0 +1,514 @@
+<div *ngIf="dataprovider != null">
+        <!-- inicia desempeño de la operacion -->
+        <div class="data-section">
+                <motum-report-header  
+                      [title]="dataprovider.title.title"
+                      [period]="dataprovider.title.period"
+                      [ngClass]="section-header"
+                        ></motum-report-header>
+                
+                <div class="row subtitleAndGrade">
+                        <motum-report-subtitle  
+                                [title]="'Desempeño de la operación'"
+                                >
+                                </motum-report-subtitle>
+                        <motum-report-grade
+                                [score]="dataprovider.performanceOperation.score"
+                        >
+                        <button class="reportGrade" content>
+                                Calificación promedio <label class="reportScore">{{dataprovider.performanceOperation.score}}</label>
+                        </button>
+                        <!-- <div content>
+                                <div class="reportScoreTitle">
+                                        Calificación promedio
+                                </div>
+                                <div class="reportScoreSubtitle">
+                                        {{dataprovider.performanceOperation.score}}
+                                </div>
+                        </div> -->
+                              
+                        </motum-report-grade>
+        
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-medium">
+                        <motum-report-card-information
+                                [dataCard]="dataprovider.performanceOperation.vehicles"
+                                [titleCard]="'Número de unidades'"
+                                [measure]="''"
+                                [ngClass]="'width-card-information'"
+                                >
+                        </motum-report-card-information>
+                        <motum-report-card-information
+                                [dataCard]="dataprovider.performanceOperation.distance"
+                                [titleCard]="'Distancia recorrida'"
+                                [measure]="'KM'"
+                                [ngClass]="'width-card-information'"
+                                >
+                        </motum-report-card-information>
+                        <motum-report-card-information
+                                [dataCard]="dataprovider.performanceOperation.usedFuel"
+                                [titleCard]="'Combustible consumido'"
+                                [measure]="'L'"
+                                [ngClass]="'width-card-information'"
+                                >
+                        </motum-report-card-information>
+                        <motum-report-card-information
+                                [dataCard]="dataprovider.performanceOperation.performance"
+                                [titleCard]="'Rendimiento'"
+                                [measure]="'Km/l'"
+                                [ngClass]="'width-card-information'"
+                                >
+                        </motum-report-card-information>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-graph
+                                [title]="dataprovider.performanceOperation.periodPerformance.title"
+                                >
+                                <div id="periodPerformance" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+        
+                <div class="col-sm-12 col-12 col-md-12 report-section-medium">
+                        <motum-report-graph
+                                [title]="dataprovider.performanceOperation.comparisonRalenti.title"
+                                class="reportGraph"
+                                >
+                                <div id="comparisonRalenti" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                        <motum-report-graph
+                                [title]="dataprovider.performanceOperation.timeOperationRalenti.title"
+                                class="reportGraph"
+                                >
+                                <div id="timeOperationRalenti" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                        <motum-report-graph
+                                [title]="dataprovider.performanceOperation.drivingTime.title"
+                                class="reportGraph"
+                                >
+                                <div id="drivingTime" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+        </div><!-- End data section -->
+
+        <div class="data-section">
+                <div class="col-sm-12 col-12 col-md-12 reportsTable">
+                        <motum-report-table
+                                [title]="dataprovider.performanceOperation.topUnitsHigherPerformance.title"
+                                [header]="dataprovider.performanceOperation.topUnitsHigherPerformance.headerTable"
+                                [tableData]="dataprovider.performanceOperation.topUnitsHigherPerformance.topUnits"
+                                [colspanNo]="dataprovider.performanceOperation.topUnitsHigherPerformance.headerTable.length"
+                                [colorFirstTr]="'successColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.performanceOperation.topUnitsLessPerformance.title"
+                                [header]="dataprovider.performanceOperation.topUnitsLessPerformance.headerTable"
+                                [tableData]="dataprovider.performanceOperation.topUnitsLessPerformance.topUnits"
+                                [colspanNo]="dataprovider.performanceOperation.topUnitsLessPerformance.headerTable.length"
+                                [colorFirstTr]="'dangerColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 reportsTable reportTime">
+                        <motum-report-table
+                                [title]="dataprovider.performanceOperation.topUnitsLessTimeRalenti.title"
+                                [header]="dataprovider.performanceOperation.topUnitsLessTimeRalenti.headerTable"
+                                [tableData]="dataprovider.performanceOperation.topUnitsLessTimeRalenti.topUnits"
+                                [colspanNo]="dataprovider.performanceOperation.topUnitsLessTimeRalenti.headerTable.length"
+                                [colorFirstTr]="'successColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.performanceOperation.topUnitsHigherTimeRalenti.title"
+                                [header]="dataprovider.performanceOperation.topUnitsHigherTimeRalenti.headerTable"
+                                [tableData]="dataprovider.performanceOperation.topUnitsHigherTimeRalenti.topUnits"
+                                [colspanNo]="dataprovider.performanceOperation.topUnitsHigherTimeRalenti.headerTable.length"
+                                [colorFirstTr]="'dangerColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+
+                </div>
+        </div><!-- End data section -->
+        <!-- termina desempeño de la operacion -->
+
+        <!-- inicia viajes de la operacion -->
+        <div class="data-section">
+                <motum-report-subtitle  
+                        [title]="'viajes de la operación'"
+                        >
+                        </motum-report-subtitle>
+                <div class="col-sm-12 col-12 col-md-12 report-section-medium">
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.travelTime.title"
+                                [header]="dataprovider.operationTravels.travelTime.headerTable"
+                                [tableData]="dataprovider.operationTravels.travelTime.dataTravelTime"
+                                [colspanNo]="dataprovider.operationTravels.travelTime.headerTable.length"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                        <motum-report-graph
+                                [title]="dataprovider.operationTravels.travelOperation.title"
+                                class="report-graph-medium"
+                                >
+                                <div id="travelOperation" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.Workday.title"
+                                [header]="dataprovider.operationTravels.Workday.headerTable"
+                                [tableData]="dataprovider.operationTravels.Workday.dataWorking"
+                                [colspanNo]="dataprovider.operationTravels.Workday.headerTable.length"
+                                
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-graph
+                                [title]="dataprovider.operationTravels.fleetUtilization.title"
+                                >
+                                <div subtitle>Total de unidades: {{ dataprovider.operationTravels.fleetUtilization.totalUnits}}</div>
+                                <div id="fleetUtilization" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+        </div><!-- End data section -->
+        
+        <div class="data-section">
+                <div class="col-sm-12 col-12 col-md-12 reportsTable">
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.topUnitsLessTravelTime.title"
+                                [subtitle]="'Total'"
+                                [valueSubtitle]="dataprovider.operationTravels.topUnitsLessTravelTime.total"
+                                [header]="dataprovider.operationTravels.topUnitsLessTravelTime.headerTable"
+                                [tableData]="dataprovider.operationTravels.topUnitsLessTravelTime.topUnits"
+                                [colspanNo]="dataprovider.operationTravels.topUnitsLessTravelTime.headerTable.length"
+                                [colorFirstTr]="'successColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.topUnitsHigherTravelTime.title"
+                                [subtitle]="'Total'"
+                                [valueSubtitle]="dataprovider.operationTravels.topUnitsHigherTravelTime.total"
+                                [header]="dataprovider.operationTravels.topUnitsHigherTravelTime.headerTable"
+                                [tableData]="dataprovider.operationTravels.topUnitsHigherTravelTime.topUnits"
+                                [colspanNo]="dataprovider.operationTravels.topUnitsHigherTravelTime.headerTable.length"
+                                [colorFirstTr]="'dangerColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 reportsTable">
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.topUnitsLessDrivingTime.title"
+                                [subtitle]="'Total'"
+                                [valueSubtitle]="dataprovider.operationTravels.topUnitsLessDrivingTime.total"
+                                [header]="dataprovider.operationTravels.topUnitsLessDrivingTime.headerTable"
+                                [tableData]="dataprovider.operationTravels.topUnitsLessDrivingTime.topUnits"
+                                [colspanNo]="dataprovider.operationTravels.topUnitsLessDrivingTime.headerTable.length"
+                                [colorFirstTr]="'successColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationTravels.topUnitsHigherDrivingTime.title"
+                                [subtitle]="'Total'"
+                                [valueSubtitle]="dataprovider.operationTravels.topUnitsHigherDrivingTime.total"
+                                [header]="dataprovider.operationTravels.topUnitsHigherDrivingTime.headerTable"
+                                [tableData]="dataprovider.operationTravels.topUnitsHigherDrivingTime.topUnits"
+                                [colspanNo]="dataprovider.operationTravels.topUnitsHigherDrivingTime.headerTable.length"
+                                [colorFirstTr]="'dangerColor'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+        </div><!-- End data section -->
+        <!-- TERMINA viajes de la operacion -->
+        
+        <!-- INICIA ALERTAS DE LA OPERACION -->
+        <div class="data-section">
+                <motum-report-subtitle  
+                        [title]="'Alertas de la operación'"
+                        >
+                        </motum-report-subtitle>
+                <div class="col-sm-12 col-12 col-md-12 report-section-medium">
+                        <motum-report-graph
+                                [title]="dataprovider.operationAlerts.safetyIncidents.title"
+                                class="graph-size-40"
+                                >
+                                <div id="safetyIncidents" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                        <motum-report-graph
+                                [title]="dataprovider.operationAlerts.securityIncidents.title"
+                                class="graph-size-55"
+                                >
+                                <div id="securityIncidents" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-graph
+                                [title]="dataprovider.operationAlerts.speeding.title"
+                                >
+                                <div id="speeding" [style.width.%]="98" [style.height.px]="230" char></div>
+                        </motum-report-graph>
+                </div>
+        </div><!-- End data section -->
+
+        <div class="data-section">
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.securityIncidentsWeek.title"
+                                [subtitle]="'Total incidencias Security'"
+                                [valueSubtitle]="dataprovider.operationAlerts.securityIncidentsWeek.total"
+                                [header]="dataprovider.operationAlerts.securityIncidentsWeek.headerTable"
+                                [tableData]="dataprovider.operationAlerts.securityIncidentsWeek.dataProviderIncidentsWeek"
+                                [colspanNo]="dataprovider.operationAlerts.securityIncidentsWeek.headerTable.length"
+                                [colorTrBody]="'trColorTable'"
+                                class="report-table-small"
+                                >
+                                <div subtitle>Total de Incidencias Security: {{dataprovider.operationAlerts.securityIncidentsWeek.total}}</div>
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.title"
+                                [subtitle]="'Total de incidencias:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.total"
+                                [borderBottomRadius]="'tableBottomRadius'"
+                                class="report-table-small"
+                                >
+                                <!-- [subTitleTable]="'Total de Incidencias: '+dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.total" -->
+                                <!-- <div headerTitle>Total de Incidencias: {{dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.total}}</div> -->
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 three-report-table">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[0].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[0].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[0].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[0].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[0].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="extremes"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[1].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[1].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[1].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[1].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[1].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="half"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[2].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[2].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[2].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[2].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSecurityAlerts.alertList[2].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="extremes"
+                                >
+                        </motum-report-table>
+                </div>
+        </div><!-- End data section -->
+
+        <div class="data-section">
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.safetyIncidentsWeek.title"
+                                [subtitle]="'Total incidencias Safety'"
+                                [valueSubtitle]="dataprovider.operationAlerts.safetyIncidentsWeek.total"
+                                [header]="dataprovider.operationAlerts.safetyIncidentsWeek.headerTable"
+                                [tableData]="dataprovider.operationAlerts.safetyIncidentsWeek.dataProviderIncidentsWeek"
+                                [colspanNo]="dataprovider.operationAlerts.safetyIncidentsWeek.headerTable.length"
+                                [colorTrBody]="'trColorTable'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.title"
+                                [subtitle]="'Total de incidencias:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.total"
+                                [borderBottomRadius]="'tableBottomRadius'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 three-report-table">
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[0].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[0].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[0].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[0].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[0].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="extremes"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[1].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[1].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[1].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[1].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[1].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="half"
+                                >
+                        </motum-report-table>
+                        <motum-report-table
+                                [title]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[2].alert"
+                                [colspanNo]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[2].headerTable.length"
+                                [header]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[2].headerTable"
+                                [subtitle]="'Total:'"
+                                [valueSubtitle]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[2].total"
+                                [tableData]="dataprovider.operationAlerts.topUnitsHigherSafetyAlerts.alertList[2].topUnits"
+                                [borderTopRadius]="'tableTopRadius'"
+                                [colorFirstTr]="'dangerColor'"
+                                class="extremes"
+                                >
+                        </motum-report-table>
+                </div>
+        </div><!-- End data section -->
+        <!-- TERMINA ALERTAS DE LA OPERACION -->
+        <!-- INICIA SALUD DE FLOTA -->
+        <div class="data-section">
+                <motum-report-subtitle  
+                        [title]="'Salud de flota'"
+                        >
+                        </motum-report-subtitle>
+                
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-graph
+                        [title]="'Severidad de la Flota'"
+                        >
+                        <div  [style.width.%]="98" [style.height.px]="230" contentChar>
+                                <motum-report-grade>
+                                        <button class="reportRequireAttention" content>
+                                                <label class="labelRequireAttention">
+                                                Unidades que requieren atención  
+                                                </label>
+                                                <label class="noRequireAttention">{{dataprovider.fleetHealth.severityFleet.requireAttention}}</label>
+                                        </button>
+                                        <div class="subContent" subContent>
+                                                <label>
+                                                        {{dataprovider.fleetHealth.severityFleet.totalUnits}} Vehículos
+                                                </label>
+                                                <label>
+                                                        {{dataprovider.fleetHealth.severityFleet.disponibleUnits}} Unidades disponibles
+                                                </label>
+                                        </div>
+                                        <div>
+                                                <div class="fleetHealthValues">
+                                                        <div class="fleetHealthIndicator stop">
+
+                                                        </div>
+                                                        <div class="titleFH">
+                                                             Stop Now 
+                                                        </div>
+                                                        <div class="fleetHealthHr stop">
+                                                             <hr class="hrFH">
+                                                        </div>
+                                                        <div>
+                                                             {{stopNow}}  
+                                                        </div>
+                                                </div>
+                                                <div class="fleetHealthValues">
+                                                        <div class="fleetHealthIndicator serviceN">
+
+                                                        </div>
+                                                        <div class="titleFH">
+                                                             Service Now
+                                                        </div>
+                                                        <div class="fleetHealthHr service">
+                                                             <hr class="hrFH">
+                                                        </div>
+                                                        <div>
+                                                             {{serviceNow}}  
+                                                        </div>
+                                                </div>
+                                                <div class="fleetHealthValues">
+                                                        <div class="fleetHealthIndicator serviceS">
+
+                                                        </div>
+                                                        <div class="titleFH">
+                                                             Service Soon
+                                                        </div>
+                                                        <div class="fleetHealthHr service">
+                                                             <hr class="hrFH">
+                                                        </div>
+                                                        <div>
+                                                             {{serviceSoon}}  
+                                                        </div>
+                                                </div>
+                                                <div class="fleetHealthValues">
+                                                        <div class="fleetHealthIndicator maintenance">
+
+                                                        </div>
+                                                        <div class="titleFH">
+                                                             Mantenimiento programado 
+                                                        </div>
+                                                        <div class="fleetHealthHr maintenance">
+                                                             <hr class="hrFH">
+                                                        </div>
+                                                        <div>
+                                                             {{maintenance}}  
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div id="severityFleet" class="chartSeverityFleet">
+
+                                        </div>
+                                </motum-report-grade>
+                        </div>
+                        </motum-report-graph>
+                </div>
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.fleetHealth.unitsHigherFailures.title"
+                                [colspanNo]="dataprovider.fleetHealth.unitsHigherFailures.headerTable.length"
+                                [header]="dataprovider.fleetHealth.unitsHigherFailures.headerTable"
+                                [tableData]="dataprovider.fleetHealth.unitsHigherFailures.topUnitsHigherFailures"
+                                [colorFirstTr]="'dangerColorTr'"
+                                [colorTrBody]="'trColorFailures'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+        </div><!-- End data section -->
+        <div class="data-section">
+                <div class="col-sm-12 col-12 col-md-12 report-section-small">
+                        <motum-report-table
+                                [title]="dataprovider.fleetHealth.maintenanceUpcoming.title"
+                                [colspanNo]="dataprovider.fleetHealth.maintenanceUpcoming.headerTable.length"
+                                [header]="dataprovider.fleetHealth.maintenanceUpcoming.headerTable"
+                                [tableData]="dataprovider.fleetHealth.maintenanceUpcoming.unitsMaintenanceUpcoming"
+                                [colorTrBody]="'trColorTable'"
+                                class="report-table-small"
+                                >
+                        </motum-report-table>
+                </div>
+        </div><!-- End data section -->
+        <!-- TERMINA SALUD DE FLOTA -->
+</div>
+    

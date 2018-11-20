@@ -1,0 +1,123 @@
+@import '../../../../theme/sass/motumVariables';
+
+.closeMyTemplates{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 9px;
+    cursor: pointer;
+    color: white;
+}
+.headerTemplate{
+    padding: 25px 15px 15px 5px;
+    background: #dcdcdc;
+    height: 70px;
+
+    .motum-input-form{
+        &.has-success .form-control,
+        &.has-success .form-control-feedback {
+          color: $motum-grey-titles;
+        }
+        &.has-success .form-control {
+            border: 0px solid !important;
+            font-weight: 500 !important;
+        }
+        .input-sm {
+            font-size: 11px !important;
+            height: 25px !important;
+        }
+    }
+    .iconPlus{
+        color: #e2e2e2;
+    }
+}
+.listTemplates{
+    padding: 0px 10px;
+    height: calc(100vh - 136px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    // border-right: 1px solid rgba(0, 0, 0, 0.19);
+
+    .item{
+        height: 50px;
+        display: -ms-flexbox;
+        display: flex;
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.1);
+
+        .iconAvatar{
+            display: inline-block;
+            width: 20%;
+            height: 100%;
+
+            .iconCircle{
+                width: 30px;
+                height: 30px;
+                margin-top: 12px;
+                background-color: #FF9318;
+                border-radius: 100%;
+
+                .icon{
+                    font-size: 15px;
+                    color: #fff;
+                    line-height: 2;
+                    margin-left: 8px;
+                }
+            }
+        } //End iconAvatar
+
+        .information{
+            display: inline-block;
+            width: 70%;
+            height: 100%;
+            font-size: 10px;
+            line-height: 1;
+
+            .titleInf{
+                margin-top: 20px;
+                font-weight: 500 !important;
+                font-size: 13px;
+                position: absolute;
+                width: 80%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }// End information
+
+    }
+} //End listTemplates
+
+//style de angular-drag-drop
+
+/* Draggable*/
+
+.drag-border {
+    border: #ff525b dashed 2px !important;
+  }
+  
+  .drag-handle {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+  
+  .drag-handle:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+  
+  /* Droppable */
+  
+  .drag-hint-border {
+    border: #3c763d dashed 2px;
+  }
+  
+  .drag-over-border {
+    border: #fbbc05 dashed 2px;
+  }
+  
+  .drag-transit {
+    border: #3500FF dashed 2px;
+  }

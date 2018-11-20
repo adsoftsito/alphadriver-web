@@ -1,0 +1,42 @@
+<table class="table table-bordered reportTable {{borderBottomRadius }} {{ borderTopRadius }} {{ colorFirstTr }}">
+      <thead class="header">
+        <tr>
+          <th [attr.colspan]="colspanNo" class="thHeader">
+            <div>
+              <label>
+                {{ title }}
+              </label>
+              <label>
+                {{ subtitle }} {{ valueSubtitle }}
+              </label>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="header != null" class="{{ colorTrBody }}">
+        <tr class="subHeader">
+            <td *ngFor="let head of header">
+              {{ head.title }}
+            </td>
+        </tr>
+        <tr *ngFor="let data of tableData;let i = index">
+          <td class="w-25" *ngIf="data.economic != null">{{ data.economic }}</td>
+          <td class="w-25" *ngIf="data.value != null">{{ data.value }}</td>
+          <td class="w-25" *ngIf="data.indicator != null">{{ data.indicator }}</td>
+          <td class="w-25" *ngIf="data.time != null">{{ data.time }}</td>
+          <td *ngIf="data.event != null">{{ data.event }}</td>
+          <td *ngIf="data.mon != null">{{ data.mon }}</td>
+          <td *ngIf="data.tue != null">{{ data.tue }}</td>
+          <td *ngIf="data.wed != null">{{ data.wed }}</td>
+          <td *ngIf="data.thu != null">{{ data.thu }}</td>
+          <td *ngIf="data.fri != null">{{ data.fri }}</td>
+          <td *ngIf="data.sat != null">{{ data.sat }}</td>
+          <td *ngIf="data.sun != null">{{ data.sun }}</td>
+          <td *ngIf="data.total != null">{{ data.total }}</td>
+          <td *ngIf="data.codeType != null">{{ data.codeType }}</td>
+          <td *ngIf="data.codeQuantity != null">{{ data.codeQuantity }}</td>
+          <td *ngIf="data.severity != null">{{ data.severity }}</td>
+          <td *ngIf="data.remainingDistance != null">{{ data.remainingDistance }}</td>
+        </tr>
+      </tbody>
+</table>

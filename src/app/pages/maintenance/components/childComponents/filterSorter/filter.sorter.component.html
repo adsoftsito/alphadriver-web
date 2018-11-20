@@ -1,0 +1,23 @@
+<ba-card>
+  <div class="row">
+    <div class="col-md-3 filter-content" *ngFor="let item of listElements; let indice = index;">
+      <div *ngIf="item.type === 'multiselect'">
+        <label for="label-select">{{item.label}}</label>
+        <select2 class="select2-design" ngDefaultControl [options]="optionsSelect" [width]="'100%'" [data] = "item.data" [cssImport]=true (valueChanged)="onChangeValue($event.value, item.key, indice)" >
+           <option *ngIf="item.defaultValue" value="{{item.defaultValue}}"> {{item.defaultValue}}</option>
+        </select2>
+      </div>
+      <div *ngIf="item.type === 'select'">
+        <label for="label-select">{{item.label}}</label>
+        <select class="form-control input-sm" name="" (change)="onChangeValue($event.target.value, item.key, indice)">
+          <option value=""></option>
+          <option  *ngFor="let item2 of item.data" value="{{item2.text}}">{{item2.text}}</option>
+        </select>
+      </div>
+      <div *ngIf="item.type === 'input'">
+        <label for="label-input">{{item.label}}</label> <br>
+        <input class="form-control input-sm" type="text" value="" (change)="onChangeValue($event.target.value, item.key, indice)">
+      </div>
+    </div>
+  </div>
+</ba-card>

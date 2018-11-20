@@ -1,0 +1,181 @@
+
+<ng-template #confirmEditUser let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <div class="motum-modal-icon">
+            <i class="ion-checkmark-round changeofproperties"></i>
+        </div>
+        <h5 class="modal-title">{{'pages.modalChanges.header' | translate }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{'pages.modalChanges.content' | translate }} usermodel {{'pages.modalChanges.contents' | translate }}</p>
+    </div>
+    <div class="modal-footer window-center-align">
+        <button type="button" class="btn motum-btn-confirm chagepropertiesbtn" (click)="c(true)">{{'pages.modalChanges.accept' | translate }}</button>
+    </div>
+</ng-template>
+
+<ng-template #welcomeWindow let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <div class="motum-modal-icon">
+            <i class="motum-i tm-e98f changeofproperties"></i>
+        </div>
+        <h5 class="modal-title">{{'pages.welcomewindow.header' | translate }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{'pages.welcomewindow.contentUser' | translate }}</p>
+    </div>
+    <div class="modal-footer window-center-align">
+        <button type="button" class="btn motum-btn-confirm chagepropertiesbtn" (click)="c(true)">{{'pages.welcomewindow.accept' | translate }}</button>
+    </div>
+</ng-template>
+
+<ng-template #modalDelete let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+      <i class="motum-i tm-e922 changepositionicon"></i>
+    </div>
+    <h5 class="modal-title">{{'pages.modalDelete.header' | translate }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'pages.modalDelete.content' | translate }}</p>
+    <p>{{'pages.modalDelete.contents' | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn motum-btn-cancel button-lg" (click)="c(false)">{{'pages.modalDelete.cancel' | translate }}</button>
+    <button type="button" class="btn motum-btn-delete button-lg-remove" (click)="c(true)">{{'pages.modalDelete.remove' | translate }}</button>
+  </div>
+</ng-template>
+
+<ba-card>
+  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-5 col-sm-12 col-xs-12 col-12">
+
+      <div>
+        <div class="btnCreateUsers">
+          <button class="btn btn-primary btn-with-icon motum-btn-create btnUsers" routerLink="/pages/usersControl/users/create" (click)='createUser()' type="button">
+            <i class="ion-plus"></i>
+            {{ 'pages.userControl.client_user.users' | translate }}
+          </button>
+        </div>
+
+
+        <div class="checkboxUsers">
+
+          <form class="row form-inline align-items-center">
+            <div class="form-group col-sm-1 col-xs-1 col-1 onApClick">
+              <i class="motum-i tm-e91c"  (click) = 'exportToExel();'></i>
+            </div>
+              <div class="form-group col-sm-1 col-xs-1 col-1 onApClick">
+                  <i class="motum-i tm-e91b i-style" (click)="getClientsData()"></i>
+            </div>
+            <div class="form-group col-sm-1 col-xs-1 col-1">
+              <div class="checkbox custom-checkbox" style="margin-top: 4px;">
+                <ba-checkbox [(ngModel)]="isRemember"
+                             [label]="' '"
+                             (change)="makeSelectableRow()"
+                             [ngModelOptions]="{standalone: true}">
+                </ba-checkbox>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick" (click)="onRemoveSelected(modalDelete)" *ngIf="isRemember">
+              <i class="motum-i tm-e922 table-tools-icons-margin"></i>
+            </div>
+
+            <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick" *ngIf="isRemember" (click)="onDisableSelected()">
+              <i class="motum-i tm-e924 table-tools-icons-margin"></i>
+            </div>
+
+            <div class="form-group col-sm-1 col-xs-1 col-1 animated fadeIn onApClick" *ngIf="isRemember" (click)="onAbleSelected()">
+              <i class="motum-i tm-e923 table-tools-icons-margin"></i>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+
+
+        <div class="form-group col-md-4  col-sm-4 col-xs-4 col-4" >
+              <div class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
+                  <span class="calendar-lbl-container">{{calendarLabel}}</span>
+                  <i class="motum-i tm-e925"></i>
+              </div>
+          </div>
+      <div class="col-md-3 col-sm-8 col-xs-8 col-8" style="margin-top: 1px;">
+          <motum-search-input
+
+                  [styleInput]="'table'"
+                  [placeholder]="search | translate"
+                  [defaultWidthPercent]=100
+                  (changesSearchValue)="onFilterChanged($event)">
+
+          </motum-search-input>
+      </div>
+
+  </div>
+  <hr class="hrUsers">
+  <div class="row">
+    <!--Table-->
+    <!--(cellClicked)="onCellClicked($event,content)"-->
+    <div class="col-md-12 col-sm-12 col-lg-12" >
+      <ag-grid-angular
+                        *ngIf="hasLoadedTable"
+                       style="width: 100%; height: calc(97vh - 190px)"
+                       class="ag-theme-material"
+                       [gridOptions] = "gridOptions"
+                       [rowSelection]="rowSelection"
+                       [getContextMenuItems]="getContextMenuItems"
+                       [icons]="customIcons"
+                       [components]="components"
+
+                       [suppressRowClickSelection]="true"
+                       [suppressAggFuncInHeader]="true"
+                       [enableColResize]="true"
+                       [pagination]="true"
+                       [animateRows]="true"
+
+                       (cellClicked)="onCellClicked($event)"
+                       (selectionChanged)="onSelectionChanged($event)"
+                       (rowSelected)="onRowSelected($event)"
+                       (gridReady)="onGridReady($event)"
+                       (bodyScroll)="onBodyScroll($event)">
+      </ag-grid-angular>
+
+    </div>
+  </div>
+</ba-card>
+<div class="footer-table-counter">{{'pages.ranking.records' | translate}} {{tableCount}}</div>
+
+<!--
+        HOW TO IMPLEMENT CALENDAR INTO YOUR COMPONENT
+        1. CREATE A LOCAL VAR TO SHOW/DESTROY YOUR CALENDAR DINAMICALLY I.E showCalendarModal
+        2. CREATE A METHOD TO HANDLE CALENDAR CLOSING
+        3. IF YOU WANT TO HAVE PERSISTENT CALENDAR DATA YOU MUST DECLARE TWO VARS TO STORE USER SELECTED RANGE & DATE OPTION
+        4. CREATE TWO METHODS TO STORE USER SELECTED DATA INTO YOUR VARS
+
+        YOU CAN GET A FORMATTED DATA LABEL FOR YOUR COMPONENTS USING (calendarLabel) OUTPUT
+        YOU CAN GET A MOMENT FROM USER SELECTED DATA USING (selectedRange) OUTPUT
+
+-->
+<motum-modal-date-picker *ngIf="showCalendarModal"
+                         (selectedOption)="getSelectedOption($event)"
+                         (hasBeenClosed)="modalClosed()"
+                         (selectedRange)="getSelectedRange($event)"
+                         (calendarLabel)="getCalendarLabel($event)"
+                         [userDefinedOption]="selectedOption"
+                         [userDefinedRange]="selectedRange">
+
+</motum-modal-date-picker>

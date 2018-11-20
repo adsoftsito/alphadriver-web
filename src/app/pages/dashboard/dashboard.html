@@ -1,0 +1,123 @@
+<!-- <div class="al-content">
+<menu-component
+[isSidebarCollapsed] = false [showMenuList] = false [showMenuUsers] = false>
+</menu-component>
+
+<div style="text-align: center; margin-top: 15px; margin-bottom: 30px;">
+  DAIMLER / <label class="company">RAME</label> 
+</div>
+
+<app-company-dashboard></app-company-dashboard>
+
+<gridster [options]="config" droppable (onDrop)="onItemDrop($event)">
+  <gridster-item class="itemGird" *ngFor="let item of items; index as i" [item]="item">
+
+    <app-content-dashlet 
+        [reciveItem]="item" 
+        [recibeI]="i" 
+        [dataDashlet]="dataDashlet[i]"
+        [idItemChart]="this.idChartDrag" 
+        [lastItemAdd]="this.itemAdd" 
+        (deleteGridsterI)="deleteItemGridster($event)">
+      </app-content-dashlet> 
+    
+  </gridster-item>
+</gridster>
+
+
+
+<floatbutton
+  [configFloatButton] ="configFloatButton"
+  (eventoBottun)="eventButton($event)"
+></floatbutton>
+</div> -->
+<div class="motum-cover-all-container">
+
+    <div class="motum-grid-container m-cover"><!-- First level -->
+      
+        <div class="motum-grid-item m-row-12 m-column-12"><!-- Second level -->
+
+            <div class="motum-grid-container m-cover motum-relative-container"><!-- Third level -->
+
+                <!-- <div class="motum-open-button" *ngIf="!showTemplates" (click)="buttonCloseOpen(true)">
+                    <span class="motum-i tm-v-down"></span>
+                </div> -->
+
+                <div class="motum-grid-item m-row-12 m-column-12 m-item-z-index-5">
+                    <div class="dashboard-content">
+                        <div class="dashboardTitle">
+                            ATR / <label class="company">DASHBOARD DIRECTIVO</label> 
+                        </div>
+                        <app-company-dashboard
+                            [currentTitleDashboard]="'ATR'"
+                            [currentSubtitleDashboard]="'DASHBOARD DIRECTIVO'"
+                            (openDashboard)="openDashboard($event)"
+                            ></app-company-dashboard>
+                    
+                    <!-- Dashboard -->
+                      <gridster *ngIf="showDashboard" [options]="configDashboard" droppable (onDrop)="onItemDrop($event)">
+                            <!-- <gridster-item class="itemGird" *ngFor="let item of items; index as i" [item]="item"> -->
+                        <gridster-item class="itemGird" *ngFor="let item of dashboardItems; index as i" [item]="item">
+                        
+                            <app-content-dashlet 
+                                [reciveItem]="item" 
+                                [recibeI]="i" 
+                                [dataDashlet]="dataDashlet[i]"
+                                [idItemChart]="this.idChartDrag" 
+                                [lastItemAdd]="this.itemAdd" 
+                                (deleteGridsterI)="deleteItemGridster($event)">
+                              </app-content-dashlet> 
+                            
+                        </gridster-item>
+                      </gridster>
+
+                      <!-- Directive Dashboard -->
+                      <gridster *ngIf="showGroupUse" [options]="configDirectiveDashboard" droppable (onDrop)="onItemDrop($event)">
+                            <!-- <gridster-item class="itemGird" *ngFor="let item of items; index as i" [item]="item"> -->
+                        <gridster-item class="itemGird" *ngFor="let item of directiveDashboardItems; index as i" [item]="item">
+                        
+                              <motum-directive-dashlet
+                                [dataDirective]="dataDirective[i]"
+                                [idChart]="i"
+
+                                (openDetails)="dashletDetails($event)">
+
+                              </motum-directive-dashlet>
+                            
+                        </gridster-item>
+                      </gridster>
+
+                      <!-- DASHLET DETAILS -->
+                      <motum-group-use *ngIf="!showGroupUse && !showDashboard"
+                            [dataGroupUse]="groupUseData"
+                            (closeDetails)="dashletDetails($event)">
+                        </motum-group-use>
+                      
+                    </div>
+                </div>
+
+                <div class="motum-absolute-menu" >
+                    <div class="motum-grid-container m-cover">
+                      
+                      <dashboard-templates  *ngIf="showTemplates"  @togglingMenu
+                        [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu']"
+                        (buttonClose)="buttonCloseOpen($event)">
+                        </dashboard-templates>
+                        
+                    </div>
+                </div>
+                <div class="m-item-z-index-5">
+                    <floatbutton
+                      [configFloatButton] ="configFloatButton"
+                      (eventoBottun)="eventButton($event)"
+                      (openTemplate)="openTemplate($event)"
+                    ></floatbutton>
+                </div>
+
+           </div><!-- End Third level -->
+
+        </div><!-- End Second level -->
+    
+    </div><!-- First level -->
+
+</div>

@@ -1,0 +1,127 @@
+@import "../../../../../theme/sass/motumVariables";
+
+
+.titlesection-operator{
+    padding-left: 42.8883px;
+    padding-right: 42.883px; 
+    margin-top: 15.67px; 
+    color: gray;
+    font-size: 11px;
+}
+
+b{
+    color: #575756;
+    font-family: $motum-font-family-rubik-medium;
+    font-size: 11px;
+    font-weight: 500;
+}
+.titletext{
+    margin-top: 10px; 
+    color: #878787 !important;
+    font-family: $motum-font-family-rubik;
+    font-size: 11px;
+}
+
+hr{
+    margin-top: 9.417px !important;
+    margin-bottom: 10px !important;
+    color: gray;
+}
+
+strong{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color: #575756;
+    font-weight: 500;
+}
+.information{
+    font-family: $motum-font-family-rubik;
+    margin-top: 10px; 
+    font-size: 11px;
+    color:#575756;
+}
+
+.body-secction-position{
+    margin-top: 37.667px;
+}
+
+.position-bottom-group{
+    // float: right;
+    // font-size: 9px;
+    // margin-top: 37px;
+    // font-family: $motum-font-family-rubik;
+    float: right;
+    font-family: $motum-font-family-rubik;
+    position:fixed;
+}
+
+.section-flex-config{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: calc(100vh - 219px) !important;
+    
+    /***when the dynamic container width***/
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/
+ }
+ 
+ .section-flex-end-footter{
+    // flex-grow: 1;
+    // max-height: 40px;
+    // padding-bottom: 15px;
+    flex-grow: 1;
+    max-height: 40px;
+    padding-bottom: 15px;
+    padding-right:25px;
+    display:flex;
+    justify-content: flex-end;
+ }
+ 
+ .section-flex{
+     flex-grow: 2;
+ }
+
+ .scroll-content-info{
+    height: 100%;
+    overflow-y: auto;
+    
+}
+
+.change-property-btn-left{
+    margin-right: 11px; 
+    width: 70px; 
+}
+.change-property-btn-right{
+    margin-right: 11px; 
+    width: 70px; 
+    margin-right: 41.172px;
+}
+
+@media (max-width:769px){
+    .section-flex-end-footter{
+        padding-right: 0px;
+        text-align: center;
+    }
+    .position-bottom-group{
+        position:initial;
+    }
+
+}
+
+@media (width:1024px){
+    .section-flex-end-footter{
+        padding-right:0px;
+        text-align: center;
+        margin-right: 9px;
+        flex-wrap: wrap;
+    }
+}

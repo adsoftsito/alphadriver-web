@@ -1,0 +1,125 @@
+/**
+ * Theme css
+ */
+$tm-enabled-themes: () !global;
+$tm-enable-css-variables: false !global;
+
+$tm-themes: () !global;//theme names
+$tm-themes-non-processed: () !global;
+$tm-themes-export: () !global;
+
+@function tm-theme($key) {
+  @return map-get($theme, $key);
+}
+
+@function map-set($map, $key, $value: null) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+@function tm-get-value($theme, $key, $value) {
+  @if (type_of($value) == 'string') {
+    $tmp: map-get($theme, $value);
+
+    @if($tmp != null) {
+      @return tm-get-value($theme, $value, $tmp);
+    }
+  }
+
+  @return map-get($theme, $key);
+}
+
+@function tm-get-enabled-themes() {
+  $themes-to-install: ();
+
+  @if (length($tm-enabled-themes) > 0) {
+    @each $theme-name in $tm-enabled-themes {
+      $themes-to-install: map-set($themes-to-install, $theme-name, map-get($tm-themes, $theme-name));
+    }
+  } @else {
+    $themes-to-install: $tm-themes;
+  }
+
+  @return $themes-to-install;
+}
+
+@mixin install-css-variables($theme-name, $variables) {
+  .tm-theme-#{$theme-name} {
+    @each $var, $value in $variables {
+      --#{$var}: $value;
+    }
+  }
+}
+
+@function convert-to-css-variables($variables) {
+  $result: ();
+  @each $var, $value in $variables {
+    $result: map-set($result, $var, '--var(#{$var})')
+  }
+
+  @debug $result;
+  @return $result;
+}
+
+@function set-global-theme-vars($theme, $theme-name) {
+  $theme: $theme !global;
+  $theme-name: $theme-name !global;
+  @if($tm-enable-css-variables) {
+    $theme: convert-to-css-variables($theme) !global
+  }
+  @return $theme;
+}
+
+// @param $theme All properties data the
+// @param $name Theme name
+// @param $default ??
+@function tm-register-theme($theme, $name, $default: null) {
+  $theme-data: ();
+
+  @if($default != null) {
+    $theme: map-merge(map-get($tm-themes-non-processed, $default), $theme);
+    $tm-themes-non-processed: map-set($tm-themes-non-processed, $name, $theme) !global;
+
+    $theme-data: map-set($theme-data, data, $theme);
+    $tm-themes-export: map-set($tm-themes-export, $name, map-set($theme-data, parent, $default)) !global;
+  } @else {
+    $tm-themes-non-processed: map-set($tm-themes-non-processed, $name, $theme) !global;
+
+    $theme-data: map-set($theme-data, data, $theme);
+    $tm-themes-export: map-set($tm-themes-export, $name, map-set($theme-data, parent, null)) !global;
+  }
+
+  $theme-parsed: ();
+  @each $key, $value in $theme {
+    $theme-parsed: map-set($theme-parsed, $key, tm-get-value($theme, $key, $value));
+  }
+
+  $theme-parsed: set-global-theme-vars($theme-parsed, $name);
+  @return map-set($tm-themes, $name, $theme-parsed);
+}
+
+// Implement it into a component that doesn't have
+// ViewEncapsulation.None
+@mixin tm-install-component() {
+  $themes-to-install: tm-get-enabled-themes();
+
+  @each $theme-name, $theme in $themes-to-install {
+    .tm-theme-#{$theme-name} :host {
+      $theme: set-global-theme-vars($theme, $theme-name);
+      @content;
+    }
+  }
+}
+
+// Implement it into a component that has
+// ViewEncapsulation.None
+@mixin tm-install-global() {
+  $themes-to-install: tm-get-enabled-themes();
+
+  @each $theme-name, $theme in $themes-to-install {
+    .tm-theme-#{$theme-name} {
+      $theme: set-global-theme-vars($theme, $theme-name);
+      @content;
+    }
+  }
+}

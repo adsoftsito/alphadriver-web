@@ -1,0 +1,69 @@
+<div class="d-flex flex-wrap">
+    <div *ngIf="dualCalendar" class="calendar-container" [class.calendar-six-weeks]="gridArrPrev.length >35">
+        <div class="calendar-header">
+            <div class="arrow-left" [hidden]="!canChangeNavMonth(-1)"><i class="motum-i tm-e90e " (click)=" changeNavMonth(-1, 'month')"></i></div>
+            <div class="header-content">
+                <div>{{this.navDatePrev.format('YYYY [/] MMM').toUpperCase().replace('.', '')}}</div>
+            </div>
+            <div class="arrow-right" [hidden]="!canChangeNavMonth(1)"><i class="motum-i tm-e90e " (click)=" changeNavMonth(1, 'month')"></i></div>
+        </div>
+        <div class="calendar-weekdays-container d-flex flex-wrap">
+            <div *ngFor="let day of weekDaysHeaderArr" class="calendar-day-content">
+                <div>{{day.toUpperCase()}}</div>
+            </div>
+        </div>
+        <div class="calendar-days-container d-flex flex-wrap">
+            <div *ngFor = "let day of gridArrPrev" class="calendar-num-content">
+                <div *ngIf="day.value !== 0"
+                     class="calendar-num-format"
+                     (click)="clickSelectDay(day, this.navDatePrev)"
+                     [class.calendar-is-same]="getIsToday(day, this.navDatePrev)"
+                     [class.range]="checkBetween(day, this.navDatePrev)"
+                     [class.start]="checkActiveStart(day, this.navDatePrev)"
+                     [class.end]="checkActiveEnd(day, this.navDatePrev)"
+                     [class.selected]="checkSelected(day, this.navDatePrev)"
+
+                >
+                    {{day.value}}
+                </div>
+                <div *ngIf="day.value === 0" class="calendar-num-format"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="calendar-container" style=""  [class.calendar-six-weeks]="gridArr.length >35">
+        <div class="calendar-header">
+            <div class="arrow-left" [hidden]="!canChangeNavMonth(-1)"><i class="motum-i tm-e90e " (click)=" changeNavMonth(-1, 'month')"></i></div>
+            <div class="header-content">
+                <div>{{this.navDate.format('YYYY [/] MMM').toUpperCase().replace('.', '')}}</div>
+            </div>
+            <div class="arrow-right" [hidden]="!canChangeNavMonth(1)"><i class="motum-i tm-e90e " (click)=" changeNavMonth(1, 'month')"></i></div>
+        </div>
+        <div class="calendar-weekdays-container d-flex flex-wrap">
+            <div *ngFor="let day of weekDaysHeaderArr" class="calendar-day-content">
+                <div>{{day.toUpperCase()}}</div>
+            </div>
+        </div>
+        <div class="calendar-days-container d-flex flex-wrap ">
+            <div *ngFor = "let day of gridArr" class="calendar-num-content">
+                <div *ngIf="day.value !== 0"
+                     class="calendar-num-format"
+                     (click)="clickSelectDay(day, this.navDate)"
+                     [class.calendar-is-same]="getIsToday(day, this.navDate)"
+                     [class.range]="checkBetween(day, this.navDate)"
+                     [class.start]="checkActiveStart(day, this.navDate)"
+                     [class.end]="checkActiveEnd(day, this.navDate)"
+                     [class.selected]="checkSelected(day, this.navDate)"
+
+                >
+                        {{day.value}}
+                </div>
+                <div *ngIf="day.value === 0" class="calendar-num-format"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

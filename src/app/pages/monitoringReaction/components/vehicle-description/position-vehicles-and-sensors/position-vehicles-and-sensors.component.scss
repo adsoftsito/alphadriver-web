@@ -1,0 +1,377 @@
+@import "../../../../../theme/sass/motumVariables";
+
+mr-position-vehicles-and-sensors{
+
+    
+    .titlesection{
+        padding-left: 42.8883px;
+        padding-right: 42.883px; 
+        margin-top: 12px; 
+        color: gray;
+        font-family: $motum-font-family-rubik-medium;
+        font-size: 11px;
+        line-height: 19px;
+
+        //padding-right: 31.5px;
+    }
+
+    b{
+        color: #575756;
+        font-family: $motum-font-family-rubik-medium;
+        font-size: 11px;
+        font-weight: 500 !important;
+    }
+    .titletext{
+        margin-top: 10px; 
+        color: #878787 !important;
+        font-family: $motum-font-family-rubik;
+        font-size: 11px;
+        word-wrap: break-word;
+       // word-break: break-word;//firefox
+    }
+
+    .temperaturaAlta{
+        color:$motum-red-marker;
+    }
+
+    .temperaturaConsiderable{
+        color:$motum-blue-marker;
+    }
+
+    hr{
+        margin-top: 2px !important;
+        margin-bottom: 4px !important;
+        color: gray;
+    }
+
+    strong{
+        font-family: $motum-font-family-rubik;
+        margin-top: 10px; 
+        font-size: 11px;
+        color: #575756;   
+    }
+
+    .information{
+        font-family:$motum-font-family-rubik;
+        margin-top: 10px; 
+        font-size: 11px;
+        //color:#757070;
+        //font-weight: bold;
+        color:#575756;
+    }
+
+    .strong-position-right-plates{
+        float: right;
+        margin-top: 0;
+        margin-right: 19px;
+        word-wrap: break-word;
+        word-break: break-word;
+
+    }
+
+    .strong-position-right-model{
+        float: right;
+        margin-top: 0;
+        margin-right: 33px;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .body-secction-vehicle{
+        margin-top: 0px;
+
+        &.group{
+            margin-top: 2px;
+        }
+        .sensors{
+            line-height: 1.6;
+            display: grid;
+        }
+        .exit-sensor{
+            margin-right: 8px;
+        }
+        .sensor-on{
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: $motum-yellow-sensor-on;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .sensor-off{
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: $motum-grey-titles ;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+
+    .btn-vehicle-active{
+        height: 18.797px;
+        background: $motum-grey;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        color: $motum-white;
+        font-size: 9px;
+    }
+
+    .btn-vehicle{
+        height: 18.797px;
+        background: $motum-grey-border-group;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        color: $motum-white;
+        font-size: 9px;
+    }
+
+    .btn-position{
+        cursor: pointer;
+        float: right;
+        width: 60px;
+        margin-top: 17px;
+        font-size: 9px;
+        font-family:  $motum-font-family-rubik;
+
+        &.current-trip{
+            margin-right: 25px;
+        }
+    }
+
+    .section-flex-config{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: calc(100vh - 238px) !important;
+
+    /***when the dynamic container width***/
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    //scripts to separate into syllables
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*********************************/
+    }
+
+    .section-flex-end-footter{
+        // padding-left: 42.8883px;
+        // padding-right: 42.883px;
+        // flex-grow: 1;
+        // max-height: 40px;
+        // padding-bottom: 15px;
+
+        flex-grow: 1;
+        max-height: 40px;
+        padding-bottom: 15px;
+        padding-right: 35px;
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: flex-end !important;
+    }
+    .containerButtonsPosition{
+        padding-left: calc(100% - 200px);
+        padding-right: 0px;
+    }
+    .position-bottom-group{
+        float: right;
+        //font-size: 9px;
+       // margin-top: 15px;
+        font-family: $motum-font-family-rubik;
+        position:fixed;
+    }
+    .btnDetail{
+        padding:0px 10px !important;
+    }
+    
+    .section-flex{
+        flex-grow: 2;
+    }
+
+    .section-flex-btn-justify{
+        flex-grow: 3;
+        justify-content:space-around;
+    }
+
+    .scroll-content-info{
+        height: 100%;
+        overflow-y: auto;
+        
+    }
+
+    .change-property-img{
+        width: 14px;
+        height: 14px;
+    }
+
+    .motum-btn-sensor{
+        border-radius: 12px !important;
+        height: 15.994px;
+        font-size: 8px !important;
+        padding: 0 !important;
+        line-height: .4px;
+        cursor: pointer;
+        float: right;
+        width: 60px;
+        margin-top: 17px;
+        border: 0px solid !important;
+        color: #fff;
+        background: #2244d7;
+        outline:none;
+    }
+    .btn-unselected{
+        background-color:#2244d7 !important;
+    }
+    .motum-btn{
+        outline:none;
+    }
+    .selectedBtnSensor{
+        background: $motum-grey-border-group !important;
+    }
+    .followBtn{
+        cursor: pointer;
+        font-size: 10px !important;
+        margin-left: -36%;
+    }
+    .followBtn:hover{
+        background: $motum-blue-partner !important;
+        color: $motum-white !important;
+        border: none !important;
+    }
+    .followUnitClick{
+        background: $motum-grey-border-group !important;
+        color: $motum-white !important;
+        border: none !important;
+    }
+
+    .widthComponent{
+        width: 33.33%;
+    }
+
+    /*.tooltip {
+        .tooltip-inner {
+          position: relative;
+          top: -8px;
+          color: $motum-white;
+          background-color: $motum-background-tooltip;
+          width: 100px;
+          border-radius: 4px;
+          height: 15px;
+          width: auto;
+          font-size: 9px;
+          line-height: .7;
+        }
+        .tooltip-inner::before, .tooltip-inner::before {
+          position: absolute;
+          top: 65%;
+          left: calc(59% - 10px);
+          margin-top: 5.5px;
+          content: "";
+          border-width: 5px 5px 5px 5px;
+          transform: rotate(90deg);
+          border-left-color: $motum-background-tooltip;
+        }
+       }*/
+
+     .tooltipWrapper {
+        display: inline-block;
+        position: relative;
+      }
+       
+      .tooltip2 {
+        position: absolute;
+        display: none;
+        background-color:$motum-background-tooltip;
+        color: $motum-white;
+        top: -22px;
+        border-radius: 4px;
+//        width:100px;
+        font-size: 9px;
+        left:-50%;
+        //overflow: visible;
+        z-index:2;
+        text-align:center;
+        min-width: 50px;
+        word-wrap: break-word;
+        width: inherit;
+      }
+       
+      .tooltip2::before{
+          content: ' ';
+          display: block;
+          position: absolute;
+          left: calc(59% - 10px);
+          top: 60%;
+          z-index: -1;
+          height: 10px;
+          width: 10px;
+          background-color: $motum-background-tooltip;
+          //
+          border-width: 5px 5px 5px 5px;
+          transform: rotate(90deg);
+          border-left-color: $motum-background-tooltip;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+      }
+       
+      .tooltipWrapper:hover .tooltip2 {
+          display:block;
+      }
+    
+      .contentGroups{
+          display: flex;
+          justify-content: space-between !important;
+
+          flex-wrap: wrap;
+          align-self: flex-end;
+      }
+    
+    @media (max-width: 1200px){
+        .body-secction-vehicle{
+            margin-top: 12px;
+        }
+        .titlesection{
+            padding-left: 22.8883px;
+            padding-right: 22.883px; 
+        }
+        .d-flex{
+            display: inline !important;
+          // display:inline-block !important;
+        }
+        .space-btn-vehicle{
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .space-btn-vehicle1{
+            margin-top: 5px;
+        }
+        .followBtn{
+            cursor: pointer;
+            font-size: 10px !important;
+            margin-left: -22px;
+        }
+    }
+
+    .change-property-col-md-6{
+        padding-left: 0px !important;
+        padding-right: 0;
+    }
+
+    @media (max-width:769px){
+        .section-flex-end-footter{
+            padding-right: 0px;
+            text-align: center;
+        }
+        .position-bottom-group{
+            position:initial;
+        }
+    }
+
+}

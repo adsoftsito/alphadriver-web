@@ -1,0 +1,103 @@
+<div class="ranking-card-box">
+    <div *ngIf="rankingType == 'userInfo'" class="row">
+        <div class="col-lg-3 col-md-12 col-sm-3 col-xs-3 col-3 avatar-1 text-center">
+            <div class="avatar-container">
+                <div class="rankingNumber" >#1</div>
+                <img *ngIf="mainPicture" class="main-picture" src="{{mainPicture}}">
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-4 ranking-container-1">
+            <span class="title">
+                {{firstLbl}}
+            </span>
+            <span class="content" style="display: block">
+                {{firstLblContent}}
+            </span>
+        </div>
+        <div class="col-lg-5 col-md-8 col-sm-5 col-xs-5 col-5">
+             <span class="title">
+                {{secondLbl}}
+            </span>
+            <span class="content" style="display: block">
+                {{secondLblContent}}
+            </span>
+        </div>
+    </div>
+    <div *ngIf="rankingType == 'userRanking'" class="row">
+       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ranking-container-2 text-center score-container">
+            <div class="avatar-1 d-inline-block">
+                <img  class="star-picture" src="../../../../assets/img/theme/icon/ranking/star.png">
+            </div>
+            <div class="d-inline-block">
+                <span class="title">
+
+                   {{firstLbl}}
+                </span>
+                <div class="content d-inline-block">
+                   <span>{{firstLblContent}}</span>
+                    <div class="rating">
+                        <ng-template #starTemplate let-fill="fill">
+                      <span class="star" [class.full]="fill === 100">
+                        <span class="half" [style.width.%]="fill">&#x2605;</span>&#x2605;
+                      </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]="firstLblContent" [starTemplate]="starTemplate" [readonly]="true" max="5"></ngb-rating>
+                    </div>
+                </div>
+            </div>
+       </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 trophy-container">
+           <div class="d-inline-block trophy-block" style="">
+               <div style="position: absolute">
+                   <img  class="trophy" src="../../../../assets/img/theme/icon/ranking/{{imageSet}}">
+               </div>
+               <div class="trophy-text {{trophyClass}}">
+                  {{secondLblContent}}
+                </div>
+               <!--- es necesario cambiar de trofeo dependiendo la puntuación -->
+            </div>
+
+            <div class="d-inline-block ranking-container-3">
+                <span class="title">
+                    {{secondLbl}}
+                </span>
+                <div class="content d-inline-block">
+                  {{secondLblContent}}/10
+
+                </div>
+          </div>
+        </div>
+    </div>
+
+    <div *ngIf="rankingType == 'updated'" class="row">
+        <div class="col-lg-3 col-md-12 col-sm-3 col-xs-3 col-3 refresh-icon text-center">
+            <img  class="update-pos" src="../../../../assets/img/theme/icon/ranking/updated.svg">
+        </div>
+        <div class="col-lg-9 col-md-12  col-sm-9 col-xs-9 col-9 ranking-container-4">
+            <span class="title">
+                {{firstLbl}}
+            </span>
+            <span class="content" style="display: block">
+                {{firstLblContent}}
+            </span>
+        </div>
+    </div>
+
+    <div *ngIf="rankingType == 'incidents'" class="row">
+
+        <div class="col-lg-4 col-md-12 col-sm-3 col-xs-3 col-3 col-img" style="padding-left: 0px; padding-right: 0px; text-align: center;">
+            <div class="round-img padding-img">
+                <i class="{{iconClass}}"></i>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-12  col-sm-9 col-xs-9 col-9 ranking-container-5">
+            <div class="title-1">
+               <span> {{firstLbl}}</span>
+            </div>
+            <span class="content" style="display: block">
+                {{firstLblContent}}
+            </span>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div *ngIf="installedDevices!=null"class="content-devices">
+  <div class="d-flex justify-content-end">
+    <label class="titleDevices">
+      {{ installedDevice | translate }}
+    </label>
+    <div class="selectedDevices"> {{totalDevices}}</div>
+  </div>
+
+  <div *ngFor="let data of installedDevices.devicesSensors; let i = index;" class="divTable">
+    <label class="titleTable">
+      {{i+1}}.- {{ data.deviceName }}
+    </label>
+    <hr class="hrTable">
+    <table class="deviceTable">
+          <thead>
+            <tr class="trTitle">
+              <td *ngFor="let dataTitle of headerTable; let e = index" class="headerTable t{{e}}">
+                {{ dataTitle.title | translate }}
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dataDevice of data.sensors">
+              <td class="first-tr">{{ dataDevice.sensorType }}</td>
+              <td class="w-25">{{ dataDevice.sensorName }}</td>
+              <td class="w-25">{{ dataDevice.aliasForUser }}</td>
+              <td class="w-25">{{ dataDevice.location }}</td>
+              <td class="last-tr">{{ dataDevice.value }}</td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
+</div>

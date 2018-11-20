@@ -1,0 +1,123 @@
+@import "../../sass/styles/styles";
+
+$button-padding: 0 20px;
+$button-height-form: 23px;
+$button-height-modal: 27px;
+$button-border-radius: 12px;
+
+$button-text-size-form: 10px;
+$button-text-size-modal: 14px;
+$button-text-weight: 400;
+
+$button-bg-primary: tm-theme(button-color-primary-bg);
+$button-bg-secondary: tm-theme(button-color-secondary-bg);
+$button-bg-danger: tm-theme(button-color-danger-bg);
+$button-bg-grey: tm-theme(button-color-grey-bg);
+$button-bg-white: tm-theme(button-color-white-bg);
+
+$button-txt-color-primary: #fff;
+$button-txt-color-negative: #000;
+
+@mixin buttonProperties() {
+  // Button properties
+  border: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+}
+@mixin buttonClassProperties() {
+  //Button class properties
+  text-align: center;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: top;
+  vertical-align: -webkit-baseline-middle;
+  -webkit-transition: background-color,opacity .1s linear;
+  transition: background-color,opacity .1s linear;
+  -webkit-font-kerning: none;
+  font-kerning: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  contain: content;
+  outline: 0;
+}
+@mixin isOutlineProperties($isOutline, $bg-color, $accent-txt-color: $button-txt-color-primary) {
+  @if($isOutline) {
+    border-color: $bg-color;
+    color: $bg-color;
+    background-color: #fff0;
+    border-width: 1px;
+    border-style: solid;
+  } @else {
+    background-color: $bg-color;
+    color: $accent-txt-color;
+  }
+}
+
+@include tm-install-global() {
+  button[motum-button] {
+    text-decoration: none;
+    &.motum-button {
+      @include buttonProperties();
+      @include buttonClassProperties();
+      //Flat button
+      overflow: hidden;
+      font-weight: $button-text-weight;
+      margin: 6px;
+      padding: $button-padding;
+      background-color: $button-bg-primary;
+      color: $button-txt-color-primary;
+      border-radius: 8px;
+    }
+    &.btn-mot-default {
+      height: $button-height-form;
+      font-size: $button-text-size-form;
+    }
+    &.btn-mot-large {
+      height: $button-height-modal;
+      font-size: $button-text-size-modal
+    }
+    &.btn-mot-round {
+      border-radius: $button-border-radius;
+    }
+    &.btn-mot-secondary {
+      @include isOutlineProperties(false, $button-bg-secondary);
+    };
+    &.btn-mot-danger {
+      @include isOutlineProperties(false, $button-bg-danger);
+    };
+    &.btn-mot-grey {
+      @include isOutlineProperties(false, $button-bg-grey);
+    };
+    &.btn-mot-white {
+      @include isOutlineProperties(false, $button-bg-white, $button-txt-color-negative);
+    };
+    &.btn-mot-outline {
+      @include isOutlineProperties(true, $button-bg-primary);
+    }
+    &.btn-mot-outline-secondary {
+      @include isOutlineProperties(true, $button-bg-secondary);
+    };
+    &.btn-mot-outline-danger {
+      @include isOutlineProperties(true, $button-bg-danger);
+    };
+    &.btn-mot-outline-grey {
+      @include isOutlineProperties(true, $button-bg-grey);
+    };
+    &.btn-mot-outline-white {
+      @include isOutlineProperties(true, $button-bg-white);
+    };
+  }
+}

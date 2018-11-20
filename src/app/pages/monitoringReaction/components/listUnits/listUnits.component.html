@@ -1,0 +1,86 @@
+<lu-options></lu-options>
+
+<div class="motum-close-button" (click)="closeListUnits()">
+    <span class="motum-i tm-e90e"></span>
+</div>
+  <div class="content">
+    <div class="header col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 vehicleColor">
+                {{ vehicles | translate}}
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <hr class="window-section-separator iconPosition hr">
+                <div class="col-md-1 col-sm-1 iconPosition slider" (click)="openFilteringOptions()">
+                    <span class="motum-i tm-e97b slider {{changeIconColor}}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row inputsRow">
+            <div class="col-md-7 col-sm-7 has-feedback has-success motum-search-input">
+                <motum-search-input
+
+                        [styleInput]="'default'"
+                        [iconReset]="true"
+                        [placeholder]="search | translate"
+                        [defaultWidthPercent]=100
+                        (changesSearchValue)="searching($event)">
+
+                </motum-search-input>
+            </div>
+            <div class="col-md-5 col-sm-5 inputGroup">
+                <div class="has-success motum-input-form">
+                    <select name="" #inputCountry id="inputCountry" class="form-control input-sm select" (change)="filterByGroup(inputCountry.value)">
+                        <option [value]="-1">{{ allTheGroups | translate }}</option>
+                        <!-- filter by label -->
+                        <option *ngFor="let group of groups" [value]="group.label">{{ group.label | titlecase }}</option>
+                        <!-- filter by id  -->
+                        <!-- <option *ngFor="let group of groups" [value]="group.code">{{ group.label | titlecase }}</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="order">
+      <div class="header col-md-12 col-sm-12">
+          <div class="row">
+              <div class="col-md-3 col-sm-3 sortBy">
+                {{ sortByTrans | translate}}
+              </div>
+              <div class="col-md-8 col-sm-8 orderList">
+                <ul class="wrap">
+                  <li *ngFor="let item of sortBy;let i=index;">
+                    <a [ngStyle]="{'font-weight': opcionSortBySelect==i?'500':'400'}" [id]="'sortBy_'+i" (click)="sortByItem(item.name,i)">{{ item.name | translate}}</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+<div class="listUnits">
+    <div class="paddingList col-md-12 col-sm-12" *ngIf="flagPointsInterest">
+        <div #selected id="{{i}}" name="list" class="row rowListUnits" *ngFor="let unit of listUnits; let i = index;" (click)="sendUnitData(unit, selected)">
+            <div class="col-md-2 col-sm-2">
+                <div class="avatarNew {{unit.status.code}}"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                    <span class="warning"><i class="fa fa-exclamation-triangle iconWarning" aria-hidden="true"></i></span>
+            </div>
+            <div class="col-md-10 col-sm-10 unit">
+                <div class="truncateTitle" title="{{ unit.economicNumber  }} - {{ unit.principalGroup.label }} - {{ unit.operationalState}}">
+                        {{ unit.economicNumber}} - {{ unit.principalGroup.label }} - {{ unit.operationalState}}
+                </div>
+                <div class="truncateAddress">
+                        {{unit.status.label}} en {{ unit.address.city }} {{ unit.address.state }} {{ unit.address.country }}
+                </div>
+                <div class="truncate">
+                    <div class="operatorName">{{ unit.operatorName }}</div>
+                    <div class="speed">- {{ unit.speed }} {{ unit.measurementUnit }} - {{ unit.lastDate }} {{ unit.lastHour }} h </div>
+                </div>
+                <span *ngIf="unit.interestPoint != undefined &&  unit.interestPoint.code != ''" class="motum-i tm-e9ed tack" [ngStyle]="{'color':unit.interestPoint.color}" ></span>
+                <span class="arrow"><span class="motum-i tm-e941 motum-rotate-{{unit.directionGrade}}"></span></span>
+                <!-- <span class="arrow"><span class="motum-i tm-e97a motum-rotate-{{unit.directionGrade}}"></span></span> -->
+            </div>
+                <hr class="mr-hr-list-units">
+        </div>
+    </div>
+</div>

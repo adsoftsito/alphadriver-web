@@ -1,0 +1,156 @@
+
+<div *ngIf="unitDetail!=null" class="section-flex {{ widthIDComponent }}">
+    <div class="scroll-content-info">
+
+
+        <div class="section-flex-config">
+
+            <div class="titlesection">
+                <div class="row ">
+                    <div class="col-xl-9 col-lg-9 col-md-6 col-sm-6">
+                    <b>{{'pages.monitoringreaction.positionvehicle.position' | translate}}</b>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <button class="motum-btn followBtn {{changeColorBtnFollow}}" (click)="followUnit()">{{ follow |
+                                    translate }}</button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row body-secction-vehicle">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <span class="information">{{unitDetail.position.location}}</span><br>
+                        <span class="information">{{unitDetail.position.speed}} Km/h-{{unitDetail.position.date}} - {{unitDetail.position.time}} h <img src="../../../../../assets/img/theme/icon/monitoringReaction/location.svg"
+                                class="change-property-img motum-rotate-{{unitDetail.position.directionGrade}}"></span><br>
+
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.driving' | translate}}: </a><span
+                            class="information">{{unitDetail.position.hos.hoursWorked}}
+                            h/-{{unitDetail.position.hos.hoursLeft}}h (HOS)</span><br>
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.ignition' | translate}}: </a><span
+                            class="information">{{showIgnitionStatus}}</span><br>
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.stopped_motor' | translate}}:
+                        </a><span class="information">{{stoppedMotorStatus}}</span><br>
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.signalsource' | translate}}:
+                        </a>
+                        <span class="information">{{signalSource}}</span><br>
+                        <i class="motum-i tm-e9ed tack"></i><span class="information">{{unitDetail.position.actionUnit.action}}
+                            {{unitDetail.position.actionUnit.interestPoint.label}}</span>
+                    </div>
+
+                </div>
+                <!--title Vehicle -->
+                <div class="row body-secction-vehicle">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <b>{{'pages.monitoringreaction.positionvehicle.vehicle' | translate}}</b>
+                        <hr>
+                    </div>
+                </div>
+                <!------>
+                <div class="row body-secction-vehicle">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.brand' | translate}}: </a>
+                        <span class="information">{{unitDetail.vehicle.brand}}</span>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.model'
+                            | translate}}: <span class="information"> {{unitDetail.vehicle.model}} </span></a><br>
+                    </div>
+                </div>
+                <div class="row body-secction-vehicle">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <a class="titletext">{{'pages.monitoringreaction.positionvehicle.year' | translate}}: </a><span
+                            class="information">{{unitDetail.vehicle.year}}</span>                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+
+                        <a class="titletext">{{'pages.monitoringreaction.positionvehicle.plates'
+                            | translate}}: <span class="information">{{unitDetail.vehicle.plates}}</span></a><br>
+                    </div>
+                </div>
+                <div class="row body-secction-vehicle">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div *ngFor="let trailer of unitDetail.vehicle.trailer">
+                                    <a class="titletext">{{trailer.label}}: </a><span class="information">{{trailer.plate}}</span><br>
+                                </div>
+                    </div>
+
+                </div>
+                <!--Title "Sensors"-->
+                <div class="row body-secction-vehicle ">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <b>{{'pages.monitoringreaction.positionvehicle.sensors' | translate}}</b>
+                        <hr>
+                    </div>
+                </div>
+                <!------>
+                <div class="body-secction-vehicle">
+                    <div class="sensors">
+                        <div class="d-flex justify-content-between">
+                            <span>{{ entry | translate }}:</span>
+                            <div *ngFor="let sensorsIn of unitDetail.sensor.in; let item=index;">
+                                <div class="tooltipWrapper">
+                                    <span class="tooltipWrapper">
+                                        <div [ngClass]=" sensorsIn.status === true ? 'sensor-on': 'sensor-off'"></div>{{sensorsIn.status===true
+                                        ?1:0}}
+                                    </span>
+                                    <span class="tooltip2">E{{item+1}}&nbsp;{{ sensorsIn.label}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="exit-sensor">{{ departure | translate }}:</span>
+                            <div *ngFor="let sensorsOut of unitDetail.sensor.out; let i=index;">
+                                <div class="tooltipWrapper">
+                                    <span class="tooltipWrapper">
+                                        <div [ngClass]=" sensorsOut.status === true ? 'sensor-on': 'sensor-off'"></div>{{sensorsOut.status===true
+                                        ?1:0}}
+                                    </span>
+                                    <span class="tooltip2">S{{i+1}}&nbsp;{{sensorsOut.label}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>{{ sensor | translate }}</span>
+                            <div *ngFor="let sensorsTemperature of unitDetail.sensor.analogical; let i=index;">
+                                <div class="tooltipWrapper">
+                                    <span class="tooltipWrapper">
+                                        <div [ngClass]="sensorsTemperature.amount> 90 ?'temperaturaAlta':'temperaturaConsiderable'">{{sensorsTemperature.amount}}</div>
+                                    </span>
+                                    <span class="tooltip2">{{sensorsTemperature.label}}&nbsp;{{
+                                        sensorsTemperature.amount}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Groups-->
+                <div class="body-secction-vehicle group">
+                        <b>{{'pages.monitoringreaction.positionvehicle.groups' | translate}}</b>
+                        <hr>
+                        <div class=" contentGroups">
+                            <div *ngFor="let groups of unitDetail.groups;let i=index;">
+                                <button *ngIf="i==0" class="btn-vehicle-active">{{groups.label}}</button>
+                                <button *ngIf="i!=0" class="btn-vehicle space-btn-vehicle">{{groups.label}}</button>
+                            </div>
+                        </div>
+                    </div>
+   
+
+            </div><!---title section-->
+        </div><!--section flex-->
+
+
+    </div>
+
+    <div class="section-flex-end-footter {{changeClass}}" id="positionButtons" >
+        <div class="position-bottom-group" >
+            <button motum-button color="primary" round="false" class="btnDetail">{{'pages.monitoringreaction.positionvehicle.currenttrip'
+                   | translate}}</button>
+            <button motum-button [color]="changeColorBtnSensor" round="false" class="btnDetail" (click)="openID(flagOpenID)">{{ sensors | translate
+                    }}</button>
+        </div>
+        <!-- <button class="motum-btn-sensor {{changeColorBtnSensor}}" (click)="openID(flagOpenID)">{{ sensors | translate
+            }}</button>
+        <button class="motum-btn save btn-position current-trip">{{'pages.monitoringreaction.positionvehicle.currenttrip'
+            | translate}}</button> -->
+    </div>
+    <installed-devices *ngIf="flagOpenID" [idVehicle]="idVehicle"></installed-devices>
+</div>

@@ -1,0 +1,21 @@
+<ag-grid-angular style="width:100%;height: calc(100vh - 210px)" class="ag-theme-material" *ngIf="showTableTranslated"
+  [gridOptions]="gridOptions"
+  [rowSelection]="rowSelection" 
+  [icons]="customIcons" 
+  [suppressRowClickSelection]="true" 
+  [suppressAggFuncInHeader]="true"
+  [animateRows]="true" 
+
+
+  [isFullWidthCell]="isFullWidthCell"
+  [getRowHeight]="getRowHeight"
+  [getNodeChildDetails]="getNodeChildDetails"
+  [fullWidthCellRendererFramework]="getFullWidthCellRenderer()"
+
+  
+  (cellClicked)="onCellClicked($event)"
+  (rowSelected)="onRowSelected($event)" 
+  (selectionChanged)="onSelectionChanged($event)"
+  (gridSizeChanged)="onGridResize($event)"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular>

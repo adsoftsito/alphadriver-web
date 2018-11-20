@@ -1,0 +1,382 @@
+@import "../../../../theme/sass/motumVariables";
+@import "../../../../theme/sass/styles/styles";
+
+
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+$motum-official-grey-1: $motum-grey-group-active;
+$motum-official-grey-2: #c4c4c4;
+$motum-official-grey-3: #f1f1f1;
+
+$motum-official-green-1: $motum-light-green;
+
+$motum-official-blue-1: $motum-blue-partner;
+$motum-official-blue-2: #f3f8ff;
+
+$motum-background-cell-zebra: rgba(246, 246, 246, 0.5);
+
+.footer-table-counter{
+  margin-left: 5px;
+  margin-top: 18px;
+  font-size: 12px;
+}
+
+.onApClick {
+  cursor: pointer;
+}
+.onApClick:hover{
+  color: $motum-official-blue-1;
+}
+.custom-checkbox input[type="checkbox"]:checked + span::before {
+  content: "\e91e";
+  color: #3381f8;
+  border-radius: 15%;
+  min-width: 17px;
+}
+
+.custom-checkbox input[type="checkbox"] + span::before {
+  font-family: "MotumIcons";
+  content: "\e91d";
+  border: 0;
+  font-size: 15px;
+  min-width: 17px;
+  margin-top: 1px;
+}
+
+.motum-hover-name:hover {
+  color: $motum-official-blue-1;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ag-theme-material .ag-paging-panel > span.ag-paging-row-summary-panel {
+  display: none;
+}
+
+.ag-theme-material .ag-paging-panel {
+  justify-content: center !important;
+  @include paging-outside(30px);
+}
+
+/**
+* Icons for table tools
+*/
+// .table-tools-icons-margin {
+//   margin-bottom: 12px;
+//   margin-top: 10px;
+// }
+
+// class for the sub-icon +
+.table-tools-sub-icons {
+  color: $motum-official-blue-1;
+  font-size: 9px;
+  position: absolute;
+  margin-left: 9px;
+  margin-top: 6px;
+}
+.motum-i.table-tools-icons-margin {
+  color: $motum-official-grey-2;
+  font-size: 16px;
+  &:hover {
+    color: inherit;
+  }
+}
+.fa .fa-calendar {
+  color: $motum-official-grey-1;
+  font-size: 16px;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+
+label.custom-checkbox {
+  margin-top: 10px;
+}
+
+/**
+* Modify ag-grid classes
+*/
+
+.ag-header-cell {
+  border-right: 1px solid #e0e0e0;
+}
+
+.ag-header-cell-label {
+  /*Necessary to allow for text to grow vertically*/
+  height: 100%;
+  padding: 0 !important;
+  color: $motum-grey;
+
+}
+
+.ag-header-cell-text {
+  /*Necessary to allow for text to grow vertically*/
+
+  margin-top: -7px !important;
+}
+
+.ag-row-hover {
+  background-color: $motum-official-blue-2 !important;
+}
+
+.ag-theme-material .ag-cell-focus {
+  border: 0 solid $motum-official-grey-1 !important;
+}
+
+.ag-row:nth-of-type(even){
+  background-color:  $motum-background-cell-zebra;
+}
+.ag-theme-material {
+  .ag-icon-checkbox-checked{background-image: none !important; }
+  .ag-icon-checkbox-unchecked{background-image: none !important;}
+
+  .ag-icon-checkbox-checked:after{
+    top: -15px;
+    position: absolute;
+    font-size: 14px;
+    font-family: 'MotumIcons';
+    content: "\e91e" !important;
+    color: #3381f8 !important;
+
+  }
+
+  .ag-icon-checkbox-unchecked:after{
+    position: absolute;
+    top: -15px;
+    font-size: 14px;
+    font-family: 'MotumIcons';
+    content: "\e91d" !important;
+    color: #3381f8 !important;
+
+  }
+
+}
+
+client-product-component {
+  // .tooltip-a{
+  //   display: inline;
+  //   position: static;
+  // }
+  // .tooltip-a:hover:after{
+  //   color: $motum-white;
+  //   background-color: $motum-background-tooltip;
+  //   bottom: 32px;
+  //   content: attr(alt);
+  //   left: 20%;
+  //   padding: 2px 4px;
+  //   position: inherit;
+  //   z-index: 9999999;
+  //   border-radius: 4px;
+  //   height: 15px;
+  //   width: auto;
+  //   font-size: 9px;
+  //   line-height: .7;
+  //   overflow: visible;
+  // }
+  // .tooltip-a:hover:before{
+  //   border: solid;
+  //   border-color: $motum-background-tooltip transparent;
+  //   border-width: 6px 6px 0 6px;
+  //   bottom: 10px;
+  //   content: "";
+  //   left: 50%;
+  //   position: inherit;
+  //   z-index: 1099;
+  // }
+
+  .tooltip-a-first{
+    display: inline;
+    position: absolute;
+  }
+  .tooltip-a-first:hover:after{
+    color: $motum-white;
+    background-color: $motum-background-tooltip;
+    margin-top: -10px !important;
+    margin-left: calc(1% - 42px) !important;
+    content: attr(alt);
+    padding: 2px 4px;
+    position: fixed;
+    z-index: 10098;
+    border-radius: 4px;
+    height: 15px;
+    width: auto;
+    font-size: 9px;
+    line-height: 1;
+  }
+    .tooltip-a-first:hover:before{
+    border: solid;
+    border-color: $motum-background-tooltip transparent;
+    border-width: 6px 6px 0 6px;
+    margin-top: 5px !important;
+    content: "";
+    margin-right: -29px !important;
+    position: fixed;
+    z-index: 1099;
+}
+
+.tooltip-status{
+  display: inline;
+  position: absolute;
+}
+
+.tooltip-status:hover:after{
+  color: $motum-white;
+  background-color: $motum-background-tooltip;
+  margin-top: -10px !important;
+  margin-left: calc(1% - 30px) !important;
+  content: attr(alt);
+  padding: 2px 4px;
+  position: absolute;
+  z-index: 10098;
+  border-radius: 4px;
+  height: 15px;
+  width: auto;
+  font-size: 9px;
+  line-height: 1;
+}
+.tooltip-status:hover:before{
+  border: solid;
+  border-color: $motum-background-tooltip transparent;
+  border-width: 6px 6px 0 6px;
+  margin-top: 5px !important;
+  content: "";
+  margin-right: -29px !important;
+  position: absolute;
+  z-index: 1099;
+}
+
+  .card{
+    //  margin: 44.134px 50.966px;
+    margin: 36.134px 18.966px 0px 10.966px;
+    border-radius: 10px;
+    -webkit-box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+    -moz-box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+    box-shadow: 3px 0px 15px -4px rgba(0, 0, 0, 0.34) !important;
+  }
+  .card > .card-body{
+    padding: 0.398px 11.866px;
+  }
+  .motum-i.tm-u.tm-search:before{
+    font-size: 15px;
+  }
+  .btn-with-icon i{
+    margin-right: 7px;
+    margin-left: -4px;
+  }
+
+  .hrClients{
+    margin-top: 0.846px;
+    margin-bottom: 0px;
+  }
+
+  .btnCreateClients{
+    display: inline;
+  }
+  .checkboxClients{
+    display: inline-block;
+    margin-left: 12.842px;
+  }
+  .ag-header-cell, .ag-header-group-cell {
+    padding-left: 5px !important;
+    padding-right: 7px !important;
+  }
+  .ag-cell {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+  }
+  .ag-theme-material .ag-header-row{
+    font-weight: 500 !important;
+  }
+  .motum-app-menu{
+    overflow: visible !important;
+  }
+}
+
+.motum-modal-confirm .modal-header .motum-modal-icon{
+  width: 36px !important;
+  height: 30px !important;
+}
+
+.changeofproperties{
+  font-size: 20px;
+  margin-left: 7px;
+  margin-top:  4px;
+}
+
+.modal-footer{
+  justify-content: flex-end !important;
+}
+
+.centerModal{
+  justify-content: center !important;
+}
+
+.chagepropertiesbtn{
+  width: 87px !important;
+  line-height: 5px !important;
+  height: 25px !important;
+}
+
+
+.btn{
+  transition: none !important;
+}
+
+.chagepropertiesbtncancel{
+  width: 73px !important;
+  height: 25px !important;
+  line-height: 5px !important;
+}
+
+.btn:hover{
+  transform: none !important;
+}
+
+.motum-badge {
+  background-color: $motum-blue-partner;
+  color: $motum-white;
+
+  padding: 1px 10px;
+  border-radius: .75rem;
+  font-size: 10px;
+}
+.expiration-color {
+  color: $motum-red-partner;
+}
+.form-group{
+  margin-bottom: 0 !important;
+}
+.ag-row-selected {
+  background-color: $motum-official-blue-2 !important;
+}
+.calendar-btn-container{
+  float: right;
+  margin-left: 9px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.calendar-lbl-container{
+  font-size: 10px;
+  padding-right: 8px;
+  margin-top: -3px;
+}
+
+.calendar-btn-container:hover{
+  color: $motum-official-blue-1 !important;
+}
+
+.search-box{
+  padding-left: 0;
+}
+
+$font-family: 'Rubik', sans-serif;
+$secondary-font-family: 'Rubik', sans-serif;
+$font-size: 11px;
+$secondary-font-size: 9.64px;
+$secondary-foreground-color: rgba(0,0,0,0.7);
+
+@import '~ag-grid/src/styles/ag-grid.scss';
+@import '~ag-grid/src/styles/ag-theme-material';

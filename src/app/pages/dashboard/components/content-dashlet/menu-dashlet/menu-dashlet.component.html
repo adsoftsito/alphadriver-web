@@ -1,0 +1,27 @@
+<div *ngIf="reciveMenuDashlet" class="menuDashlet animated fadeIn">
+  <div class="container-fluid">
+    <div class="row itemDashlet">
+      <div>
+          <div class="col-md-12">Indicador...</div>
+          <div class="col-md-12">Selección de ﬂota...</div>
+          <div class="col-md-12">Selección de atributos...</div>
+      </div>
+    </div>
+    <hr class="hrMenuDashlet">
+    <div class="row itemDashlet">
+        <div>
+          <div class="col-md-12">Enviar a usuario...</div>
+          <div class="col-md-12">Enviar a hoja...</div>
+          <div class="col-md-12">Crear plantilla...</div>
+        </div>
+    </div>
+    <hr class="hrMenuDashlet">
+    <div class="row itemDashlet">
+        <div>
+          <div class="col-md-12">Exportar</div>
+          <div class="col-md-12">Restaurar</div>
+          <div class="col-md-12" (click)="deleteDashlet(this.reciveItemMenu)">Eliminar</div>
+        </div>
+    </div>
+  </div>
+</div>

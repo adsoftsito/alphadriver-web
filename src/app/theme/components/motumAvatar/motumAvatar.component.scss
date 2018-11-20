@@ -1,0 +1,110 @@
+@import "../../sass/styles/styles";
+
+$avatar-a-c-color-bg: tm-theme(avatar-a-c-color-bg);
+$avatar-d-f-color-bg: tm-theme(avatar-d-f-color-bg);
+$avatar-g-i-color-bg: tm-theme(avatar-g-i-color-bg);
+$avatar-j-l-color-bg: tm-theme(avatar-j-l-color-bg);
+$avatar-m-o-color-bg: tm-theme(avatar-m-o-color-bg);
+$avatar-p-r-color-bg: tm-theme(avatar-p-r-color-bg);
+$avatar-s-u-color-bg: tm-theme(avatar-s-u-color-bg);
+$avatar-v-z-color-bg: tm-theme(avatar-v-z-color-bg);
+$avatar-v-z-color-bg: tm-theme(avatar-v-z-color-bg);
+
+$avatar-color-border: tm-theme(color-white);
+$avatar-color-text: tm-theme(color-white);
+$avatar-color-icon: tm-theme(color-black);
+
+@include tm-install-global() {
+  motum-avatar {
+    .motum-avatar {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      border-radius: 100%;
+      border: 2px solid $avatar-color-border;
+      text-align: center;
+      color: $avatar-color-text;
+
+      span {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: inherit;
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+    .motum-avatar-icon {
+      position: relative;
+      width: 45px;//Resting 3px
+      height: 45px;//Resting 3px
+      border-radius: 100%;
+      border: 2px solid $avatar-color-border;
+      text-align: center;
+      color: $avatar-color-icon;
+
+      i {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: inherit;
+        font-size: 20px;
+      }
+    }
+
+    .motum-avatar-img {
+      border-radius: 100%;
+      border: 2px solid $avatar-color-border;
+      width: 45px;
+      height: 45px;
+    }
+
+    .avatar-bg-a,
+    .avatar-bg-b,
+    .avatar-bg-c {
+      background-color: $avatar-a-c-color-bg;
+    }
+    .avatar-bg-d,
+    .avatar-bg-e,
+    .avatar-bg-f {
+      background-color: $avatar-d-f-color-bg;
+    }
+    .avatar-bg-g,
+    .avatar-bg-h,
+    .avatar-bg-i {
+      background-color: $avatar-g-i-color-bg;
+    }
+    .avatar-bg-j,
+    .avatar-bg-k,
+    .avatar-bg-l {
+      background-color: $avatar-j-l-color-bg;
+    }
+    .avatar-bg-m,
+    .avatar-bg-n,
+    .avatar-bg-ñ,
+    .avatar-bg-o {
+      background-color: $avatar-m-o-color-bg;
+    }
+    .avatar-bg-p,
+    .avatar-bg-q,
+    .avatar-bg-r {
+      background-color: $avatar-p-r-color-bg;
+    }
+    .avatar-bg-s,
+    .avatar-bg-t,
+    .avatar-bg-u {
+      background-color: $avatar-s-u-color-bg;
+    }
+    .avatar-bg-v,
+    .avatar-bg-w,
+    .avatar-bg-x,
+    .avatar-bg-y,
+    .avatar-bg-z{
+      background-color: $avatar-v-z-color-bg;
+    }
+  }
+}

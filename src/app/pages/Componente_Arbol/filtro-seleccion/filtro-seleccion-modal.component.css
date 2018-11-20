@@ -1,0 +1,37 @@
+/*
+.card-modal-seleccion {
+  overflow: scroll;
+  max-height: 600px;
+  min-height: 600px;
+}
+
+@media (min-height: 600px) {
+  .card-modal-seleccion {
+    max-height: 400px;
+    min-height: 400px;
+  }
+}
+
+@media (min-height: 900px) {
+  .card-modal-seleccion {
+    max-height: 600px;
+    min-height: 600px;
+  }
+}
+
+.content-card-block {
+  margin-top: 10px;
+}
+
+.align-left {
+  text-align: left !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.btn-middle-row {
+  vertical-align: text-top;
+}
+*/

@@ -1,0 +1,119 @@
+
+<div class="auth-main">
+  <header class="container-logo-title">
+
+    <img id="imgSvgRegistrer" xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg" src="{{iconLogin}}"/>
+    
+    <div class="header-seccion">
+      <p>{{ 'pages.userRegister.login' | translate}}</p>
+    </div>
+</header>
+
+<article class="container-login">
+      <div class="form">
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div class=" col-md-12 col-sm-12">
+              <div class="row">
+                  <div class=" col-md-6 col-sm-6"><label class="inputTitle">{{ 'pages.userRegister.names' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form">
+                          <input type="text" class="form-control input-sm" name="names" id="inputNames"  ngModel required>
+                      </div>
+                  </div>
+                  <div class=" col-md-6 col-sm-6"><label  class="inputTitle">{{ 'pages.userRegister.surnames' | translate}}</label>
+                      <div class="form-group has-success motum-input-form">
+                          <input  type="text" class="form-control input-sm" name="surnames" id="inputSurnames"  ngModel required>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class=" col-md-6 col-sm-6"><label  class="inputTitle">{{ 'pages.userRegister.phone' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form motum-intl-tel-input">
+                          <motum-intl-tel-input [id]="'tm-intl-tel-input-fixed'"
+                                    [cssClasses]="'form-control input-sm telRegister'"
+                                    (fullValueChange)="intlTelInput($event)"></motum-intl-tel-input>
+                      </div>
+                  </div>
+                  <div class=" col-md-6 col-sm-6"><label  class="inputTitle">{{ 'pages.userRegister.email' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form">
+                          <input  type="email" class="form-control input-sm" name="email" id="inputEmail"  ngModel required>
+                      </div>
+                      <div *ngIf="dangeremail" class="danger-email">{{'pages.userRegister.dangeremail' | translate}}</div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class=" col-md-6 col-sm-6"><label  class="inputTitle">{{ 'pages.userRegister.username' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form">
+                          <input  type="text" class="form-control input-sm" name="username" id="inputUsername"  ngModel required>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class=" col-md-6 col-sm-6"><label  class="inputTitle">{{ 'pages.userRegister.createPassword' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form">
+                          <input  type="password" [type]="isPassword ? 'password' : 'text' " class="form-control input-sm" name="createPassword" id="inputCreatePassword" (ngModelChange)="passwordValidation($event)"  ngModel required>
+
+                          <span class="form-control-feedback change-eye-color center-icon" (click)="statusChange()" >
+                              <i *ngIf="isPassword" class="motum-i tm-e93b change-eye-color" aria-hidden="true"></i>
+                              <i *ngIf="!isPassword" class="motum-i tm-e93d change-eye-color" aria-hidden="true"></i>
+                          </span>
+                      </div>
+                  </div>
+                  <div class=" col-md-6 col-sm-6" [ngClass]="{'disableConfirm': disabledConfirmPass}"><label  class="inputTitle">{{ 'pages.userRegister.confirmPassword' | translate}}</label> 
+                      <div class="form-group has-success motum-input-form">
+                          <input [disabled]="disabledConfirmPass" type="password" [type]="confirmPass ? 'password' : 'text' " class="form-control input-sm" name="confirmPassword" id="inputConfirmPassword" ngModel required>
+                          <span *ngIf="disabledConfirmPass" class="form-control-feedback change-eye-color center-icon disableIcon">
+                                <i class="motum-i tm-e93b change-eye-color" aria-hidden="true"></i>
+                          </span>
+                          <span *ngIf="!disabledConfirmPass" class="form-control-feedback change-eye-color center-icon" (click)="statusConfirmPassword()" >
+                              <i *ngIf="confirmPass" class="motum-i tm-e93b change-eye-color" aria-hidden="true"></i>
+                              <i *ngIf="!confirmPass" class="motum-i tm-e93d change-eye-color" aria-hidden="true"></i>
+                          </span>
+                          <div  *ngIf="incorrectPass" class="incorrect-pass">{{'pages.userRegister.incorrectPass' | translate}}</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row warningLabels">
+                  <div class=" col-md-6 col-sm-6">
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[0].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[0].name === 'motum-i tm-e912', '': this.passValidate[0].name === ''}"><span class="warningIcon"><i class="{{passValidate[0].name}}"></i></span>{{ 'pages.userRegister.characters' | translate}}</label>
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[1].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[1].name === 'motum-i tm-e912', '': this.passValidate[1].name === ''}"><span class="warningIcon"><i class="{{passValidate[1].name}}"></i></span>{{ 'pages.userRegister.uppercase' | translate}}</label>
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[2].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[2].name === 'motum-i tm-e912', '': this.passValidate[2].name === ''}"><span class="warningIcon"><i class="{{passValidate[2].name}}"></i></span>{{ 'pages.userRegister.consecutive' | translate}}</label>
+                  </div>
+                  <div class=" col-md-6 col-sm-6">
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[3].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[3].name === 'motum-i tm-e912', '': this.passValidate[3].name === ''}"><span class="warningIcon"><i class="{{this.passValidate[3].name}}"></i></span>{{ 'pages.userRegister.number' | translate}}</label>
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[4].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[4].name === 'motum-i tm-e912', '': this.passValidate[4].name === ''}"><span class="warningIcon"><i class="{{this.passValidate[4].name}}"></i></span>{{ 'pages.userRegister.lowercase' | translate}}</label>
+                    <label class="warningTitle" [ngClass]="{'correct': this.passValidate[5].name === 'motum-i tm-e98f', 'incorrect': this.passValidate[5].name === 'motum-i tm-e912', '': this.passValidate[5].name === ''}"><span class="warningIcon"><i class="{{this.passValidate[5].name}}"></i></span>{{ 'pages.userRegister.repeat' | translate}}</label>
+                  </div>
+              </div>
+            </div> <!--End col-md-->
+            <div class=" col-md-12 col-sm-12 d-flex justify-content-center">
+              <button [disabled]="!form.form.valid || (disabledIntlnTel || disabledConfirmPass)" [ngClass]="{'disableBtn': !form.form.valid || (disabledIntlnTel || disabledConfirmPass)}" class="registerBtn" type="submit" >{{ 'pages.userRegister.signUp' | translate}}</button>
+            </div>
+        </form> <!--End form-->
+      </div> <!--div form-->
+</article>
+
+
+
+   <footer class="footter">
+      <div class="footter-container">
+          <div class="top-footter">
+              <!-- <a routerLink="/userRegister" id="top-footter-left" class="underlined">{{ 'pages.login.registry' | translate }}</a> -->
+              <!-- <span  id="top-footter-left">{{ 'pages.login.registry' | translate }}</span> -->
+                
+              <select  [(ngModel)]="selectValue" (click)="changeLanguage(selectValue)" id="top-footter-right">
+                  <option value="es">{{'pages.login.spanishlanguage' | translate }}</option>
+                  <option value="en">{{ 'pages.login.englishlanguage' | translate }}</option>
+              </select>
+          </div>
+      
+          <div class="bottom-footter">
+              <a routerLink="!#" id="bottom-footter-left" class="underlined">{{ 'pages.login.terms' | translate}}</a>
+              <i class="motum-i tm-e923 circle-bullet-bottom" aria-hidden="true"></i>
+              <a routerLink="!#" id="buttom-footter-right" class="underlined">{{ 'pages.login.politics' | translate }}</a>
+          </div>
+      </div>
+   </footer>
+
+  
+</div>
+

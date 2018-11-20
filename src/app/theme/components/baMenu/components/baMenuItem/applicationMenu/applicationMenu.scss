@@ -1,0 +1,132 @@
+@import '../../../../../../theme/sass/motumVariables';
+@import '../../../../../../theme/sass/styles/styles.scss';
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+ @include tm-install-component() {
+    .applicationMenu{
+      position: fixed;
+      top: 54px;
+      background: #fff;
+      height: calc(100vh - 54px);
+      width: 24%;  
+      z-index: 102;
+      box-shadow: 5px 3px 48px -7px rgba(0, 0, 0, 0.15);
+
+      &.size50{
+        width: 50% !important;
+      }
+  }
+  .content-menu {
+    max-height: 90%;
+    // padding: 56px 30px 15px 30px;
+    padding: 87.221px 25px 15px 25px;
+    text-align:center;
+
+    &.menu1{
+      position: absolute;
+      width: 50%;
+    }
+    &.menu2{
+      position: absolute;
+      width: 50%;
+      left: 50%;
+    }
+  }
+  .content-menu label {
+    font-size: 11px;
+  }
+  .content-menu .row {
+    margin-right: -5px;
+    margin-left: -5px;
+  }
+  .tm-mu {
+      font-size: 4em;
+      cursor: pointer;
+      margin: 0 0 0 0;
+      height: 0px;
+      margin-top: -17px;
+  }
+
+  .content-menu [class*='col-md-4'] { /* contains col-lg in class name */
+    margin-bottom: 30px;
+  }
+  .content-menu [class*='col-md'] { /* contains col-lg in class name */
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 25px;
+  }
+
+  .icon{
+    font-size: 2.8em;
+    cursor: pointer;
+  }
+ 
+  i.fa,.icon {
+    outline:none;
+  }
+  i.motum-i{
+    // font-size:2.8em;
+    font-size: 3.45em;
+    outline: none;
+  }
+
+  .iconAppMenu{
+    height: 60px;
+    outline: none;
+    margin-bottom: 9.609px;
+    display: flex;
+    justify-content: center;
+
+    .iconApp{
+      width: 5rem;
+    }
+    .tm-mu{
+      margin-top: 0 !important;
+    }
+  }
+  .iconApp:hover{
+    cursor: pointer;
+    .motum-i {
+          &.motum-i:before {
+            background-color: $motum-light-grey;
+            // padding: 20px;
+            padding: 16px;
+            border-radius: 6px;
+          }
+    }
+
+    div i.fa :before,.icon:before {
+      outline:none;
+      background-color: $motum-light-grey;
+      padding: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+
+   .menu-app-font-color {
+     color: tm-theme(button-color-grey-bg);
+   }
+   .font-medium-menu-app {
+     font-family: tm-theme(font-secondary);
+     font-weight: 500;
+     color: tm-theme(labes-app-menu);
+   }
+ }
+
+
+

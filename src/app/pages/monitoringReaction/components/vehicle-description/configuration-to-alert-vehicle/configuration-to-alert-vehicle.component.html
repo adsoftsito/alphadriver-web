@@ -1,0 +1,63 @@
+<div *ngIf="unitSettings!=null" class="section-flex">
+  <div class="scroll-content-info">
+    <div class="section-flex-config">
+      <div class="titlesection">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12">
+            <b>{{'pages.monitoringreaction.vehicle-configuration.device'|translate}}</b>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 -position-left-text_">
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.brand' | translate}}:</a> <span class="information">{{unitSettings.trademark}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.maker' | translate}}:</a><span class="information">{{unitSettings.marker}}</span><br>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6  strong-position-right-text_">
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.model' | translate}}:<span class="information">
+                {{unitSettings.model}} </span></a><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.serialnumber' | translate}}:<span class="information">
+                {{unitSettings.numberSerie}}</span></a><br>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12">
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.product' | translate}}:</a><span class="information">{{unitSettings.product}}</span><br>
+          </div>
+        </div>
+        <!---Alerts to Drive-->
+        <div class="row content-alertsToDrive">
+          <div class="col-xl-12 col-lg-12 col-md-12">
+            <b>{{'pages.monitoringreaction.vehicle-configuration.noticestothedriver' | translate}}</b>
+            <hr>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.devicebeep' | translate}}:</a><span class="information">{{statusDeviceDeep}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.reminderdriverid' | translate}}:</a><span class="information">{{statusRemienderDriverId}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.whistleidle' | translate}}:</a><span class="information">{{statusWhistleIdle}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.speedWarning' | translate}}:</a><span class="information">{{statusSpeedWarning}}</span><br>
+            <span class="information">{{'pages.monitoringreaction.vehicle-configuration.start'|translate}}: {{speedStart}} km/h </span><span class="information">{{'pages.monitoringreaction.vehicle-configuration.end'|translate}}:
+              {{speedEnd}} km/h</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.beepindangerousdriving' |
+              translate}}:</a><span class="information">{{statusBeepInDangerousDriving}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.seatbeltwhistle' | translate}}:</a><span class="information">{{statusSeatbeltWhistle}}</span><br>
+            <a class="titletext">{{'pages.monitoringreaction.vehicle-configuration.drivingbeepingreversing' |
+              translate}}:</a><span class="information">{{statusDrivingBeebInReversing}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section-flex-end-footter">
+    <div class="position-bottom-group">
+      <button motum-button color="secondary" round="false" style="padding:0px 10px;">{{'pages.monitoringreaction.vehicle-configuration.configuredevice'
+          | translate}}</button>
+      <!-- <button class="motum-btn save chage-property-btn">{{'pages.monitoringreaction.vehicle-configuration.configuredevice'
+        | translate}}</button> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+@import "../../../../theme/sass/motumVariables";
+
+* {
+  font-size: 11px;
+}
+.motum-chat-detail {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  height: calc(100vh - 67px) !important;
+  padding: 10px 0px;
+}
+.detail-main {
+  width: 100%;
+  border-bottom: 1px solid $motum-grey-border-group;
+  flex-grow: 1;
+}
+.detail-members {
+  width: 100%;
+  border-bottom: 1px solid $motum-grey-border-group;
+  flex-grow: 1;
+}
+.detail-files {
+  width: 100%;
+  flex-grow: 3;
+}
+.gallery {
+  border: 0 solid;
+  margin-top: 5px;
+  padding: 5px 0px 0px;
+  // position: relative;
+}
+.control-detail-gallery {
+  width: 100%;
+  height: 15px;
+  padding-right: 10px;
+  label {
+    float: right;
+    cursor: pointer;
+    font-weight: 500;
+  }
+}
+.control-detail-members {
+  width: 100%;
+  height: 15px;
+  padding-right: 10px;
+  label {
+    float: right;
+    cursor: pointer;
+    font-weight: 500;
+  }
+}
+.main-content-gallery {
+  overflow-y: auto;
+  max-height: 230px;
+}
+.body-gallery {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 2px;
+}
+.body-gallery>* {
+  flex: 0 0 33%;
+}
+.item-colum-gallery {
+  display: block;
+  position: relative;
+  max-height: 75px;
+  img {
+    margin: 0;
+    padding: 4px;
+    border: 0;
+    font: inherit;
+    height: 100%;
+    width: 100%;
+  }
+}
+.btn-close {
+  text-align: right;
+  margin-right: 10px;
+}
+::-webkit-scrollbar {
+    width: 3px;
+    background-color: $motum-grey-group;
+}
+.data-center {
+  text-align: center;
+  margin-top: 15px;
+  b {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+.avatar-vihicle{
+  width: 100%;
+  text-align: center;
+  line-height: 2.3em;
+}
+
+.icon-user-vehicle{
+  color: black;
+  font-size: 52px !important;
+  border-radius: 100%;
+  border: 5px solid;
+  margin-top: -17px;
+  height: 67px;
+  width: 71px;
+}
+.icon-user-vehicle:before {
+  margin: 10px 6px;
+}
+
+// $colors: (
+// greencircle: $motum-green-login-button,
+// purplecircle: $motum-purple,
+// orangecircle: $motum-orange-border,
+// graycircle: $motum-grey-group-active
+// );
+// @each $colors, $specific in $colors {
+//   .icon-user-vehicle.#{$colors} {
+//     border-color: $specific;
+//   }
+// }
+$label-status: ('purplecircle','graycircle','greencircle','orangecircle');
+$status-color: ($motum-grey-group-active, $motum-grey-group-active, $motum-green, $motum-green);
+$border-color: ($motum-grey-border, $motum-grey-border, $motum-green-border, $motum-green-border);
+
+@each $label in $label-status {
+    $i: index( $label-status, $label );
+    
+    .icon-user-vehicle.#{$label}{
+        border-color: nth($status-color , $i ) !important;
+        box-shadow: 0 0 0 2px nth($border-color , $i ) !important;
+    }
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  background: $motum-grey-group;
+  border-radius: 5px;
+}
+
+.people-list {
+  width:100%;
+  float: left;
+  overflow-y: auto;
+  max-height: 140px;
+  ul {
+    padding: 10px;
+    list-style-type: none;
+    margin: 0;
+    li {
+      padding-bottom: 8px;
+    }
+  }
+
+  img {
+    float: left;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+  }
+  .about {
+    float: left;
+    margin-top: 5px;
+  }
+
+  .about {
+    padding-left: 5px;
+  }
+
+  .status {
+    color: $motum-green-login-button;
+  }
+
+}

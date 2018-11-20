@@ -1,0 +1,69 @@
+<div class="filterSelection" *ngIf="flagOperationStatus">
+          <div class="filters">
+            Estado de operación
+          </div>
+          <span class="motum-i tm-e912 closeFS" (click)="closeFilterSelection()"></span>
+        <hr class="hr-title">
+        <div class="filterContent">
+              <label class="container {{ status.checked ? 'selectLabel' : 'defaultLabel'  }}" *ngFor="let status of operationStatus">{{ status.label}}
+                  <input type="checkbox" name="{{ status.label}}"  checked="true" (change)="onCheckboxChange(status,$event)" ngModel>
+                  <span class="checkmark"></span>
+              </label>
+              <div class="section-footer">
+                  <button type="submit" class="btn btn-primary window-btn-size motum-btn cancel" (click)="closeFilterSelection()">Cancelar</button>
+                  <button type="submit" class="btn btn-primary window-btn-size motum-btn save" (click)="selectionFilteringOptions()">Aplicar</button>
+              </div>
+        </div>
+</div>
+
+<div class="filterSelection" *ngIf="flagPointsInterest">
+    <div class="filters">
+      Puntos de interés
+    </div>
+    <span class="motum-i tm-e912 closeFS" (click)="closeFilterSelection()"></span>
+  <hr class="hr-title">
+  <div class="filterContent">
+        <label class="container {{ status.checked ? 'selectLabel' : 'defaultLabel'  }}" *ngFor="let status of pointsInterest">{{ status.label}}
+            <input type="checkbox" name="{{ status.label}}"  [checked]="status.checked" (change)="changePointsInterest(status,$event)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+        <div class="section-footer">
+            <button type="submit" class="btn btn-primary window-btn-size motum-btn cancel" (click)="closeFilterSelection()">Cancelar</button>
+            <button type="submit" class="btn btn-primary window-btn-size motum-btn save" (click)="selectionPointsInterest()">Aplicar</button>
+        </div>
+</div>
+<div class="filterSelection" *ngIf="flagTypeVehicle">
+    <div class="filters">
+      Tipo de vehículo
+    </div>
+    <span class="motum-i tm-e912 closeFS" (click)="closeFilterSelection()"></span>
+  <hr class="hr-title">
+  <div class="filterContent">
+        <label class="container {{ status.checked ? 'selectLabel' : 'defaultLabel'  }}" *ngFor="let status of typeVehicle">{{ status.label}}
+            <input type="checkbox" name="{{ status.label}}"  [checked]="status.checked" (change)="changeTypeVehicle(status,$event)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+            <div class="section-footer">
+                <button type="submit" class="btn btn-primary window-btn-size motum-btn cancel" (click)="closeFilterSelection()">Cancelar</button>
+                <button type="submit" class="btn btn-primary window-btn-size motum-btn save" (click)="selectionTypeVehicle()">Aplicar</button>
+            </div>
+</div>
+<div class="filterSelection" *ngIf="flagServiceStatus">
+    <div class="filters">
+      Estado de servicio
+    </div>
+    <span class="motum-i tm-e912 closeFS" (click)="closeFilterSelection()"></span>
+  <hr class="hr-title">
+  <div class="filterContent">
+        <label class="container {{ status.checked ? 'selectLabel' : 'defaultLabel'  }}" *ngFor="let status of serviceStatus">{{ status.label}}
+            <input type="checkbox" name="{{ status.label}}"  [checked]="status.checked" (change)="changeServiceStatus(status,$event)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+            <div class="section-footer">
+                <button type="submit" class="btn btn-primary window-btn-size motum-btn cancel" (click)="closeFilterSelection()">Cancelar</button>
+                <button type="submit" class="btn btn-primary window-btn-size motum-btn save" (click)="selectionServiceStatus()">Aplicar</button>
+            </div>
+</div>

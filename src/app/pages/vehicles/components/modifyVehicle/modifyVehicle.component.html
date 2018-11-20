@@ -1,0 +1,109 @@
+<ba-card>
+    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-lg-8">
+            <div>
+                <div class="buttonsBoxContainer">
+
+                    <form class="row form-inline align-items-center">
+                        <div class="form-group col-sm-1 onApClick">
+                            <i class="ion-arrow-down-c"  (click) = 'exportToExel();'></i>
+                        </div>
+
+                        <div class="form-group col-sm-1">
+                            <div class="checkbox custom-checkbox">
+                                <ba-checkbox [(ngModel)]="isRemember"
+                                             [label]="' '"
+                                             [ngModelOptions]="{standalone: true}">
+                                </ba-checkbox>
+                                <!--<ba-checkbox [(ngModel)]="isRemember"-->
+                                <!--[label]="' '"-->
+                                <!--(change)="makeSelectableRow()"-->
+                                <!--[ngModelOptions]="{standalone: true}">-->
+                                <!--</ba-checkbox>-->
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group col-sm-1 animated fadeIn" -->
+                        <!--(click)="onRemoveSelected(modalDelete)" -->
+                        <!--*ngIf="isRemember">-->
+                        <!--<i class="motum-i tm-u tm-trash table-tools-icons-margin"></i>-->
+                        <!--</div>-->
+                        <div class="form-group col-sm-1 animated fadeIn"
+                             *ngIf="isRemember">
+                            <i class="motum-i tm-u tm-trash table-tools-icons-margin"></i>
+                        </div>
+
+                        <!--<div class="form-group col-sm-1 animated fadeIn" -->
+                        <!--*ngIf="isRemember" -->
+                        <!--(click)="onDisableSelected()">-->
+                        <!--<i class="motum-i tm-u tm-disable table-tools-icons-margin"></i>-->
+                        <!--</div>-->
+                        <div class="form-group col-sm-1 animated fadeIn"
+                             *ngIf="isRemember">
+                            <i class="motum-i tm-u tm-disable table-tools-icons-margin"></i>
+                        </div>
+
+                        <!--<div class="form-group col-sm-1 animated fadeIn" -->
+                        <!--*ngIf="isRemember" -->
+                        <!--(click)="onAbleSelected()">-->
+                        <!--<i class="motum-i tm-u tm-able table-tools-icons-margin"></i>-->
+                        <!--</div>-->
+                        <div class="form-group col-sm-1 animated fadeIn"
+                             *ngIf="isRemember">
+                            <i class="motum-i tm-u tm-able table-tools-icons-margin"></i>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-lg-4">
+
+            <form class="row form-inline">
+
+                <div class="form-group col-sm-4 form-inline" >
+                    <div class="animated fadeIn calendar-btn-container">
+                        <span class="calendar-lbl-container font-size-normal">Últimos 7 días</span>
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-8 has-success has-feedback motum-search-input">
+                    <input id="inputSuccess2"
+                           type="text"
+                           class="form-control search-input-form"
+                           [placeholder]=" 'pages.userControl.client_user.busqueda' | translate "
+                           aria-describedby="inputSuccess2Status">
+                    <!--<i class="motum-i tm-u tm-search form-control-feedback font-size-search" -->
+                    <!--aria-hidden="true" -->
+                    <!--(click)="unClick()"></i>-->
+                    <i class="motum-i tm-u tm-search form-control-feedback font-size-search"
+                       aria-hidden="true"></i>
+                    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <ag-grid-angular class="ag-theme-material" style="width: 100%; height: calc(100vh - 190px)"
+                             [gridOptions] = "_gridOptions"
+                             [rowSelection]="_rowSelection"
+                             [icons]="_customIcons"
+
+                             [suppressRowClickSelection]="true"
+                             [suppressAggFuncInHeader]="true"
+                             [enableColResize]="true"
+                             [pagination]="true"
+                             [animateRows]="true"
+
+                             (gridReady)="onGridReady($event)"
+                             (cellClicked)="onCellClicked($event)">
+            </ag-grid-angular>
+        </div>
+    </div>
+</ba-card>

@@ -1,0 +1,34 @@
+@import '../../../../../theme/sass/conf/conf';
+
+.modal-body {
+  min-height: 25%;
+}
+
+.modal-dialog-edit .modal-lg {
+  top: 25%;
+  width: 33%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.modal-dialog-edit .modal-header {
+  background-color: #ff3031;
+  color: $default;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.modal-dialog-edit .modal-content {
+  border-radius: 8px;
+}
+
+.modal-dialog-edit .modal-backdrop {
+  background-color: rgba(80,80,80,0.4);
+}
+
+@media screen and (max-width: 600px) {
+  .modal-dialog-edit .modal-lg {
+      top: 56px !important;
+  }
+}

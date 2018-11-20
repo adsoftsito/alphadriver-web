@@ -1,0 +1,37 @@
+<div class="motum-grid-item m-row-12 m-column-12 m-item-z-index-5">
+  <div class="al-content">
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-12">
+          <motum-table-information-component  *ngIf="dataTable"
+            [table] = "dataTable"
+            [heightVh] = "69"
+            [enableExport] = "true"
+            [enableUpdate] = "true"
+            [enableCalendar] = "true"
+
+            (updateData) = "updateDataTable()"
+            (filterCalendar) = "updateDataTableByDate($event)">
+        </motum-table-information-component>
+        <div class="m-item-z-index-5">
+            <floatbutton
+              [isPlus] = "false"
+              [configFloatButton] ="configFloatButton"
+              (primaryButtonClick)="openOrCloseFiltering($event)">
+            </floatbutton>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="motum-absolute-menu">
+  <div class="motum-grid-container m-cover">
+
+    <mr-filtering-options *ngIf="flagFilterin"
+    [ngClass]="['motum-grid-item', MR_HTML_CLASSES.SUBMENU_1, 'm-item-z-index-6 background-menu', 'borderLeft']"
+    (closeFiltering)="closeFiltering($event)"></mr-filtering-options>
+
+  </div>
+</div>

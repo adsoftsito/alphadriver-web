@@ -1,0 +1,431 @@
+@import '../../../theme/sass/conf/conf';
+@import '../../../theme/sass/motumVariables';
+$sidebar-scroll-width: 4px;
+$angle-left: '\f100';
+$angle-right: '\f101';
+$sidebar: #ffffff;
+$sidebar-text: #000000;
+.content-menu {
+  max-height: 90%;
+  margin: 50px 30px 15px 30px;
+  text-align:center;
+}
+.content-menu label {
+  font-size: 12px;
+}
+.content-menu .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+.option-button {
+  font-size: 14px;
+  cursor: pointer;
+}
+.content-menu [class*='col-md-4'] { /* contains col-lg in class name */
+  margin-bottom: 30px;
+}
+.content-menu [class*='col-md'] { /* contains col-lg in class name */
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 45px;
+}
+.allcontent {
+  min-height: 90%;
+  overflow-y: auto;
+}
+.al-sidebar-menu .space{
+    font-size: 3em;
+    margin: 15px 0 0px 0;
+    // bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.al-sidebar-menu .tm-mu {
+    font-size: 4em;
+    cursor: pointer;
+    margin: 0 0 0 0;
+    height: 0px;
+    margin-top: -17px;
+}
+.al-sidebar-menu .tm-mu:hover {
+  &.tm-mu:before {
+    margin: -8px;
+    background-color: $motum-light-grey;
+    padding: 20px;
+    border-radius: 6px;
+  }
+}
+.al-sidebar-menu i {
+    outline : none;
+  }
+.al-sidebar-menu .tm-admin-users:hover {
+    color: $motum-orange-partner;
+}
+.al-sidebar-menu .tm-admin-clients:hover {
+    color: $motum-purple-sidebar;
+}
+
+.al-sidebar-menu .tm-admin-units:hover {
+    color: $motum-light-blue-sidebar;
+}
+
+.al-sidebar-menu .tm-admin-licenses:hover {
+    color: $motum-green-sidebar;
+}
+
+.al-sidebar-menu .tm-admin-groups:hover {
+    color: $motum-pink-sidebar;
+}
+
+.al-sidebar-menu .tm-admin-sims:hover {
+    color: $motum-red-partner;
+}
+
+.al-sidebar-menu .tm-admin-services:hover {
+    color: $motum-light-blue-sidebar-medium;
+}
+.al-sidebar-menu .tm-admin-motum:hover {
+    color: $motum-blue;
+}
+#close{
+  color: black !important;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#title{
+  text-transform: uppercase;
+  padding-top: 30px;
+  padding-left: 18px;
+  padding-bottom: 20px;
+  // border-bottom-style: ridge;
+  // border-bottom-width: 1px;
+  /*
+  n the above lines of code, the 100% 0 100% 0/3px 0 3px 0 represents the size of the gradient border
+  on each side (read as [top] [right] [bottom] [left]). Originally it was 0 0 100% 0/0 0 3px 0.
+  */
+  // border-image: linear-gradient(to right, rgba(177,177,177, 1) 1%, rgba(177,177,177, 1) 90%)
+  //           0 0 100% 0/50px 0 1.4px 18px  stretch;
+  color: #000000;
+}
+.control-view {
+    display: none;
+}
+.control-view-soon {
+  display: inline;
+}
+
+@mixin default-sublist() {
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: none;
+  &.expanded {
+    display: block;
+  }
+  > menu-item-component > li {
+    display: block;
+    float: none;
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+    a {
+      display: block;
+      text-shadow: none;
+      font-size: 13px;
+      text-decoration: none;
+      color: $sidebar-text;
+      padding-left: 52px;
+      height: auto;
+      line-height: 29px;
+      &:hover {
+        color: $primary;
+      }
+    }
+    &.selected:not(.with-sub-menu) > a {
+      border: none;
+      background-color: $primary;
+      &:hover {
+        color: $sidebar-text;
+      }
+    }
+
+  }
+}
+
+$parts: (
+	one: 25%,
+	two: 47%,
+	three: 72%,
+  four: 96%
+);
+:host /deep/ {
+  @each $parts, $specific in $parts {
+
+      .al-sidebar-menu.#{$parts} {
+        width: $specific;
+        top: $top-height;
+        left: 0;
+        z-index: 101;
+        display: inline;
+        min-height: calc(100vh - 66px);
+        max-height: 100%;
+        background-color: $sidebar;
+        height: calc(100% - 66px);
+        position: absolute;
+        box-shadow: 5px 3px 39px 2px rgba(0, 0, 0, 0.15);
+      }
+    }
+    // .allcontent{
+    //   overflow: scroll;
+    // }
+      .al-sidebar-menu-list {
+        margin: 0;
+        overflow: hidden;
+        padding: 18px 0 0 0;
+        list-style: none;
+      }
+
+      .al-sidebar-menu-sublist .subitem-submenu-list {
+        padding-left: 15px;
+      }
+
+      .subitem-submenu-link {
+        .fa {
+          top: 7px;
+        }
+      }
+
+      .al-sidebar-menu-menu-list-item {
+        display: block;
+        position: relative;
+        float: none;
+        padding: 0;
+        &.selected:not(.with-sub-menu) {
+          background-color: $primary;
+          a.al-sidebar-menu-list-link {
+            color: $sidebar-text;
+            b {
+              color: $sidebar-text;
+            }
+          }
+        }
+      }
+
+      .ba-sidebar-item-expanded {
+        > ul.al-sidebar-menu-sublist {
+          display: block !important;
+        }
+
+      }
+
+      .al-sidebar-menu-list-item, .ba-sidebar-sublist-item {
+        &.ba-sidebar-item-expanded {
+          > .al-sidebar-menu-list-link {
+            b {
+              transform: rotate(180deg);
+            }
+          }
+
+          > .al-sidebar-menu-sublist {
+            display: block;
+          }
+        }
+      }
+
+      a.al-sidebar-menu-list-link {
+        display: block;
+        height: 42px;
+        padding-left: 18px;
+        text-shadow: none;
+        font-size: 13px;
+        text-decoration: none;
+        color: $sidebar-text;
+        line-height: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover {
+          color: $primary;
+          b {
+            color: $primary;
+          }
+        }
+        i {
+          margin-right: 18px;
+          width: 16px;
+          display: inline-block;
+        }
+        b {
+          display: block;
+          opacity: 1;
+          width: 14px;
+          height: 14px;
+          line-height: 14px;
+          text-shadow: none;
+          font-size: 18px;
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          padding: 0;
+          text-align: center;
+          color: $sidebar-text;
+          transition: transform 0.2s linear;
+        }
+      }
+
+      .slimScrollBar, .slimScrollRail {
+        border-radius: 0 !important;
+        width: $sidebar-scroll-width !important;
+        left: $sidebar-width - $sidebar-scroll-width;
+      }
+
+      .al-sidebar-menu-sublist {
+        @include default-sublist();
+      }
+
+      .sidebar-hover-elem {
+        width: $sidebar-scroll-width;
+        background: $primary;
+        position: absolute;
+        top: -150px;
+        left: $sidebar-width - $sidebar-scroll-width;
+        transition: all 0.5s ease;
+        transition-property: top, height;
+        height: 42px;
+        display: block;
+      }
+
+      .sidebar-select-elem {
+        display: block;
+        top: 94px;
+      }
+
+      .menu-collapsed {
+        .slimScrollBar, .slimScrollRail {
+          display: none !important;
+        }
+      }
+  }
+
+
+  // yo agregué los estilos de abajo para el drag and drop
+
+  .dnd-drag-start {
+    -moz-transform:scale(0.8);
+    -webkit-transform:scale(0.8);
+    transform:scale(0.8);
+    opacity:0.7;
+    border: 2px dashed #000;
+}
+
+.dnd-drag-enter {
+    opacity:0.7;
+    border: 2px dashed #000;
+}
+
+.dnd-drag-over {
+    border: 2px dashed #000;
+}
+
+.dnd-sortable-drag {
+  -moz-transform:scale(0.9);
+  -webkit-transform:scale(0.9);
+  transform:scale(0.9);
+  opacity:0.7;
+  border: 1px dashed #000;
+}
+
+
+
+//Menu Drag and Drop
+.btnMenuDrag{
+  background-color: #f1f1f1;
+  border-radius: 6px;
+  border: 0px;
+  height: 37px;
+}
+.itemDrag{
+  line-height: 2;
+}
+.hrDrag{
+  width: 100%;
+}
+.hrDragMenu{
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.iconMenuTemplates{
+  text-align: right;
+}
+.btnAngleDown{
+  color: #afa0a0;
+  margin-right: 14px;
+  line-height: 1;
+  background-color: #f1f1f1;
+  border-top-right-radius: 11px;
+  border-bottom-right-radius: 12px;
+}
+.btnTemplates{
+  cursor: pointer;
+  position: absolute;
+  right: 23px;
+  line-height: 3.25;
+}
+.btnTemplates:hover{
+  color: $motum-light-green;
+}
+.btnTemplates:hover .tooltipTemplates {
+  visibility: visible;
+}
+
+.tooltipTemplates{
+  color: #000;
+  visibility: hidden;
+  background-color: #f1f1f1;
+  font-size: 9px;
+  border: 0px;
+  border-style: solid;
+  width: 68px;
+  height: 18px;
+  right: -19px;
+  top: -6px;
+  margin-top: 45px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 18px;
+  position: absolute;
+  z-index: 101;
+}
+.tooltipTemplates::before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  right: calc(44% - 9px);
+  top: -8px;
+  border-style: solid;
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent #f1f1f1 transparent;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+
+ // ::placeholder {
+   //   color: red !important;
+     // opacity: 1; /* Firefox */
+  //}
+
+ // input::placeholder {
+   // color: rgb(123, 255, 0) !important;
+  //}
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #000;
+      font-weight: bold;
+    }
+
+
+    /*select::-ms-expand {
+      display: none !important;
+  }*/

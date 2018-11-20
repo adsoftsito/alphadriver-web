@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let node of data">
+    <div *ngIf="!node.hidden && !node.ignoreFilter">
+      <span (click)="node.toggle()" [ngClass]="{'expand-hidden': (node.nodes.length === 0 || node.countNoIgnoredNodes() === 0)}">
+        <i *ngIf="!node.expanded" class="fa fa-plus-square-o"></i>
+        <i *ngIf="node.expanded" class="fa fa-minus-square-o"></i>
+      </span>
+
+      <span (click)="node.check()">
+        <i *ngIf="!node.checked" class="fa fa-square"></i>
+        <i *ngIf="node.checked" class="fa fa-check-square"></i>
+      </span>
+
+      <span>{{node.name}}</span>
+      <div *ngIf="node.expanded">
+        <tree [data]="node.nodes"></tree>
+      </div>
+    </div>
+  </li>
+</ul>

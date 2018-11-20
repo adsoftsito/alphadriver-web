@@ -1,0 +1,90 @@
+<div class="adjust-size">
+    <ul class="motum-tool-map__menu skin-black">
+        <!-- Search -->
+        <li aria-haspopup="true"
+            [ngClass]="{'active': isDisplayContent[0]}"
+            class="m-menu-item">
+
+            <a href="javascript:;"
+               class="m-menu__link"
+               (click)="activateContent(0)">
+                <i *ngIf="!isDisplayContent[0]" class="motum-i tm-e91f tm-1x"></i>
+                <i *ngIf="isDisplayContent[0]" class="motum-i tm-e912 tm-1x i-active"></i>
+            </a>
+            <div *ngIf="isDisplayContent[0]" class="m-menu__submenu left animated fadeInUp">
+                <mr-search-tools-component
+                  (setLocation)="setNewLocation($event)"
+                  [unitsPosition]="unitsPosition">
+                </mr-search-tools-component>
+            </div>
+
+        </li>
+        <!-- Update -->
+        <li aria-haspopup="true"
+            class="m-menu-item"
+            id="update-menu"
+            [ngClass]="{'active': isDisplayContent[1]}">
+
+            <a href="javascript:;"
+               class="m-menu__link m-menu__toggle"
+               (click)="updateProcess(1)"
+               (mousedown)="displayReloadMenuOnMouseDown(1)"
+               (mouseup)="displayReloadMenuOnMouseUp(1)"
+               (mouseleave)="displayReloadMenuOnMouseUp(1)">
+                <i *ngIf="!isDisplayContent[1] && !isRealTime" class="motum-i tm-e943 min-icon-format"></i>
+                <i *ngIf="!isDisplayContent[1] && !isRealTime" class="motum-i tm-e93f tm-1x"></i>
+                <i *ngIf="!isDisplayContent[1] && isRealTime" class="motum-i tm-e9ee"></i>
+                <i *ngIf="isDisplayContent[1]" class="motum-i tm-e912 tm-1x i-active"></i>
+
+            </a>
+            <div class="m-menu__submenu left animated fadeInUp" *ngIf="isDisplayContent[1]">
+                <mr-update-tools-component [isAutomatic]="isAutomatic"
+                                           [isRealTime]="isRealTime"
+                                           (automaticToggled)="toggleAutomatic($event)"
+                                           (realTimeToggled)="toggleRealTime($event)"></mr-update-tools-component>
+            </div>
+
+        </li>
+        <!-- Interest point -->
+        <li aria-haspopup="true"
+            class="m-menu-item"
+            [ngClass]="{'active': isDisplayContent[2]}">
+            <a href="javascript:;"
+               class="m-menu__link m-menu__toggle"
+               (click)="activateContent(2)">
+                <i *ngIf="!isDisplayContent[2]" class="motum-i tm-e9ed tm-1x"></i>
+                <i *ngIf="isDisplayContent[2]" class="motum-i tm-e912 tm-1x i-active"></i>
+            </a>
+            <div  class="m-menu__submenu left animated fadeInUp" [hidden]="!isDisplayContent[2]">
+                    <mr-interest-point (listOfPoints)="sendListOfPoints($event)"></mr-interest-point>
+            </div>
+        </li>
+        <!-- Config -->
+        <li aria-haspopup="true"
+            class="m-menu-item"
+            [ngClass]="{'active': isDisplayContent[3]}">
+            <a href="javascript:;"
+               class="m-menu__link m-menu__toggle"
+               (click)="activateContent(3)">
+                <i *ngIf="!isDisplayContent[3]" class="motum-i tm-e980 tm-1x"></i>
+                <i *ngIf="isDisplayContent[3]" class="motum-i tm-e912 tm-1x i-active"></i>
+            </a>
+            <div class="m-menu__submenu left animated fadeInUp" [hidden]="!isDisplayContent[3]">
+                <mr-display (vehicleViews)="sendVehicleViews($event)"
+                            (optionViewMap)="optionVisalizeMap($event)"
+                            (trafficLayer)=" trafficLayer($event)"
+                            (showLabels)="sendLabels($event)"
+                            (showClusters)="sendClusters($event)"></mr-display>
+            </div>
+        </li>
+        <!-- Expand -->
+        <li aria-haspopup="true"
+            class="m-menu-item"
+            (click)="fullScreenMode()">
+            <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                <i class="motum-i tm-e9f0 tm-1x"></i>
+                <!--<i class="fa fa-arrows-alt"></i>-->
+            </a>
+        </li>
+    </ul>
+</div>

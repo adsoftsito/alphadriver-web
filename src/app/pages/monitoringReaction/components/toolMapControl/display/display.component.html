@@ -1,0 +1,126 @@
+<div class="motum-display">
+
+   <div *ngFor="let inPoints of display; let i = index">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="list-search-result-container background-grey" (click)="inPoints.id = !inPoints.id">
+                <a class="search-result-item"
+                   data-toggle="collapse"
+                   data-parent="#accordion"
+                   href="#{{inPoints.id}}"
+                   aria-expanded="true"
+                   aria-controls="collapseOne">
+
+                    <span class="search-result-text">{{ inPoints.label | translate }}</span>
+                    <span class="v-down-icon">
+                          <i class="motum-i tm-e90e {{inPoints.id ? 'rotate90' : 'rotate0'}}"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div id="{{inPoints.id}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="motum-list-ip" *ngFor="let point of inPoints.points; let j = index">
+                    <div class="motum-ip" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="motum-dropdown-menu" *ngIf="point.subPoints.length === 0">
+                            <label class="input-check-container outCheck">
+                                    <input type="checkbox"
+                                            [checked]="point.selected"
+                                            (change)="viewVehicleChange(inPoints.points, i, j)"
+                                            >
+                                    <span class="checkmark"></span>
+                            </label>
+                            <a class="search-result-item"
+                            data-toggle="collapse"
+                            data-parent="#accordion"
+                            href="#{{point.id}}"
+                            aria-expanded="true"
+                            aria-controls="collapseOne">
+
+                            <span class="search-result-text">{{ point.label | translate  }}</span>
+                            </a>
+                        </div>
+
+                        <div class="motum-dropdown-menu" *ngIf=" point.subPoints.length > 0" (click)="rotateSub = !rotateSub">
+                                <a class="search-result-item"
+                                data-toggle="collapse"
+                                data-parent="#accordion"
+                                href="#{{point.id}}"
+                                aria-expanded="true"
+                                aria-controls="collapseOne">
+                                <span class="search-result-text">{{ point.label | translate  }}</span>
+                                <span class="v-down-icon" >
+                                    <i class="motum-i tm-e90e {{rotateSub ? 'rotate0' : 'rotate90'}}"></i>
+                                </span>
+                                </a>
+                        </div>
+
+                    </div>
+
+                    <div id="{{point.id}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="motum-subList-ip" *ngFor="let subPoint of point.subPoints; let j = index;">
+                            <a class="search-result-item">
+
+                                <label class="input-check-container check" *ngIf="subPoint.disabled != false">
+                                        <input type="checkbox"
+                                            [checked]="subPoint.selected"
+                                            (change)="selectAll()" [disabled]="subPoint.disabled">
+                                        <span class="checkmark" [style.backgroundColor]="'gray'"></span>
+                                </label>
+                                <label class="input-check-container check" *ngIf="subPoint.disabled != true">
+                                    <input type="checkbox"
+                                        [checked]="subPoint.selected"
+                                           (change)="viewLabelChange(point.subPoints, j)" [disabled]="subPoint.disabled">
+
+                                    <span class="checkmark"></span>
+                                </label>
+                            <span class="search-result-text sublist">{{ subPoint.label | translate  }}</span>
+                            </a>
+                        </div>
+                    </div> <!--End accordion subPoints -->
+
+                </div> <!--End *ngFor points -->
+
+            </div> <!-- Ends accordion points -->
+
+          </div> <!--end accordion items section -->
+
+    </div> <!--end *ngFor display -->
+
+    <div *ngFor="let inPoints of viewMap">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="list-search-result-container background-grey" (click)="rotateDeg = !rotateDeg">
+                <a class="search-result-item"
+                   data-toggle="collapse"
+                   data-parent="#accordion"
+                   href="#{{inPoints.id}}"
+                   aria-expanded="true"
+                   aria-controls="collapseOne">
+
+                    <span class="search-result-text">{{ inPoints.label | translate }}</span>
+                    <span class="v-down-icon">
+                          <i class="motum-i tm-e90e {{rotateDeg ? 'rotate0' : 'rotate90'}}"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div id="{{inPoints.id}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="motum-list-ip" *ngFor="let point of inPoints.points">
+                    <div class="motum-ip" id="accordion" role="tablist" aria-multiselectable="true">
+                        <a class="search-result-item">
+                           <div class="form-radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"  [checked]="point.selected" (click)="viewMapOption(point.label)">
+                                    <span class="overlay"></span>
+                                </label>
+                                <span class="search-result-text">{{ point.label | translate  }}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div> <!--End *ngFor points -->
+
+            </div><!-- Ends accordion points -->
+
+        </div> <!--end accordion items section -->
+
+    </div><!--end *ngFor viewMap -->
+
+</div>

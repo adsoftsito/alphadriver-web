@@ -1,0 +1,30 @@
+@media (min-height: 600px) {
+  .content-card-block {
+    max-height: 250px;
+    min-height: 250px;
+  }
+}
+
+@media (min-height: 900px) {
+  .content-card-block {
+    max-height: 450px;
+    min-height: 450px;
+  }
+}
+
+.content-card-block {
+  margin-top: 10px;
+  overflow: scroll;
+}
+
+.align-left {
+  text-align: left !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.btn-middle-row {
+  vertical-align: text-top;
+}

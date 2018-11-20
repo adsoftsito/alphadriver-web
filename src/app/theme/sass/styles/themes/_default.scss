@@ -1,0 +1,203 @@
+$theme: (
+  //To define normal, medium and bold we need to change weight. 400, 500 y 700
+        font-main: unquote('"Rubik", sans-serif'),
+        font-secondary: unquote('"Rubik", sans-serif'),
+
+        dynamic-height-with-header: calc(100% - 66px),
+        dynamic-height-without-header: calc(100% - 0px),
+
+  // ----- COLORS DECLARATION ------
+        color-primary: #146ef9,
+        color-success: color-green-light,
+
+        color-light-blue: #16b8e8,
+        color-light-blue-2: #16b8e8,
+        color-light-blue-3: #16d7ff,
+        color-light-blue-4: #19b592,
+        color-light-blue-5: #1e7aca,
+        color-light-blue-6: #daeeff,
+
+        color-blue: #2244d7,
+        color-blue-2: #1d70b8,
+        color-primary-lower: rgba(20,110,249,0.15),
+        color-blue-3: #f3f8ff,
+        color-blue-4: #146EF926,
+        color-blue-5: #1f76f9,
+        color-blue-6: #5476ff,
+
+        color-green-light: #33df69,
+        color-green-light-2: #5aff944a,
+        color-green-light-3: #9cbf34,
+
+        color-black: #000000,
+        color-black-2: rgb(19, 20, 23),
+        color-white: #ffffff,
+        color-white-2: #ffffff00,
+
+        color-grey-1: #565655,
+        color-grey-2: #999999,
+        color-grey-3: #868686,
+        color-grey-4: #575756,
+        color-grey-5: #808080,
+        color-grey-6: #EDEDEC,
+        color-grey-7: #B2B2B2,
+        color-grey-8: #CCCCCC,
+        color-grey-9: #E5E5E5,
+        color-grey-10: #F6F6F680,
+        color-grey-11: #F6F6F6,
+        color-grey-12: #ECECEB,
+        color-grey-13: #EDEDED,
+        color-grey-14: rgba(0, 0, 0, 0.2),
+        color-grey-15: #b3b3b3,
+        color-grey-16: #f1f1f1,
+        color-grey-17: #706f6f,
+        color-grey-18: #cdcdcd,
+        color-grey-19: #dadada,
+        color-grey-20: #f6f6f6,
+        color-grey-21: #ededed,
+        color-grey-22: #666666,
+        color-grey-23: #c4c4c4,
+        color-grey-24: #949494,
+        color-grey-25: #4d4d4d,
+        color-grey-26: #E5E5E5,
+        color-grey-27: #B5B5B5,
+        color-grey-28: #4c4c4c,
+
+        color-red: #ff3031,
+        color-red-2: #e20815,
+        color-red-3: #e54335,
+        color-red-4: #ee666f,
+
+        color-yellow: #ffc033,
+        color-yellow-2: #f4d658,
+        color-yellow-3: #ffc604,
+
+        color-orange: #eb860d,
+
+        color-purple-1: #654ede,
+        color-purple-2: #7155ff,
+        color-purple-3: #8fa2d0,
+        color-purple-4: #475b97,
+        color-purple-5: #9150ae,
+        color-purple-6: #8bb9ef,
+
+
+        // ------- LABEL OPTIONS -------
+        font-size-1: 14px,//
+        font-size-2: 13px,//
+        font-size-3: 12px,//
+        font-size-4: 11px,//
+        font-size-5: 10px,//
+
+  // ----- END COLORS DECLARATION ------
+
+        color-blue-hover-ag: color-blue-3,
+
+        alert-message-color-bg: color-purple-2,
+        alert-warning-1-color-bg: color-yellow,
+        alert-warning-2-color-bg: color-orange,
+        alert-danger-color-bg: color-red-2,
+        alert-info-color-bg: color-blue-2,
+
+        info-window-header-primary-bg: color-primary,
+        info-window-header-height: 21.58px,
+        info-window-header-width: 350px,
+        info-window-icon-color: color-light-blue,
+        info-window-font-color: color-grey-17,
+        info-window-color-vertical-line: color-grey-7,
+
+        lists-selected-element-color: color-grey-13,
+
+  // -------- APPLICATIONS MENU ----------
+        menu-apps-font-color: color-grey-5,
+
+        orders-buttons-default-color: color-grey-2,
+        orders-buttons-primary-color: color-primary,
+        orders-white-color: color-white,
+        orders-color-white-2: color-white-2,
+        orders-tabs-gray-2-color: color-grey-5,
+        orders-tabs-gray-color: color-grey-7,
+        orders-background-table-odd: color-grey-10,
+        orders-light-gray: color-grey-7,
+        orders-border-table-with-buttons: color-grey-12,
+        orders-blue-default: color-blue,
+        orders-border-input:color-grey-9,
+        orders-black-color: color-black,
+        orders-color-light-blue: color-light-blue-2,
+        orders-color-green: color-success,
+        orders-color-light-blue-partner: color-light-blue-3,
+        orders-color-red: color-red,
+        orders-color-green-button: color-green-light-2,
+
+        sensor-on-color: color-yellow-2,
+        sensor-off-color: color-grey-4,
+
+        tables-selected-row-color: color-primary-lower,
+        list-selected-row-color: color-grey-21,
+        tables-odd-row-color: color-grey-10,
+        tables-hover-row-color: color-grey-20,
+        labes-app-menu: color-grey-22,
+
+  // ------ BUTTON ------
+        button-color-primary-bg: color-primary,
+        button-color-secondary-bg: color-blue,
+        button-color-danger-bg: color-red,
+        button-color-grey-bg: color-grey-2,
+        button-color-white-bg: color-white,
+
+  // ------ FORM MODAL ------
+        form-modal-backdrop-color-bg: color-grey-14,
+        form-modal-color-bg: color-white,
+        form-modal-height: dynamic-height-with-header,
+        form-modal-shadow: -12px 10px 17px -17px rgba(0, 0, 0, 0.75),
+        form-modal-color-header: color-grey-5,
+        form-modal-color-grey: color-grey-25,
+        form-modal-color-light-grey: color-grey-26,
+        form-modal-color-blue: color-blue,
+        form-modal-color-light-grey-2: color-grey-27,
+        form-modal-color-light-grey-3: color-grey-7,
+        
+  // ------ AVATAR ------
+        avatar-a-c-color-bg: color-purple-3,
+        avatar-d-f-color-bg: color-yellow-3,
+        avatar-g-i-color-bg: color-red-3,
+        avatar-j-l-color-bg: color-purple-4,
+        avatar-m-o-color-bg: color-green-light-3,
+        avatar-p-r-color-bg: color-red-4,
+        avatar-s-u-color-bg: color-light-blue-4,
+        avatar-v-z-color-bg: color-purple-5,
+        // ----search-component--
+        search-color-icon: color-grey-15,
+        search-color-border-and-focus: color-primary,
+        search-background-in-tables: color-grey-16,
+        search-color-grey-tools: color-grey-1,
+  // ---------MODAL PROPERTIES --------
+        modal-properties-color-grey: color-grey-23,
+        modal-properties-color-grey-hr: color-grey-1,
+        modal-properties-color-blue-border: color-light-blue-5,
+        modal-properties-color-blue-background: color-light-blue-6,
+        modal-properties-color-grey-strong: color-grey-24,
+        modal-properties-color-hover: color-blue-5,
+        modal-properties-color-invitation: color-blue-6,
+        modal-properties-color-black-partner: color-grey-5,
+        modal-properties-color-white: color-white,
+  
+  // ---------CHECKBOX --------
+        checkbox-color-purple: color-purple-6,
+        checkbox-color-white: color-white,
+        checkbox-color-blue: color-primary,
+  // ---------BUTTON --------
+        button-color-blue: color-light-blue-5,
+        button-color-blue-bg: color-light-blue-6,
+  
+  //-------DUAL LIST
+        dual-list-color-grey: color-grey-4,
+        dual-list-color-light-grey: color-grey-2,
+        dual-list-color-light-grey-2: color-grey-20,
+  //-------AG-GRID TABLE
+        ag-grid-text-color-grey: color-grey-28,
+        ag-grid-text-color-white: color-white,
+        
+);
+
+$tm-themes: tm-register-theme($theme, default);

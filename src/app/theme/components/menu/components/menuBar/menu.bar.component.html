@@ -1,0 +1,67 @@
+<div class="row">
+<aside [@slideInOut] = 'menuState' class="al-sidebar-submenu"
+ [ngClass]="partsM" sidebarResize>
+      <span id='cerrar' class="pull-right clickable" data-effect="fadeOut"><i (click) = "toggleMenu()" [ngClass]="menuState === 'out' ? 'ion-chevron-left': 'ion-chevron-right'"></i></span>
+      <p><br></p>
+      <div *ngIf="listaToShow.indexOf('table')  >= 0">
+        <p>
+          <button class="btn btn-primary" type="button" (click)="outData($event)" name="button">Ver/Ocultar Tabla</button>
+        </p>
+      </div>
+
+      <div *ngIf="listaToShow.indexOf('form')  >= 0">
+        <form class="form-group" action="" method="post">
+            <h4>Mensaje Recibido:</h4>
+          <p>
+              <textarea class="form-group" [(ngModel)]='comunicationIn' name='MuestraMensaje' id="msg"></textarea>
+          </p>
+      </form>
+      </div>
+
+      <div class="col-md-11 col-lg-11 col-xs-11" *ngIf="listaToShow.indexOf('values')  >= 0">
+        <h4>Interacción Clic en Mapa</h4><br>
+          <h4>Longitud</h4>
+          <p *ngIf="comunicationIn != null">
+            <input [(ngModel)]='comunicationIn.coords.lng' type="text" name="longitude">
+          </p>
+          <h4>Latitud</h4>
+          <p *ngIf="comunicationIn != null">
+            <input [(ngModel)]='comunicationIn.coords.lat' type="text" name="latitude">
+          </p>
+      </div>
+
+      <div class="col-md-11 col-lg-11 col-xs-11" *ngIf="listaToShow.indexOf('localitation')  >= 0">
+        <h4>Selección de unidad</h4><br>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Unidad</th>
+                <th scope="col">Localizar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unit of units" >
+                <td>{{ unit.id }}</td>
+                <td>
+                  <button type="button" class="btn btn-default" (click)="$event.stopPropagation();localizarUnit(unit.lng, unit.lat, unit.id)">
+                    <span  class="glyphicon glyphicon-search">Ver</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br>
+
+      <!-- <div *ngFor="let components of listaToShow"> -->
+          <!-- <ng-container *ngComponentOutlet="components">enter code here</ng-container> -->
+      <!-- </div> -->
+      <div class="col-md-10">
+        <input (click) = "changeParts('one')" class="btn btn-outline-primary" type="button" value="Una">
+        <input (click) = "changeParts('two')" class="btn btn-outline-primary" type="button" value="Dos">
+        <input (click) = "changeParts('three')" class="btn btn-outline-primary" type="button" value="Tres">
+      </div>
+</aside>
+</div>

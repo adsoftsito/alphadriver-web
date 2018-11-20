@@ -1,0 +1,297 @@
+@import '../../../../../theme/sass/motumVariables';
+.motum-close-button{
+  background: $motum-black-partner !important;
+}
+.motum-close-button span {
+  color: $motum-white !important;
+}
+.header{
+    padding: 10px;
+    background-color: $motum-black-partner;
+    height: 78.719px;
+
+    .iconOptions{
+        width: 41px;
+        height: 41px;
+        margin-top: 10px;
+        margin-left: -5.399px;
+        margin-right: 13px;
+        background-color: #644ede;
+        border-radius: 100%;
+        border: 2px solid $motum-white;
+      }
+
+    .options{
+        font-size: 22px;
+        color: $motum-white;
+        position: absolute;
+        left: 20px;
+        top: 19px;
+    }
+
+    .title{
+        position: absolute;
+        top: 22px;
+        left: 68.517px;
+        font-size: 14px;
+        font-weight:500 !important;
+        color: $motum-white;
+        width: 60%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .closeFiltering{
+        position: absolute;
+        font-size: 9px;
+        color: $motum-white;
+        top: 0px;
+        right: 0px;
+        cursor: pointer;
+    }
+}
+
+.expandFS{
+    width: 33.33%;
+}
+.expand{
+    width: 50%;
+}
+
+.content{
+    padding: 10px 5px 0px 5px;
+    background-color: $motum-white;
+    height: calc(100vh - 145px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .listContent{
+        padding: 0;
+    }
+
+    .filters{
+        position: relative;
+        left: 21.781px;
+        top: 4px;
+        // font-weight: bold;
+        font-size: 11px;
+        color: $motum-grey-titles;
+        width: 38%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-right: 5px;
+        font-family: $motum-font-family-rubik-medium;
+    }
+    .noFilters{
+        position: relative;
+        left: 15px;
+        top: 2px;
+    }
+    .selectedFilters{
+        width: 20px;
+        height: 20px;
+        background-color: #4d4d4d;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 1.5em;
+        color: $motum-white;
+        font-size: 14px;
+        font-family:$motum-font-family-rubik-medium;
+    }
+    .hr-title{
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+        // margin-top: 14.631px;
+        // margin-bottom: 13px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+    .hrList{
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+        width: 99%;
+        // margin-top: 23.259px;
+        // margin-bottom: 12px;
+        margin-top: 21.259px;
+        margin-bottom: 0px;
+    }
+
+    .listCollapse{
+        position: relative;
+        cursor: pointer;
+        font-size: 13px;
+        width: 100%;
+        padding-top: 6.5px;
+        // left: 23px;
+    }
+    .secctionTitle{
+        //font-weight: bold;
+        color: $motum-grey-titles;
+      // color:$motum-grey;
+        font-weight:500 !important;
+        font-size: 11px;
+        width: 50%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        position: relative;
+        left: 2.641px;
+        top: 2.318px;
+        font-family: $motum-font-family-rubik-medium;
+    }
+    .iconAngle{
+        position: absolute;
+        // top: -1.32px;
+        cursor: pointer;
+        top: 6px;
+        right: 8.719px;
+        font-size: 13px;
+
+        .down{
+            transform: rotate(0deg);
+            transition: transform .2s ease-in-out;
+            -webkit-transition: transform .2s ease-in-out;
+            -moz-transition: transform .2s ease-in-out;
+            -o-transition: transform .2s ease-in-out;
+        }
+        .up{
+            transform: rotate(180deg);
+            transition: transform .2s ease-in-out;
+            -webkit-transition: transform .2s ease-in-out;
+            -moz-transition: transform .2s ease-in-out;
+            -o-transition: transform .2s ease-in-out;
+        }
+    }
+    .sectionFiltering{
+        width: 104%;
+        padding-right: 9px;
+
+        .chips{
+            position: relative;
+            padding-top: 11.76px;
+            // padding-left: 23.815px;
+            padding-bottom: 4px;
+            // width: 290px;
+            width: 100%;
+
+            &.checkboxes{
+                padding: 18px 0px 0px 4px;
+                width: 100% ;//310px;
+
+            }
+            .selecctLabel{
+                color: $motum-blue-partner;
+            }
+            .defaultLabel{
+                color: $motum-grey-titles;
+            }
+
+            .chip{
+                display: inline-block;
+                height: 16px;
+                font-size: 10px;
+                padding: 0 6px;
+                border-radius: 30px;
+                background-color: $motum-blue-partner;
+                color: $motum-white;
+                margin-bottom: 0px;
+                margin-right: 9.178px;
+
+                .closeChip{
+                    cursor: pointer;
+                    float: right;
+                    font-size: 6px;
+                    color: $motum-white !important;
+                    line-height: 16px;
+                    padding-left: 5px;
+                }
+            }
+            .input{
+                background: none;
+                background: none;
+                border: 0;
+                color: rgba(0, 0, 0, 0.6);
+                display: inline-block;
+                font-size: 11px;
+                line-height: 14px;
+                outline: 0;
+                margin: 0;
+                padding: 0 !important;
+                width: 120px !important;
+            }
+        }
+                .editBtn{
+                    float: right;
+                    cursor: pointer;
+                    margin-right: 10px;
+                    outline: none;
+                    // position: absolute;
+                    // right: -37px;
+                    // bottom: -8px;
+                }
+                .selectedEditBtn{
+                    background: #9d9d9c !important;
+                }
+    }
+
+}
+
+.container {
+    display: inline;
+    position: relative;
+    padding-left: 15px;
+    margin-right: 0px; //-8px;
+    margin-bottom: -1px;
+    cursor: pointer;
+    font-size: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 11px;
+    border-radius: 3px;
+    border: 1px solid $motum-purple-checkbox;
+    width: 11px;
+    background-color: $motum-white;
+}
+
+
+
+.container input:checked ~ .checkmark {
+    background-color: $motum-blue-partner;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 3px;
+    top: 0px;
+    width: 4.2px;
+    height: 7px;
+    border: solid $motum-white;
+    border-width: 0px 1px 1px 0px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

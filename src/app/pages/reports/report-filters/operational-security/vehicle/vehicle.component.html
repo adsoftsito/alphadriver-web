@@ -1,0 +1,441 @@
+<div class="row justify-content-end print-icons-margin" *ngIf="showPrintIcons">
+  <br>
+    <div class="col-md-3" align = "right">
+        <i class="fa fa-file-image-o fa-2x clickable-icon"
+          aria-hidden="true"
+          (click)="printProcess('png')"></i>
+        <i class="fa fa-print fa-2x clickable-icon"
+          aria-hidden="true"
+          (click)="printProcess('pdf')"></i>
+    </div>
+</div>
+
+<div [ngClass]="classReportForPrint ? 'report-for-print' : 'report'" class="blue">
+<!-- Titulos o encabezado  -->
+  <div class="row">
+    <div class="col-sm-5 col-5 col-md-5">
+      <img src="{{ dataprovider?.title.logo }}" [style.width.%]="100" [style.height.px]="65" >
+    </div>
+    <div class="col-sm-7 col-md-7 col-7 titleR" align = "right">
+      <br>
+      <label >{{ dataprovider?.title.title }}</label>
+      <br>
+      <br>
+       <label translate>{{'reports.period'}}</label>: {{ dataprovider?.title.period }}
+       <br>
+       <label *ngIf="dataprovider?.title.week">
+         <label translate>{{'reports.week'}} </label> {{ dataprovider?.title.week }}: {{ dataprovider?.weekOfReport }}
+       </label>
+       <br>
+    </div>
+  </div>
+  <div class="data-section">
+    <!-- Datos de la unidad -->
+    <div class="row">
+      <div class="col-sm-5 col-md-5 col-5 subtitle">
+        <label>{{ dataprovider?.dataUnit.title }}</label>
+      </div>
+    </div>
+    <div class="content-data">
+      <div class = "content-align">
+      <div class="row">
+        <div class="col-sm-9 col-md-9 col-9">
+           <b *ngFor="let item of dataprovider?.dataUnit.fleets; let i = index">
+               <label *ngIf="i == 0;else next">
+                   {{ item.fleet }}
+               </label>
+             <ng-template #next> > {{ item.fleet }}</ng-template>
+           </b>
+        </div>
+            <div class="col-sm-3 col-md-3 col-3">
+                <label translate>{{'reports.operation'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.operation }}</b>
+            </div>
+        </div>
+        <div class="row">
+          <br>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-2">
+                <label translate>{{'reports.economic'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.economic }}</b>
+            </div>
+            <div class="col-sm-3 col-md-3 col-3">
+                <label translate>{{'reports.VIN'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.VIN }}</b>
+            </div>
+            <div class="col-sm-2 col-md-2 col-2">
+                <label translate>{{'reports.licensePlate'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.licensePlate }}</b>
+            </div>
+            <div class="col-sm-2 col-md-2 col-2">
+                <label translate>{{'reports.carrier'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.carrier }}</b>
+            </div>
+            <div class="col-sm-2 col-md-2 col-2">
+                <label translate>{{'reports.zone'}}</label>
+                <br>
+                <b>{{ dataprovider?.dataUnit.zone }}</b>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="data-section">
+    <!-- Rendimiento -->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-5 subtitle">
+            <label>{{ dataprovider?.vehiclePerformance.title }}</label>
+        </div>
+      </div>
+      <div class="content-data">
+        <div class = "content-align">
+          <div class="row">
+            <br>
+            <div class="col-sm-3 col-md-3 col-3">
+                 <label translate>{{'reports.distance'}}</label><br><b> {{ dataprovider?.vehiclePerformance.distance }} <label translate>{{'reports.UnitDistance'}}</label></b>
+            </div>
+            <div class="col-sm-3 col-md-3 col-3">
+                 <label translate>{{'reports.fuel'}}</label> <br><b> {{ dataprovider?.vehiclePerformance.fuel }} <label translate>{{'reports.unitVolume'}}</label></b>
+            </div>
+            <div class="col-sm-3 col-md-3 col-3">
+                 <label translate>{{'reports.performance'}}</label> <br><b> {{ dataprovider?.vehiclePerformance.performance }} <label translate>{{'reports.unitPerformance'}}</label></b>
+            </div>
+            <div class="col-sm-3 col-md-3 col-3">
+                 <label translate>{{'reports.engineHours'}}</label> <br><b> {{ dataprovider?.vehiclePerformance.engineHours }}</b>
+            </div>
+          </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3 col-md-3 col-3">
+            <b class="subtitle1"> <label translate>{{'reports.fuel'}}</label></b>
+            <br>
+            <label translate>{{'reports.inUse'}}</label> <b>{{ dataprovider?.vehiclePerformance.fuelB.inUse }} <label translate>{{'reports.unitVolume'}}</label></b>
+            <br>
+            <label translate>{{'reports.slowMotion'}}</label> <b>{{ dataprovider?.vehiclePerformance.fuelB.slowMotion }} <label translate>{{'reports.unitVolume'}}</label></b>
+        </div>
+        <div class="col-sm-3 col-md-3 col-3">
+            <b class="subtitle1"> %<label translate>{{'reports.slowMotion'}}</label></b>
+            <br>
+            <label translate>{{'reports.current'}}</label> <b>{{ dataprovider?.vehiclePerformance.slowMotion.current }} %</b>
+            <br>
+            <label translate>{{'reports.previous'}}</label> <b>{{ dataprovider?.vehiclePerformance.slowMotion.previous }} %</b>
+        </div>
+        <div class="col-sm-4 col-md-4 col-4">
+            <b class="subtitle1"><label translate>{{'reports.speed'}}</label></b>
+            <br>
+            <label translate>{{'reports.average'}}</label> <b>{{ dataprovider?.vehiclePerformance.speed.average }} <label translate>{{'reports.unitSpeed'}}</label></b>
+            <br>
+            <label translate>{{'reports.maximum'}}</label> <b>{{ dataprovider?.vehiclePerformance.speed.maximun}} <label translate>{{'reports.unitSpeed'}}</label></b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 col-md-8 col-8">
+          <br>
+          <p class="subtitle1">{{ dataprovider?.vehiclePerformance.fuelEfficiency.title}}</p>
+          <div id="fuelEfficiency" [style.width.%]="98" [style.height.px]="210"></div>
+        </div>
+          <br>
+          <div class="col-sm-4 col-md-4 col-4">
+            <br>
+              <label translate>{{'reports.startJourney'}}</label> <br><b>{{ dataprovider?.vehiclePerformance.startJourney }}</b>
+              <br><br>
+              <br>
+              <label translate>{{'reports.endJourney'}}</label> <br><b>{{ dataprovider?.vehiclePerformance.endJourney }}</b>
+          </div>
+      </div>
+    </div>
+    </div>
+  </div>
+    <br>
+  <div class="data-section">
+      <!-- Calificaciones -->
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-5 subtitle">
+            <label translate>{{'reports.ratings'}}</label>
+        </div>
+      </div>
+      <div class="content-data">
+        <div class = "content-align">
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-4">
+                <br><br>
+                <p>
+                  <b class="subtitle1">{{ dataprovider?.ratings.security.title }} </b>
+                  <b>{{ dataprovider?.ratings.security.dataProvider[0].security }}</b>
+                </p>
+                <label translate>{{'reports.previousResult'}}</label> <b>{{ dataprovider?.ratings.security.dataProvider[0].previousResult }}</b>
+                <br>
+                <label translate>{{'reports.averageGroup'}}</label> <b>{{ dataprovider?.ratings.security.dataProvider[0].averageGroup }}</b>
+                <br><br><br><br>
+                <p>
+                  <b class="subtitle1">{{ dataprovider?.ratings.fuel.title }}</b>
+                  <b>{{ dataprovider?.ratings.fuel.dataProvider[0].fuel }}</b>
+                </p>
+                <label translate>{{'reports.previousResult'}}</label> <b>{{ dataprovider?.ratings.fuel.dataProvider[0].previousResult }}</b>
+                <br>
+                <label translate>{{'reports.averageGroup'}}</label> <b>{{ dataprovider?.ratings.fuel.dataProvider[0].averageGroup }}</b>
+            </div>
+            <div class="col-sm-5 col-md-5 col-5">
+              <div id="ratingsSecurity" [style.width.%]="98" [style.height.px]="155"></div>
+              <div id="ratingsFuel" [style.width.%]="98" [style.height.px]="155"></div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-3 subtitle1">
+                <br>
+                {{ dataprovider?.ratings.rankingTitle }}
+              <br><br>
+              <div class = "circulo">
+                {{ dataprovider?.ratings.vehicleRanking }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="data-section">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-12 title">
+          {{ dataprovider?.operationAlerts.title }}
+        </div>
+      </div>
+      <div class="content-data">
+        <div class = "content-align">
+          <div class="row">
+              <p class="subtitle2"><label translate>{{'reports.categoryEvents'}}</label></p>
+              <div id="operationsAlerts" [style.width.%]="90" [style.height.px]="230"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+<div class="data-section">
+    <!-- Eventos cada 100 horas -->
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-12 title">
+        {{ dataprovider?.event100h.title }}
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-3 col-md-3 col-3 best">
+        <b><label translate>{{'reports.improvement'}}</label></b><br> <label translate>{{'reports.tcurrentPeriod'}}</label>
+      </div>
+      <div class="col-sm-3 col-md-3 col-3 worst">
+        <b><label translate>{{'reports.worsen'}}</label></b><br> <label translate>{{'reports.tcurrentPeriod'}}</label>
+      </div>
+      <div class="col-sm-3 col-md-3 col-3 period">
+        <b><label translate>{{'reports.Period'}}</label></b><br><label translate>{{'reports.tprevious'}}</label>
+      </div>
+      <div class="col-sm-3 col-md-3 col-3 group">
+        <b><label translate>{{'reports.average'}}</label></b> <br><label translate>{{'reports.currentGroup'}}</label>
+      </div>
+    </div>
+  </div>
+    <div class="data-section">
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-5 subtitle">
+            <label translate>{{'reports.securityEvents'}}</label>
+        </div>
+      </div>
+      <div class="content-data">
+        <div class = "content-align">
+          <div class="row">
+              <div class="col-sm-1 col-md-1 col-1 ">
+              </div>
+              <div class="col-sm-5 col-md-5 col-5 subtitle1">
+                  {{ dataprovider?.event100h.securityEvents.acceleration.title }}
+                <div id="eventSecurityAceleration" [style.width.%]="98" [style.height.px]="150"></div>
+                  {{ dataprovider?.event100h.securityEvents.speed.title }}
+                <div id="eventSecuritySpeed" [style.width.%]="98" [style.height.px]="150"></div>
+              </div>
+              <div class="col-sm-5 col-md-5 col-5 subtitle1">
+                {{ dataprovider?.event100h.securityEvents.Braking.title }}
+                <div id="eventSecurityBraking" [style.width.%]="98" [style.height.px]="150"></div>
+                {{ dataprovider?.event100h.securityEvents.turns.title }}
+                <div id="eventSecurityTurns" [style.width.%]="98" [style.height.px]="150"></div>
+              </div>
+              <div class="col-sm-1 col-md-1 col-1 ">
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <br>
+    <div class="data-section">
+      <div class="row">
+        <div class="col-sm-5 col-md-5 col-5 subtitle">
+            <label>{{ dataprovider?.passengerComfortEvents.title }}</label>
+        </div>
+      </div>
+      <div class="content-data">
+        <div class = "content-align">
+          <div class = "row">
+            <div class="col-sm-12 col-md-12 col-12">
+              <p class="subtitle1"><label translate>{{'reports.countEvents'}}</label></p>
+              <div id ="passengerComfortEvents" [style.width.%]="98" [style.height.px]="230"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <br>
+<div class="data-section">
+  <!-- Salud del motor -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-12 title" >
+      {{ dataprovider?.motorHealth.title }}
+    </div>
+  </div>
+  <br>
+    <div class="content-data">
+        <div class = "content-align">
+          <div class = "row">
+            <div class="col-sm-3 col-md-3 col-4">
+                <p> <label translate>{{'reports.currentIncidents'}}</label></p>
+                <br>
+                <p><label translate>{{'reports.optimumHealth'}}</label></p>
+                <br>
+                <p class="anyMarginBotom"><label class="anyMarginBotom" translate>{{'reports.previousIncidents'}}</label></p>
+            </div>
+              <div class="col-sm-5 col-md-5 col-4">
+                <div class ="row">
+                  <div class="col-sm-12 col-md-12 col-12">
+                    <table border="2" [style.width.%]="90">
+                      <tr>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[0].incidents > 0">
+                          {{ dataprovider?.motorHealth.CurrentIncidents[0].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[0].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[1].incidents > 0">
+                          {{ dataprovider?.motorHealth.CurrentIncidents[1].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[1].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[2].incidents > 0">
+                          {{ dataprovider?.motorHealth.CurrentIncidents[2].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[2].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[3].incidents > 0">
+                          {{ dataprovider?.motorHealth.CurrentIncidents[3].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.CurrentIncidents[3].incidents === 0">
+                            &nbsp; </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-12">
+                    <div class="row health" [style.width.%]="90">
+                        <div class="col-sm-3 col-md-3 col-3" align="center">
+                          <br>
+                          <img *ngIf ="dataprovider?.motorHealth.CurrentIncidents[3].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[2].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[1].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[0].incidents >= 0"
+                                      src="{{ indicator }}" [style.width.px]="19" [style.height.px]="20">
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-3" align="center">
+                          <br>
+                          <img *ngIf ="dataprovider?.motorHealth.CurrentIncidents[3].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[2].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[1].incidents > 0"
+                                      src="{{ indicator }}" [style.width.px]="19" [style.height.px]="20">
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-3" align="center">
+                          <br>
+                          <img *ngIf ="dataprovider?.motorHealth.CurrentIncidents[3].incidents == 0
+                                      && dataprovider?.motorHealth.CurrentIncidents[2].incidents > 0"
+                                      src="{{ indicator }}" [style.width.px]="19" [style.height.px]="20">
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-3" align="center">
+                          <br>
+                          <img *ngIf ="dataprovider?.motorHealth.CurrentIncidents[3].incidents > 0"
+                                      src="{{ indicator }}" [style.width.px]="19" [style.height.px]="20">
+                        </div>
+                    </div>
+
+                    <img src="{{ healthbar }}" [style.width.%]="90" [style.height.px]="30">
+
+                    <div class="row health" [style.width.%]="90">
+                      <div class="col-sm-3 col-md-3 col-3" align="center">
+                        <img *ngIf ="dataprovider?.motorHealth.PreviousIncidents[3].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[2].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[1].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[0].incidents >= 0"
+                                    src="{{ indicator2 }}" [style.width.px]="19" [style.height.px]="20">
+                      </div>
+                      <div class="col-sm-3 col-md-3 col-3" align="center">
+                        <img *ngIf ="dataprovider?.motorHealth.PreviousIncidents[3].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[2].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[1].incidents > 0"
+                                    src="{{ indicator2 }}" [style.width.px]="19" [style.height.px]="20">
+                      </div>
+                      <div class="col-sm-3 col-md-3 col-3" align="center">
+                        <img *ngIf ="dataprovider?.motorHealth.PreviousIncidents[3].incidents == 0
+                                    && dataprovider?.motorHealth.PreviousIncidents[2].incidents > 0"
+                                    src="{{ indicator2 }}" [style.width.px]="19" [style.height.px]="20">
+                      </div>
+                      <div class="col-sm-3 col-md-3 col-3" align="center">
+                        <img *ngIf ="dataprovider?.motorHealth.PreviousIncidents[3].incidents > 0"
+                                    src="{{ indicator2 }}" [style.width.px]="19" [style.height.px]="20">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-12">
+                    <br>
+                    <table border="2" [style.width.%]="90">
+                      <tr>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[0].incidents > 0">
+                          {{ dataprovider?.motorHealth.PreviousIncidents[0].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[0].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[1].incidents > 0">
+                          {{ dataprovider?.motorHealth.PreviousIncidents[1].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[1].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[2].incidents > 0">
+                          {{ dataprovider?.motorHealth.PreviousIncidents[2].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[2].incidents === 0">
+                            &nbsp; </td>
+                        <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[3].incidents > 0">
+                          {{ dataprovider?.motorHealth.PreviousIncidents[3].incidents }}</td>
+                          <td [style.width.%]="25" align="center" *ngIf = "dataprovider?.motorHealth.PreviousIncidents[3].incidents === 0">
+                            &nbsp; </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-md-4 col-4">
+                <div class = "row worst1"><label translate>{{'reports.majorDamage'}}</label></div>
+                  <div class = "row poor"><label translate>{{'reports.maintenance'}}</label></div>
+                  <div class = "row best1"><label translate> {{'reports.maintenanceSoon'}}</label></div>
+                  <div class = "row exelent"><label translate>{{'reports.optimum'}}</label></div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="data-section">
+    <!-- Retroalimentación -->
+    <div class = "row">
+      <div class="col-sm-12 col-md-12 col-12 title" >
+        {{ dataprovider?.FeedbackTitle }}
+      </div>
+    </div>
+    <br>
+    <div class="content-data">
+      <div class = "content-align">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-12" >
+              {{ dataprovider?.Feedback }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

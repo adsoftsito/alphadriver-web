@@ -1,0 +1,292 @@
+<div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
+     [ngClass]="{scrolled: isScrolled}">
+    <a *ngIf="isMenuCollapsed" id="logoMm" href (click)="toggleMenu()" class="al-logo clearfix">
+      <i class="motum-i tm-e93a"></i>
+    </a>
+    <a *ngIf="!isMenuCollapsed" id="logoM" href (click)="toggleMenu()" class="al-logo clearfix">
+      <img id="imgSvg" xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg" src="{{iconLogin}}"/>
+    </a>
+    <breadcrumb ></breadcrumb>
+  <!-- Notifications -->
+    <div class="dropdown help">
+      <div class="help-icon"  id="help-menu" data-toggle="dropdown" aria-expanded="false">
+        <span class="question-icon">
+            <i class="motum-i tm-e9e8" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="dropdown-menu top-dropdown-menu help " aria-labelledby="help-menu">
+        
+      </div>
+    </div>
+    <div id="idMessages" class="dropdown messages">
+      <div class="messages-icon" id="message-menu" data-toggle="dropdown" aria-expanded="false">
+        <span class="envelope-icon">
+            <i class="motum-i tm-e9e9" aria-hidden="true"></i>
+        </span>
+        <div class="notification-one" [ngClass]="{
+          'sizeOne': this.numberMessages.length === 1,
+          'sizeTwo': this.numberMessages.length === 2,
+          'sizeThree': this.numberMessages.length === 3
+          }">{{ messages }}</div>
+      </div>
+      <div class="dropdown-menu top-dropdown-menu messages " aria-labelledby="message-menu">
+        <div class="header">
+          <div class="title">
+            {{ notifications | translate }}
+          </div>
+          <div class="closeIcon">
+            <i class="motum-i tm-e912" (click)="closeDropdown('messages')"></i>
+          </div>
+        </div>
+        <div class="bodyContent">
+          <div class="list">
+
+            <div class="item" *ngFor="let data of notificationsData">
+              <div class="avatar" *ngIf="data.type === 'avatar'">
+                  <img *ngIf="userData" class="rounded-circle" src="{{ userData.avatar }}">
+              </div>
+              <div class="iconAvatar" *ngIf="data.type === 'icon'">
+                  <div class="iconCircle"> <span class="motum-i tm-mu tm-reportes icon"></span></div>
+              </div>
+              <div class="avatarUnit" *ngIf="data.type === 'unit'">
+                  <div class="iconUnit"><i class="fa fa-truck" aria-hidden="true"></i></div>
+              </div>
+              <div class="information">
+                <div class="titleInf">
+                  <label class="title">
+                    {{ data.title }}
+                  </label>
+                  <label class="highlightTitle">
+                    {{ data.highlightTitle }}
+                  </label>
+                </div>
+                <div class="contentInf">
+                  {{ data.subtitle }}
+                </div>
+              </div>
+              <div class="d-flex align-items-center d-flex justify-content-center hours">
+                {{ data.hours }}
+              </div>
+            </div>
+            
+          </div>
+        </div><!--  END bodyContent -->
+
+        <div class="footerContent">
+          <div class="footerTitle">
+            {{ messageCenter | translate }}
+          </div>
+          <div class="footerSubtitle">
+            {{ markEverything | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="idNotifications" class="dropdown notifications">
+      <div class="notifications-icon" id="notifications-menu" data-toggle="dropdown" aria-expanded="false">
+        <span class="bell-icon">
+            <i class="motum-i tm-e9ea" aria-hidden="true"></i>
+        </span>
+        <div class="notification-one" [ngClass]="{
+          'sizeOne': this.oarangeAlert.length === 1,
+          'sizeTwo': this.oarangeAlert.length === 2,
+          'sizeThree': this.oarangeAlert.length === 3
+          }">{{notiOrange}}</div>
+        <div class="notification-four" [ngClass]="{
+          'sizeOne': this.yellowAlert.length === 1,
+          'sizeTwo': this.yellowAlert.length === 2,
+          'sizeThree': this.yellowAlert.length === 3
+          }"> {{notiYellow}}</div>
+        <div class="notification-two" [ngClass]="{
+          'sizeOne': this.redAlert.length === 1,
+          'sizeTwo': this.redAlert.length === 2,
+          'sizeThree': this.redAlert.length === 3
+          }">{{notiRed}}</div>
+        <div class="notification-three" [ngClass]="{
+          'sizeOne': this.blueAlert.length === 1,
+          'sizeTwo': this.blueAlert.length === 2,
+          'sizeThree': this.blueAlert.length === 3
+          }">{{notiBlue}}</div>
+      </div>
+      <div class="dropdown-menu top-dropdown-menu notifications" aria-labelledby="notifications-menu">
+        <div class="header">
+          <div class="title">
+            {{ alerts | translate }}
+          </div>
+          <div class="closeIcon" >
+            <i class="motum-i tm-e912" (click)="closeDropdown('notifications')"></i>
+          </div>
+        </div>
+        
+        <ngb-tabset justify="justified" [ngClass]="alterClass">
+
+            <ngb-tab >
+              <ng-template ngbTabTitle id="2">
+                <div class="alertCircle1">
+                  <i  id="alert1" class="motum-i tm-e978 icon-alert "></i>
+                </div>
+                <div class="alertNumber1">
+                  {{alertData.length}}
+                </div>
+              </ng-template>
+              <ng-template ngbTabContent>
+                <motum-alert-notifications [tabColor]="'#e20613'" [alertData]="alertData"></motum-alert-notifications>
+              </ng-template>
+            </ngb-tab>
+          
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                <div class="alertCircle2">
+                  <i  id="alert2" class="motum-i tm-e978 icon-alert "></i>
+                </div>
+                <div class="alertNumber2">
+                  {{alertData.length}}
+                </div>
+                </ng-template>
+              <ng-template ngbTabContent>
+                <motum-alert-notifications [tabColor]="'#ea8000'" [alertData]="alertData"></motum-alert-notifications>
+              </ng-template>
+            </ngb-tab>
+          
+          
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                <div class="alertCircle3">
+                  <i  id="alert3" class="motum-i tm-e978 icon-alert "></i>
+                </div>
+                <div class="alertNumber3">
+                  {{alertData.length}}
+                </div>
+                </ng-template>
+              <ng-template ngbTabContent>
+                <motum-alert-notifications [tabColor]="'#ffc033'" [alertData]="alertData"></motum-alert-notifications>
+              </ng-template>
+            </ngb-tab>
+            
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                <div class="alertCircle4">
+                  <i  id="alert4" class="motum-i tm-e978 icon-alert "></i>
+                </div>
+                <div class="alertNumber4">
+                  {{alertData.length}}
+                </div>
+                </ng-template>
+              <ng-template ngbTabContent>
+                <motum-alert-notifications [tabColor]="'#1d70b8'" [alertData]="alertData"></motum-alert-notifications>
+              </ng-template>
+            </ngb-tab>
+          
+        </ngb-tabset>
+          
+      </div>
+    </div>
+    
+  <div class="user-profile clearfix">
+    
+    <div class="dropdown al-user-profile" (click)="flag = false">
+      <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+        <!--<img src="{{ ( 'Nasta' | baProfilePicture ) }}">-->
+          <img *ngIf="userData" src="{{ userData.avatar }}">
+      </a>
+        
+      <div class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+        <div class="user-dropdown" >
+          <div class="header-user">
+            <div class="title">
+                {{ name }} {{ lastName }}
+            </div>
+            <div class="subtitle">
+                {{ rol }} - {{ commercialName }}
+                
+            </div>
+            <span id="vDown" class="v-down-i" >
+              <i class="motum-i tm-e90e {{flag ? 'rotateUp' : 'rotateDown'}}" (click)="flag = !flag"></i>
+            </span>
+          </div>
+        </div>
+       
+        <div class="animated fadeIn" *ngIf="flag"> 
+            <div class="dropdown-divider"></div>
+            <div class="to-see-how">
+              <div class="seeing">
+                  {{ toSeeHow | translate }}
+              </div>
+              <div class="names">
+                <div class="name"> 
+                  Lorem Ipsum
+                </div>
+                <div class="company">
+                  Puesto-Empresa
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+        </div>
+        <div class="user-dropdown ranking">
+          <div class="icon">
+            <span class="trophy">
+              <i class="motum-i tm-e9a2" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="punctuation">
+              {{ ratingScoreString.substr(-20,4) }}
+          </div>
+          <div class="rating">
+              <ng-template #starTemplate let-fill="fill">
+                  <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#x2605;</span>&#x2605;
+                  </span>    
+
+                </ng-template>
+              <ngb-rating [(rate)]="currentRate" [starTemplate]="starTemplate" [readonly]="true" max="5"></ngb-rating>
+          </div>
+          <div class="ratingNumber">
+              {{ currentRate }}
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div id="statusUser" class="user-dropdown options">
+          <div class="status">
+            {{ state | translate }} {{ status | translate }}
+          </div>
+          <!-- <div id="{{color}}" class="current-status" [ngStyle]="{'background': color }" >
+          </div> -->
+          <i id="{{color}}" class="motum-i tm-e923 current-status" [ngStyle]="{'color':color}"></i>
+          <div class="all-status">
+            <div class="available {{activeStatus1}}" (click)="changeStatusAvailable('#2fd15d')">
+                <i *ngIf="color !='#2fd15d'" class="motum-i tm-e923" style="color:#2fd15d"></i>
+              <i *ngIf="color =='#2fd15d'" class="motum-i tm-e9f6" style="color:#2fd15d"></i>
+            </div>
+            <div class="absent {{activeStatus2}}" (click)="changeStatusAbsent('#f39200')">
+                <i *ngIf="color !='#f39200'" class="motum-i tm-e923" style="color:#f39200"></i>
+                <i *ngIf="color =='#f39200'"class="motum-i tm-e9f6" style="color:#f39200"></i>
+            </div>
+            <div class="not-available {{activeStatus3}}" (click)="changeStatusNotAvailable('#e6332a')">
+                <i *ngIf="color !='#e6332a'" class="motum-i tm-e923" style="color:#e6332a"></i>
+                <i *ngIf="color =='#e6332a'"class="motum-i tm-e9f6" style="color:#e6332a"></i>
+            </div>
+            <div class="out-line {{activeStatus4}}" (click)="changeStatusAbsentOutLine('#b2b2b2')">
+                <i *ngIf="color !='#b2b2b2'" class="motum-i tm-e923" style="color:#b2b2b2"></i>
+                <i *ngIf="color =='#b2b2b2'" class="motum-i tm-e9f6" style="color:#b2b2b2"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="user-dropdown options">
+          <div>
+              {{ configuration | translate }}
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="user-dropdown options">
+          <div routerLink="/login" class="signOut" (click)="signOut()">
+            {{ signOutT | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <ba-msg-center></ba-msg-center> -->
+  </div>
+</div>
+

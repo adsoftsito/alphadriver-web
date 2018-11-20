@@ -1,0 +1,33 @@
+@import './app/theme/sass/motumVariables';
+@import './app/theme/sass/theme-tecnomotum';
+
+/* You can add global styles to this file, and also import other style files */
+
+/**
+ * Changing fonts to Rubik
+ */
+//$font-family-rubik: 'Rubik', sans-serif;
+$font-family-rubik: $motum-font-family-rubik;
+
+main {
+  font: 14px/16px $font-family-rubik;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-rubik;
+}
+
+p {
+  font-family: $font-family-rubik;
+}
+button, input, optgroup, select, textarea {
+  font-family: $font-family-rubik;
+}
+/**
+ * Motum theme
+ */
+@include motum-theme('motum');
+
+@include modal-properties();
+
+@include ag-grid-properties();
+

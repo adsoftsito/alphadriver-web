@@ -1,0 +1,125 @@
+@import '../../../../../theme/sass/styles/styles';
+
+@include tm-install-global() {
+  $font-weigth-medium: 500;
+  $font-weight-default: 400;
+  $label-font-size: 11px;
+
+  $orders-border-input: tm-theme(orders-border-input);
+  $light-gray: tm-theme(orders-light-gray);
+  $black-color: tm-theme(orders-black-color);
+  $white-color: tm-theme(orders-white-color);
+  $gray-background-tab : tm-theme(orders-tabs-gray-2-color);
+
+  motum-graphics-information-component {
+    .nav.nav-tabs {
+      margin-top: -10px;
+      background-color: transparent;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+    .nav-tabs .nav-item  {
+      font-size: 10px;
+      font-weight: $font-weigth-medium;
+      margin-bottom: -1px;
+      background: $gray-background-tab;
+      border-top-left-radius: 11px;
+      border-top-right-radius: 11px;
+    }
+    .nav.nav-tabs > li a {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+        color: $gray-background-tab;
+    }
+    .nav.nav-tabs > li a:hover{
+      background-color: $gray-background-tab;
+      color: $white-color;
+    }
+    .nav.nav-tabs > li a.active:hover{
+      background-color: $white-color;
+      color: $gray-background-tab;
+    }
+    .tab-content {
+      display: none;
+    }
+    .amcharts-chart-div a {
+        display: none !important;
+    }
+     .max-height-component {
+       max-height: 500px;
+     }
+    .any-spaces {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      margin: 0;
+      padding: 0;
+    }
+    .hr-space {
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .category-element {
+      font-size: 10px;
+      font-weight: $font-weight-default;
+      color: $black-color;
+      padding-right: 10px;
+    }
+    .options-list {
+      min-width: 100px;
+
+    	.list-group-item {
+    		font-size: 11px;
+    		padding: 0.3rem 1.25rem;
+    		border: 0px solid rgba(0, 0, 0, 0.125);
+    	}
+    	a {
+    		color:$black-color;
+    	}
+    	a:hover {
+    		background-color: $orders-border-input;
+    	}
+
+    }
+    .options-buttons {
+    	background: $white-color;
+    	padding: 0;
+    	font-size: 12px;
+    	color: $light-gray;
+    	border: none;
+    	margin: 0;
+    	//margin: 0.7em 0.5em;
+    	border-radius: 5px;
+    	cursor: pointer;
+      outline: none;
+    }
+    label {
+      margin-bottom: 0;
+      font-weight: $font-weigth-medium;
+      font-size: $label-font-size;
+    }
+    .title-class {
+      margin-top: 10px;
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 10px;
+      text-align: center;
+      font-weight: $font-weigth-medium;
+    }
+    ba-card {
+      .card {
+        border-radius: 12px  !important;
+        box-shadow: -1px 1px 25px -2px rgba(0, 0, 0, 0.25) !important;
+        margin-bottom: 15px;
+        margin-top: 12px;
+      }
+      .card > .card-body {
+        padding: 0px 8px 10px 8px;
+      }
+    }
+  }
+}

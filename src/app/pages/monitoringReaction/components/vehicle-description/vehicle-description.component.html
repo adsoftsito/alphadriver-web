@@ -1,0 +1,90 @@
+<div class="container-header">
+  <div class="avatar-vihicle" (click) = "openChatDetail()">
+    <div [ngClass]="circlecolors">
+      <i class="motum-i tm-e945 change-icon-property"></i>
+    </div>
+  </div>
+  <div class="position-right-data">
+    <!-- <b>{{unitInformation[0].economicNumber}}</b><br>
+    <a>{{unitInformation[0].operationalState}}</a> -->
+    <a id="economicNumber">{{unitInformation[0].economicNumber}}</a><br>
+    <a id="status">{{unitInformation[0].operationalState}}</a>
+  </div>
+  <i class="motum-i tm-e912 position-icon-top-rigth" (click)="close()" style="cursor: pointer;"></i>
+</div>
+
+
+<ngb-tabset justify="justified" [ngClass]="alterClass">
+
+  <ngb-tab>
+    <ng-template ngbTabTitle><i class="motum-i tm-e90a changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+      <mr-position-vehicles-and-sensors
+      [idVehicle] ="idVehicleSelected"
+      (changeWidthTabs)="changeWidthTabs($event)"
+      ></mr-position-vehicles-and-sensors>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab>
+      <ng-template ngbTabTitle><i class="motum-i tm-e9b9 changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+       <mr-operator
+       [idVehicle] ="idVehicleSelected"
+       ></mr-operator>
+    </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab>
+      <ng-template ngbTabTitle><i class="motum-i tm-e9bf changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+      <mr-travelinformation
+      [idVehicle] ="idVehicleSelected"
+      ></mr-travelinformation>
+    </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab [class]="changeSizeTabs">
+      <ng-template ngbTabTitle><i class="motum-i tm-e9b5 changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+        <mr-detailsactivefaults *ngIf="openActiveFaults" ></mr-detailsactivefaults>
+        <mr-mechanical-information
+        [idVehicle] ="idVehicleSelected"
+        (openFiltering)="expandSection($event)">
+
+        </mr-mechanical-information>
+
+    </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab>
+      <ng-template ngbTabTitle><i class="motum-i tm-e9b3 changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+        <chat-motum-component [circleColors]="circlecolors" (changeWidthTabsChat)="changeWidthChat($event)"></chat-motum-component>
+    </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab>
+      <ng-template ngbTabTitle><i id="alert" class="motum-i tm-e978 changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+       <mr-vehicle-alerts
+       [idVehicle] ="idVehicleSelected"
+       ></mr-vehicle-alerts>
+    </ng-template>
+  </ngb-tab>
+
+
+  <ngb-tab>
+      <ng-template ngbTabTitle><i class="motum-i tm-e980 changeproperticons"></i></ng-template>
+    <ng-template ngbTabContent>
+      <mr-configuration-to-alert-vehicle
+      [idVehicle] ="idVehicleSelected"
+      ></mr-configuration-to-alert-vehicle>
+    </ng-template>
+  </ngb-tab>
+
+</ngb-tabset>
