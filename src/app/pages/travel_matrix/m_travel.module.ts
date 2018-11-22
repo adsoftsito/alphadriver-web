@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgaModule } from '../../theme/nga.module';
 import { routing } from './m_travel.routing';
 import { MTravelComponent } from './m_travel.component';
@@ -23,6 +23,12 @@ import { OrdersService } from "./components/clientOrders/orders.service";
 
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { MemberModalComponent } from './components/clients/memberModal/memberModal.component';
+import { ViajesService } from './components/clients/viajes.service';
+import { TableDetailComponent } from './components/clients/table-detail/table-detail.component';
+import { CurrentTableComponent } from './components/clients/current-table/current-table.component';
+import { LogTableComponent } from './components/clients/log-table/log-table.component';
+import { MotorStopComponent } from './components/clients/motor-stop/motor-stop.component';
+import { AlertComponent } from './components/clients/alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +41,11 @@ import { MemberModalComponent } from './components/clients/memberModal/memberMod
       FormOrderComponent,
       ClientsOrdersComponent,
       MemberModalComponent,
+      TableDetailComponent,
+      CurrentTableComponent,
+      LogTableComponent,
+      MotorStopComponent,
+      AlertComponent
     ],
     imports: [
       CommonModule,
@@ -51,8 +62,12 @@ import { MemberModalComponent } from './components/clients/memberModal/memberMod
     providers: [
       UserService,
       ClientProductService,
+      ViajesService,
       OrdersService,
-    ]
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
+    entryComponents: [TableDetailComponent]
+
 })
 
 export class MTravelModule {}

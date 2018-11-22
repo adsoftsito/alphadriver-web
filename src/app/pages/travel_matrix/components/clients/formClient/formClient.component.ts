@@ -16,6 +16,8 @@ import { ClientProductService } from '../clients.service';
 import { DualListComponent } from 'angular-dual-listbox';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import {Constants} from "../../../../../shared/providers/constants";
+
 @Component({
   selector: 'form-client-product-component',
   templateUrl: './formClient.component.html',
@@ -35,6 +37,82 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class FormClientProductComponent implements OnInit{
 
+
+  ////////////////
+
+  motumCoords: any = {
+    lat: 18.869296,
+    lng: -97.051071
+  };
+
+  path: any;
+  geoFenceVisibility: any;
+  lang: string;
+  geoFenceEditable: boolean = false;
+  listOfPaths : Array<any> = [{
+      label: '0',
+      id: '0',
+      selected: false,
+      paths: [
+          { lat: 0,  lng: 0 },
+          { lat: 0,  lng: 0 },
+          { lat: 0,  lng: 0 },
+          { lat: 0,  lng:-0 }
+      ]
+  }];
+
+  private ZOOM_IN: string = 'ZOOM_IN';
+  private ZOOM_OUT: string = 'ZOOM_OUT';
+  @ViewChild('motumAgm')
+  _el: any;
+
+  MENU_MONITORING_REACTION = 'monitoringAndReaction';
+  displayUnitMenuComponent: boolean = false;
+  flagUnitDataVehicle: boolean = false;
+  flagFilterin: boolean = false;
+  showListUnits: boolean = true;
+  unitMarkers: Array<any> = [];
+  groups: Array<any> = [];
+  unitDataVehicle: Array<any> = [];
+  MR_HTML_CLASSES: any;
+  isChatDetail: boolean = false;
+  sendChangeIconColor: string;
+  flagSelected: boolean;
+  listUnitsCopia=[];
+  userIsDragging: boolean = false;
+  vehicleLabels: Array <any> = [];
+  viewClusters:any = false;
+
+
+  // ---------------------------
+  // MAP CONFIGURATION VARIABLES
+  // ---------------------------
+  latitude: number = this.motumCoords.lat;
+  longitude: number = this.motumCoords.lng;
+  zoom: number = 14;
+  zoomControl: boolean = false;
+  streetViewControl: boolean = false;
+  mapStyles: Array<any> = this.C.MAP_STYLES;
+  currentZoom: number = this.zoom;
+  colorCircleDetail: any;
+  viewMap = 'roadmap';
+  trafficLayer:boolean;
+  trafficLayerInstance;
+  mapInstance;
+  _map; any;
+
+  // ------------------------------
+  // MARKER CONFIGURATION VARIABLES
+  // ------------------------------
+  markerVisualization: string = 'POINTER';
+  //subscriptions service-------------
+  $subscriptionUnits:Subscription;
+  $subscriptionGroups:Subscription;
+  //----------------------------------
+
+
+
+  ////////
 @ViewChild('window') window: ElementRef;
 @ViewChild('backdrop') windowBackdrop: ElementRef;
 windowState: string = 'hidden';
@@ -321,7 +399,8 @@ keepSorted = true;
 display = 'plataform';
 filter = true;
 
-constructor(private renderer: Renderer2, private clientProductService: ClientProductService,
+constructor(    private C: Constants,
+  private renderer: Renderer2, private clientProductService: ClientProductService,
    private formBuilder: FormBuilder, private router: Router, private modalService: NgbModal) {
     // this.clientModel = new User();
     this.source = JSON.parse(JSON.stringify(this.dataExample));

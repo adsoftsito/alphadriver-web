@@ -1,664 +1,380 @@
-
-import {Component, ViewEncapsulation, OnDestroy, OnInit, HostListener, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
-import {LicenseManager} from "ag-grid-enterprise";
-import {Router} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation, HostListener, ViewChild, ElementRef ,OnDestroy, ChangeDetectorRef} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {GridOptions} from "ag-grid";
-import {ClientProductService} from "./clients.service";
-import { UserService } from "../users/user.service";
-import { timeout } from "rxjs/operator/timeout";
-import { Subscription } from 'rxjs/Subscription';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClientModel } from '../../../../shared/models/clients/client.model';
-import { InterfaceModel } from '../../../../shared/models/clients/interface.model';
-import { NumberModel } from '../../../../shared/models/clients/number.model';
-import { PhoneModel } from '../../../../shared/models/clients/phone.model';
-import { PlataformModel } from '../../../../shared/models/clients/plataform.model';
-import { AccountModel } from '../../../../shared/models/clients/account.model';
+import { Subscription } from 'rxjs';
+import { LicenseManager } from 'ag-grid-enterprise/main';
+//import  'ag-grid-enterprise';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { ViajesService } from './viajes.service';
+import { LoginService } from 'app/shared/providers/login.service';
 
-/**
- * Created by Tech Group BWL on 30/05/2018.
- */
-
-LicenseManager.setLicenseKey('26f908fcbd31ab5109aab8ba901fe020');
-
+//LicenseManager.setLicenseKey('26f908fcbd31ab5109aab8ba901fe020');
+LicenseManager.setLicenseKey('Evaluation_License_Valid_Until__8_December_2018__MTU0NDIyNzIwMDAwMA==50dff8a63bb1a234bae7d0bf98e1be3a');
 @Component({
-    selector: 'client-product-component.col-md-12',
-    templateUrl: './clients.component.html',
-    styleUrls: ['./clients.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'patrimonial-security',
+  templateUrl: './clients.component.html',
+  
+  styleUrls: ['./clients.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
+export class ClientsProductsComponent implements OnInit, OnDestroy {
+  
 
-export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewInit{
+  @ViewChild('motorStop') modalMotorStop : ElementRef;
+  @ViewChild('motorStopMassive') modalMotorStopMassive : ElementRef;
 
-    search = 'pages.userControl.client_product.search';
-    newClient = 'pages.userControl.clients.newClient';
-    dataSelected: any;
-    @ViewChild('welcomeWindow') welcomeWindow: ElementRef;
-    @ViewChild('confirmCreateOrder') window: ElementRef;
-    editar: any;
-    userModel(arg0: any): any {
-        throw new Error("Method not implemented.");
+  $subscripcionExportExcel_:Subscription;
+
+  private gridApi;
+  private gridColumnApi;
+  private data: any[];
+  private dataBinnacle:any[];
+  private columnDefs;
+  private columnDefs2;
+  private rowSelection;
+  
+  customIcons: any = {
+    sortAscending: '<i class="fa fa-caret-down"/>',
+    sortDescending: '<i class="fa fa-caret-up"/>',
+  };
+  private gridOptionsModal:GridOptions;
+  
+  private isRemember:boolean = false;
+  private checkControl: boolean = true;
+  private dateOfSearch:any;
+  rowSelected: any;
+  selectedRows:any[];
+  totalRows:number = 0;
+  private signalObject=
+    [
+        {type: 1,selected:false, label: 'Celular'},
+        {type: 2,selected:false, label: 'Hibrida'}
+    ];
+    //seccion show table
+    btnArray = [{
+      label: 'Actual',
+      selected: 'active'
+    },
+    {
+      label: 'Bitácora',
+      selected: ''
+    }];
+  visibleTable:string = 'current';
+  showCheckBox:boolean = true;
+  authorized:boolean = true;
+ 
+   //modal
+  private  ngbModalOptions: NgbModalOptions = {
+    backdrop : 'static',
+    size:'lg',
+    keyboard : false,
+    windowClass: 'modal-vehicle-motor-stop'
+  };
+
+  private signalTypeSelect:number;
+ 
+  numberEventsAux:any = [
+   {
+     numbers:[]
+   }
+  ];
+  
+  //DOM
+  labelSignal:string ='';
+  signalStatus:any[];
+  labelmotorStopStatus:string = '';
+  riskLevelClass:string = '';
+  arrTranslate:any = [];
+  arrTranslateOfGeneral:any = [];
+  showCalendarModal:boolean;
+  calendarLabel: any = '';
+  //service-------------
+  $subcriptionTranslate : Subscription;
+  $subcriptionTranslateGeneral:Subscription;
+  //--------------------
+  selectedOption: any;
+  selectedRange: any;
+  lang: string;
+  firstDateTimestamp:any;
+  lastDateTimestamp:any;
+
+  constructor(private translate: TranslateService,
+              private modalService:NgbModal, 
+              private _servicePatrimonialSecurity:ViajesService, 
+              private cdr: ChangeDetectorRef,
+              private _loginService:LoginService) {
+  this.gridOptionsModal = <GridOptions>{};
+  this.gridOptionsModal.columnDefs = this.columnDefs2;
+  this.gridOptionsModal.enableSorting = true;
+  this.changeLanguage();
+  
+  }
+  //end constructor
+  
+  ngOnInit(){
+   this.$subcriptionTranslate = this.translate.get('pages.monitoringreaction.patrimonial_security').subscribe( res =>{
+      this.arrTranslate = res;
+      this.btnArray[0].label = this.arrTranslate.current;
+      this.btnArray[1].label = this.arrTranslate.log;
+      
+      this.signalObject[0].label = this.arrTranslate.mobile;
+      this.signalObject[1].label = this.arrTranslate.hybrid;
+    });
+
+  this.$subcriptionTranslateGeneral = this.translate.get('general').subscribe(
+    res => {
+      this.arrTranslateOfGeneral = res;
+    });
+    this.translate.get('pages.ranking')
+    .subscribe(labelObject => {
+        this.calendarLabel = labelObject.last + ' 7 ' + labelObject.days;
+    });
+
+  }
+
+  changeLanguage(){
+    this.lang = localStorage.getItem('lang');
+    if(this.lang === null){
+      this.translate.getBrowserLang();
+    }else{
+      this.translate.use(this.lang);
+    }
+  }
+  
+  ngOnDestroy(){
+    this.$subcriptionTranslate.unsubscribe();
+  }
+
+  exportToExel() {
+     this._servicePatrimonialSecurity.exportToExcell(true);
+  } 
+
+  refresh(){    
+    this._servicePatrimonialSecurity.updateTable(true);
+  }
+
+  restoreCheckbox(){
+    this.isRemember = false;
+    this.checkControl = true;
+  }
+
+ onGridReady(params) {    
+    console.log(params);
+    this.gridColumnApi = params.columnApi;
+    this.gridApi = params.api;
+
+    if (this.gridOptionsModal.api){
+      this.gridOptionsModal.api.setRowData(this.selectedRows);
+    }      
+  }
+
+  
+  makeSelectableRow() {
+    this._servicePatrimonialSecurity.selectWithCheck({
+      checkControl:this.checkControl, isRemember:this.isRemember
+  });
+  }
+
+  resizingColumns() {
+    this.gridApi.sizeColumnsToFit();
+  }
+    /**
+     *  
+     * You get which table you want to display
+     * @param item 
+     */
+    changeSelectedItem(item){
+      if(item === 'BG0')
+      {
+        //Show columns TableActual
+        this.visibleTable = 'current';
+        this.showCheckBox = true;
+      }else{
+        if(item === 'BG1'){
+          //Show columns Table Bitacora
+          this.visibleTable = 'binnacle';
+          this.showCheckBox = false;
+        }
+      }
+      this.restoreCheckbox();
     }
 
-
-    /**   CALENDAR VARS  **/
-    showCalendarModal: boolean = false;
-    calendarLabel: any = 'Úlitmos 7 días';
-    selectedRange: any;                     //<---- This stores data into your component
-    selectedOption: any;                    //<---- This stores data into your component
-
-    /** TABLE PROPERTIES **/
-    gridOptions: GridOptions;
-    rowSelectNow: number;
-    rowSelection: string;
-    gridColumnApi: any;
-    gridApi: any;
-    edit: boolean;
-    tableCount: number = 0;
-
-    dataMembers: Array<any>;
-    dataMembersTable: Array<any>;
-
-    subscriptionCreate: Subscription;
-    subscriptionEdit: Subscription;
-
-    isSelectable: boolean = false;
-    isSelecRow: boolean = false;
-    flagMembersModal: boolean = false;
-    checkControl: boolean = true;
-    hasLoadedTable = false;
-
-    /** COLUMNS OF THE TABLE **/
-    columnDefs: any = [];    customIcons: any = {
-        sortAscending: '<i class="fa fa-caret-down"/>',
-        sortDescending: '<i class="fa fa-caret-up"/>',
-    };
-
-    ngAfterViewInit(){
-
-        setTimeout(() =>{
-            this.gridApi.sizeColumnsToFit();
-        }, 1000);
-
+    changeStatusControl(value){
+      this.checkControl = value;
+    }
+    onFilterChanged(data){     
+     this._servicePatrimonialSecurity.search(data);
+  }
+    changeStatusRemember(value:boolean){
+      this.isRemember = value;      
+    }
+    getselectedOneItem(element:any){
+      this.rowSelected = element;
+      this.labelmotorStopStatus = this.rowSelected.motorStopStatus == 1 ? 'Con paro de motor': 'Sin paro de motor';
+            //Signal Status
+     if(this.rowSelected.signal){       
+      if ( this.rowSelected.signal.type === 1){
+        this.signalObject[0].selected = true;
+        this.signalObject[1].selected = false;
+        this.labelSignal =this.signalObject[0].label;
+        
+      }else{
+        if(this.rowSelected.signal.type === 2){
+          this.signalObject[1].selected = true;
+          this.signalObject[0].selected = false;
+          this.labelSignal = this.signalObject[1].label;
+        }
+      }
+     }
+      this.openModalMotorStop('motorStop');
+      
+    }
+    getselectedItems(elements:any){        
+      if(elements.length > 0){
+        this.selectedRows = elements;        
+      }
+      else{
+        this.isRemember = false;
+      }
+    }
+    getColumnDef(elements:any){
+      delete elements[0]['checkboxSelection'];
+      delete elements[0]['cellRenderer'];
+      delete elements[0]['cellRendererParams'];
+      delete elements[5]['cellStyle'];
+      delete elements[6]['cellClass'];
+      delete elements[9]['cellStyle'];
+      this.columnDefs2 = elements; 
     }
 
-    constructor(
-        private translate: TranslateService,
-        private router: Router,
-        private userService: UserService,
-        private clientProductService :ClientProductService,
-        private modalService: NgbModal,
-        private cdr: ChangeDetectorRef
-    ) {
+    getTotalRows(total:number){
+      this.totalRows = total;
+    }
 
-      this.columnDefs = [{
-          headerName: "Viaje",
-          field: "orderid",//solicitante
-          suppressSizeToFit: true,
-          cellClass: ['motum-hover-name']
-          // suppressMenu: true,
-          // filter: "agTextColumnFilter"
-      }, {
-          headerName: "Fecha Inicio Programado",
-          field: "createdAt",//client
-          // suppressMenu: true,
-          // filter: "agTextColumnFilter"
-      }, {
-          headerName: "Conductor",
-          field: "driver.name",//pedido
-          cellClass: ['motum-hover-name'],
-          cellRenderer: (params) => {
-              if (params.value === 0 || params.value < 0) {
-                  return `-`;
-              } else {
-                  return `${params.value}`;
-              }
-          },
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
+    openModalMotorStop(idModal){
+      this.numberEventsAux[0].numbers = [];
+      let openModalOneVehicle:boolean = false;
+      let oneVehicle:any = [];
+      
+      if( this.selectedRows){
+        if(idModal == 'massive'){
+          if(this.selectedRows.length>1)
+          {
+            const modalRefMassive = this.modalService.open(this.modalMotorStopMassive, 
+              {
+                backdrop : 'static',
+                windowClass:'modalMotorStopMassive',
+                keyboard : false
+              });
+              openModalOneVehicle = false;
           }
-      }, {
-          headerName: "Unidad",
-          field: "truckid",//fecha_pedido
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
+          else{
+            openModalOneVehicle = true;
+            oneVehicle = this.selectedRows;
           }
-      }, {
-          headerName: "Origen",
-          field: "source",//subscriptions
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      }, {
-          headerName: "Destino",
-          field: "target",//instaladas
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      }, {
-          headerName: "Estado Administrativo",
-          field: "orderstatusadmin.description",//integrantes
-          cellClass: ['motum-hover-name'],
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      }, {
-          headerName: "Estado Operativo",
-          field: "orderstatus.description",
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      },
-      /*
-      , {
-          headerName: "Estado Operativo",
-          field: "trailerid2",
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-              return null;
-          }
+        }
+      }
+
+      if( idModal === 'motorStop' || openModalOneVehicle === true)
+      {       
+        if(openModalOneVehicle === true ){
+          this.rowSelected = oneVehicle[0]; 
+          oneVehicle = [];
+        }
+        let numEvents = this.rowSelected.numberEvents;
+        switch(numEvents){
+          case 6:
+          this.riskLevelClass = 'high';
+          break;
+          case 5:
+          this.riskLevelClass = 'high';
+          break;
+          case 4:
+          this.riskLevelClass = 'medium';
+          break;
+          case 3:
+          this.riskLevelClass = 'medium';
+          break;
+          case 2:
+          this.riskLevelClass = 'low';
+          break;
+          case 1:
+          this.riskLevelClass = 'low';
+          break;            
+       
+        }
+
+        for(let i=0;i<6;i++)
+        {
+          if (i<numEvents)
+        this.numberEventsAux[0].numbers.push("aux");
+        else
+        this.numberEventsAux[0].numbers.push("def");
+        }
+        
+        const modalRef = this.modalService.open(this.modalMotorStop,this.ngbModalOptions);      
+      }      
+    }
+  
+    
+
+    changeSelectSignal(type){
+      this.signalTypeSelect = type;      
+    }
+   
+    /**
+    * activates or deactivates engine shutdown of one or more vehicles
+    * @param status 
+    * @param mode //1 or more 
+    */
+
+    changeMotorStopStatus(comment,password,motorStatusActive){
+      //1 vehicle 
+      let validData = this.isValidData(comment,password);
+      if(validData){
+        this.authorized = false;
       }
       
-      , {
-          headerName: "Accesos",
-          field: "access",
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-              return null;
-          }
-      }, {
-          headerName: "Vencimiento",
-          field: "expiration",
-          cellRenderer: (params) => {
-                if (params.value < 4) {
-                    let eDiv = document.createElement('div');
-                    eDiv.innerHTML = `<span class="expiration-color">${params.value} días</span>`;
-                    return eDiv;
-                } else {
-                    return `${params.value} días`;
-                }
-          },
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      }, {
-          headerName: "Último acceso",
-          field: "lastAccess",
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-      }, {
-          headerName: "Estado",
-          field: "status",
-          cellClass: ['motum-app-menu'],
-          cellRenderer: function(params) {
-            let tooltip;
-            if (params.value == 0) {
-              translate.get('pages.userControl.userStatus').subscribe( res =>{
-                      tooltip = res.disabled;
-              });
-            }else {
-              if (params.value == 1) {
-                translate.get('pages.userControl.userStatus').subscribe( res =>{
-                        tooltip = res.enabled;
-                });
-              }else {
-                translate.get('pages.userControl.userStatus').subscribe( res =>{
-                        tooltip = res.locked;
-                });
-              }
-            }
-            if (params.value === 0){
-              if(params.rowIndex === 0){
-                return `<div class = "tooltip-a-first" alt ="${tooltip}">
-                            <i class="motum-i tm-e924"></i>
-                        </div>`;
-              }else{
-                return `<div class = "tooltip-status" alt ="${tooltip}">
-                          <i class="motum-i tm-e924"></i>
-                      </div>`;
-              }
-            }
-            if (params.value === 1 || params.value === 2){
-              if(params.rowIndex === 0){
-                return `<div class = "tooltip-a-first" alt ="${tooltip}">
-                          <i class="motum-i tm-e923"></i>
-                        </div>`;
-              }else{
-                return `<div class = "tooltip-status" alt ="${tooltip}">
-                          <i class="motum-i tm-e923"></i>
-                        </div>`;
-              }
-            }
-
-                  
-          },
-          cellStyle: (params) => {
-              if (params.value === 0)
-                  return {color: '#c4c4c4'};
-              if (params.value === 1)
-                  return {color: '#33df69'};
-              if (params.value === 2)
-                  return {color: '#ff3031'};
-          },
-          suppressMenu: true,
-          getQuickFilterText: function(params) {
-            return null;
-          }
-    
-    
-           }*/
-    
-    ];
-        this.gridOptions = <GridOptions>{};
-        this.gridOptions.headerHeight = 40.58;
-        this.gridOptions.animateRows = true;
-        this.gridOptions.enableColResize = true;
-        this.gridOptions.enableSorting = true;
-        this.gridOptions.enableFilter = true,
-        this.gridOptions.columnDefs = this.columnDefs;
-        this.gridOptions.rowHeight = 40.58;
-
-
-        this.rowSelection = "single";
-        this.subscriptionCreate = this.clientProductService.newClient$.subscribe(
-          client => {
-              this.onInsertRowClient(client);
-              this.onCreateOrder();
-        });
-
-        this.subscriptionCreate = this.userService.newUser$.subscribe(
-            user => {
-                // this.onInsertRowUser(user);
-                this.onWelcome();
-
-          });
-
-        /* TRANSLATE PAGE FOOTER */
-        this.translate.get('general')
-            .subscribe(labelObject => {
-                this.gridOptions.localeText = {page: labelObject.page, of: labelObject.of};
-            });
-
-        /* TRANSLATE CALENDAR LABEL*/
-        this.translate.get('pages.ranking')
-            .subscribe(labelObject => {
-                this.calendarLabel = labelObject.last + ' 7 ' + labelObject.days;
-            });
-        /* TRANSLATE TABLE */
-        this.translate.get('pages.userControl.client_product.table')
-            .subscribe(labelObject => {
-                this.UpdateHeaderName(labelObject);
-            });
-
     }
+    isValidData(comment,password){
+      let validData:boolean = true;
+      let validPassword:boolean = true;
+      let pass:string;
 
-    UpdateHeaderName(userlabels: any) {
-        /*
-        this.columnDefs[0].headerName = userlabels.accountOwner;
-        this.columnDefs[1].headerName = userlabels.businessName;
-        this.columnDefs[2].headerName = userlabels.orders;
-        this.columnDefs[3].headerName = userlabels.lastOrder;
-        this.columnDefs[4].headerName = userlabels.subscriptions;
-        this.columnDefs[5].headerName = userlabels.installed;
-        this.columnDefs[6].headerName = userlabels.members;
-        this.columnDefs[7].headerName = userlabels.type;
-        this.columnDefs[8].headerName = userlabels.engineStop;
-        this.columnDefs[9].headerName = userlabels.access;
-        this.columnDefs[10].headerName = userlabels.expires;
-        this.columnDefs[11].headerName = userlabels.lastAccess;
-        this.columnDefs[12].headerName = userlabels.status;
-*/
-        this.gridOptions.columnDefs = this.columnDefs;
-        this.hasLoadedTable = true;
-    }
-
-
-
-    onInsertRowClient(clientModel: ClientModel) {
-      var newData = this.createNewRowDataUser(clientModel);
-      this.gridApi.updateRowData({
-        add: [newData],
-        addIndex: 0
-      });
-    }
-    exportToExel() {
-      let params = {
-        fileName: 'Clients'
+      if(comment == "" || comment.trim() == ""){
+        validData = false;
+        document.getElementById('comment').focus();
       }
-      this.gridApi.exportDataAsExcel(params);
-    }
-    createNewRowDataUser(data) {
-      let plataform: string = '';
-      // FIXME: revisar como se mostraran estos campos
-      for (let i = 0; i < data.plataforms.length; i++) {
-        if (data.plataforms[i].plataform) {
-            plataform += data.plataforms[i].plataform +" ";
-        }
-      }
-      if(plataform.length < 1) {
-        plataform = 'Tecnomotum';
-      }
-      var newData = {
-        id: data.id,//// FIXME: falta el id para controlar los usuarios
-        commercialName: data.commercialName,
-        businessName: data.businessName,
-        order: data.zipCode,
-        orderDate: plataform,
-        subscriptions: plataform,
-        installed: data.division,
-        members: data.lastAccess,
-        rol: data.password,
-        expiration: data.zipCode,
-        lastAccess: data.status,
-        status: data.account.enabled
-      };
-      return newData;
-    }
-    onCreateOrder() {
-      const modalRef = this.modalService.open(this.window, { size: 'lg' , keyboard: false, windowClass: 'motum-modal-confirm', backdrop: true });
-      modalRef.result.then((userResponse) => {
-        if(userResponse) {
-          this.router.navigate(['/', 'pages', 'usersControl', 'clients-products', 'orders']).then(nav => {
-            setTimeout(() => {
-              this.clientProductService.sCreateOrder(null);
-            }, 200);
-            //console.log(nav); // true if navigation is successful
-          }, err => {
-            //console.log(err) // when there's an error
-          });
-        }
-      });
-    }
 
-    onWelcome() {
-        const modalRef = this.modalService.open(this.welcomeWindow, { size: 'lg' , keyboard: false, windowClass: 'motum-modal-confirm', backdrop: true });
-        modalRef.result.then((userResponse) => {
-          if(userResponse) {
-            //Send email
-            console.info("Se debe enviar un email");
-          }
-        });
-    }
-
-    /** LIFECYCLE ANGULAR METHODS **/
-    ngOnInit() {}
-    ngOnDestroy(){
-      this.subscriptionCreate.unsubscribe();
-      // this.subscriptionEdit.unsubscribe();
-    }
-
-
-    getClientsData(){
-        this.clientProductService.retrieveDataForTable()
-            .subscribe(
-                res => {
-                    console.log(res);
-                    const body = JSON.parse(res['_body']);
-                    const dataToSetup: any = body;
-                    console.log('data ...');                    
-                    console.log(dataToSetup);
-                    console.log('data ...');
-
-                    this.gridOptions.api.setRowData(dataToSetup);
-                    this.tableCount = dataToSetup.length;
-                    setTimeout(() => {
-                        // console.info("Resize columns");
-                        this.gridApi.sizeColumnsToFit();
-                    }, 200);
-                },
-                err => {
-                    console.info(err);
-
-                    this.gridOptions.api.setRowData([]);
-                    this.gridApi.sizeColumnsToFit();
-                    alert("An error has occurred, check your browser console");
-                }
-            );
-    }
-    /** TABLE METHODS **/
-    onGridReady(params) {
-        this.gridColumnApi = params.columnApi;
-        this.gridApi = params.api;
-        this.getClientsData();
-    }
-
-    /**
-     * Method to show client form to edit a clientProduct
-     * @param event
-     */
-    onCellClicked (event) {
-      if (event.data !== null && event.data !== undefined ) {
-          this.dataSelected = event.data;
-      }
-        // HERE GOES CODE TO SHOW EDIT CLIENT FORM
-        if(event.column.colId === 'members' && event.data !== null && event.data !== undefined) {
-
-            this.router.navigate(['/', 'pages', 'usersControl', 'clients-products', 'members'])
-                  .then(nav => {
-                          setTimeout(() => {
-
-                      }, 200);
-                  }, err => {
-                      console.info(err);
-                      alert('It was not possible to go to selected route')
-                  });
-
-        }else {
-
-            if(event.column.colId === 'accountOwner' && event.data !== null && event.data !== undefined){
-                this.router.navigate(['/', 'pages', 'usersControl', 'clients-products', 'edit'])
-                .then(nav => {
-                        setTimeout(() => {
-                            this.clientProductService.updateClientProduct(event.data);
-                    }, 200);
-                }, err => {
-                    console.info(err);
-                    alert('It was not possible to go to selected route');
-                });
-            }else {
-              if(event.column.colId === 'order' && event.data !== null && event.data !== undefined && event.data.order > 0) {
-                  this.router.navigate(['/', 'pages', 'usersControl', 'client-orders'])
-                  .then(nav => {
-                          setTimeout(() => {
-
-                      }, 200);
-                  }, err => {
-                      console.info(err);
-                      alert('It was not possible to go to selected route');
-                  });
-              }
-            }
-
-        }
-    }
-
-    onRowClicked (event) {
-      if (!this.isSelectable) {
-        this.gridOptions.api.forEachNodeAfterFilter( function(node) {
-          if (node.data === event.data) {
-            node.setSelected(true);
-          }
-        });
-        this.isSelecRow = true;
-      }else {
-        this.isSelecRow = false;
-      }
-      // if(event.data !== null && event.data !== undefined) {
-      //   this.isSelecRow = true;
-      // }
-    }
-
-    /**
-     * Change search filter in table
-     * @param event: textfield search event
-     */
-    onFilterChanged(event) {
-      this.gridApi.setQuickFilter(event);
-      //this.clientProductService.getDataForTableFilter(event);
-    }
-
-    /**
-     * Change table to be selectable
-     */
-     makeSelectableRow() {
-       // this.gridOptions.api.refreshHeader();
-       if(this.checkControl == true && this.isSelectable == true) {
-         this.columnDefs[0].checkboxSelection = this.isSelectable;
-         this.gridOptions.api.setColumnDefs(this.columnDefs);
-         this.gridOptions.api.selectAll()
-         this.resizingColumns();
-         this.checkControl = false;
-       }else{
-         if (this.checkControl == false && this.isSelectable == false) {
-           this.gridOptions.api.deselectAll();
-           this.checkControl = null;
-           this.isSelectable = true;
-         }else {
-           this.checkControl = true;
-           this.deselectAllRow();
-           this.resizingColumns();
-         }
+      if(password == "" || password.trim() == ""){
+        validData = false;
+        document.getElementById('password').focus();
+      }else{
+       pass = this._loginService.isLogged();
+       if(pass != password)
+       {
+         validData = false;
+         document.getElementById('password').focus();
        }
-       this.isSelecRow = false;
-     }
+      }
 
-     deselectAllRow() {
-       this.gridOptions.api.deselectAll();
-       this.columnDefs[0].checkboxSelection = false;
-       this.gridOptions.api.setColumnDefs(this.columnDefs);
-     }
-
-     resizingColumns() {
-       this.gridApi.sizeColumnsToFit();
-     }
-    /**
-     * Method to show client form to create a clientProduct
-     */
-    createClientProduct() {
-        this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
-            setTimeout(() => {
-               this.clientProductService.createClientProduct();
-             }, 200);
-            }, err => {
-              console.log(err) // when there's an error
-              console.log('error router');
-          });
+      return validData;
     }
-
-    /**
-     * Method to remove element(s) from table
-     * @param modalDelete: ng-template for modal
-     */
-     onRemoveSelected(modalDelete) {
-
-       const modalRef = this.modalService.open(modalDelete, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-delete', backdrop: true });
-       modalRef.result.then((userResponse) => {
-         if(userResponse) {
-
-           let selectedData = this.gridApi.getSelectedRows();
-           let res: any[] = [];
-           if (selectedData.length && selectedData.length > 0) {
-             selectedData.forEach((selectedRow) => {
-               if(this.userService.deleteUser(selectedRow)){
-                 res.push(selectedRow);
-               }
-             });
-           }
-           this.gridApi.updateRowData({remove: res});
-
-           this.deselectAllRow();
-           this.resizingColumns();
-         }
-       });
-     }
-
-    /**
-     * The table needs to change its column size when width page changes
-     * this method detects all changes on its size.
-     *
-     * @param event
-     */
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        if (this.gridApi) {
-            setTimeout(() => {
-                this.gridApi.sizeColumnsToFit();
-            }, 200);
-        }
-    }
-
-    /**
-     * Change status from enable to disabled or vice versa, only on selected rows
-     */
-    onAbleDisableSelected(flag: boolean) {
-        let selectedRows = this.gridApi.getSelectedRows();
-        if (selectedRows.length && selectedRows.length > 0) {
-            selectedRows.forEach(selectedRow => {
-                selectedRow.status = flag;
-            });
-            this.gridApi.updateRowData({update: selectedRows});
-        }
-    }
-
-    createOrder() {
-        this.router.navigate([ '/', 'pages', 'usersControl', 'clients-products', 'orders'])
-          .then(nav => {
-            setTimeout(() => {
-                this.clientProductService.sCreateOrder(this.dataSelected);
-            }, 200);
-          });
-    }
-    addMember() {
-        let routeComponent = '/pages/usersControl/clients-products';
-        this.router.navigate([ '/', 'pages', 'usersControl', 'clients-products', 'create-member'])
-          .then(nav => {
-            setTimeout(() => {
-                this.userService.sCreateUser();
-                this.userService.routeClose(routeComponent);
-               }, 200);
-          });
-    }
-
-
-    close(){
-        this.flagMembersModal = false;
-    }
-
-    /*This functions allows calendar to storage user defined dates
-*
-*  Needs following vars:
-*  - selectedOption:any
-*  - selectedRange:any
-*
-*  Needs following functions:
-*  + getSelectedRange(event){this.selectedRange=event}
-*  + getSelectedOption(event){this.selectedOption=event}
-*
-* */
+    /***Start functions for calendar */
     getSelectedOption(event){
-        this.selectedOption = event;
-        this.cdr.detectChanges();
+      this.selectedOption = event;
+      this.cdr.detectChanges(); 
     }
-    getSelectedRange(event){
-        this.selectedRange = event;
-        this.cdr.detectChanges();
-
-    }
-
+      getSelectedRange(event){
+          this.selectedRange = event;
+          this.convertDateToTimestamp(event);
+          console.log(this.firstDateTimestamp);
+          console.log(this.lastDateTimestamp);
+          this.cdr.detectChanges();
+      }
     showCalendar(){
         this.showCalendarModal = true;
         this.cdr.detectChanges();
-
     }
     getCalendarLabel(event){
         this.calendarLabel = event;
@@ -668,5 +384,25 @@ export class ClientsProductsComponent implements OnDestroy, OnInit, AfterViewIni
     modalClosed(){
         this.showCalendarModal = false;
     }
+    
+    convertDateToTimestamp(moment: any){
+      this.firstDateTimestamp = moment[0].format('x');
+      this.lastDateTimestamp = moment[1].format('x');
+    }
     /* END OF CALENDAR FUNCTIONS*/
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        if (this.gridApi) {
+            setTimeout(() => {
+                this.gridApi.sizeColumnsToFit();
+            }, 200);
+        }
+    }
+
+    private onGridResize(){
+      this.gridOptionsModal.api.sizeColumnsToFit();
+    }
+
 }
+
+  

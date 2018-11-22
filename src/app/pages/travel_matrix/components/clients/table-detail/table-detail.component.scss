@@ -1,0 +1,67 @@
+@import "../../../../../theme/sass/styles/styles";
+@import "../../../../../theme/sass/motumVariables";
+$icons-path: "~ag-grid/src/styles/icons/";
+$ag-mat-icons-path: "~ag-grid/src/styles/material-icons/";
+
+$gray-color:#cdcdcd;
+$gray-color2:#dadada;
+
+
+// .ag-header-cell{
+//     border:1px solid $gray-color !important;
+//     background-color: $gray-color2 !important;
+// }
+
+
+
+@include tm-install-global(){
+
+    motum-table-detail{
+          .ag-header-cell{
+            border:1px solid $gray-color !important;
+            background-color: $gray-color2 !important;
+        }
+        .ag-header-cell-label {
+            justify-content: center; // text-align header center
+         }
+         
+
+        .full-width-panel {
+            position: relative;
+            background: #fafafa;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top:-9px;
+        }
+        .ag-cell{
+            line-height: 24px;
+        }
+                
+
+        // .full-width-details {
+        //     float: left;
+        //     padding: 5px;
+        //     margin: 5px;
+        //     width: 150px;
+        // }
+        
+        .full-width-grid {
+            margin-left: 42px;
+            padding-top: 7px;
+            box-sizing: border-box;
+            display: block;
+            height: 100%;
+        }
+        
+    }
+
+}
+
+$font-family: 'Rubik', sans-serif;
+$secondary-font-family: 'Rubik', sans-serif;
+$font-size: 11px;
+$secondary-font-size: 9.64px;
+$secondary-foreground-color: rgba(0,0,0,0.7);
+
+@import '~ag-grid/src/styles/ag-grid.scss';
