@@ -88,11 +88,14 @@ export class TableDetailComponent implements OnInit, OnDestroy{
   }
 
   agInit(params:any){
+    console.log("data detail: " + JSON.stringify(params.node.parent.data));
     this.parentRecord = params.node.parent.data;
   }
 
   ngAfterViewInit(){
-    this.gridOptions.api.setRowData(this.parentRecord.detail);
+    console.log("route details: " + JSON.stringify(this.parentRecord.route_details));
+    
+    this.gridOptions.api.setRowData(this.parentRecord.route_details);
     this.gridOptions.api.sizeColumnsToFit();
   }
 

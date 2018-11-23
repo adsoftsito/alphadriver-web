@@ -150,13 +150,24 @@
           
           <div class="checkboxUnits">
             <form class="row form-inline align-items-center">
-                <div class="btn-group">
-                <motum-group-btn
+            <!--    <div class="btn-group">
+            
+            
+                    <motum-group-btn
                 id="BG"
                 [buttonsArray]="btnArray"
                 (selectedItem)="changeSelectedItem($event)">
                 </motum-group-btn>
-                </div>
+             
+            
+            </div> -->
+            <!--
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+              <div class="modal-footer longbutton">
+                <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">Nuevo Viaje</button>
+              </div>
               <div class="col-1 col-sm-1 onApClick">
                 <i class="motum-i tm-e91b i-style table-tools-icons-margin" (click)="refresh()"></i>
               </div>

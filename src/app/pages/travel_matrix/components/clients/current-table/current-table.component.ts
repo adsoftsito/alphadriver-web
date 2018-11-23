@@ -404,7 +404,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     this.gridOptions.enableColResize = true;
     this.gridOptions.enableSorting = true;
     this.rowSelection = "multiple";
-    console.log("my data:" + this.data);
+    //console.log("my data:" + this.data);
    // this.getDataForTable();
 
     }
@@ -493,12 +493,17 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
      this.$subcriptionGetUnitSafeties = this._servicePatrimonialSecurity.getUnitsSafeties(null,null).subscribe(
        res =>{
          const body = JSON.parse(res['_body']);
-         console.log(body);
          if(body)
          {
-           this.gridOptions.api.setRowData(body);  
+           this.data = body;
+           
+           this.gridOptions.api.setRowData(this.data);  
            this.resizingColumns();
-           this.totalRows.emit(body.length);
+           this.totalRows.emit(this.data.length);
+           console.log("this body:" + body);
+         
+           console.log("this data: " + this.data);
+
          }
        },
        err =>
@@ -515,7 +520,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     this.gridApi.exportDataAsExcel(params);
   } 
   refresh(){   
-    this.getDataForTable();
+    //this.getDataForTable();
   }
   makeSelectableRow() {
 
@@ -617,18 +622,27 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
    * @param event 
    */
   onCellClicked( event){
-    if(event.column.colId == 'motorStopStatus'&& event.data != null && event.data !== undefined){
+    console.log("selected..." + event.rowIndex);
+    console.log("selected data..." + JSON.stringify(event.data.route_details));
+    
+    if(event.column.colId == 'motorStopStatus'&& event.data != null 
+        && event.data !== undefined){
         let authorized = this.isAuthorizedUser();
+        console.log("authorized..." + authorized);
+    
         authorized = true;
-        if(authorized){
+        
+        if(authorized){ 
+          
           this.rowSelected = this.data[event.rowIndex];        
           this.selectedOneItem.emit(this.rowSelected);
+          console.log(this.data[event.rowIndex]);
         }
         else{
           this.selectedOneItem.emit([]);
         }
 
-    }
+  }
   }
 
   isAuthorizedUser(){
@@ -715,12 +729,13 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 }
 
 public getNodeChildDetails(record) { 
-  console.log("detail..." + record.route_details);
+  console.log(this.data);
+  console.log("detail node..." + JSON.stringify(record.route_details));
     if (record.route_details) {
         return {
             group: true,
             // provide ag-Grid with the children of this group
-            children: [record.route_details],
+            children: [JSON.stringify(record.route_details)],
             // for  expand the third row by default
             //expanded: record.detail.length == 6
         };
