@@ -1,4 +1,5 @@
-<!---Modal 1 vehicle-->        
+<!---Modal 1 vehicle-->   
+    
 <ng-template class="" #motorStop let-c="close" let-d="dismiss" >
     <div class="modal-header">
         <div class="col content-img-center"> 
@@ -48,14 +49,12 @@
         </div>
         <hr  style="background-color: white !important;">
         <div class="row">
-          <!--Section Signal-->
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 section-signal">   
            <div class="d-flex justify-content-lg-end section-signal">
               <div class="signalUse title-text">{{arrTranslate.use}}:</div>
               <div>         
                  <div *ngFor="let signal of signalObject; let i=index;" class="form-radio" >
                   <div class="d-flex justify-content-md-end sig">
-                      <!-- <div  style= "margin-right: 8px;background: red; padding: 0px;margin-top: -3px;"><a *ngIf="i==0 " class="title-text">{{arrTranslate.use}}:</a></div> -->
                       <label class="float-left">
                           <input type="radio" name="optionsRadios"  value="option2"  
                             [checked]="signal.selected"
@@ -69,25 +68,25 @@
             </div>
            </div>
           </div>
-          <!--Section Signal end-->
+
           <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
             <a class="title-text">{{arrTranslate.labelInputModal}}</a><br>
             <input type="password" #password id="password" class="input-border-bottom" placeholder="{{arrTranslateOfGeneral.password}}"><br><br>
-            <!--botones-->
             <div class="section-operation">
                 <button class="buttonOperation" motum-button color="white"  (click)="c('Close click')" outline="true">{{arrTranslateOfGeneral.cancel}}</button>
                 <button  class="buttonOperation" motum-button  color="grey" [size]="large"  (click)="changeMotorStopStatus(comment.value,password.value,false)">{{arrTranslate.deactivateEngineStop}}</button>
                 <button  class="buttonOperation"  motum-button color="danger" [size]="large" (click)="changeMotorStopStatus(comment.value,password.value,true)">{{arrTranslate.activateEngineStop}}</button>
             </div>
   
-            <!--end botones-->
           </div>
         </div>
       </form>
     </div>
   </ng-template>
+
   <!--End modal vehicle-->
   <!--Modal vehicle massive-->
+  
   <ng-template #motorStopMassive id="motorStopMassive" let-c="close" let-d="dismiss" >
     <div class="modal-body">
         <div class="modal-header">
@@ -134,18 +133,28 @@
         
     </div>
   </ng-template>
+
+
   <!--End modal vehicle massive-->
   <!--Modal-->
+
   <alert-component *ngIf="!authorized"></alert-component>
-  
+
+
   <div class="al-content">
   
     <div class="widgets">
       <div class="row">
         <div class="col-md-12"> 
-  <ba-card>
+      
+
+<ba-card>
+        <router-outlet></router-outlet>
+
     <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12"> 
+    <!-- <div class="col-md-4 col-sm-12 col-xs-12 col-12">  -->
+
         <div>
           
           <div class="checkboxUnits">
@@ -165,9 +174,17 @@
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button> -->
-              <div class="modal-footer longbutton">
-                <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">Nuevo Viaje</button>
-              </div>
+              <div class="btnCreateClients"> <!--se cambio de 4 a 2 last-->
+                <button class="btn btn-primary btn-with-icon motum-btn-create"
+                        routerLink="/pages/usersControl/clients-products/create"
+                        (click)="createClientProduct()"
+                        type="button">
+                    <i class="motum-i tm-e926"></i>
+                    <!--{{ newClient | translate }}--> New Order
+                </button>
+            </div>
+
+
               <div class="col-1 col-sm-1 onApClick">
                 <i class="motum-i tm-e91b i-style table-tools-icons-margin" (click)="refresh()"></i>
               </div>
@@ -235,6 +252,7 @@
   </ba-card>
         <div class="footer-table-counter">{{arrTranslateOfGeneral.recordsCount}}: {{totalRows}}  </div>
   
+        
       </div>
     </div>
   </div>

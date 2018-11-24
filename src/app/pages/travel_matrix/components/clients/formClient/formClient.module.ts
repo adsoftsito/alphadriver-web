@@ -110,8 +110,8 @@ const GOOGLE_MAPS_KEY: string = environment.googleMapsKey;
     // AgGridModule.withComponents([]),
     AngularDualListBoxModule ,
      AgmCoreModule.forRoot({
-       apiKey: GOOGLE_MAPS_KEY,
-       libraries: ["places"]
+       apiKey: GOOGLE_MAPS_KEY
+       
      }),
      AgGridModule.withComponents([])
   ],

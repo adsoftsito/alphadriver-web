@@ -29,6 +29,7 @@ import { CurrentTableComponent } from './components/clients/current-table/curren
 import { LogTableComponent } from './components/clients/log-table/log-table.component';
 import { MotorStopComponent } from './components/clients/motor-stop/motor-stop.component';
 import { AlertComponent } from './components/clients/alert/alert.component';
+import {MonitoringReactionService} from "../monitoringReaction/montoringReaction.service";
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { AlertComponent } from './components/clients/alert/alert.component';
       ClientProductService,
       ViajesService,
       OrdersService,
+      MonitoringReactionService
     ],
     schemas: [NO_ERRORS_SCHEMA],
     entryComponents: [TableDetailComponent]

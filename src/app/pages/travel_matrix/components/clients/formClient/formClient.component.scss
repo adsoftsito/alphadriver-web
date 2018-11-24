@@ -2,6 +2,10 @@
 @import '../../../../../theme/sass/motumVariables';
 @import "../../../../../theme/sass/styles/styles";
 
+agm-map {
+  height: 300px;
+}
+
 mr-tool-map-control-component {
 
   $font-size-icons: 17px;

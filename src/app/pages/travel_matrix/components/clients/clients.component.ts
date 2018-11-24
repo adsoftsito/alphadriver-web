@@ -3,10 +3,12 @@ import {TranslateService} from "@ngx-translate/core";
 import {GridOptions} from "ag-grid";
 import { Subscription } from 'rxjs';
 import { LicenseManager } from 'ag-grid-enterprise/main';
+import {Router} from "@angular/router";
 //import  'ag-grid-enterprise';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ViajesService } from './viajes.service';
 import { LoginService } from 'app/shared/providers/login.service';
+import {ClientProductService} from "./clients.service";
 
 //LicenseManager.setLicenseKey('26f908fcbd31ab5109aab8ba901fe020');
 LicenseManager.setLicenseKey('Evaluation_License_Valid_Until__8_December_2018__MTU0NDIyNzIwMDAwMA==50dff8a63bb1a234bae7d0bf98e1be3a');
@@ -101,7 +103,9 @@ export class ClientsProductsComponent implements OnInit, OnDestroy {
   constructor(private translate: TranslateService,
               private modalService:NgbModal, 
               private _servicePatrimonialSecurity:ViajesService, 
+              private clientProductService :ClientProductService,
               private cdr: ChangeDetectorRef,
+              private router: Router,
               private _loginService:LoginService) {
   this.gridOptionsModal = <GridOptions>{};
   this.gridOptionsModal.columnDefs = this.columnDefs2;
@@ -130,6 +134,21 @@ export class ClientsProductsComponent implements OnInit, OnDestroy {
         this.calendarLabel = labelObject.last + ' 7 ' + labelObject.days;
     });
 
+  }
+
+
+  /**
+     * Method to show client form to create a clientProduct
+     */
+    createClientProduct() {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+          setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
   }
 
   changeLanguage(){

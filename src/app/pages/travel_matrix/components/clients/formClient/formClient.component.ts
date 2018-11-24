@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef, ViewChild, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Renderer2, HostListener, ViewChild, ElementRef ,OnDestroy, ChangeDetectorRef} from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ClientModel } from '../../../../../shared/models/clients/client.model';
 import { InterfaceModel } from '../../../../../shared/models/clients/interface.model';
@@ -9,14 +9,35 @@ import { AccountModel } from '../../../../../shared/models/clients/account.model
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
 
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import { Router } from "@angular/router";
 import { Select2OptionData } from 'ng2-select2';
-import { Subscription } from 'rxjs/Subscription';
-import { ClientProductService } from '../clients.service';
 import { DualListComponent } from 'angular-dual-listbox';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import {Constants} from "../../../../../shared/providers/constants";
+import {TranslateService} from "@ngx-translate/core";
+import {GridOptions} from "ag-grid";
+import { Subscription } from 'rxjs';
+import { LicenseManager } from 'ag-grid-enterprise/main';
+import {Router} from "@angular/router";
+//import  'ag-grid-enterprise';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { ViajesService } from '../viajes.service';
+import { LoginService } from 'app/shared/providers/login.service';
+import {ClientProductService} from "../clients.service";
+
+import {BaMenuService} from "../../../../../theme/services/baMenu/baMenu.service";
+import {EventsService} from "../../../../../shared/providers/events";
+import {MonitoringReactionService} from "../../../../monitoringReaction/montoringReaction.service";
+import { BreadCrumManual } from "../../../../../shared/providers/breadCrumbManual.service";
+import {ChangeSpaceColsAndRowsService} from "../../../../../shared/providers/changeSpaceColsAndRows.service";
+import { Observable } from "rxjs";
+import {browser} from "protractor";
+import {vehicleModel} from "../../../../../shared/models/orders/vehicle.model";
+import {AgmMarkerCluster} from "@agm/js-marker-clusterer";
+import { AgmMap } from '@agm/core';
+
+//LicenseManager.setLicenseKey('26f908fcbd31ab5109aab8ba901fe020');
+LicenseManager.setLicenseKey('Evaluation_License_Valid_Until__8_December_2018__MTU0NDIyNzIwMDAwMA==50dff8a63bb1a234bae7d0bf98e1be3a');
+
 
 @Component({
   selector: 'form-client-product-component',
@@ -37,6 +58,13 @@ import {Constants} from "../../../../../shared/providers/constants";
 })
 export class FormClientProductComponent implements OnInit{
 
+
+  @ViewChild('map') myMap:AgmMap;
+
+
+  agmtitle: string = 'My first AGM project';
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   ////////////////
 
@@ -110,6 +138,7 @@ export class FormClientProductComponent implements OnInit{
   $subscriptionGroups:Subscription;
   //----------------------------------
 
+  
 
 
   ////////
@@ -150,6 +179,84 @@ public eje: String;
 public exampleData: Array<Select2OptionData>;
 public options: Select2Options;
 public optionsPermits: Select2Options;
+
+
+/* */
+private gridApi;
+private gridColumnApi;
+private data: any[];
+private dataBinnacle:any[];
+private columnDefs;
+private columnDefs2;
+private rowSelection;
+
+customIcons: any = {
+  sortAscending: '<i class="fa fa-caret-down"/>',
+  sortDescending: '<i class="fa fa-caret-up"/>',
+};
+private gridOptionsModal:GridOptions;
+
+private isRemember:boolean = false;
+private checkControl: boolean = true;
+private dateOfSearch:any;
+rowSelected: any;
+selectedRows:any[];
+totalRows:number = 0;
+private signalObject=
+  [
+      {type: 1,selected:false, label: 'Celular'},
+      {type: 2,selected:false, label: 'Hibrida'}
+  ];
+  //seccion show table
+  btnArray = [{
+    label: 'Actual',
+    selected: 'active'
+  },
+  {
+    label: 'Bitácora',
+    selected: ''
+  }];
+visibleTable:string = 'current';
+showCheckBox:boolean = true;
+authorized:boolean = true;
+
+ //modal
+private  ngbModalOptions: NgbModalOptions = {
+  backdrop : 'static',
+  size:'lg',
+  keyboard : false,
+  windowClass: 'modal-vehicle-motor-stop'
+};
+
+private signalTypeSelect:number;
+
+numberEventsAux:any = [
+ {
+   numbers:[]
+ }
+];
+
+//DOM
+labelSignal:string ='';
+signalStatus:any[];
+labelmotorStopStatus:string = '';
+riskLevelClass:string = '';
+arrTranslate:any = [];
+arrTranslateOfGeneral:any = [];
+showCalendarModal:boolean;
+calendarLabel: any = '';
+//service-------------
+$subcriptionTranslate : Subscription;
+$subcriptionTranslateGeneral:Subscription;
+//--------------------
+selectedOption: any;
+selectedRange: any;
+firstDateTimestamp:any;
+lastDateTimestamp:any;
+
+
+/* */
+
 
 //translate
 viaje = 'pages.logistica.clients.formClient.viaje';
@@ -400,9 +507,39 @@ display = 'plataform';
 filter = true;
 
 constructor(    private C: Constants,
-  private renderer: Renderer2, private clientProductService: ClientProductService,
-   private formBuilder: FormBuilder, private router: Router, private modalService: NgbModal) {
-    // this.clientModel = new User();
+  private renderer: Renderer2, 
+  private clientProductService: ClientProductService,
+   private formBuilder: FormBuilder, 
+    private modalService:NgbModal, 
+    private _servicePatrimonialSecurity:ViajesService, 
+    private router: Router,
+    private _loginService:LoginService,
+    private baMenuService: BaMenuService,
+    private event: EventsService,
+    private service: MonitoringReactionService,
+    private serviceColsAndRows:ChangeSpaceColsAndRowsService,
+    private translate: TranslateService,
+    private _service: BreadCrumManual,
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.MR_HTML_CLASSES = this.serviceColsAndRows.MR_HTML_CLASSES;
+    this.event.subscribe(this.C.EVENTS_SERVICE.SIDEBAR_MENU_ITEM_TOGGLE, () => {this.initDisplayUnitMenuComponent()});
+    this.initDisplayUnitMenuComponent();
+    this.event.subscribe(this.C.EVENTS_SERVICE.MONITORING_REACTION_MENU_CHANGE_CLASS, (menuName, classes) => {
+      this.onChangeMenuClasses(menuName, classes);
+    });
+    this.event.subscribe(this.C.EVENTS_SERVICE.MONITORING_REACTION_CHAT_DETAIL, (options) => {
+      this.onChatDetailStatus(options.status);
+      this.colorCircleDetail = options.circleColor;
+      this.cdr.detectChanges();
+    });
+   
+  this.gridOptionsModal = <GridOptions>{};
+  this.gridOptionsModal.columnDefs = this.columnDefs2;
+  this.gridOptionsModal.enableSorting = true;
+  this.changeLanguage();
+
+ 
     this.source = JSON.parse(JSON.stringify(this.dataExample));
   // this.validateForm();
   this.clientModel = new ClientModel();
@@ -537,6 +674,13 @@ constructor(    private C: Constants,
    }
 
 ngOnInit() {
+
+  this.loadGroups();
+  this.loadUnits();
+  this.startInfoWindowListener();
+
+
+ // this.vehicleLabels = [{selected : true},{selected : false},{selected : false},{selected : false},{selected : false}];
 
   //DELETE THIS ON PRODUCTION MODE
     this.confirmed = this.confirmedDummi;
@@ -823,7 +967,17 @@ ngOnDestroy() {
   this.email = null;
   this.password = null;
   this.userRols = null;
+  this.$subcriptionTranslate.unsubscribe();
+  this.event.unsubscribe(this.C.EVENTS_SERVICE.SIDEBAR_MENU_ITEM_TOGGLE);
+this.event.unsubscribe(this.C.EVENTS_SERVICE.MONITORING_REACTION_MENU_CHANGE_CLASS);
+this.event.unsubscribe(this.C.EVENTS_SERVICE.MONITORING_REACTION_CHAT_DETAIL);
+this.$subscriptionGroups.unsubscribe();
+this.$subscriptionUnits.unsubscribe();
+
+
 }
+
+
 
 validateForm() {
   this.form = this.formBuilder.group({
@@ -932,4 +1086,568 @@ upperCase(content){
     },1);
 }
 
+
+/* */
+ /**
+     * Method to show client form to create a clientProduct
+     */
+    createClientProduct() {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+          setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
+  }
+
+  changeLanguage(){
+    this.lang = localStorage.getItem('lang');
+    if(this.lang === null){
+      this.translate.getBrowserLang();
+    }else{
+      this.translate.use(this.lang);
+    }
+  }
+  
+  
+
+  exportToExel() {
+     this._servicePatrimonialSecurity.exportToExcell(true);
+  } 
+
+  refresh(){    
+    this._servicePatrimonialSecurity.updateTable(true);
+  }
+
+  restoreCheckbox(){
+    this.isRemember = false;
+    this.checkControl = true;
+  }
+
+ onGridReady(params) {    
+    console.log(params);
+    this.gridColumnApi = params.columnApi;
+    this.gridApi = params.api;
+
+    if (this.gridOptionsModal.api){
+      this.gridOptionsModal.api.setRowData(this.selectedRows);
+    }      
+  }
+
+  
+  makeSelectableRow() {
+    this._servicePatrimonialSecurity.selectWithCheck({
+      checkControl:this.checkControl, isRemember:this.isRemember
+  });
+  }
+
+  resizingColumns() {
+    this.gridApi.sizeColumnsToFit();
+  }
+    /**
+     *  
+     * You get which table you want to display
+     * @param item 
+     */
+    changeSelectedItem(item){
+      if(item === 'BG0')
+      {
+        //Show columns TableActual
+        this.visibleTable = 'current';
+        this.showCheckBox = true;
+      }else{
+        if(item === 'BG1'){
+          //Show columns Table Bitacora
+          this.visibleTable = 'binnacle';
+          this.showCheckBox = false;
+        }
+      }
+      this.restoreCheckbox();
+    }
+
+    changeStatusControl(value){
+      this.checkControl = value;
+    }
+    onFilterChanged(data){     
+     this._servicePatrimonialSecurity.search(data);
+  }
+    changeStatusRemember(value:boolean){
+      this.isRemember = value;      
+    }
+    getselectedOneItem(element:any){
+      this.rowSelected = element;
+      this.labelmotorStopStatus = this.rowSelected.motorStopStatus == 1 ? 'Con paro de motor': 'Sin paro de motor';
+            //Signal Status
+     if(this.rowSelected.signal){       
+      if ( this.rowSelected.signal.type === 1){
+        this.signalObject[0].selected = true;
+        this.signalObject[1].selected = false;
+        this.labelSignal =this.signalObject[0].label;
+        
+      }else{
+        if(this.rowSelected.signal.type === 2){
+          this.signalObject[1].selected = true;
+          this.signalObject[0].selected = false;
+          this.labelSignal = this.signalObject[1].label;
+        }
+      }
+     }
+     // this.openModalMotorStop('motorStop');
+      
+    }
+    getselectedItems(elements:any){        
+      if(elements.length > 0){
+        this.selectedRows = elements;        
+      }
+      else{
+        this.isRemember = false;
+      }
+    }
+    getColumnDef(elements:any){
+      delete elements[0]['checkboxSelection'];
+      delete elements[0]['cellRenderer'];
+      delete elements[0]['cellRendererParams'];
+      delete elements[5]['cellStyle'];
+      delete elements[6]['cellClass'];
+      delete elements[9]['cellStyle'];
+      this.columnDefs2 = elements; 
+    }
+
+    getTotalRows(total:number){
+      this.totalRows = total;
+    }
+/*
+    openModalMotorStop(idModal){
+      this.numberEventsAux[0].numbers = [];
+      let openModalOneVehicle:boolean = false;
+      let oneVehicle:any = [];
+      
+      if( this.selectedRows){
+        if(idModal == 'massive'){
+          if(this.selectedRows.length>1)
+          {
+            const modalRefMassive = this.modalService.open(this.modalMotorStopMassive, 
+              {
+                backdrop : 'static',
+                windowClass:'modalMotorStopMassive',
+                keyboard : false
+              });
+              openModalOneVehicle = false;
+          }
+          else{
+            openModalOneVehicle = true;
+            oneVehicle = this.selectedRows;
+          }
+        }
+      }
+
+      if( idModal === 'motorStop' || openModalOneVehicle === true)
+      {       
+        if(openModalOneVehicle === true ){
+          this.rowSelected = oneVehicle[0]; 
+          oneVehicle = [];
+        }
+        let numEvents = this.rowSelected.numberEvents;
+        switch(numEvents){
+          case 6:
+          this.riskLevelClass = 'high';
+          break;
+          case 5:
+          this.riskLevelClass = 'high';
+          break;
+          case 4:
+          this.riskLevelClass = 'medium';
+          break;
+          case 3:
+          this.riskLevelClass = 'medium';
+          break;
+          case 2:
+          this.riskLevelClass = 'low';
+          break;
+          case 1:
+          this.riskLevelClass = 'low';
+          break;            
+       
+        }
+
+        for(let i=0;i<6;i++)
+        {
+          if (i<numEvents)
+        this.numberEventsAux[0].numbers.push("aux");
+        else
+        this.numberEventsAux[0].numbers.push("def");
+        }
+        
+        const modalRef = this.modalService.open(this.modalMotorStop,this.ngbModalOptions);      
+      }      
+    }
+ */
+    
+
+    changeSelectSignal(type){
+      this.signalTypeSelect = type;      
+    }
+   
+    /**
+    * activates or deactivates engine shutdown of one or more vehicles
+    * @param status 
+    * @param mode //1 or more 
+    */
+
+    changeMotorStopStatus(comment,password,motorStatusActive){
+      //1 vehicle 
+      let validData = this.isValidData(comment,password);
+      if(validData){
+        this.authorized = false;
+      }
+      
+    }
+    isValidData(comment,password){
+      let validData:boolean = true;
+      let validPassword:boolean = true;
+      let pass:string;
+
+      if(comment == "" || comment.trim() == ""){
+        validData = false;
+        document.getElementById('comment').focus();
+      }
+
+      if(password == "" || password.trim() == ""){
+        validData = false;
+        document.getElementById('password').focus();
+      }else{
+       pass = this._loginService.isLogged();
+       if(pass != password)
+       {
+         validData = false;
+         document.getElementById('password').focus();
+       }
+      }
+
+      return validData;
+    }
+    /***Start functions for calendar */
+    getSelectedOption(event){
+      this.selectedOption = event;
+      this.cdr.detectChanges(); 
+    }
+      getSelectedRange(event){
+          this.selectedRange = event;
+          this.convertDateToTimestamp(event);
+          console.log(this.firstDateTimestamp);
+          console.log(this.lastDateTimestamp);
+          this.cdr.detectChanges();
+      }
+    showCalendar(){
+        this.showCalendarModal = true;
+        this.cdr.detectChanges();
+    }
+    getCalendarLabel(event){
+        this.calendarLabel = event;
+        this.cdr.detectChanges();
+    }
+
+    modalClosed(){
+        this.showCalendarModal = false;
+    }
+    
+    convertDateToTimestamp(moment: any){
+      this.firstDateTimestamp = moment[0].format('x');
+      this.lastDateTimestamp = moment[1].format('x');
+    }
+    /* END OF CALENDAR FUNCTIONS*/
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        if (this.gridApi) {
+            setTimeout(() => {
+                this.gridApi.sizeColumnsToFit();
+            }, 200);
+        }
+    }
+
+    private onGridResize(){
+      this.gridOptionsModal.api.sizeColumnsToFit();
+    }
+
+
+/* */
+
+
+onChatDetailStatus(status){
+this.isChatDetail = status;
+}
+closeChatDetail(){
+this.isChatDetail = false;
+}
+motumZoomControls(zoomType) {
+
+
+this.zoom = this.currentZoom;
+if (zoomType === this.ZOOM_IN && this.zoom < 22)
+  this.zoom = this.zoom + 1;
+else if (zoomType === this.ZOOM_OUT && this.zoom > 0)
+  this.zoom = this.zoom - 1;
+}
+
+zoomChange(currentZoom) {
+
+this.currentZoom = currentZoom;
+
+}
+
+initDisplayUnitMenuComponent() {
+let statusItem = this.baMenuService
+  .getStatusItem(this.MENU_MONITORING_REACTION);
+if (statusItem)
+  this.displayUnitMenuComponent = statusItem.status;
+}
+
+
+refreshMap(){
+
+  //  location.reload();
+    this.loadUnits();
+
+
+}
+loadUnits() {
+
+
+this.$subscriptionUnits = this.service.retrieveUnits()
+  .subscribe(
+    res => {
+
+        const body = JSON.parse(res['_body']);            
+      this.unitMarkers = body.units;
+      //this.groups = body.groups;
+      this.listUnitsCopia=this.unitMarkers;
+
+
+    },
+    err => {
+      console.error(err);
+
+    }
+  )
+
+}
+
+loadGroups(){
+this.$subscriptionGroups = this.service.getGroups().subscribe(
+  res => {
+    const body = JSON.parse(res['_body']);
+    this.groups = body.groups;        
+  },
+  err =>{
+    console.log(err);
+    
+  }
+);
+
+}
+
+onChangeMenuClasses(menuName, classes) {
+Promise.resolve(null).then(() => {this.MR_HTML_CLASSES[menuName] = classes;});
+}
+
+sendUnit(unitData){
+this.unitDataVehicle = unitData;
+if(this.unitDataVehicle && this.unitDataVehicle.length > 0){
+  this.flagUnitDataVehicle = true;
+  this.flagFilterin = false;
+  this.sendChangeIconColor = 'closeFO';
+  this.flagSelected = true;
+}
+}
+openFiltering(flagFilteringOptions){
+this.flagFilterin = flagFilteringOptions;
+this.flagUnitDataVehicle = false;
+if(flagFilteringOptions){
+  this.sendChangeIconColor = 'openFO';
+}else{
+  this.sendChangeIconColor = 'closeFO';
+  let breadcrumbLabels = ['Menu.monitoringReaction', 'general.vehicles'];
+  this._service.generateManualRouting(breadcrumbLabels, [], [0,0], []);
+}
+}
+
+closeFiltering(close){
+this.sendChangeIconColor = 'closeFO';
+this.flagFilterin = close;
+let breadcrumbLabels = ['Menu.monitoringReaction', 'general.vehicles'];
+this._service.generateManualRouting(breadcrumbLabels, [], [0,0], []);
+}
+closeVehicleDescription(close){
+this.flagUnitDataVehicle = close;
+this.flagSelected = false;
+let breadcrumbLabels = ['Menu.monitoringReaction', 'general.vehicles'];
+this._service.generateManualRouting(breadcrumbLabels, [], [0,0], []);
+}
+
+changeLenguage(){
+this.lang = localStorage.getItem('lang');
+if(this.lang === null){
+  this.translate.getBrowserLang();
+}else{
+  this.translate.use(this.lang);
+}
+}
+
+mouseOver(event){
+  console.log("HOLI");
+}
+loadPointsOfView(listOfPoints){
+
+
+
+  if(this.listOfPaths.indexOf(listOfPoints) !== -1){
+        let index = this.listOfPaths.indexOf(listOfPoints);
+        this.listOfPaths[index].selected = listOfPoints.selected;
+  } else {
+        this.listOfPaths.push(listOfPoints);
+  }
+
+}
+
+
+changeMarkerType(vehicleViews) {
+this.markerVisualization = vehicleViews[0] ? 'VEHICLE' : "POINTER";
+
+
+
+}
+setLocationMap(event) {
+if(event !== undefined && event !== null) {
+  setTimeout(()=>{
+    this.zoom = this.currentZoom;
+    this.latitude = event[0].latitude;
+    this.longitude = event[0].longitude;
+    this.zoom = event[0].zoom;
+  },100);
+}
+}
+buttonCloseOpen(event){
+this.showListUnits = event;
+}
+
+
+editGeoFence(event){
+
+  //console.log(event);
+  if (this.geoFenceEditable === true){
+      //this.geoFenceEditable = false;
+  } else {
+      //this.geoFenceEditable = true;
+  }
+
+
+}
+
+
+
+
+showListFiltered(value){
+
+ let listFiltered;
+ 
+ if(value==-1){
+   //Do not apply filters
+   //empty the copy to the original arrangement
+    this.unitMarkers=this.listUnitsCopia;
+ }
+ else{
+   //apply filters
+   listFiltered = this.listUnitsCopia.filter((a)=>{
+    return a.principalGroup.label === value;//by label
+    // return a.principalGroup.id === value;//by id
+   });
+   this.unitMarkers=listFiltered;
+ }
+}
+
+searching(value){
+if (value){
+   this.service.searchUnits(value)
+       .subscribe(
+           res => {
+               const body = JSON.parse(res['_body']);
+               this.unitMarkers = body.units;
+           },
+           err => {
+               console.error(err);
+           }
+       )
+} else{
+   this.service.retrieveUnits()
+       .subscribe(
+           res => {
+               const body = JSON.parse(res['_body']);
+               this.unitMarkers = body.units;
+           },
+           err => {
+               console.error(err);
+           }
+       )
+}
+}
+
+
+optionVisualizeMap(event){
+
+if(event === 'pages.monitoringreaction.toolMapControl.display.map'){
+    this.viewMap = 'roadmap';
+    this._map.setTilt(0);
+}if(event === 'pages.monitoringreaction.toolMapControl.display.satelite'){
+    this.viewMap = 'satellite';
+      this._map.setTilt(0);
+}if(event === 'pages.monitoringreaction.toolMapControl.display.3dView' ){
+    this.viewMap = 'satellite';
+    this._map.setTilt(45);
+    this._map.setZoom(18);
+}
+}
+
+
+trafficLayerView(event) {
+this.trafficLayer = event;
+if (this.trafficLayer == true){
+  this. trafficLayerInstance.setMap(this.mapInstance);
+} else {
+   this.trafficLayerInstance.setMap(null);
+}
+}
+
+showTrafficLayer(mapInstance){
+  this._map = mapInstance;
+ this.trafficLayerInstance = new google.maps.TrafficLayer();
+ this.mapInstance = mapInstance;
+
+
+
+ //detect when user is dragging
+  this.mapInstance.addListener("drag", (d) => {
+      this.userIsDragging = true;
+  });
+  this.mapInstance.addListener("click", (d) => {
+      this.userIsDragging = false;
+  });
+
+}
+
+getVehicleLabels(labels) {
+    //console.log(labels);
+    this.vehicleLabels = labels;
+    this.vehicleLabels = this.vehicleLabels.slice();
+}
+setClusters(clusters){
+  this.viewClusters = clusters;
+}
+startInfoWindowListener(){
+
+}
+
+
+/* */
 }

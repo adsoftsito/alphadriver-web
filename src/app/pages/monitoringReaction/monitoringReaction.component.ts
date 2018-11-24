@@ -140,6 +140,7 @@ export class MonitoringReactionComponent implements OnInit, OnDestroy, AfterView
 
 
   }
+  
   ngOnInit() {
       this.loadGroups();
       this.loadUnits();
