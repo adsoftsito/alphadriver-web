@@ -26,10 +26,16 @@ import { MemberModalComponent } from './components/clients/memberModal/memberMod
 import { ViajesService } from './components/clients/viajes.service';
 import { TableDetailComponent } from './components/clients/table-detail/table-detail.component';
 import { CurrentTableComponent } from './components/clients/current-table/current-table.component';
+
+
 import { LogTableComponent } from './components/clients/log-table/log-table.component';
 import { MotorStopComponent } from './components/clients/motor-stop/motor-stop.component';
 import { AlertComponent } from './components/clients/alert/alert.component';
 import {MonitoringReactionService} from "../monitoringReaction/montoringReaction.service";
+import { UploadSignComponent } from './components/clients/upload-sign/upload-sign.component';
+import { UploadPhotoComponent } from './components/clients/upload-photo/upload-photo.component';
+import { UploadObsComponent } from './components/clients/upload-obs/upload-obs.component';
+import { OrderDetailComponent } from './components/clients/order-detail/order-detail.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +52,11 @@ import {MonitoringReactionService} from "../monitoringReaction/montoringReaction
       CurrentTableComponent,
       LogTableComponent,
       MotorStopComponent,
-      AlertComponent
+      AlertComponent,
+      UploadSignComponent,
+      UploadPhotoComponent,
+      UploadObsComponent,
+      OrderDetailComponent
     ],
     imports: [
       CommonModule,

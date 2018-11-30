@@ -5,6 +5,10 @@
 
       [gridOptions]="gridOptions"
       [icons]="customIcons"
+      [suppressRowClickSelection]="true"
+      [suppressAggFuncInHeader]="true"
+  
+      (cellClicked)="onCellClicked($event)"
 
       (gridSizeChanged)="onGridResize($event)">
   </ag-grid-angular>

@@ -1,5 +1,5 @@
 <!---Modal 1 vehicle-->   
-    
+   <!-- 
 <ng-template class="" #motorStop let-c="close" let-d="dismiss" >
     <div class="modal-header">
         <div class="col content-img-center"> 
@@ -83,10 +83,10 @@
       </form>
     </div>
   </ng-template>
-
+-->
   <!--End modal vehicle-->
   <!--Modal vehicle massive-->
-  
+  <!--
   <ng-template #motorStopMassive id="motorStopMassive" let-c="close" let-d="dismiss" >
     <div class="modal-body">
         <div class="modal-header">
@@ -133,20 +133,20 @@
         
     </div>
   </ng-template>
-
+-->
 
   <!--End modal vehicle massive-->
   <!--Modal-->
-
+<!--
   <alert-component *ngIf="!authorized"></alert-component>
-
+-->
 
   <div class="al-content">
   
     <div class="widgets">
       <div class="row">
         <div class="col-md-12"> 
-      
+        
 
 <ba-card>
         <router-outlet></router-outlet>
@@ -230,7 +230,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 " style="padding:0px!important;">
           <hr class="hrPatrimonialSecurity"/>
-        <ps-current-table *ngIf="visibleTable == 'current'"
+        <ps-current-table *ngIf="visibleTable == 'current'" 
          (statusCheckControl)=changeStatusControl($event)
          (statusIsRemember)=changeStatusRemember($event)
          (selectedOneItem)=getselectedOneItem($event)
@@ -256,7 +256,7 @@
       </div>
     </div>
   </div>
-  
+
   <motum-modal-date-picker *ngIf="showCalendarModal"
                            (selectedOption)="getSelectedOption($event)"
                            (hasBeenClosed)="modalClosed()"

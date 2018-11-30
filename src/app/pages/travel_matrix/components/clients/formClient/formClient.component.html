@@ -592,7 +592,7 @@
 
 
 
-
+<!--
               <ngb-tab id="tabMapa" title="Mapa">
 
                   <ng-template ngbTabContent>
@@ -610,8 +610,6 @@
                           
                               <h1>{{ agmtitle }}</h1>
 
-                              <!-- this creates a google map on the page with the given lat/lng from -->
-                              <!-- the component as the initial center of the map: -->
                               <agm-map #map [latitude]="lat" [longitude]="lng">
                                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                               </agm-map>
@@ -667,8 +665,8 @@
 
                     </div>
                   </ng-template>
-                </ngb-tab>
-    
+                          </ngb-tab>
+                        -->
       </ngb-tabset>
     </div>
   </div>

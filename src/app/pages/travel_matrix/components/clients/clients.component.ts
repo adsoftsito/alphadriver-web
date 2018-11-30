@@ -13,7 +13,7 @@ import {ClientProductService} from "./clients.service";
 //LicenseManager.setLicenseKey('26f908fcbd31ab5109aab8ba901fe020');
 LicenseManager.setLicenseKey('Evaluation_License_Valid_Until__8_December_2018__MTU0NDIyNzIwMDAwMA==50dff8a63bb1a234bae7d0bf98e1be3a');
 @Component({
-  selector: 'patrimonial-security',
+  selector: 'patrimonial-security.col-md-12',
   templateUrl: './clients.component.html',
   
   styleUrls: ['./clients.component.scss'],
@@ -142,7 +142,9 @@ export class ClientsProductsComponent implements OnInit, OnDestroy {
      */
     createClientProduct() {
       this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
-          setTimeout(() => {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','upload-sign']).then(nav => {
+    
+      setTimeout(() => {
              this.clientProductService.createClientProduct();
            }, 200);
           }, err => {

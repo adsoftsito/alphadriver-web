@@ -1,17 +1,18 @@
 import { Component, OnInit,OnDestroy, HostListener, Output, EventEmitter, Input } from '@angular/core';
 import {GridOptions} from "ag-grid";
 import { Subscription } from 'rxjs/Subscription';
-import { ViajesService } from '../viajes.service';
-import { TableDetailComponent } from '../table-detail';
+import { ViajesService } from '../../viajes.service';
+import { TableDetailRouteComponent } from '../table-detail-route/table-detail-route.component';
 import { TranslateService } from '@ngx-translate/core';
-import { LoginService } from '../../../../../shared/providers/login.service';
+import { LoginService } from '../../../../../../shared/providers/login.service';
 
 @Component({
-  selector: 'ps-current-table',
-  templateUrl: './current-table.component.html',
-  styleUrls: ['./current-table.component.scss']
+  
+  selector: 'ps-current-table-route',
+  templateUrl: './current-table-route.component.html',
+  styleUrls: ['./current-table-route.component.scss']
 })
-export class CurrentTableComponent implements OnInit,OnDestroy {
+export class CurrentTableRouteComponent implements OnInit,OnDestroy {
 
   @Output() statusCheckControl = new EventEmitter<any>();
   @Output() statusIsRemember = new EventEmitter<boolean>();
@@ -74,18 +75,18 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         /*** */
       },
       { 
-        field: "driver.name",
+        field: "companyid",
         suppressMenu: true,
         suppressSizeToFit:true,
-        width:150
+        width:85
       },
       {
-        field: "truckid",
+        field: "customerid",
         suppressMenu: true,
-        width:50
+        width:115
       },
       { 
-        field: "zone",
+        field: "placesource",
         suppressMenu:true,
          width:43
          /*,
@@ -112,7 +113,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
       },
       {
-        field:"assigndate",
+        field:"placetarget",
         suppressMenu: true
         
 /*        cellRenderer : (params)=>{
@@ -128,13 +129,13 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
           }
         return risk;
         }*/,
-        width:100
+        width:61
       },
       {
-        field: "orderstatus.description",
+        field: "createdAt",
         suppressMenu: true,
         cellStyle:{'text-align':'center'},
-        width:80
+        width:108
         /*,
         cellRenderer: (params) => { 
          return params.value+' h';
@@ -142,7 +143,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
       },
       {
         colId: "motorStopStatus",
-        field:"orderstatusadmin.description",
+        field:"placesource",
         suppressMenu: true,
         cellClass:['cell-motum-hover-statusMotorStop'],
         /*        
@@ -152,27 +153,20 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
           else//class="motum-i tm-ea00 
           return '<i class="motum-i tm-ea00 status-off"></i> '+this.arrTranslate.WithoutMotorStop;
         },*/
-        width:80
+        width:111
       },
       {
-        field:"teadate",
+        field:"placesource",
         suppressMenu: true,
         width:92
       },
       {
-        field:"teastatus",
+        field:"placesource",
         suppressMenu: true,
-                
-        cellRenderer:(params)=>{
-          if(params.value=='status 0')
-          return '<i class="motum-i tm-ea00 status-on" ></i> '+ params.value;
-          else//class="motum-i tm-ea00 
-          return '<i class="motum-i tm-ea00 status-off"></i> '+ params.value;
-        },
         width:111
       },
       {
-        field:"enddate",
+        field:"updatedAt",
         suppressMenu: true,
         cellStyle:{'text-align':'center'},
        /* cellRenderer:(params) =>{
@@ -183,6 +177,19 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
             else return params.value+ ' h';
         },*/
         width:108
+      },
+      {
+        field:"updatedAt",
+        suppressMenu: true,
+        cellStyle:{'text-align':'center'},
+       /* cellRenderer:(params) =>{
+          if(params.value.length == 0)
+          {
+              return '-';
+          }
+          else return params.value+' h';
+         },*/
+         width:108
       }
     ];
 
@@ -448,17 +455,17 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   translateHeaderTable(){
     this.$subscriptionTranslate = this.translate.get('pages.monitoringreaction.patrimonial_security').subscribe( res =>{
       this.arrTranslate = res;
-      this.columnDefs[0].headerName = "Folio Despacho"; //this.arrTranslate.economic;
-      this.columnDefs[1].headerName = "Operador"; //this.arrTranslate.carrier;
-      this.columnDefs[2].headerName = "# Economico"; //this.arrTranslate.location;
-      this.columnDefs[3].headerName = "Territorio"; //this.arrTranslate.state;
-      this.columnDefs[4].headerName = "Fecha de Asignacion"; //this.arrTranslate.risk;
-      this.columnDefs[5].headerName = "Estado Operativo"; //this.arrTranslate.dateOfPosition;
-      this.columnDefs[6].headerName = "Estado Administrativo";//this.arrTranslate.motorStopStatus;
-      this.columnDefs[7].headerName = "Fecha TEA"; //this.arrTranslate.transmitter;
-      this.columnDefs[8].headerName = "Estado TEA";//this.arrTranslate.commandSent;
-      this.columnDefs[9].headerName = "Fin de Viaje"; //this.arrTranslate.shippingDate;
-      //this.columnDefs[10].headerName = ""; //this.arrTranslate.dateOfApplication;
+      this.columnDefs[0].headerName = this.arrTranslate.economic;
+      this.columnDefs[1].headerName = this.arrTranslate.carrier;
+      this.columnDefs[2].headerName = this.arrTranslate.location;
+      this.columnDefs[3].headerName = this.arrTranslate.state;
+      this.columnDefs[4].headerName = this.arrTranslate.risk;
+      this.columnDefs[5].headerName = this.arrTranslate.dateOfPosition;
+      this.columnDefs[6].headerName = this.arrTranslate.motorStopStatus;
+      this.columnDefs[7].headerName = this.arrTranslate.transmitter;
+      this.columnDefs[8].headerName = this.arrTranslate.commandSent;
+      this.columnDefs[9].headerName = this.arrTranslate.shippingDate;
+      this.columnDefs[10].headerName = this.arrTranslate.dateOfApplication;
       this.gridOptions.columnDefs = this.columnDefs;
 
       this.showTableTranslated =true;
@@ -483,8 +490,8 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 */
     /**** */
     /** service**/
-    console.log("getting data..");
-     this.$subcriptionGetUnitSafeties = this._servicePatrimonialSecurity.getUnitsSafeties(null,null).subscribe(
+    console.log("getting routes..");
+     this.$subcriptionGetUnitSafeties = this._servicePatrimonialSecurity.getRoutes(null,null).subscribe(
        res =>{
          const body = JSON.parse(res['_body']);
          if(body)
@@ -617,8 +624,8 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
    */
   onCellClicked( event){
     console.log("selected..." + event.rowIndex);
-   // console.log("selected data..." + JSON.stringify(event.data.route_details));
-    console.log("selected data..." + JSON.stringify(event.data.orderdetail));
+    console.log("selected data..." + JSON.stringify(event.data.route_details));
+   // console.log("selected data..." + JSON.stringify(event.data.orderdetail));
     
     if(event.column.colId == 'motorStopStatus'&& event.data != null 
         && event.data !== undefined){
@@ -715,7 +722,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   }
 
   public getFullWidthCellRenderer() {
-    return TableDetailComponent;
+    return TableDetailRouteComponent;
 }
   public getRowHeight(params) {
     let rowIsDetailRow = params.node.level === 1;
@@ -725,17 +732,17 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
 public getNodeChildDetails(record) { 
   console.log(this.data);
- // console.log("detail node..." + JSON.stringify(record.route_details));
-  console.log("detail node..." + JSON.stringify(record.ordedetail));
+  console.log("detail node..." + JSON.stringify(record.route_details));
+  //console.log("detail node..." + JSON.stringify(record.ordedetail));
  
-// if (record.route_details) {
-  if (record.orderdetail) {
+ if (record.route_details) {
+ // if (record.orderdetail) {
 
         return {
             group: true,
             // provide ag-Grid with the children of this group
-            //children: [JSON.stringify(record.route_details)],
-            children: [JSON.stringify(record.orderdetail)],
+            children: [JSON.stringify(record.route_details)],
+            //children: [JSON.stringify(record.orderdetail)],
             
             // for  expand the third row by default
             //expanded: record.detail.length == 6

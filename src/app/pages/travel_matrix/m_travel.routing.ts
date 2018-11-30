@@ -9,6 +9,7 @@ import {ClientsOrdersComponent} from "./components/clientOrders/orders.component
 import {FormClientProductComponent} from "./components/clients/formClient/formClient.component";
 import {FormOrderComponent} from "./components/clients/formOrder/formOrder.component";
 import {MemberModalComponent} from "./components/clients/memberModal/memberModal.component";
+import {UploadSignComponent} from "./components/clients/upload-sign/upload-sign.component";
 
 
 const routes: Routes = [
@@ -35,7 +36,13 @@ const routes: Routes = [
         path: 'create',
         component: FormClientProductComponent,
         data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
-      }, {
+      },
+      {
+        path: 'upload-sign',
+        component: UploadSignComponent,
+        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+      },
+      {
         path: 'edit',
         component: FormClientProductComponent,
         data: {breadcrumb: 'pages.userControl.client_product.edit_section', inAction: 1}

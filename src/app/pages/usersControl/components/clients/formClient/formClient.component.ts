@@ -32,6 +32,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
       }))
     ]),
   ],
+  encapsulation: ViewEncapsulation.None
 })
 export class FormClientProductComponent implements OnInit{
 

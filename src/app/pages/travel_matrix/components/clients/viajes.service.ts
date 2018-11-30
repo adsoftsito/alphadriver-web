@@ -17,8 +17,10 @@ export class ViajesService{
     //ENDPOINTS
     //ENDPOINT: string = 'units';
     //ENDPOINT_SAFETIES: string = '/safeties';
-    ENDPOINT: string = 'rutas';
+    ENDPOINT: string = '';
     ENDPOINT_SAFETIES: string = '';
+    ENDPOINT_ORDERS: string = 'viajes';
+    ENDPOINT_ROUTES: string = 'rutas';
     
     ENPOINT_SEARCH: string = '/search';
     
@@ -83,12 +85,12 @@ export class ViajesService{
          let get;
         ///If the dates are not sent, current information will be obtained otherwise the log will be obtained.
          if( startDate === null && endDate === null){
-            get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_SAFETIES}`);
+            get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_ORDERS}`);
             console.log("get curreent");
             
          }
          else if(startDate!=-1 && endDate!=-1){
-            get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_SAFETIES}`,
+            get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_ORDERS}`,
                             [{param:'start-date',val:startDate},
                              {param:'end-date', val:endDate}
                             ]);
@@ -96,10 +98,40 @@ export class ViajesService{
             
          }
          get.map(_=>_.json());
-         console.log(`${this.ENDPOINT}${this.ENDPOINT_SAFETIES}`);
+         console.log(`${this.ENDPOINT}${this.ENDPOINT_ORDERS}`);
          return get;
      }
      
+
+     //API 
+     /**
+      * Retrieve the information of the vehicles to activate or deactivate engine stop, current information or bitacora.
+      * @param startDate 
+      * @param endDate 
+      *  @returns {Observable<Response>}
+      */
+     getRoutes(startDate:number,endDate:number):Observable<Response>{
+        let get;
+       ///If the dates are not sent, current information will be obtained otherwise the log will be obtained.
+        if( startDate === null && endDate === null){
+           get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_ROUTES}`);
+           console.log("get curreent");
+           
+        }
+        else if(startDate!=-1 && endDate!=-1){
+           get = this.api.get(`${this.ENDPOINT}${this.ENDPOINT_ROUTES}`,
+                           [{param:'start-date',val:startDate},
+                            {param:'end-date', val:endDate}
+                           ]);
+           console.log("Data bitácora");
+           
+        }
+        get.map(_=>_.json());
+        console.log(`${this.ENDPOINT}${this.ENDPOINT_ROUTES}`);
+        return get;
+    }
+    
+
      /**
       * Return the units according to the filter, by economic number, engine stop status or transmitter
       * @param value 
