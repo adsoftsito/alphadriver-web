@@ -215,6 +215,19 @@ export class TableDetailComponent implements OnInit, OnDestroy{
             console.log('error router');
         });
   }
+
+  createClientPhotos() {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','upload-photo']).then(nav => {
+    
+      setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
+  }
   /**
    * Get information about the selected vehicle, from the current or binnacle table
    * @param event 
@@ -248,7 +261,7 @@ export class TableDetailComponent implements OnInit, OnDestroy{
       }
 
       if(event.column.colId == 'fotos'){
-        alert("fotos");
+        this.createClientPhotos();
       }
 
       if(event.column.colId == 'obs'){
