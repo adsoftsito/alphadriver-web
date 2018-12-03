@@ -1,0 +1,226 @@
+<motum-modal-form [cols]="2"> 
+
+  <ng-template #modalSendInvitation let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <div class="motum-modal-icon">
+              <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+            </div>
+            <h5 class="modal-title">{{ header | translate }}</h5>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{ content | translate }} ejemplo@bwl.com {{ contents | translate }}</p>
+          </div>
+          <div class="modal-footer longbutton">
+            <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ accept | translate }}</button>
+          </div>
+      </ng-template>
+      <ng-template #modalPassword let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <div class="motum-modal-icon">
+              <i class="motum-i tm-mu tm-mensajes changeofpropertiesmessage"></i>
+            </div>
+            <h5 class="modal-title"> {{'pages.confirmationwindowClient.header' | translate }} </h5>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{ 'pages.confirmationwindowClient.content' | translate}} {{clientModel.account.email}} {{ 'pages.confirmationwindowClient.contents' | translate}}</p>
+          </div>
+          <div class="modal-footer window-center-align">
+            <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindowClient.sendbutton' | translate}}</button>
+          </div>
+      </ng-template>   
+
+<div modal-form-header>
+
+
+<div class="row" *ngIf="editar && windowPosition === 'right'">
+  <div class="motum-avatar-section">
+      <motum-avatar [name]="initials"
+                    [type]="'NAME'"></motum-avatar>
+    </div>
+    <div class="motum-avatar-labelEdit">
+        <div class="name">
+          <!-- {{clientModel.commercialName}} --> Modificar estado operativo
+        </div>
+        <div>
+          <!-- {{clientModel.businessName}} --> subtitle
+        </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!editar">
+      <div class="motum-avatar-section">
+        <motum-avatar [name]="'motum-i tm-e932'"
+                      [textColor]="'#ffffff'"
+                      [bgColor]="'#6666f7'"
+                      [isIconResize]="true"
+                      [hasBorder]="false"
+                      [type]="'ICON'"></motum-avatar>
+      </div>
+      <div>
+        <div class="motum-avatar-labelCreate"> Modificar estado operativo </div>
+      </div>
+  </div>
+
+</div>
+
+<div modal-form-content>
+
+  <div class="motum-content-title">
+          
+          <div class="motum-inputs-section-flex">
+
+                  <div class="form-group">
+                    <h5 class="modal-title">Seleccionar un estado</h5>
+
+                  </div>
+
+                  
+          </div>
+
+
+          <div class="motum-inputs-section-flex">
+                  
+          </div>
+      </div>
+  <div class="row motum-content-body">
+         
+     <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
+     
+      <div class="col-md-5 col-sm-12 motum-content-right-form-interface">
+
+      <div class="row">
+
+            <div class="row radiOptions motum-radio-btn">
+                <div class="col-md-12 col-sm-12">
+                  <div class="form-check">
+                      <label ><input type="radio" name="radioFiscalPhysicalPerson" id="radioFiscalPhysicalPerson" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>
+                      
+                       <!-- { physicalPerson | translate}} -->
+                      Disponible
+                      </label>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <div class="form-check radio-item">
+                      <label ><input type="radio" name="radioFiscalMoralPerson" id="radioFiscalMoralPerson" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                        <!-- {{ moralPerson | translate}} -->
+                        En curso vacio
+                      </label>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <div class="form-check radio-item">
+                      <label ><input type="radio" name="radioBusinessActivity" id="radioBusinessActivity" value="option3" (click)="radioBotton3(flagCheck3)" [checked]="flagCheck3"><span class="overlay"></span>
+                        <!-- {{ physicalPersonWithBusiness | translate}} -->
+                        En fila para carga
+                      </label>
+                  </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <div class="form-check radio-item">
+                      <label ><input type="radio" name="radioBusinessActivity" id="radioBusinessActivity" value="option3" (click)="radioBotton3(flagCheck3)" [checked]="flagCheck3"><span class="overlay"></span>
+                        <!-- {{ physicalPersonWithBusiness | translate}} -->
+                        Cargando
+                      </label>
+                  </div>
+                </div>
+            </div> <!--End Radio btn-->
+            
+            
+        </div>
+      </div>
+      </div>
+      <div class="col-md-5 col-sm-12 motum-content-right-form-interface">
+                  <div class="row">
+                    <div class="row radiOptions motum-radio-btn">
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-check">
+                            <label ><input type="radio" name="radioFiscalPhysicalPerson" id="radioFiscalPhysicalPerson" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>
+                            
+                             <!-- { physicalPerson | translate}} -->
+                            En curso cargando
+                            </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-check radio-item">
+                            <label ><input type="radio" name="radioFiscalMoralPerson" id="radioFiscalMoralPerson" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                              <!-- {{ moralPerson | translate}} -->
+                              En fila para descarga
+                            </label>
+                        </div>
+                      </div>
+                   
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-check">
+                            <label ><input type="radio" name="radioFiscalPhysicalPerson" id="radioFiscalPhysicalPerson" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>
+                            
+                             <!-- { physicalPerson | translate}} -->
+                            Descargando
+                            </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-check radio-item">
+                            <label ><input type="radio" name="radioFiscalMoralPerson" id="radioFiscalMoralPerson" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                              <!-- {{ moralPerson | translate}} -->
+                              En curso vacio
+                            </label>
+                        </div>
+                      </div>
+                   
+                  </div> <!--End Radio btn-->
+                  </div>  
+      </div>
+  </div>
+</div>
+
+
+<div class="motum-floating-btns" align="right" modal-form-footer>
+  <button motum-button
+  [color]="'danger'"
+  [outline]="true"
+  routerLink="/pages/travel_matrix/clients-products">
+  <!-- {{ cancel | translate }} --> Cancelar
+  </button>
+  
+  <!--
+  <button motum-button
+  *ngIf="activeTab=='tabBilling' || activeTab=='tabAccount' || 
+  activeTab=='tabPermissions' || activeTab=='tabInterface'"
+ 
+  (click)="activeTab=='tabInterface' ? t.select('tabPermissions'):'' || 
+  activeTab=='tabPermissions' ? t.select('tabAccount'):'' ||
+   activeTab=='tabAccount' ? t.select('tabBilling'):'' || 
+   activeTab=='tabBilling' ? t.select('tabClient'):''"
+ 
+  [outline]="true"
+  [color]="'grey'">
+   {{activeTab=='tabBilling' ? (back | translate) : '' || 
+      activeTab=='tabAccount' ? (back | translate) : '' || 
+      activeTab=='tabPermissions' ? (back | translate) : '' || 
+      activeTab=='tabInterface' ? (back | translate) : ''}}
+  
+  Aceptar
+  </button>
+  -->
+
+  
+  <button motum-button
+  color="secondary"
+  (click)="createClient()">
+      Aceptar
+   <!--
+  {{activeTab=='tabClient' ? (next | translate):'' || activeTab=='tabBilling' ? (next | translate):'' || activeTab=='tabAccount' ? (next | translate):'' || activeTab=='tabPermissions' ? (next | translate):'' || activeTab=='tabInterface' ? (save | translate):''}}
+   -->
+  </button>
+
+</div>
+
+</motum-modal-form>

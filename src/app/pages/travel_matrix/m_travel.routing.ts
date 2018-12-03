@@ -13,6 +13,9 @@ import {UploadSignComponent} from "./components/clients/upload-sign/upload-sign.
 import {UploadPhotoComponent} from "./components/clients/upload-photo/upload-photo.component";
 import {UploadObsComponent} from "./components/clients/upload-obs/upload-obs.component";
 
+import {UpdateadmStatusComponent} from "./components/clients/updateadm-status/updateadm-status.component";
+import {UpdateoperStatusComponent} from "./components/clients/updateoper-status/updateoper-status.component";
+import {OrderDetailComponent} from "./components/clients/order-detail/order-detail.component";
 
 const routes: Routes = [
   {
@@ -52,6 +55,21 @@ const routes: Routes = [
       {
         path: 'upload-obs',
         component: UploadObsComponent,
+        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+      },
+      {
+        path: 'update-operstatus',
+        component: UpdateoperStatusComponent,
+        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+      },
+      {
+        path: 'update-admstatus',
+        component: UpdateadmStatusComponent,
+        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+      },
+      {
+        path: 'order-detail',
+        component: OrderDetailComponent,
         data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
       },
       {

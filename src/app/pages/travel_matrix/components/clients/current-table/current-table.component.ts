@@ -5,6 +5,8 @@ import { ViajesService } from '../viajes.service';
 import { TableDetailComponent } from '../table-detail';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../../../../shared/providers/login.service';
+import {Router} from "@angular/router";
+import {ClientProductService} from "../clients.service";
 
 @Component({
   selector: 'ps-current-table',
@@ -56,18 +58,21 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
   constructor(private translate:TranslateService,
       private _servicePatrimonialSecurity:ViajesService,
+      private router : Router,
       private _loginService: LoginService,
+      private clientProductService :ClientProductService
         ) { 
 
     this.columnDefs = [
       {
-        colId:'numberEconomic',
+        colId:'foliodesp',
         field: "id",
         suppressSizeToFit:true,
         suppressMenu: true,
         width:81,
         checkboxSelection: false,
-        
+        cellClass:['cell-motum-hover-statusMotorStop'],        
+
         /**properties detail table */
         cellRenderer:'group',
         cellRendererParams: {suppressCount: true}
@@ -131,9 +136,12 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         width:100
       },
       {
+        colId:'statusoper',
         field: "orderstatus.description",
         suppressMenu: true,
         cellStyle:{'text-align':'center'},
+        cellClass:['cell-motum-hover-statusMotorStop'],        
+
         width:80
         /*,
         cellRenderer: (params) => { 
@@ -141,10 +149,13 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         }*/
       },
       {
-        colId: "motorStopStatus",
+        colId:'statusadm',
+
+        //colId: "motorStopStatus",
         field:"orderstatusadmin.description",
         suppressMenu: true,
         cellClass:['cell-motum-hover-statusMotorStop'],
+
         /*        
         cellRenderer:(params)=>{
           if(params.value==true)
@@ -611,7 +622,47 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   return riskLevel;
   }
 
+  createClientStatusAdm() {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','update-admstatus']).then(nav => {
+    
+      setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
+  }
+
+  createClientStatusOper() {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','update-operstatus']).then(nav => {
+    
+      setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
+  }
+
+  createClientOrderDetail() {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','order-detail']).then(nav => {
+    
+      setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
+  }
+
   /**
+   * 
    * Get information about the selected vehicle, from the current or binnacle table
    * @param event 
    */
@@ -619,6 +670,25 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     console.log("selected..." + event.rowIndex);
    // console.log("selected data..." + JSON.stringify(event.data.route_details));
     console.log("selected data..." + JSON.stringify(event.data.orderdetail));
+  
+    if(event.column.colId == 'foliodesp'){
+     // alert("consulta viaje");
+      this.createClientOrderDetail();
+    }
+
+    if(event.column.colId == 'statusadm'){
+      //alert("estado adm");
+      this.createClientStatusAdm();
+    }
+
+    if(event.column.colId == 'statusoper'){
+     // this.createClientObs();
+     //alert("estado oper");
+      this.createClientStatusOper();
+
+    }  
+
+
     
     if(event.column.colId == 'motorStopStatus'&& event.data != null 
         && event.data !== undefined){
@@ -637,7 +707,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
           this.selectedOneItem.emit([]);
         }
 
-  }
+    }
   }
 
   isAuthorizedUser(){

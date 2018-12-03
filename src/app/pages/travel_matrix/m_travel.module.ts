@@ -36,6 +36,8 @@ import { UploadSignComponent } from './components/clients/upload-sign/upload-sig
 import { UploadPhotoComponent } from './components/clients/upload-photo/upload-photo.component';
 import { UploadObsComponent } from './components/clients/upload-obs/upload-obs.component';
 import { OrderDetailComponent } from './components/clients/order-detail/order-detail.component';
+import { UpdateadmStatusComponent } from './components/clients/updateadm-status/updateadm-status.component';
+import { UpdateoperStatusComponent } from './components/clients/updateoper-status/updateoper-status.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +58,9 @@ import { OrderDetailComponent } from './components/clients/order-detail/order-de
       UploadSignComponent,
       UploadPhotoComponent,
       UploadObsComponent,
-      OrderDetailComponent
+      OrderDetailComponent,
+      UpdateadmStatusComponent,
+      UpdateoperStatusComponent
     ],
     imports: [
       CommonModule,
