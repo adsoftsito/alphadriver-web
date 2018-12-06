@@ -35,19 +35,4 @@ export class UploadSignComponent implements OnInit {
     }
   }
 
-/*
-  readURL(input) {
-    console.log("uploading... " + input);
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        console.log("displaying... ");
-        reader.onload = (e:any) => {
-             (<HTMLImageElement>document.getElementById('blah')).src=e.target.result 
-             //assuming element with id blah will always be an ImageElement
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-  }
-  */
 }
