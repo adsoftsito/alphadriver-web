@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ClientProductService } from '../clients.service';
 import { DualListComponent } from 'angular-dual-listbox';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {GridOptions} from "ag-grid";
 
 @Component({
   selector: 'form-client-product-component',
@@ -68,6 +69,22 @@ export class FormClientProductComponent implements OnInit {
   password:AbstractControl;
   subscriptionCreate: Subscription;
   subscriptionEdit: Subscription;
+
+  private gridApi;
+  private gridColumnApi;
+  private data: any[];
+  private dataBinnacle:any[];
+  private columnDefs;
+  private columnDefs2;
+  private rowSelection;
+  
+  customIcons: any = {
+    sortAscending: '<i class="fa fa-caret-down"/>',
+    sortDescending: '<i class="fa fa-caret-up"/>',
+  };
+  private gridOptionsModal:GridOptions;
+  
+
   userRols: any[] = [
         { rol: 'Administrador'},
         { rol: 'User'},
@@ -335,6 +352,12 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   constructor(private renderer: Renderer2, private clientProductService: ClientProductService,
      private formBuilder: FormBuilder, private router: Router, private modalService: NgbModal) {
       // this.clientModel = new User();
+    
+      this.gridOptionsModal = <GridOptions>{};
+      this.gridOptionsModal.columnDefs = this.columnDefs2;
+      this.gridOptionsModal.enableSorting = true;
+     
+    
       this.source = JSON.parse(JSON.stringify(this.dataExample));
     // this.validateForm();
     this.clientModel = new ClientModel();

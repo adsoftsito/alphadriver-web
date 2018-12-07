@@ -58,7 +58,7 @@
                             [type]="'ICON'"></motum-avatar>
             </div>
             <div>
-              <div class="motum-avatar-labelCreate"> <!--{{ title | translate }} --> CONSULTA DE VIAJE</div>
+              <div class="motum-avatar-labelCreate"> <!--{{ title | translate }} --> VIAJE 0001 </div>
             </div>
         </div>
     </div> <!--END MODAL-FORM-HEADER-->
@@ -68,43 +68,112 @@
                 <ng-template ngbTabContent>
                     <div class="tab-content">
                         <div class="motum-content-title">
-                            <div *ngIf="editar">{{ editClientTrans | translate }}</div>
-                            <div *ngIf="!editar">{{ createClientTrans | translate }}</div>
+                            <div *ngIf="editar"> <!-- {{ editClientTrans | translate }} --></div>
+                            <div *ngIf="!editar"><!--{{ createClientTrans | translate }} --> Consulta de Viaje</div>
                         </div>
                         <div class="row motum-content-body">
                             <div class="col-lg-12 col-md-12 col-sm-12 motum-border-left">
-                              <span class="motum-w500">{{ productsPlatforms | translate }}</span>
+                              
+                              <!--  <span class="motum-w500">{{ productsPlatforms | translate }}</span>
+                              -->
                               <div class="motum-section-permissions">
                                 <div class="row" [style.marginBottom.px]="3">
                                     <div class="col-md-6 col-sm-6">
-                                      <label class="title-list-one motum-w500">{{ available | translate }}</label>
+                                      <label class="title-list-one motum-w500"> <!-- {{ available | translate }} --> Operador </label>
+                                      <br>
+                                      <hr class="hr">
+                                      <br>
+                                      Operador:<b> P-037</b> <br>
+                                      Nombre:<b>Adolfo Centeno</b> <br>
+                                      Número de Licencia:<b>72795608040</b> <br>
+                                      Tipo de Licencia:<b>B</b> <br>
+                                      Fecha de Vigencia:<b>2018/04/10</b> <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                      <label class="title-list-two motum-w500">{{ selected | translate }}</label>
+                                      <label class="title-list-two motum-w500"><!-- {{ selected | translate }} --> Vehículo </label>
+                                   
+                                      <br>
+                                      <hr class="hr">
+                                      <br>
+                                      # Economico:<b>TR-890</b> <br>
+                                      Marca:<b>Freightliner</b> <br>
+                                      Modelo:<b>Cascadia</b> <br>
+                                      Año:<b>2018</b> <br>
+                                      Placas:<b>DW-821</b> <br>
+                                      Remolque:<b>R-01</b> <br>
                                     </div>
                                 </div>
-                                <dual-list class="custom-double-list" [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
-                                [(destination)]="confirmed" [format]="format" [disabled]="disabled"></dual-list>
+                                
+                               
                                 <div class="window-section-double-space"></div>
                                   <div class="table-responsive table-style-motum">
                                     <table class="table table-striped">
                                       <thead class="thead-light">
                                         <tr class="m-0">
-                                          <th class="w-25">{{ platforms | translate }}</th>
-                                          <th class="w-75">{{ roles | translate }}</th>
-                                        </tr>
+                                         <th class="w-20"><!--{{ platforms | translate }} --></th>
+                                          
+                                         <th class="w-40"><!--{{ platforms | translate }} -->Programado</th>
+                                          <th class="w-40"><!--{{ platforms | translate }} -->Real</th>
+
+                                          </tr>
                                       </thead>
                                       <tbody>
-                                        <tr *ngFor="let item of confirmed">
-                                          <td>
-                                            {{item.plataform}}
-                                          </td>
-                                          <td>
-                                            <select2 class="select2Permits"  id="selectPermits"  ngDefaultControl [options]="optionsPermits" [width]="'100%'" [cssImport]=true  required>
-                                              <option *ngFor="let item2 of item.permissions">{{item2.permission}}</option>
-                                            </select2>
-                                          </td>
+                                        <tr>
+                                             <td>
+                                                Inicio: 
+                                             </td>
+                                             <td>
+                                                    Lunes 1 de enero de 2018 09:00  
+                                             </td>
+                                            <td>
+                                                    Lunes 1 de enero de 2018 11:37
+                                            </td>
                                         </tr>
+                                        <tr>
+                                                <td>
+                                                   Fin: 
+                                                </td>
+                                                <td>
+                                                        Martes 2 de enero de 2018/03/30  13:00
+                                                </td>
+                                               <td>
+                                                    Martes 2 de enero de 2018/03/30 16:37
+                                               </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                   Km: 
+                                                </td>
+                                                <td>
+                                                  320.00  
+                                                </td>
+                                               <td>
+                                                 297.00
+                                               </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                   Lt: 
+                                                </td>
+                                                <td>
+                                                  150.00  
+                                                </td>
+                                               <td>
+                                                 112.50
+                                               </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                   Km/Lt: 
+                                                </td>
+                                                <td>
+                                                  2.13
+                                                </td>
+                                               <td>
+                                                 2.63
+                                               </td>    
+                                           </tr>
+                                        <!--
                                         <ng-template [ngIf]="confirmed.length < 1">
                                           <tr *ngFor="let item of confirmedDummi">
                                             <td>
@@ -117,6 +186,7 @@
                                             </td>
                                           </tr>
                                         </ng-template>
+                                    -->
                                       </tbody>
                                     </table>
                                   </div>
@@ -133,235 +203,151 @@
                 <ng-template ngbTabContent>
                     <div class="tab-content">
                         <div class="motum-content-title">
-                          <div *ngIf="editar">{{ editClientTrans | translate }}</div>
-                          <div *ngIf="!editar">{{ createClientTrans | translate }}</div>
+                          <!-- <div *ngIf="editar">{{ editClientTrans | translate }}</div>--> 
+                          <div *ngIf="!editar"><!--{{ createClientTrans | translate }}--> Consulta de Viaje</div>
                         </div>
   
                         <div class="row motum-content-body">
-                            <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
-                                <span class="motum-w500">{{ regionalConfiguration | translate }}</span>
-                                <div class="motum-inputs-section-flex">
-                                    <div class="row motum-label-input first animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigCountry">{{ countryRegion | translate }}</label>
-                                        </div>
-                                        <div class="col-md-9 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.country" name="inputConfigCountry" id="inputConfigCountry" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>México</option>
-                                                    <option>España</option>
-                                                    <option>EUA</option>
-                                                    <option>Brasil</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigState">{{ state | translate }}</label>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.state" name="inputConfigState" id="inputConfigState" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>Veracruz</option>
-                                                    <option>Oaxaca</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigCity">{{ city | translate }}</label>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.city" name="inputConfigCity" id="inputConfigCity" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>Orizaba</option>
-                                                    <option>Juchitán</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="">{{ unitSystem | translate }}</label>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group has-success has-feedback motum-btn-group">
-                                                <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)">
-                                                    <button type="button" class="btn motum-botton">{{ metric | translate}}</button>
-                                                    <button type="button" class="btn motum-botton">{{ measuresUSImperial | translate}}</button>
-                                                </div>
+                                <div class="motum-section-permissions">
+                                        <div class="row" [style.marginBottom.px]="3">
+                                            <div class="col-md-12 col-sm-12">
+                                              <label class="title-list-one motum-w500"> <!-- {{ available | translate }} --> Operador </label>
+                                              <br>
+                                              
+                                              Origen:<b> Base de transportes</b> <br>
+                                              Calle Abc No. 23, Coatzacoalcos, Veracruz. <br>
+                                              Destino:<b>Empresa SA de CV</b> <br>
+                                              Av. Siempre Viva No. 2045, Villahermosa, Tab
                                             </div>
+                                            
                                         </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="">{{ measurementOfFuelConsumption | translate }}</label>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group has-success has-feedback motum-btn-group">
-                                                <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)">
-                                                  <button type="button" class="btn motum-botton">L/100km</button>
-                                                  <button type="button" class="btn motum-botton">Km/L</button>
-                                                  <button type="button" class="btn motum-botton">MPG (US)</button>
-                                                  <button type="button" class="btn motum-botton">MPG (Imp)</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigDateFormat">{{ dateFormat | translate }}</label>
-                                        </div>
-                                        <div class="col-md-9 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.dateFormat" name="inputConfigDateFormat" id="inputConfigDateFormat" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>mm/dd/aaaa</option>
-                                                    <option>dd/mm/aaaa</option>
-                                                    <option>aaaa/mm/dd</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigHourFormat">{{ hourFormat | translate }}</label>
-                                        </div>
-                                        <div class="col-md-9 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.timeFormat" name="inputConfigHourFormat" id="inputConfigHourFormat" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>hh:mm:ss tt</option>
-                                                    <option>hh:mi:ss</option>
-                                                    <option>hhmi</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigTimeZone">{{ timeZone | translate }}</label>
-                                        </div>
-                                        <div class="col-md-9 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.timeZone" name="inputConfigTimeZone" id="inputConfigTimeZone" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>UTC-6 Mexico City</option>
-                                                    <option>UTC–7</option>
-                                                    <option>UTC-8</option>
-                                                    <option>UTC-5</option>
-                                                </select>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigCoin">{{ coin | translate }}</label>
-                                        </div>
-                                        <div class="col-md-9 col-sm-12">
-                                            <div class="has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.currency" name="inputConfigCoin" id="inputConfigCoin" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>Peso Mexicano (MXN)</option>
-                                                    <option>Dólar estadounidense (USD)</option>
-                                                    <option>Euro (€)</option>
-                                                    <option>Libra esterlina (£)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-      
-                                </div>
-                            </div> <!--End first col-->
-      
-                            <div class="col-lg-6 col-md-12 col-sm-12 motum-second-col">
-                                <div class="motum-inputs-section">
-                                    <div class="motum-top-spacing-two"></div>
-                                    <div class="row motum-label-input first animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigLanguage">{{ language | translate }}</label>
-                                        </div>
-                                        <div class="col-md-10 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.language" name="inputConfigLanguage" id="inputConfigLanguage" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>Español</option>
-                                                    <option>Inglés</option>
-                                                    <option>Hindi</option>
-                                                    <option>Árabe</option>
-                                                    <option>Portugués</option>
-                                                    <option>Bengalí</option>
-                                                    <option>Ruso</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="">{{ weekStartsIn | translate }}</label>
-                                        </div>
-                                        <div class="col-md-10 col-sm-12">
-                                            <div class="has-success has-feedback motum-btn-group">
-                                                <div class="btn-group btnGroup" (click)="onButtonGroupClick($event)">
-                                                    <button type="button" class="btn motum-botton">{{ sunday | translate}}</button>
-                                                    <button type="button" class="btn motum-botton">{{ monday | translate}}</button>
-                                                    <button type="button" class="btn motum-botton">{{ saturday | translate}}</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="motum-top-spacing"></div>
-                                    <hr class="hr">
-                                   
-                                </div> <!--End motum-inputs-section-->
-                                <div class="motum-top-spacing-two"></div>
-                                <span class="motum-w500">{{ userInterfaceConfiguration | translate }}</span>
-                                <div class="motum-inputs-section">
-                                    <div class="row motum-label-input first animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigInitPage">{{ homepage | translate }}</label>
-                                        </div>
-                                        <div class="col-md-10 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.homePage"name="inputConfigInitPage" id="inputConfigInitPage" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>Dashboard</option>
-                                                    <option>monitoring-and-reaction</option>
-                                                    <option>usersControl</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row motum-label-input animated fadeIn">
-                                        <div class="col-md-12 motum-w500">
-                                            <label for="inputConfigLogOut">{{ logOut | translate }}</label>
-                                        </div>
-                                        <div class="col-md-10 col-sm-12">
-                                            <div class="form-group has-success motum-inputForm">
-                                                <select [(ngModel)]="clientModel.interface.sessionTimeout" name="inputConfigLogOut" id="inputConfigLogOut" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                                                    <option></option>
-                                                    <option>15 min</option>
-                                                    <option>30 min</option>
-                                                    <option>1 h</option>
-                                                    <option>2 h</option>
-                                                    <option>Nunca </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row col-md-12 col-sm-12 motum-label-input">
-                                        <label class="container"> <span class="content">Autorizado para paro de motor</span>
-                                          <input type="checkbox" (click)="checkboxStop(flagCheck1)" [checked]="flagCheck1">
-                                          <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> <!--End second col-->
+                                        
+                                       
+                                        <div class="window-section-double-space"></div>
+                                          <div class="table-responsive table-style-motum">
+                                            <table class="table table-striped">
+                                              <thead class="thead-light">
+                                                 <tr class="m-20">
+                                                 <th class="w-20"><!--{{ platforms | translate }} --></th>
+                                                 <th class="w-20"><!--{{ platforms | translate }} --></th>
+                                                 <th class="w-20">Hora Estimada</th>
+                                                  
+                                                 <th class="w-20"><!--{{ platforms | translate }} -->Llegada</th>
+                                                  <th class="w-20"><!--{{ platforms | translate }} -->Salida</th>
+        
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                     <td>
+                                                        01 : 47m  
+                                                     </td>
+                                                     <td>
+                                                            En fila para descarga 
+                                                         </td>
+                                                         <td>
+                                                                Lunes 1 de enero de 2018 09:00  
+                                                            </td>
+                                                     <td>
+                                                            Lunes 1 de enero de 2018 09:00  
+                                                     </td>
+                                                    <td>
+                                                            Lunes 1 de enero de 2018 11:37
+                                                    </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                        <td>
+                                                           20 m  
+                                                        </td>
+                                                        <td>
+                                                               Partida a almacen de material 
+                                                            </td>
+                                                            <td>
+                                                                   Lunes 1 de enero de 2018 09:20  
+                                                               </td>
+                                                        <td>
+                                                               Lunes 1 de enero de 2018 09:00  
+                                                        </td>
+                                                       <td>
+                                                               Lunes 1 de enero de 2018 11:37
+                                                       </td>
+                                                   </tr>
+                                               
+                                                   <tr>
+                                                        <td>
+                                                           14m  
+                                                        </td>
+                                                        <td>
+                                                        Cargando      
+                                                                </td>
+                                                            <td>
+                                                                   Lunes 1 de enero de 2018 09:40  
+                                                               </td>
+                                                        <td>
+                                                               Lunes 1 de enero de 2018 09:00  
+                                                        </td>
+                                                       <td>
+                                                               Lunes 1 de enero de 2018 11:37
+                                                       </td>
+                                                   </tr>
+                                               
+                                                   <tr>
+                                                        <td>
+                                                           14m  
+                                                        </td>
+                                                        <td>
+                                                               Partida Centro de distribucion 
+                                                            </td>
+                                                            <td>
+                                                                   Lunes 1 de enero de 2018 09:00  
+                                                               </td>
+                                                        <td>
+                                                               Lunes 1 de enero de 2018 09:00  
+                                                        </td>
+                                                       <td>
+                                                               Lunes 1 de enero de 2018 11:37
+                                                       </td>
+                                                   </tr>
+                                               
+                                                   <tr>
+                                                        <td>
+                                                           14m  
+                                                        </td>
+                                                        <td>
+                                                               Comedor la fondita 
+                                                            </td>
+                                                            <td>
+                                                                   Lunes 1 de enero de 2018 09:00  
+                                                               </td>
+                                                        <td>
+                                                               Lunes 1 de enero de 2018 09:00  
+                                                        </td>
+                                                       <td>
+                                                               Lunes 1 de enero de 2018 11:37
+                                                       </td>
+                                                   </tr>
+                                                  
+                                                <!--
+                                                <ng-template [ngIf]="confirmed.length < 1">
+                                                  <tr *ngFor="let item of confirmedDummi">
+                                                    <td>
+                                                      {{item.plataform}}
+                                                    </td>
+                                                    <td>
+                                                      <select2 class="select2Permits"  id="selectPermits"  ngDefaultControl [options]="optionsPermits" [width]="'100%'" [cssImport]=true  required>
+                                                        <option value=" " *ngFor="let item2 of item.permissions">{{item2.permission}}</option>
+                                                      </select2>
+                                                    </td>
+                                                  </tr>
+                                                </ng-template>
+                                            -->
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                      </div> <!--End motum-section-permissions-->
+                                      
+                                
                         </div> <!--End content-body-->
                     </div> <!--End tab-content-->
   

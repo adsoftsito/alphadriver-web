@@ -62,11 +62,11 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
 
     this.columnDefs = [
       {
-        colId:'numberEconomic',
+        colId:'number',
         field: "id",
         suppressSizeToFit:true,
         suppressMenu: true,
-        width:81,
+        width:40,
         checkboxSelection: false,
         
         /**properties detail table */
@@ -75,45 +75,68 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
         /*** */
       },
       { 
-        field: "companyid",
+        field: "orderdetaildescription",
         suppressMenu: true,
         suppressSizeToFit:true,
-        width:85
+        width:120
       },
       {
-        field: "customerid",
+        field: "id",
         suppressMenu: true,
-        width:115
-      },
-      { 
-        field: "placesource",
-        suppressMenu:true,
-         width:43
-         /*,
-        
-         cellRenderer:(params) => {
+        width:40,
+        cellRenderer:(params) => {
+           console.log("params: " + params)
           if(params.value){
             let iconsSignal: string;
-            let statusColor: string;
+            let status: string;
             let signal = params.value;
-
-            if (signal.type === 1) {   //celular motum-i tm-e98a
-              iconsSignal = '<i class="motum-i tm-e98a signal-type-Icon""></i>'
+            console.log(signal);
+            if (signal === 1) {   //celular motum-i tm-e98a
+              status = 'Base'
             }
             else {
-              if (signal.type === 2) { //hibryd celulr and satellite  motum-i tm-e98b
-                iconsSignal = ' <i class="motum-i tm-e98b signal-type-Icon"></i>'
+              if (signal === 2) { //hibryd celulr and satellite  motum-i tm-e98b
+                status = 'Logistico'
+              }
+              else if (signal === 3) { //hibryd celulr and satellite  motum-i tm-e98b
+                status = 'Operación'
               }
             }
-            statusColor = signal.withSignal === true ? 'with-signal' : 'no-signal';
-            return iconsSignal += '<i  class="motum-i tm-e98d ' + statusColor + '" ></i>';//motum-i tm-e98d
+            return  status ;//motum-i tm-e98d
           }
-        }*/
+        }
+      },
+      { 
+        field: "id",
+        suppressMenu:true,
+         width:40,       
+        
+         cellRenderer:(params) => {
+           console.log("params: " + params)
+          if(params.value){
+            let iconsSignal: string;
+            let status: string;
+            let signal = params.value;
+            console.log(signal);
+            if (signal === 1) {   //celular motum-i tm-e98a
+              status = 'Planta'
+            }
+            else {
+              if (signal === 2) { //hibryd celulr and satellite  motum-i tm-e98b
+                status = 'Agencia'
+              }
+              else if (signal === 3) { //hibryd celulr and satellite  motum-i tm-e98b
+                status = 'Territorio'
+              }
+            }
+            return  status ;//motum-i tm-e98d
+          }
+        }
 
 
       },
       {
-        field:"placetarget",
+        field:"orderdetailmessage",
         suppressMenu: true
         
 /*        cellRenderer : (params)=>{
@@ -129,68 +152,9 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
           }
         return risk;
         }*/,
-        width:61
-      },
-      {
-        field: "createdAt",
-        suppressMenu: true,
-        cellStyle:{'text-align':'center'},
-        width:108
-        /*,
-        cellRenderer: (params) => { 
-         return params.value+' h';
-        }*/
-      },
-      {
-        colId: "motorStopStatus",
-        field:"placesource",
-        suppressMenu: true,
-        cellClass:['cell-motum-hover-statusMotorStop'],
-        /*        
-        cellRenderer:(params)=>{
-          if(params.value==true)
-          return '<i class="motum-i tm-ea00 status-on" ></i> '+this.arrTranslate.WithMotorStop;
-          else//class="motum-i tm-ea00 
-          return '<i class="motum-i tm-ea00 status-off"></i> '+this.arrTranslate.WithoutMotorStop;
-        },*/
-        width:111
-      },
-      {
-        field:"placesource",
-        suppressMenu: true,
-        width:92
-      },
-      {
-        field:"placesource",
-        suppressMenu: true,
-        width:111
-      },
-      {
-        field:"updatedAt",
-        suppressMenu: true,
-        cellStyle:{'text-align':'center'},
-       /* cellRenderer:(params) =>{
-            if(params.value.length == 0)
-            {
-                return '-';
-            }
-            else return params.value+ ' h';
-        },*/
-        width:108
-      },
-      {
-        field:"updatedAt",
-        suppressMenu: true,
-        cellStyle:{'text-align':'center'},
-       /* cellRenderer:(params) =>{
-          if(params.value.length == 0)
-          {
-              return '-';
-          }
-          else return params.value+' h';
-         },*/
-         width:108
+        width:150
       }
+      
     ];
 
 
@@ -405,7 +369,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
     this.gridOptions.enableColResize = true;
     this.gridOptions.enableSorting = true;
     this.rowSelection = "multiple";
-    //console.log("my data:" + this.data);
+    console.log("my data route:" + this.data);
    // this.getDataForTable();
 
     }
@@ -455,17 +419,17 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
   translateHeaderTable(){
     this.$subscriptionTranslate = this.translate.get('pages.monitoringreaction.patrimonial_security').subscribe( res =>{
       this.arrTranslate = res;
-      this.columnDefs[0].headerName = this.arrTranslate.economic;
-      this.columnDefs[1].headerName = this.arrTranslate.carrier;
-      this.columnDefs[2].headerName = this.arrTranslate.location;
-      this.columnDefs[3].headerName = this.arrTranslate.state;
-      this.columnDefs[4].headerName = this.arrTranslate.risk;
-      this.columnDefs[5].headerName = this.arrTranslate.dateOfPosition;
+      this.columnDefs[0].headerName = "#"; //this.arrTranslate.economic;
+      this.columnDefs[1].headerName = "Nombre ruta";//this.arrTranslate.carrier;
+      this.columnDefs[2].headerName = "Categoria";//this.arrTranslate.location;
+      this.columnDefs[3].headerName = "Clasificación";//this.arrTranslate.state;
+      this.columnDefs[4].headerName = "Audio en trayecto"; //this.arrTranslate.risk;
+    /*  this.columnDefs[5].headerName = this.arrTranslate.dateOfPosition;
       this.columnDefs[6].headerName = this.arrTranslate.motorStopStatus;
       this.columnDefs[7].headerName = this.arrTranslate.transmitter;
       this.columnDefs[8].headerName = this.arrTranslate.commandSent;
       this.columnDefs[9].headerName = this.arrTranslate.shippingDate;
-      this.columnDefs[10].headerName = this.arrTranslate.dateOfApplication;
+      this.columnDefs[10].headerName = this.arrTranslate.dateOfApplication;*/
       this.gridOptions.columnDefs = this.columnDefs;
 
       this.showTableTranslated =true;

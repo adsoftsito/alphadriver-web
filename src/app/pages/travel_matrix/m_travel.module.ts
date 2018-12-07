@@ -24,6 +24,11 @@ import { OrdersService } from "./components/clientOrders/orders.service";
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { MemberModalComponent } from './components/clients/memberModal/memberModal.component';
 import { ViajesService } from './components/clients/viajes.service';
+
+import { TableDetailRouteComponent } from './components/clients/formClient/table-detail-route/table-detail-route.component';
+import { CurrentTableRouteComponent } from './components/clients/formClient/current-table-route/current-table-route.component';
+
+
 import { TableDetailComponent } from './components/clients/table-detail/table-detail.component';
 import { CurrentTableComponent } from './components/clients/current-table/current-table.component';
 
@@ -52,6 +57,8 @@ import { UpdateoperStatusComponent } from './components/clients/updateoper-statu
       MemberModalComponent,
       TableDetailComponent,
       CurrentTableComponent,
+      TableDetailRouteComponent,
+      CurrentTableRouteComponent,
       LogTableComponent,
       MotorStopComponent,
       AlertComponent,
