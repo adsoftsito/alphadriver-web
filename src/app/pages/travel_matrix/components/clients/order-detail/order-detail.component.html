@@ -64,8 +64,10 @@
     </div> <!--END MODAL-FORM-HEADER-->
     <div modal-form-content>
         <ngb-tabset  #t="ngbTabset" [justify]="'end'" [activeId]="activeTab" (tabChange)="activeTab = $event.nextId">
-        <ngb-tab  id="tabPermissions" title="{{ permissions | translate }}">
-                <ng-template ngbTabContent>
+        <!-- <ngb-tab  id="tabPermissions" title="{{ permissions | translate }}"> -->
+          <ngb-tab  id="tabPermissions" title="Resumen">
+        
+          <ng-template ngbTabContent>
                     <div class="tab-content">
                         <div class="motum-content-title">
                             <div *ngIf="editar"> <!-- {{ editClientTrans | translate }} --></div>
@@ -199,8 +201,10 @@
                 </ng-template>
 
             </ngb-tab> <!-- End tabPermissions -->
-            <ngb-tab  id="tabInterface" title="{{ interface | translate }}">
-                <ng-template ngbTabContent>
+          <!--  <ngb-tab  id="tabInterface" title="{{ interface | translate }}"> -->
+              <ngb-tab  id="tabInterface" title="Plan de Viaje">
+          
+              <ng-template ngbTabContent>
                     <div class="tab-content">
                         <div class="motum-content-title">
                           <!-- <div *ngIf="editar">{{ editClientTrans | translate }}</div>--> 
@@ -214,12 +218,94 @@
                                               <label class="title-list-one motum-w500"> <!-- {{ available | translate }} --> Operador </label>
                                               <br>
                                               
-                                              Origen:<b> Base de transportes</b> <br>
+                                                <table border="0">
+                                                  <tbody>
+                                                    <tr>
+                                                         <td>
+                                                            Origen  
+                                                         </td>
+                                                         <td>
+                                                            <b> Base de transportes</b>
+                                                         </td>
+                                                         <td>
+                                                          </td>
+                                                         <td>
+                                                         </td>
+                                                         <td>
+                                                         </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                             
+                                                        </td>
+                                                        <td>
+                                                            Calle Abc No. 23, Coatzacoalcos, Veracruz.                                                        </td>
+                                                        <td>
+                                                         </td>
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         Destino  
+                                                      </td>
+                                                      <td>
+                                                         <b> Empresa SA de CV</b>
+                                                      </td>
+                                                      <td>
+                                                       </td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                 </tr>
+                                                 <tr>
+                                                    <td>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                       
+                                                          Av. Siempre Viva No. 2045, Villahermosa, Tab
+                                                        
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a href="#/pages/travel_matrix/route-map">Ver en mapa</a>
+                                           
+                                                    </td>
+                                                    <td>
+                                           
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a href="#/pages/travel_matrix/route-map">Ruta recorrida</a>
+                                                     
+                                                    </td>
+                                               </tr>
+                                                   </tbody> 
+                                                </table> 
+                                              <!--    
+                                               Origen:<b> Base de transportes</b> <br>
                                               Calle Abc No. 23, Coatzacoalcos, Veracruz. <br>
                                               Destino:<b>Empresa SA de CV</b> <br>
                                               Av. Siempre Viva No. 2045, Villahermosa, Tab
+                                              -->
                                             </div>
+                                            <!--  
+                                            <div class="col-md-12 col-sm-12">
                                             
+                                               </div>  
+                                          -->
                                         </div>
                                         
                                        

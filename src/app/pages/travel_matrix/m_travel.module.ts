@@ -43,6 +43,7 @@ import { UploadObsComponent } from './components/clients/upload-obs/upload-obs.c
 import { OrderDetailComponent } from './components/clients/order-detail/order-detail.component';
 import { UpdateadmStatusComponent } from './components/clients/updateadm-status/updateadm-status.component';
 import { UpdateoperStatusComponent } from './components/clients/updateoper-status/updateoper-status.component';
+import { RouteMapComponent } from './components/clients/route-map/route-map.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { UpdateoperStatusComponent } from './components/clients/updateoper-statu
       UploadObsComponent,
       OrderDetailComponent,
       UpdateadmStatusComponent,
-      UpdateoperStatusComponent
+      UpdateoperStatusComponent,
+      RouteMapComponent
     ],
     imports: [
       CommonModule,

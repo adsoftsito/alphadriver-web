@@ -58,23 +58,28 @@
                             [type]="'ICON'"></motum-avatar>
             </div>
             <div>
-              <div class="motum-avatar-labelCreate"> <!--{{ title | translate }} --> CONSULTA DE VIAJE</div>
+              <div class="motum-avatar-labelCreate"> <!--{{ title | translate }} --> CREAR VIAJE</div>
             </div>
         </div>
     </div> <!--END MODAL-FORM-HEADER-->
     <div modal-form-content>
         <ngb-tabset  #t="ngbTabset" [justify]="'end'" [activeId]="activeTab" (tabChange)="activeTab = $event.nextId">
             
-            <ngb-tab  id="tabInterface" title="{{ interface | translate }}">
-                <ng-template ngbTabContent>
+          <!--  <ngb-tab  id="tabInterface" title="{{ interface | translate }}"> -->
+              <ngb-tab  id="tabInterface" title="Programa">
+          
+              <ng-template ngbTabContent>
                         <div class="window-body">
-                          <!--
+                          
                           <div class="section-head">
                             <p class="section-title motum-title-form" *ngIf="editar">{{ editClientTrans | translate }}</p>
-                            <p class="section-title motum-title-form" *ngIf="!editar">{{ createClientTrans | translate }}</p>
-                            <hr class="window-section-space motum-hr-head-form"> 
+                           <!-- <p class="section-title motum-title-form" *ngIf="!editar">{{ createClientTrans | translate }}</p>
+                           -->
+                             <p class="section-title motum-title-form" *ngIf="!editar">Información del programa</p>
+                           
+                           <hr class="window-section-space motum-hr-head-form"> 
                           </div>
-                          -->
+                          
             
                           <div class="section-body">
         
@@ -93,6 +98,32 @@
                                   <!--
                                     <label class="window-bold-style motum-subtitle-form in-form">{{ companyInformation | translate }}</label>
                                   -->
+                                  <div class="row motum-label-form">
+
+                                    <div class="col-md-6 ">
+                                      <label for="inputComercialName">Folio despacho</label>
+                                      <div class="form-group has-success motum-input-form">
+                                          <input [(ngModel)]="orderNumber" type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required>
+                                          
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-md-4 col-sm-4">
+                                      <!-- 
+                                      <div class="col-md-12">
+                                            <label for="inputColony">{{ beginDet | translate }}</label>
+                                          </div>
+                                          
+                                          <div class="col-md-12 col-sm-12">
+                                            
+                                            <label for="beginData">{{ beginData }}</label>
+                
+                                          </div>
+                                        -->
+                                    </div>
+                                  
+                                  </div>
+
                                     <div class="row motum-label-form">
 
                                     <div class="col-md-6 ">
@@ -105,14 +136,16 @@
 
                                     <div class=" col-md-4 col-sm-4">
                                         <div class="col-md-12">
-                                            <label for="inputColony">{{ beginDet | translate }}</label>
-                                          </div>
+                                            <label for="inputColony">{{ beginDet | translate }} : </label>
+                                            <label for="beginData"><b>{{ beginData }}</b></label>
                                           
+                                          </div>
+                                          <!--
                                           <div class="col-md-12 col-sm-12">
                                             
                                             <label for="beginData">{{ beginData }}</label>
-                
-                                          </div>
+                                           
+                                          </div> -->
                                     </div>
                                   </div>
 
@@ -125,21 +158,27 @@
                                     </div>
                                     <div class=" col-md-4 col-sm-4">
                                         <div class="col-md-12">
-                                            <label for="inputMunicipality">{{ endDet | translate }}</label>
+                                            <label for="inputMunicipality">{{ endDet | translate }} : </label>
+                                            <label for="endData"><b> {{ endData }} </b></label>
+
                                           </div>
+                                          
+  
                                           <div class="col-md-12 col-sm-12">
-                                              <label for="endData"> {{ endData }} </label>
                 
                 
                                           </div>
                                     </div>
                                   </div>
-            
+
                                   <div class="row motum-label-form">
+
                                       <div class="col-sm-6">
+
                                         <div class="has-success motum-input-form">
                                           <label for="inputCountry" >{{ operador | translate }}</label>
                                         
+
                                           
                                           <select [(ngModel)]="driverId" name="driverId" id="inputCountry" class="form-control input-sm" (change)="selectDriverData();">
                                             <option selected="" value=""></option>  
@@ -149,32 +188,162 @@
                                           </select>
                                     
                                     
-                                      </div>
-                                      </div>
-
-                                      <div class=" col-md-4 col-sm-4">
-                                          
-
-                                      <div class="col-md-8  col-sm-12 spaceTelPadding">
-                                          <div class=" has-success motum-input-form motum-intl-tel-input">
-                                            <label for="">{{ operadorDet | translate }}</label><br>
-                                          
-                                          </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-12">
-                                          <div class=" has-success motum-input-form">
-                                            <label for="inputnumberExtension">{{ driverId }}</label><br>
-                                            <label for="inputnumberExtension">{{ driverName }}</label><br>
-                                            <label for="inputnumberExtension">{{ driverLicense }}</label><br>
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                        <div class="has-success motum-input-form">
+
+                                          <label for="inputCountry" >Transportista</label>
+                                        
                                           
-                                          
-                                          </div>
-                                        </div>
+                                          <select [(ngModel)]="driverId" name="driverId" id="inputCountry" class="form-control input-sm" (change)="selectDriverData();">
+                                            <option selected="" value=""></option>  
+                                            <option [ngValue]="k.driverid" *ngFor="let k of arrDrivers">  
+                                                {{k.name}} {{k.lastname}}  
+                                            </option>  
+                                          </select>
+                                    
+                                      </div>
                                    
                                     </div>
+
+                                      
+
+                                      <div class="col-sm-6">
+                                          <div class="col-md-12">
+                                      
+                                            <label for="">{{ operadorDet | translate }}</label> <br>
+                                            <hr class="window-section-space motum-hr-head-form"> 
+
+
+                                            <label for="inputMunicipality">Clave Operador : <b>{{ driverId }}</b> </label>
+                                            <!--
+                                            <label for="inputnumberExtension">Nombre: <b>{{ driverName }}</b></label>
+                                          -->
+                                            <!--    <label for="endData"><b>{{ driverId }}</b></label> -->
+    
+                                           
+
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                      
+                                          
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Nombre: <b>{{ driverName }}</b></label>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Licencia : {{ driverLicense }}</label>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Tipo Licencia : {{ driverLicense }}</label>
+
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Fecha Exp : {{ driverLicense }}</label>
+
+                                          <!--    <label for="endData"><b>{{ driverId }}</b></label> -->
+  
+                                        
+
+                                      </div>
+<!--
+                                        <hr class="window-section-space motum-hr-head-form"> 
+
+                                        
+                                        <div class="col-md-4 col-sm-12">
+                                          <div class=" has-success motum-input-form">
+                                            <label for="inputnumberExtension">Clave operador : </label>
+                                            <label for="inputnumberExtension"><b>{{ driverId }}</b></label>
+
+                                          </div>    
+                                        </div>
+                                      
+                                        <div class=" col-md-4 col-sm-4">
+                                            <div class="col-md-12">
+                                                <label for="inputMunicipality">Clave Operador : </label>
+                                                <label for="endData"><b>{{ driverId }}</b></label>
+    
+                                              </div>
+                                              <div class="col-md-12 col-sm-12">
+                    
+                    
+                                              </div>
+                                        </div>
+                                      -->
+                                        <!--  
+                                        <div class="col-md-8 col-sm-12">
+                                        
+                                          <div class=" has-success motum-input-form">
+
+                                            <label for="inputnumberExtension">Nombre: <b>{{ driverName }}</b></label>
+                                          </div>
+                                        </div>
+                                      -->
+                                        <!--
+                                        <div class="col-md-4 col-sm-12">
+                                        
+                                          <div class=" has-success motum-input-form">
+
+                                            <label for="inputnumberExtension">{{ driverLicense }}</label>
+                                            
+                                          
+                                          
+                                          </div>
+                                        </div>
+                                      -->
+                                    </div>
                                   </div>
+
+                                  <div class="row motum-label-form">
+                                    <!--
+                                    <div class="col-sm-6">
+                                      <div class="has-success motum-input-form">
+                                        <label for="inputCountry" >Transportista</label>
+                                      
+                                        
+                                        <select [(ngModel)]="driverId" name="driverId" id="inputCountry" class="form-control input-sm" (change)="selectDriverData();">
+                                          <option selected="" value=""></option>  
+                                          <option [ngValue]="k.driverid" *ngFor="let k of arrDrivers">  
+                                              {{k.name}} {{k.lastname}}  
+                                          </option>  
+                                        </select>
+                                  
+                                  
+                                    </div>
+                                    </div>
+                                  --> 
+                                    <div class=" col-md-4 col-sm-4">
+                                        
+
+                                    <div class="col-md-8  col-sm-12 spaceTelPadding">
+                                      <!--
+                                        <div class=" has-success motum-input-form motum-intl-tel-input">
+                                          <label for="">{{ operadorDet | translate }}</label><br>
+                                        
+                                        </div> -->
+                                      </div>
+
+
+                                      <div class="col-md-4 col-sm-12">
+                                        <!--
+                                        <div class=" has-success motum-input-form">
+                                          <label for="inputnumberExtension">{{ driverId }}</label><br>
+                                          <label for="inputnumberExtension">{{ driverName }}</label><br>
+                                          <label for="inputnumberExtension">{{ driverLicense }}</label><br>
+                                        
+                                        
+                                        </div>
+                                        -->
+                                      </div>
+                                 
+                                  </div>
+                                </div>
+
                                   <div class="row motum-label-form">
                                       <div class="col-sm-6">
+                                        
                                         <div class="has-success motum-input-form">
                                           <label for="inputCountry" >{{ unidad | translate }}</label>
                                           
@@ -191,21 +360,32 @@
                                  
                                       <div class=" col-md-4 col-sm-4">
 
-                                      <div class="col-md-8  col-sm-12 spaceTelPadding">
-                                        <div class=" has-success motum-input-form motum-intl-tel-input">
+                                      <!-- <div class="col-md-8  col-sm-12 spaceTelPadding"> -->
+                                          <div class="col-md-12">
+
+                                       <!-- <div class=" has-success motum-input-form motum-intl-tel-input">-->
                                           <label for="">{{ unidadDet | translate }}</label><br>
-                                        
-                                        </div>
+                                          <hr class="window-section-space motum-hr-head-form"> 
+
+                                       <!-- </div> -->
                                       </div>
 
-                                      <div class="col-md-4 col-sm-12">
+                                     <!-- <div class="col-md-4 col-sm-12"> -->
+                                          <div class="col-md-12">
+ 
                                         <div class=" has-success motum-input-form">
                                         
                                          <div class=" has-success motum-input-form">
-                                          <label for="inputnumberExtension">{{ truckBrand }}</label><br>
-                                          <label for="inputnumberExtension">{{ truckModel }}</label><br>
-                                          <label for="inputnumberExtension">{{ truckYear }}</label><br>
-                                          <label for="inputnumberExtension">{{ truckPlate }}</label><br>
+                                          <label for="inputnumberExtension">Marca : {{ truckBrand }}</label><br>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Modelo : {{ truckModel }}</label><br>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Año : {{ truckYear }}</label><br>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Placas : {{ truckPlate }}</label><br>
                                         
                                           
                                         </div>
@@ -232,6 +412,7 @@
                                     </div>
                                  
                                     <div class=" col-md-4 col-sm-4">
+<!--
                                         <div class="col-md-8  col-sm-12 spaceTelPadding">
                                             <div class="has-success motum-input-form motum-intl-tel-input">
                                               <label for="">{{ remolque1Det | translate }}</label><br>
@@ -255,7 +436,7 @@
                                             </div>
                                           </div>
   
-
+                                        -->
                                     </div>
                                   </div>
             
@@ -275,6 +456,7 @@
                                       </div>
                                       
                                       <div class=" col-md-4 col-sm-4">
+                                        <!--
                                           <div class="col-md-8  col-sm-12 spaceTelPadding">
                                               <div class="has-success motum-input-form motum-intl-tel-input">
                                                 <label for="inputServer">{{ dollyDet | translate }}</label>
@@ -295,7 +477,7 @@
                                                 </div>
                                               </div>
                                             </div>
-                                      
+                                          -->
                                       </div>
                                    
                                     </div>
@@ -318,6 +500,7 @@
                                     </div>
                                  
                                     <div class=" col-md-4 col-sm-4">
+<!--
                                         <div class="col-md-8">
                                             <label for="inputSector">{{ remolque2Det | translate }}</label>
                                           </div>
@@ -332,7 +515,7 @@
                                              
                                             </div>
                                           </div>
-
+                                        -->
                                     </div>
                                   </div>
             
@@ -619,7 +802,7 @@
                             <div class="col-md-9 hidden-md-down">
                             </div>
                             <div class="col-md-1 col-sm-4">
-                              <button type="button" routerLink="/pages/usersControl/clients-products" (click) ="toggle(true, null)" class="motum-btn-delete btn btn-primary window-btn-size motum-btn cancel">{{ cancel | translate}}</button>
+                              <button type="button" routerLink="/pages/travel_matrix/clients-products" (click) ="toggle(true, null)" class="motum-btn-delete btn btn-primary window-btn-size motum-btn cancel">{{ cancel | translate}}</button>
                             </div>
                             <div class="col-md-1 col-sm-4">
                               <button type="button" class="btn btn-primary window-btn-size motum-btn next" (click)="t.select('tabFacturacion')">{{ next | translate}}</button>
@@ -639,7 +822,7 @@
         <button motum-button
         [color]="'danger'"
         [outline]="true"
-        routerLink="/pages/usersControl/clients-products">
+        routerLink="/pages/travel_matrix/clients-products">
         {{ cancel | translate }}
         </button>
 
