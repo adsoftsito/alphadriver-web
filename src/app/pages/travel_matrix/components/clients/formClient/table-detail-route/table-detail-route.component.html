@@ -1,3 +1,15 @@
-<p>
-  table-detail-route works!
-</p>
+<div class="full-width-panel" >
+    <ag-grid-angular *ngIf ="translated"
+    id="tableDetailRoute"
+    class="full-width-grid"
+  
+        [gridOptions]="gridOptions"
+        [icons]="customIcons"
+        [suppressRowClickSelection]="true"
+        [suppressAggFuncInHeader]="true"
+    
+        (cellClicked)="onCellClicked($event)"
+  
+        (gridSizeChanged)="onGridResize($event)">
+    </ag-grid-angular>
+  </div>

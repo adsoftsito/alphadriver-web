@@ -304,11 +304,15 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     arrDollys:Array<any> =[];
     arrRoutes:Array<any> =[];
     
+
+    url : string;
     driverId : string;
+    driverCode : string;
     driverName : string;
     driverLicense : string;
     
     truckId : string;
+    truckNumber : string;
     truckBrand : string;
     truckModel : string;
     truckYear : string;
@@ -338,6 +342,9 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     routeId : string;
     routeSource : string;
     routeTarget : string;
+    routeSourceDir : string;
+    routeTargetDir : string;
+    
     arrRouteDetail:Array<any> =[];
     
 
@@ -454,7 +461,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
       closeOnSelect: true,
     }
   
-  
+  this.url = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  this.driverCode = "Clave operador : 000-0000"
     this.getDriversData();
     this.getTrucksData();
     this.getTrailersData();
@@ -463,6 +471,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   
   
     
+    
   }
   
   selectDriverData()
@@ -470,7 +479,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     
   //alert(this.driverId);
   let myDriver = this.arrDrivers.find(x => x.driverid === this.driverId);
-  
+  this.driverCode = "Clave operador : " + this.driverId;
+  this.url = 'https://experience.sap.com/fiori-design-web/wp-content/uploads/sites/5/2017/02/Avatar-Sizes-Custom-1.png'
   this.driverName = myDriver.name;
   this.driverLicense = myDriver.license;
   } 
@@ -480,8 +490,9 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     
   //alert(this.driverId);
   let myTruck = this.arrTrucks.find(x => x.trucknumber === this.truckId);
-  
-  this.truckBrand = myTruck.brand;
+
+  this.truckNumber = "096754231";
+ this.truckBrand = myTruck.brand;
   this.truckModel = myTruck.model;
   this.truckYear = myTruck.year;
   this.truckPlate = myTruck.plate;
@@ -532,8 +543,12 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   
   this.routeSource = myRoute.placesource;
   this.routeTarget = myRoute.placetarget;
+
+  this.routeSourceDir = "Calle Abc 23, Coatzacoalcos, Ver";
+  this.routeTargetDir = "Villahermosa, Tab.";
+
   this.arrRouteDetail = myRoute.route_details;
-  alert(this.arrRouteDetail)
+  //alert(this.arrRouteDetail)
   
   
   }

@@ -1937,12 +1937,20 @@
         *ngIf="activeTab=='tabBilling' || activeTab=='tabAccount' || activeTab=='tabPermissions' || activeTab=='tabInterface'"
         (click)="activeTab=='tabInterface' ? t.select('tabPermissions'):'' || activeTab=='tabPermissions' ? t.select('tabAccount'):'' || activeTab=='tabAccount' ? t.select('tabBilling'):'' || activeTab=='tabBilling' ? t.select('tabClient'):''"
         [outline]="true"
-        [color]="'grey'">{{activeTab=='tabBilling' ? (back | translate) : '' || activeTab=='tabAccount' ? (back | translate) : '' || activeTab=='tabPermissions' ? (back | translate) : '' || activeTab=='tabInterface' ? (back | translate) : ''}}</button>
+        [color]="'grey'">{{activeTab=='tabBilling' ? (back | translate) : '' 
+        || activeTab=='tabAccount' ? (back | translate) : '' || activeTab=='tabPermissions' ? (back | translate) : '' 
+        || activeTab=='tabInterface' ? (back | translate) : ''}}</button>
 
         <button motum-button
         color="secondary"
-        (click)="activeTab=='tabClient' ? t.select('tabBilling'):''|| activeTab=='tabBilling' ? t.select('tabAccount'):'' || activeTab=='tabAccount' ? t.select('tabPermissions'):'' || activeTab=='tabPermissions' ?  t.select('tabInterface'):'' || activeTab=='tabInterface' ?  createClient():createClient()">
-        {{activeTab=='tabClient' ? (next | translate):'' || activeTab=='tabBilling' ? (next | translate):'' || activeTab=='tabAccount' ? (next | translate):'' || activeTab=='tabPermissions' ? (next | translate):'' || activeTab=='tabInterface' ? (save | translate):''}}
+        (click)="activeTab=='tabClient' ? t.select('tabBilling'):''|| activeTab=='tabBilling' ?
+         t.select('tabAccount'):'' || activeTab=='tabAccount' ? t.select('tabPermissions'):''
+          || activeTab=='tabPermissions' ?  t.select('tabInterface'):'' || 
+          activeTab=='tabInterface' ?  createClient():createClient()">
+        {{activeTab=='tabClient' ? (next | translate):'' || activeTab=='tabBilling' ? 
+        (next | translate):'' || activeTab=='tabAccount' ? (next | translate):'' 
+        || activeTab=='tabPermissions' ? (next | translate):'' || activeTab=='tabInterface' ?
+         (save | translate):''}}
         </button>
   </div> <!--END MODAL-FORM-FOOTER-->
 </motum-modal-form>

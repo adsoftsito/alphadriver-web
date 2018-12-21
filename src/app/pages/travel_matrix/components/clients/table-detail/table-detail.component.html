@@ -1,4 +1,105 @@
+<ng-template #modalPassword let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <div class="motum-modal-icon">
+        <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+      </div>
+      <h5 class="modal-title"> {{'pages.confirmationwindow.header' | translate }} </h5>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+
+        <div class="motum-content-title">
+      
+            <div class="motum-inputs-section-flex">
+  
+                    <div class="form-group">
+                            <label for="file"> <i class="motum-i tm-e926"> Seleccionar archivo </i> </label>
+                           <!-- <input type="file" 
+                                   id="file"
+                                   (change)="readURL(this);"> 
+                                   <input type='file' (change)="readURL(this);" />-->
+                                   <input type='file' id="file" (change)="onSelectFile($event)" style="display: none;">
+  
+                    </div>
+  
+                    
+                <!--{{ newClient | translate }}--> 
+            </div>
+  
+  
+            <div class="motum-inputs-section-flex">
+                    <div class="row motum-label-input first animated fadeIn">
+                        <!--
+                        <div class="col-md-11 motum-w500">
+                            <label for="inputComercialName"> Nombre de quien firma </label>
+                        </div>
+                        <div class="col-md-11 col-sm-12">
+                            <div class="form-group has-success motum-inputForm">
+                                <input type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required oninput="this.value = this.value.toUpperCase()">
+                            </div>
+                        </div>
+                        <button motum-button color="secondary" (click)="createClient()">
+                            +
+                        </button>
+                      -->
+                    </div>
+            </div>
+        </div>
+    <div class="row motum-content-body">
+            <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
+              <!--
+                <span class="motum-w500"> motum corp </span>
+              -->
+              <div class="motum-inputs-section-flex">
+                <div class="row motum-label-input first animated fadeIn">
+  <!--
+                <img id="blah" [src]="src" alt="your image" />-->
+                <img id="blah" [src]="url" height="200"> <br/>
+  
+                    <!--
+                    <div class="col-md-11 motum-w500">
+                        <label for="inputComercialName"> test input </label>
+                    </div>
+                    <div class="col-md-11 col-sm-12">
+                        <div class="form-group has-success motum-inputForm">
+                            <input type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                    </div>
+                -->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-12 motum-content-right-form-interface">
+                    <div class="row">
+  
+                     <!-- <div class="col-md-10  col-sm-12 motum-label-form"> -->
+                            <ul>
+                              <li *ngFor="let asset of arrAssets">
+                                {{ asset.id }} <br> 
+                                {{ asset.name }} <br>
+                                {{ asset.datetime }} <br>
+                                <br>
+                                </li>
+                            </ul>
+                     <!-- </div> -->
+                    </div>  
+            </div>
+    </div>
+  
+
+
+
+    </div>
+    <div class="modal-footer window-center-align">
+      <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindow.sendbutton' | translate}}</button>
+    </div>
+  </ng-template>
+
 <div class="full-width-panel" >
+ 
   <ag-grid-angular *ngIf ="translated"
   id="tableDetail"
   class="full-width-grid"

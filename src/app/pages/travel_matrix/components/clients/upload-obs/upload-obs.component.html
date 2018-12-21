@@ -50,7 +50,7 @@
     </div>
     <div class="motum-avatar-labelEdit">
         <div class="name">
-          <!-- {{clientModel.commercialName}} --> Firmas
+          <!-- {{clientModel.commercialName}} --> Observaciones
         </div>
         <div>
           <!-- {{clientModel.businessName}} --> subtitle
@@ -98,13 +98,22 @@
           <div class="motum-inputs-section-flex">
                   <div class="row motum-label-input first animated fadeIn">
                       <div class="col-md-11 motum-w500">
-                          <label for="inputComercialName"> Nombre de quien firma </label>
+                          <label for="inputComercialName"> Nombre de quien comenta </label>
                       </div>
                       <div class="col-md-11 col-sm-12">
                           <div class="form-group has-success motum-inputForm">
                               <input type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required oninput="this.value = this.value.toUpperCase()">
                           </div>
                       </div>
+
+                      <div class="col-md-11 motum-w500">
+                            <label for="inputComercialName"> Observaciones </label>
+                        </div>
+                        <div class="col-md-11 col-sm-12">
+                            <div class="form-group has-success motum-inputForm">
+                                <input type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required oninput="this.value = this.value.toUpperCase()">
+                            </div>
+                        </div>
                       <button motum-button color="secondary" (click)="createClient()">
                           +
                       </button>
@@ -112,29 +121,7 @@
           </div>
       </div>
   <div class="row motum-content-body">
-          <div class="col-lg-6 col-md-12 col-sm-12 motum-border-middle">
-            
-              <span class="motum-w500"> motum corp </span>
-            
-            <div class="motum-inputs-section-flex">
-              <div class="row motum-label-input first animated fadeIn">
-<!--
-              <img id="blah" [src]="src" alt="your image" />-->
-              <img id="blah" [src]="url" height="200"> <br/>
-
-                  <!--
-                  <div class="col-md-11 motum-w500">
-                      <label for="inputComercialName"> test input </label>
-                  </div>
-                  <div class="col-md-11 col-sm-12">
-                      <div class="form-group has-success motum-inputForm">
-                          <input type="text" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required oninput="this.value = this.value.toUpperCase()">
-                      </div>
-                  </div>
-              -->
-              </div>
-            </div>
-          </div>
+          
           <div class="col-md-5 col-sm-12 motum-content-right-form-interface">
                   <div class="row">
 

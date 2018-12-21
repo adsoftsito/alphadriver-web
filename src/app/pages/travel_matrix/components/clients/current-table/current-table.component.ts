@@ -692,6 +692,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     
     if(event.column.colId == 'motorStopStatus'&& event.data != null 
         && event.data !== undefined){
+          
         let authorized = this.isAuthorizedUser();
         console.log("authorized..." + authorized);
     

@@ -588,25 +588,30 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
    */
   onCellClicked( event){
     console.log("selected..." + event.rowIndex);
-    console.log("selected data..." + JSON.stringify(event.data.route_details));
+    console.log("selected route detail..." + JSON.stringify(event.data.orderdetail));
    // console.log("selected data..." + JSON.stringify(event.data.orderdetail));
     
-    if(event.column.colId == 'motorStopStatus'&& event.data != null 
+    if(event.column.colId == 'number'&& event.data != null 
         && event.data !== undefined){
-        let authorized = this.isAuthorizedUser();
+
+          console.log("adsoft detail route ...");
+    
+        let authorized = true; //this.isAuthorizedUser();
         console.log("authorized..." + authorized);
     
         authorized = true;
         
-        if(authorized){ 
-          
+       // if(authorized){ 
+          console.log("adsoft detail route 1 ...");
+     
           this.rowSelected = this.data[event.rowIndex];        
           this.selectedOneItem.emit(this.rowSelected);
           console.log(this.data[event.rowIndex]);
-        }
+       /* }
         else{
           this.selectedOneItem.emit([]);
-        }
+        }*/
+
 
   }
   }
@@ -696,16 +701,16 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
 
 public getNodeChildDetails(record) { 
   console.log(this.data);
-  console.log("detail node..." + JSON.stringify(record.route_details));
+  console.log("detail node route ..." + JSON.stringify(record.orderdetail));
   //console.log("detail node..." + JSON.stringify(record.ordedetail));
  
- if (record.route_details) {
+ if (record.orderdetail) {
  // if (record.orderdetail) {
 
         return {
             group: true,
             // provide ag-Grid with the children of this group
-            children: [JSON.stringify(record.route_details)],
+            children: [JSON.stringify(record.orderdetail)],
             //children: [JSON.stringify(record.orderdetail)],
             
             // for  expand the third row by default

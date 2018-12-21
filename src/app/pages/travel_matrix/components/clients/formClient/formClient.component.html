@@ -33,7 +33,8 @@
         <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindowClient.sendbutton' | translate}}</button>
       </div>
   </ng-template>
-    <div modal-form-header>
+
+<div modal-form-header>
         <div class="row" *ngIf="editar && windowPosition === 'right'">
             <div class="motum-avatar-section">
                 <motum-avatar [name]="initials"
@@ -205,6 +206,21 @@
                                     
                                       </div>
                                    
+                                      <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                      <div class="has-success motum-input-form">
+                                          <label for="inputCountry" >{{ unidad | translate }}</label>
+                                          
+                                          <select [(ngModel)]="truckId" name="truckId" id="inputCountry" class="form-control input-sm" (change)="selectTruckData();">
+                                            <option selected="" value=""></option>  
+                                            <option [ngValue]="k.trucknumber" *ngFor="let k of arrTrucks">  
+                                              {{k.trucknumber}}  
+                                            </option>  
+                                         </select>
+                                   
+                                          
+                                        </div>
+                                      
                                     </div>
 
                                       
@@ -212,26 +228,42 @@
                                       <div class="col-sm-6">
                                           <div class="col-md-12">
                                       
-                                            <label for="">{{ operadorDet | translate }}</label> <br>
+                                            <label for=""><b>{{ operadorDet | translate }}</b></label> <br>
                                             <hr class="window-section-space motum-hr-head-form"> 
 
 
-                                            <label for="inputMunicipality">Clave Operador : <b>{{ driverId }}</b> </label>
+                                            <label for="inputMunicipality"> <b>{{ driverCode }}</b> </label>
+                                         <!--   <img src="{{ driveImage }}" width="60" height="60"> -->
+                                            <img id="blah" [src]="url" height="60">
+                                           
                                             <!--
                                             <label for="inputnumberExtension">Nombre: <b>{{ driverName }}</b></label>
                                           -->
                                             <!--    <label for="endData"><b>{{ driverId }}</b></label> -->
     
                                            
+                                      <div class="col-md-4">
+                                      
+                                         <!-- 
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                        
+                                       
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+                                         -->
+
+                                    </div>
+
 
                                         </div>
                                         
-                                        <div class="col-md-12">
+                                        <div class="col-md-8">
                                       
-                                          
+                                        
                                           <hr style="border-top: 0px solid #ccc; background: transparent;">
 
                                           <label for="inputnumberExtension">Nombre: <b>{{ driverName }}</b></label>
+                                          
                                           <hr style="border-top: 0px solid #ccc; background: transparent;">
 
                                           <label for="inputnumberExtension">Licencia : {{ driverLicense }}</label>
@@ -248,8 +280,13 @@
                                         
 
                                       </div>
+
 <!--
-                                        <hr class="window-section-space motum-hr-head-form"> 
+
+                                        
+  
+  
+  <hr class="window-section-space motum-hr-head-form"> 
 
                                         
                                         <div class="col-md-4 col-sm-12">
@@ -343,7 +380,7 @@
 
                                   <div class="row motum-label-form">
                                       <div class="col-sm-6">
-                                        
+                                       <!-- 
                                         <div class="has-success motum-input-form">
                                           <label for="inputCountry" >{{ unidad | translate }}</label>
                                           
@@ -356,6 +393,60 @@
                                    
                                           
                                         </div>
+                                      
+
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+                                    -->
+                                        <div class="has-success motum-input-form">
+                                          <label for="inputCountry" >{{ remolque1 | translate }}</label>
+                                   
+                                          <select [(ngModel)]="trailer1Id" name="trailer1Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer1Data();">
+                                            <option selected="" value=""></option>  
+                                            <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
+                                              {{k.trailernumber}}  
+                                            </option>  
+                                         </select>
+                                   
+                                        
+                                          
+                                        </div>
+
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <div class="has-success motum-input-form">
+                                            <label for="inputState">{{ dolly | translate }}</label>
+                                            <select [(ngModel)]="dollyId" name="dollyId" id="inputCountry" class="form-control input-sm" (change)="selectDollyData();">
+                                              <option selected="" value=""></option>  
+                                              <option [ngValue]="k.dollynumber" *ngFor="let k of arrDollys">  
+                                                {{k.dollynumber}}  
+                                              </option>  
+                                           </select>
+                                     
+                                            
+                                          </div>
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+
+
+
+                                          <div class="has-success motum-input-form">
+                                              <label for="inputState">{{ remolque2 | translate }}</label>
+              
+                                              <select [(ngModel)]="trailer2Id" name="trailer2Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer2Data();">
+                                                <option selected="" value=""></option>  
+                                                <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
+                                                  {{k.trailernumber}}  
+                                                </option>  
+                                             </select>
+                                       
+                                              
+                                            </div>
+                                         
+
+
+
+
+
                                       </div>
                                  
                                       <div class=" col-md-4 col-sm-4">
@@ -364,11 +455,12 @@
                                           <div class="col-md-12">
 
                                        <!-- <div class=" has-success motum-input-form motum-intl-tel-input">-->
-                                          <label for="">{{ unidadDet | translate }}</label><br>
-                                          <hr class="window-section-space motum-hr-head-form"> 
+                                          <label for=""><b>{{ unidadDet | translate }}</b></label><br>
+                                         <!-- <hr class="window-section-space motum-hr-head-form"> -->
 
                                        <!-- </div> -->
                                       </div>
+                                      <hr class="window-section-space motum-hr-head-form"> 
 
                                      <!-- <div class="col-md-4 col-sm-12"> -->
                                           <div class="col-md-12">
@@ -376,6 +468,9 @@
                                         <div class=" has-success motum-input-form">
                                         
                                          <div class=" has-success motum-input-form">
+                                            <label for="inputnumberExtension"># Economico : {{ truckNumber }}</label><br>
+                                            <hr style="border-top: 0px solid #ccc; background: transparent;">
+  
                                           <label for="inputnumberExtension">Marca : {{ truckBrand }}</label><br>
                                           <hr style="border-top: 0px solid #ccc; background: transparent;">
 
@@ -387,7 +482,18 @@
 
                                           <label for="inputnumberExtension">Placas : {{ truckPlate }}</label><br>
                                         
-                                          
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Remolque : {{ trailer1Id }}</label><br>
+                                        
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Dolly : {{ dollyId }}</label><br>
+                                        
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                          <label for="inputnumberExtension">Remolque 2 : {{ trailer2Id }}</label><br>
+                                        
                                         </div>
                                         </div>
                                       </div>
@@ -396,7 +502,7 @@
                                     
                                   <div class="row motum-label-form">
                                     <div class="col-sm-6">
-                                      <div class="has-success motum-input-form">
+                                    <!--  <div class="has-success motum-input-form">
                                         <label for="inputCountry" >{{ remolque1 | translate }}</label>
                                  
                                         <select [(ngModel)]="trailer1Id" name="trailer1Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer1Data();">
@@ -408,7 +514,7 @@
                                  
                                       
                                         
-                                      </div>
+                                      </div> -->
                                     </div>
                                  
                                     <div class=" col-md-4 col-sm-4">
@@ -441,7 +547,7 @@
                                   </div>
             
                                   <div class="row motum-label-form moreSpace">
-                                      <div class="col-sm-6">
+                                    <!--  <div class="col-sm-6">
                                         <div class="has-success motum-input-form">
                                           <label for="inputState">{{ dolly | translate }}</label>
                                           <select [(ngModel)]="dollyId" name="dollyId" id="inputCountry" class="form-control input-sm" (change)="selectDollyData();">
@@ -453,8 +559,9 @@
                                    
                                           
                                         </div>
+
                                       </div>
-                                      
+                                    -->
                                       <div class=" col-md-4 col-sm-4">
                                         <!--
                                           <div class="col-md-8  col-sm-12 spaceTelPadding">
@@ -485,18 +592,6 @@
                                   
                                   <div class="row motum-label-form moreSpace">
                                     <div class="col-sm-6">
-                                      <div class="has-success motum-input-form">
-                                        <label for="inputState">{{ remolque2 | translate }}</label>
-        
-                                        <select [(ngModel)]="trailer2Id" name="trailer2Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer2Data();">
-                                          <option selected="" value=""></option>  
-                                          <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
-                                            {{k.trailernumber}}  
-                                          </option>  
-                                       </select>
-                                 
-                                        
-                                      </div>
                                     </div>
                                  
                                     <div class=" col-md-4 col-sm-4">
@@ -539,7 +634,12 @@
                                                     {{k.placesource}} {{k.placetarget}}  
                                                   </option>
                                                 </select>
-                                                                                       
+                                              <br>       
+                                              <hr style="border-top: 0px solid #ccc; background: transparent;">
+                                              <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                                <a href="#/pages/travel_matrix/route-map">Configurar ruta</a>
+                                           
                                               
                                             </div>
                                           </div>
@@ -550,27 +650,27 @@
                                           
 
                                                   <div class="col-md-12 spaceTitle">
-                                                    <label for="inputFiscalComercialName">{{ origenDef | translate }}</label>
+                                                    <label for="inputFiscalComercialName">Origen : <b>{{ routeSource }}</b></label>
                                                   </div>
                                                  
-                                                  <div class=" col-md-12 col-sm-12">
-                                                  <div class="form-group has-success motum-input-form">
-                                                    <label class="window-bold-style motum-subtitle-form in-form">{{ routeSource }}</label>
+                                                  <div class="col-md-12 spaceTitle">
+                                                      <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                                    <label for="inputFiscalBusinessName">{{ routeSourceDir }}</label>
                   
                                                      
-                                                  </div>
                                                 </div>
                                               </div>
                   
-                                              <div class="row motum-label-form">
-                                                <div class="col-md-12">
-                                                  <label for="inputFiscalBusinessName">{{ destinoDef | translate }}</label>
+                                              <div class="row motum-label-form space">
+                                                <div class="col-md-12 spaceTitle">
+                                                  <label for="inputFiscalBusinessName">Destino : <b>{{ routeTarget }}</b></label>
                                                 </div>
-                                                <div class=" col-md-12 col-sm-12">
-                                                  <div class="form-group has-success motum-input-form">
-                                                    <label class="window-bold-style motum-subtitle-form in-form">{{ routeTarget }}</label>
+                                                <div class="col-md-12 spaceTitle">
+                                                    <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                                    <label for="inputFiscalBusinessName">{{ routeTargetDir }}</label>
                   
-                                                  </div>
                                                 </div>
                                               </div>
            
@@ -585,7 +685,7 @@
                                       <img src="https://alicantenews.es/wp-content/uploads/2015/06/Google-Maps.jpg" width="600" height="500"> 
                                       </div>
                                       </div>
-                                     </div>
+                                     </div>class="col-md-1 col-sm-4"
                                 </div>
                               </div>
                             </form>
@@ -594,12 +694,19 @@
                             <div class="row">
                               <div class="col-md-9 hidden-md-down">
                               </div>
+
+                              
                               <div class="col-md-1 col-sm-4">
                                 <button type="button" routerLink="/pages/usersControl/clients-products" (click) ="toggle(true, null)" class="motum-btn-delete btn btn-primary window-btn-size motum-btn cancel">{{ cancel | translate}}</button>
                               </div>
                               <div class="col-md-1 col-sm-4">
                                 <button type="button" class="btn btn-primary window-btn-size motum-btn next" (click)="t.select('tabFacturacion')">{{ next | translate}}</button>
                               </div>
+
+
+                             
+
+
                             </div>
                           </div>
                         </div>
@@ -607,7 +714,8 @@
   
             </ngb-tab> <!-- End tabInterface -->
  
-            <ngb-tab  id="tabPermissions" title="{{ permissions | translate }}">
+           <!-- <ngb-tab  id="tabPermissions" title="{{ permissions | translate }}"> -->
+           <ngb-tab  id="tabPermissions" title="Configuración"> 
                 <ng-template ngbTabContent>
                     <div class="window-body">
                         
@@ -683,6 +791,8 @@
                                             </div>
                                           </div>
        
+                                          <hr style="border-top: 0px solid #ccc; background: transparent;">
+
                                           <div class="table-responsive table-style-motum">
                                              
                                           <!--  <table class="table table-striped"> -->
@@ -702,40 +812,40 @@
                                                   <tr>
                                                     <td>
                                                         <div class="form-group has-success motum-input-form">
-                                                            <input [(ngModel)]="clientModel.rfc" type="text" value="0.0"
-                                                              class="form-control input-sm" id="inputRfc" 
-                                                              [ngModelOptions]="{standalone: true}" required>
+                                                            <input [(ngModel)]="orderKm" type="text" class="form-control input-sm" 
+                                                            id="orderKm" [ngModelOptions]="{standalone: true}" required>
+                                                            
                                                           </div>
 
                                                     </td>
                                                     <td>
 
                                                         <div class="form-group has-success motum-input-form">
-                                                            <input [(ngModel)]="clientModel.rfc" type="text" value="0.0"
-                                                              class="form-control input-sm" id="inputRfc" 
+                                                            <input [(ngModel)]="orderLt" type="text" value="0.0"
+                                                              class="form-control input-sm" id="orderLt" 
                                                               [ngModelOptions]="{standalone: true}" required>
-                                                          </div>
+                                                        </div>
 
                                                     </td>
                                                     <td>
                                                       <div class="form-group has-success motum-input-form">
-                                                        <input [(ngModel)]="clientModel.rfc" type="text" value="0.0"
-                                                          class="form-control input-sm" id="inputRfc" 
+                                                        <input [(ngModel)]="orderKmLt" type="text" value="0.0"
+                                                          class="form-control input-sm" id="orderKmLt" 
                                                           [ngModelOptions]="{standalone: true}" required>
                                                       </div>                                    
                                                     </td>
                                                     <td>
                                                         <div class="form-group has-success motum-input-form">
-                                                            <input [(ngModel)]="clientModel.rfc" type="text" value="0.0"
-                                                              class="form-control input-sm" id="inputRfc" 
+                                                            <input [(ngModel)]="orderPrecioLt" type="text" value="0.0"
+                                                              class="form-control input-sm" id="orderPrecioLt" 
                                                               [ngModelOptions]="{standalone: true}" required>
                                                           </div>
                                                    
                                                     </td>
                                                     <td>
                                                         <div class="form-group has-success motum-input-form">
-                                                            <input [(ngModel)]="clientModel.rfc" type="text" value="0.0"
-                                                              class="form-control input-sm" id="inputRfc" 
+                                                            <input [(ngModel)]="orderCosto" type="text" value="0.0"
+                                                              class="form-control input-sm" id="orderCosto" 
                                                               [ngModelOptions]="{standalone: true}" required>
                                                           </div>
                                                    
@@ -747,20 +857,26 @@
                                               </table>
                                             </div> 
                             
-                                            
+                                            <hr style="border-top: 0px solid #ccc; background: transparent;">
+                                            <hr style="border-top: 0px solid #ccc; background: transparent;">
+
                                             <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 " style="padding:0px!important;">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 " style="padding:2px!important;">
                                                     <hr class="hrPatrimonialSecurity"/>
                                                   <ps-current-table-route *ngIf="visibleTable != 'current'" 
                                                    (statusCheckControl)=changeStatusControl($event)
                                                    (statusIsRemember)=changeStatusRemember($event)
-                                                   (selectedOneItem)=getselectedOneItem($event)
+                                                   
                                                    (selectedItems)=getselectedItems($event)
                                                    (columnDefCurrent)= getColumnDef($event)
                                                    (totalRows)=getTotalRows($event)
                                                   ></ps-current-table-route>
                                             
-                                                 <!-- <ps-log-table *ngIf="visibleTable != 'current'"
+                                                 <!--
+                                                   
+                                                  (selectedOneItem)=getselectedOneItem($event)
+                                                  
+                                                  <ps-log-table *ngIf="visibleTable != 'current'"
                                                   (statusCheckControl)=changeStatusControl($event)
                                                   (statusIsRemember)=changeStatusRemember($event)
                                                   (selectedOneItem)=getselectedOneItem($event)

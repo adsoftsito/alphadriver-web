@@ -153,6 +153,23 @@ export class ClientsProductsComponent implements OnInit, OnDestroy {
         });
   }
 
+  
+onChangePassword(alert) {
+  //alert (" adsoft-sito");
+  const modalRef = this.modalService.open(alert, { size: 'lg' , keyboard: true, windowClass: 'window-order-view', backdrop: true });
+  //motum-modal-confirm
+  //const modalRef = this.modalService.open(alert,this.ngbModalOptions);      
+
+  modalRef.result.then((userResponse) => {
+    if(userResponse) {
+      alert("hola");
+    }
+  });
+}
+
+
+
+
   changeLanguage(){
     this.lang = localStorage.getItem('lang');
     if(this.lang === null){

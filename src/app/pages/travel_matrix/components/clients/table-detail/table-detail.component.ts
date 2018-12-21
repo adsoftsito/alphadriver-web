@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { GridOptions, Grid } from 'ag-grid';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import {Router} from "@angular/router";
 import {ClientProductService} from "../clients.service";
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -28,7 +29,12 @@ export class TableDetailComponent implements OnInit, OnDestroy{
 
   private $subscriptionTranslate:Subscription;
 
+  @ViewChild('modalPassword') modalPhotos : ElementRef;
+
+
   constructor(private _translate: TranslateService,
+              private modalService:NgbModal, 
+
               private router: Router,
               private clientProductService :ClientProductService,
 
@@ -270,7 +276,14 @@ export class TableDetailComponent implements OnInit, OnDestroy{
 
       if(event.column.colId == 'firmas'){
         //alert("firmas");
-        this.createClientProduct();
+        //this.createClientProduct();
+
+        const modalRef = this.modalService.open(this.modalPhotos, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+        modalRef.result.then((userResponse) => {
+          if(userResponse) {
+          }
+        });
+
       }
 
       if(event.column.colId == 'fotos'){

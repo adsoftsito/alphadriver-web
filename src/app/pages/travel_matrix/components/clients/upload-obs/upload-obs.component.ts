@@ -9,10 +9,10 @@ export class UploadObsComponent implements OnInit {
 
   constructor() { }
   arrAssets:Array<any> = [
-    new Asset(1, 'Windstorm', '2018-11-13 10:15'),
-    new Asset(13, 'Bombasto', '2018-10-13 11:40'),
-    new Asset(15, 'Magneta', '2018-09-13 13:03'),
-    new Asset(20, 'Tornado', '2018-05-13 15:07')
+    new Asset(1, 'Rocio Sanchez, 2018-11-13 10:15 subido por Adolfo Centeno', 'el trafico esta muy lento por toma de caseta'),
+    new Asset(2, 'Jesus Velez, 2018-11-13 10:15 subido por Adolfo Centeno', 'Accidente en tramo de tuneles en cumbres de maltrata'),
+    new Asset(3, 'Alejandro Reyes, 2018-11-13 10:15 subido por Adolfo Centeno', 'Neblina densa en zona del puente de metlac'),
+    new Asset(4, 'Armando Lopez,  2018-11-13 10:15 subido por Adolfo Centeno', 'Accidente en curva de nogales altura de la laguna')
   ];
 
   ngOnInit() {

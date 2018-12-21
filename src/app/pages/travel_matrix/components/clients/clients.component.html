@@ -140,6 +140,46 @@
 <!--
   <alert-component *ngIf="!authorized"></alert-component>
 -->
+<!-- <ng-template class="" #motorStop let-c="close" let-d="dismiss" > -->
+
+<ng-template class="" #modalPassword let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <div class="motum-modal-icon">
+            <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+          </div>
+          <h5 class="modal-title"> {{'pages.confirmationwindow.header' | translate }} </h5>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+              adsoft adsoft adsoftadsoftadsoftadsoftadsoftadsoftadsoft <br>
+              sito <br>
+          </p>
+          <p>
+                adsoft <br>
+                sito <br>
+            </p><p>
+                    adsoft <br>
+                    sito <br>
+                </p><p>
+                        adsoft <br>
+                        sito <br>
+                    </p><p>
+                            adsoft <br>
+                            sito <br>
+                        </p>
+                        <p>
+                                adsoft <br>
+                                sito <br>
+                            </p>
+        </div>
+        <div class="modal-footer window-center-align">
+          <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindow.sendbutton' | translate}}</button>
+        </div>
+</ng-template>
+
 
   <div class="al-content">
   
@@ -200,10 +240,17 @@
                   </ba-checkbox>
                 </div>
               </div>
+              <!--
               <div class="btnShowModal animated fadeIn">
-                  <button *ngIf="isRemember==true" motum-button color="danger" isRectangle=true  (mouseenter) ="changeClassBtnStop='true'"
+                  <button motum-button color="danger" isRectangle=true  (mouseenter) ="changeClassBtnStop='true'"
                    (mouseleave)="changeClassBtnStop=''" (click)="openModalMotorStop('massive')">{{arrTranslate.motorStop}}</button>
-                <!-- <button class="button motum-btn-motor-stop" *ngIf="isRemember==true"  (click)="openModalMotorStop('massive')">Paro de motor</button> -->            </div>
+               </div>
+-->
+
+               <div class="btnShowModal animated fadeIn">
+                    <button type="button" (click)="onChangePassword(modalPassword)" class="motum-btnSendInvitation">test</button>
+                </div>
+
             </form>
           </div>
         </div>
