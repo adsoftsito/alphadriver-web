@@ -10,10 +10,10 @@ export class UploadSignComponent implements OnInit {
 
   constructor() { }
   arrAssets:Array<any> = [
-    new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)'),
-    new Asset(13, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)'),
-    new Asset(15, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)'),
-    new Asset(20, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)')
+    new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', ''),
+    new Asset(13, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', '')
+    //new Asset(15, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)'),
+    //new Asset(20, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)')
   ];
 
   ngOnInit() {

@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import {Router} from "@angular/router";
 import {ClientProductService} from "../clients.service";
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Asset } from '../Asset';
+import { Http, ResponseContentType } from '@angular/http';
 
 
 @Component({
@@ -29,12 +31,14 @@ export class TableDetailComponent implements OnInit, OnDestroy{
 
   private $subscriptionTranslate:Subscription;
 
-  @ViewChild('modalPassword') modalPhotos : ElementRef;
+  @ViewChild('modalPhotos') modalPhotos : ElementRef;
+  @ViewChild('modalSigns') modalSigns : ElementRef;
+  @ViewChild('modalObs') modalObs : ElementRef;
 
 
   constructor(private _translate: TranslateService,
               private modalService:NgbModal, 
-
+              private http : Http,
               private router: Router,
               private clientProductService :ClientProductService,
 
@@ -162,6 +166,159 @@ export class TableDetailComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+
+     }
+
+  arrAssets:Array<any> = [
+    new Asset(1, 'Carta Porte', '2018-11-13 10:15', 'https://blog.factura.com/wp-content/uploads/2016/01/carta-porte.png'),
+    new Asset(2, 'Ticket de combustible', '2018-10-13 11:40', 'https://www.facturaticket.mx/wp-content/uploads/2017/05/ERFC-FACTURACION-TICKET.jpg'),
+    //new Asset(3, 'Caseta', '2018-09-13 13:03'),
+   // new Asset(4, 'Ticket de bascula', '2018-05-13 15:07')
+  ];
+
+
+  arrSigns:Array<any> = [
+    new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 'http://www.peritocaligrafojuancarlosgonzalez.com/images/firmas/bruce-springsteen.jpg'),
+    new Asset(13, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg')
+    //new Asset(15, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)'),
+    //new Asset(20, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)')
+  ];
+
+
+  arrObs:Array<any> = [
+    new Asset(1, 'Rocio Sanchez, 2018-11-13 10:15 subido por Adolfo Centeno', 'el trafico esta muy lento por toma de caseta', ''),
+    new Asset(2, 'Jesus Velez, 2018-11-13 10:15 subido por Adolfo Centeno', 'Accidente en tramo de tuneles en cumbres de maltrata', '')
+    //new Asset(3, 'Alejandro Reyes, 2018-11-13 10:15 subido por Adolfo Centeno', 'Neblina densa en zona del puente de metlac'),
+    //new Asset(4, 'Armando Lopez,  2018-11-13 10:15 subido por Adolfo Centeno', 'Accidente en curva de nogales altura de la laguna')
+  ];
+
+  myAsset:Asset;
+
+  selectPhoto(asset)
+  {
+    this.myAsset = asset;
+
+    console.log(asset.url);
+    (<HTMLImageElement>document.getElementById('blah')).src=asset.url;
+
+       
+  }
+
+  selectSign(asset)
+  {
+    this.myAsset = asset;
+
+    console.log(asset.url);
+    (<HTMLImageElement>document.getElementById('signs')).src=asset.url;
+
+       
+  }
+
+  addSign()
+  {
+    console.log("adding ...");  
+    this.arrSigns.push(
+       new Asset(13, '2018-12-13 11:50 subido por ', 'Jesus Velez (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/markzuck.jpg')
+   
+    );
+  }
+
+  addObs()
+  {
+    console.log("adding ...");  
+    this.arrObs.push(
+      new Asset(4, 'Armando Lopez,  2018-11-13 10:15 subido por Adolfo Centeno', 'Accidente en curva de nogales altura de la laguna', '')
+   
+    );
+  }
+
+
+  deleteSign()
+  {
+    console.log("deleting ..." + this.myAsset.name);  
+    this.arrSigns = this.arrSigns.filter(x => x.name !== this.myAsset.name);
+    this.url = "https://st3.depositphotos.com/15827064/18294/v/1600/depositphotos_182948478-stock-illustration-avatar-document-file-page-picture.jpg";
+    (<HTMLImageElement>document.getElementById('signs')).src=this.url;
+
+  }
+
+  downloadFile() {
+    return this.http
+      .get('https://www.facturaticket.mx/wp-content/uploads/2015/07/Ticket-CAPUFE-FONADIN-2.png', {
+        responseType: ResponseContentType.Blob,
+        //search: // query string if have
+      })
+      .map(res => {
+        return {
+          filename: 'filename.jpg',
+          data: res.blob()
+        };
+      })
+      .subscribe(res => {
+          console.log('start download:',res);
+          var url = window.URL.createObjectURL(res.data);
+          var a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = url;
+          a.download = res.filename;
+          a.click();
+          window.URL.revokeObjectURL(url);
+          a.remove(); // remove the element
+        }, error => {
+          console.log('download error:', JSON.stringify(error));
+        }, () => {
+          console.log('Completed file download.')
+        });
+  }
+  
+  addPhoto()
+  {
+    console.log("adding ...");  
+    this.arrAssets.push(
+      new Asset(3, 'Caseta', '2018-11-13 10:15', 'https://www.facturaticket.mx/wp-content/uploads/2015/07/Ticket-CAPUFE-FONADIN-2.png'),
+
+    );
+  }
+
+  deletePhoto()
+  {
+    console.log("deleting ..." + this.myAsset.name);  
+    this.arrAssets = this.arrAssets.filter(x => x.name !== this.myAsset.name);
+    this.url = "https://st3.depositphotos.com/15827064/18294/v/1600/depositphotos_182948478-stock-illustration-avatar-document-file-page-picture.jpg";
+    (<HTMLImageElement>document.getElementById('signs')).src=this.url;
+
+  }
+
+  // name = 'Angular 4';
+  url = "https://st3.depositphotos.com/15827064/18294/v/1600/depositphotos_182948478-stock-illustration-avatar-document-file-page-picture.jpg";
+
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      console.log("preview..." + event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (e:any) => {
+        (<HTMLImageElement>document.getElementById('blah')).src=e.target.result 
+        //assuming element with id blah will always be an ImageElement
+      };
+    }
+  }
+
+
+  onSelectSign(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      console.log("preview..." + event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (e:any) => {
+        (<HTMLImageElement>document.getElementById('signs')).src=e.target.result 
+        //assuming element with id blah will always be an ImageElement
+      };
+    }
   }
 
   ngOnDestroy(){
@@ -278,20 +435,32 @@ export class TableDetailComponent implements OnInit, OnDestroy{
         //alert("firmas");
         //this.createClientProduct();
 
-        const modalRef = this.modalService.open(this.modalPhotos, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+        const modalRef = this.modalService.open(this.modalSigns, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
           }
-        });
+        }); 
 
       }
 
       if(event.column.colId == 'fotos'){
-        this.createClientPhotos();
+       // this.createClientPhotos();
+
+       const modalRef = this.modalService.open(this.modalPhotos, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+       modalRef.result.then((userResponse) => {
+         if(userResponse) {
+         }
+       });
       }
 
       if(event.column.colId == 'obs'){
-        this.createClientObs();
+        //this.createClientObs();
+
+       const modalRef = this.modalService.open(this.modalObs, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+       modalRef.result.then((userResponse) => {
+         if(userResponse) {
+         }
+       });
       }
     }
 

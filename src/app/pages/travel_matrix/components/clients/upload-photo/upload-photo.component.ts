@@ -9,11 +9,12 @@ import { Asset } from '../Asset';
 })
 export class UploadPhotoComponent implements OnInit {
   constructor() { }
+  
   arrAssets:Array<any> = [
-    new Asset(1, 'Carta Porte', '2018-11-13 10:15'),
-    new Asset(2, 'Ticket de combustible', '2018-10-13 11:40'),
-    new Asset(3, 'Caseta', '2018-09-13 13:03'),
-    new Asset(4, 'Ticket de bascula', '2018-05-13 15:07')
+    new Asset(1, 'Carta Porte', '2018-11-13 10:15', ''),
+    new Asset(2, 'Ticket de combustible', '2018-10-13 11:40', '')
+    //new Asset(3, 'Caseta', '2018-09-13 13:03'),
+   // new Asset(4, 'Ticket de bascula', '2018-05-13 15:07')
   ];
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class UploadPhotoComponent implements OnInit {
 
   name = 'Angular 4';
   url = '';
+
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();

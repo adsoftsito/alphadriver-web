@@ -65,17 +65,29 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
     this.columnDefs = [
       {
-        colId:'foliodesp',
+        colId:'#',
         field: "id",
+        suppressSizeToFit:true,
+        suppressMenu: true,
+        width:20,
+        cellRenderer:'group',
+        cellRendererParams: {suppressCount: true}
+      
+       
+      },
+      {
+        colId:'foliodesp',
+        field: "truckid",
         suppressSizeToFit:true,
         suppressMenu: true,
         width:81,
         checkboxSelection: false,
         cellClass:['cell-motum-hover-statusMotorStop'],        
 
+        
         /**properties detail table */
-        cellRenderer:'group',
-        cellRendererParams: {suppressCount: true}
+       // cellRenderer:'group',
+      //  cellRendererParams: {suppressCount: true}
         /*** */
       },
       { 
