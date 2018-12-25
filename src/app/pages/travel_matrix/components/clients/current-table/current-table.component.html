@@ -1,4 +1,229 @@
+<ng-template #modalUpdateAdmin let-c="close" let-d="dismiss" >
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+      <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+    </div>
+<!--      <h5 class="modal-title"> {{'pages.confirmationwindow.header' | translate }} </h5>
+-->  
+ <h5 class="modal-title"> Cambio estado administrativo </h5>
 
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+
+      <div class="motum-content-title">
+          
+          <div class="motum-inputs-section-flex">
+
+                  <div class="form-group">
+                    <h5 class="modal-title">Seleccionar un estado</h5>
+
+                  </div>
+
+                  
+          </div>
+
+
+         
+      </div>
+      <div class="row motum-content-body">
+            
+        
+
+
+                <div class="row radiOptions motum-radio-btn">
+                    <div class="col-md-12 col-sm-12">
+          
+                  <label >
+                            <input type="radio" name="radAdminStatus" id="radAdminStatus"
+                            value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1">
+                            
+                            <span class="overlay"></span> 
+                          
+                          <!-- { physicalPerson | translate}} -->
+                          Asignado
+                          </label>
+                          </div>
+                          <div class="col-md-12 col-sm-12">
+
+                          <label ><input type="radio" name="radAdminStatus" id="radAdminStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2">
+                            <span class="overlay"></span>
+                          
+                            <!-- {{ moralPerson | translate}} -->
+                            Iniciado
+                          </label>
+                          </div>
+                          <div class="col-md-12 col-sm-12">
+
+                          <label ><input type="radio" name="radAdminStatus" id="radAdminStatus" value="option3" (click)="radioBotton3(flagCheck3)" [checked]="flagCheck3"><span class="overlay"></span>
+                            <!-- {{ physicalPersonWithBusiness | translate}} -->
+                            En tránsito
+                          </label>
+                          </div>
+                          <div class="col-md-12 col-sm-12">
+
+                            <label ><input type="radio" name="radAdminStatus" id="radAdminStatus" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>
+                            
+                            <!-- { physicalPerson | translate}} -->
+                            Finalizado
+                            </label>
+                        </div>
+                            <div class="col-md-12 col-sm-12">
+                                <label ><input type="radio" name="radAdminStatus" id="radAdminStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                              <!-- {{ moralPerson | translate}} -->
+                              Cancelado
+                            </label>
+                        </div>
+                      
+                </div> <!--End Radio btn-->
+                
+              
+        
+
+          
+
+                
+
+            
+      </div>
+  </div>
+
+  <div class="modal-footer window-center-align">
+          <button type="button" class="btn motum-btn-cancel button-long " (click)="c(true)">
+          Cancelar
+          </button>
+    <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindow.sendbutton' | translate}}</button>
+  </div>
+</ng-template>
+
+
+<ng-template #modalUpdateOper let-c="close" let-d="dismiss" >
+  <div class="modal-header">
+    <div class="motum-modal-icon">
+      <i class="motum-i tm-e91a changeofpropertiesmessage"></i>
+    </div>
+<!--      <h5 class="modal-title"> {{'pages.confirmationwindow.header' | translate }} </h5>
+-->  
+ <h5 class="modal-title"> Cambio de estado operativo </h5>
+
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+      <div class="motum-content-title">
+          
+          <div class="motum-inputs-section-flex">
+
+                  <div class="form-group">
+                    <h5 class="modal-title">Seleccionar un estado</h5>
+
+                  </div>
+
+                  
+          </div>
+
+
+         
+      </div>
+  <div class="row motum-content-body">
+         
+     
+
+
+            <div class="row radiOptions motum-radio-btn">
+                <div class="col-md-12 col-sm-12">
+       
+              <label >
+                        <input type="radio" name="radOperStatus" id="radOperStatus"
+                         value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1">
+                        
+                         <span class="overlay"></span> 
+                      
+                       <!-- { physicalPerson | translate}} -->
+                      Disponible
+                      </label>
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+
+                      <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2">
+                        <span class="overlay"></span>
+                      
+                        <!-- {{ moralPerson | translate}} -->
+                        En curso vacío
+                      </label>
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+
+                      <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option3" (click)="radioBotton3(flagCheck3)" [checked]="flagCheck3"><span class="overlay"></span>
+                        <!-- {{ physicalPersonWithBusiness | translate}} -->
+                        En fila para descarga
+                      </label>
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+
+                        <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option1" (click)="radioBotton1(flagCheck1)" [checked]="flagCheck1"><span class="overlay"></span>
+                        
+                         <!-- { physicalPerson | translate}} -->
+                        Cargando
+                        </label>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                            <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                          <!-- {{ moralPerson | translate}} -->
+                          En curso cargando
+                        </label>
+                    </div>
+                  
+                    <div class="col-md-12 col-sm-12">
+                        <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                      <!-- {{ moralPerson | translate}} -->
+                      En fila para descarga
+                    </label>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+                  <!-- {{ moralPerson | translate}} -->
+                  Descargando
+                </label>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <label ><input type="radio" name="radOperStatus" id="radOperStatus" value="option2" (click)="radioBotton2(flagCheck2)" [checked]="flagCheck2"><span class="overlay"></span>
+              <!-- {{ moralPer
+                son | translate}} -->
+              En curso vacío
+            </label>
+        </div>
+            </div> <!--End Radio btn-->
+            
+          
+    
+
+       
+
+             
+</div>
+
+   </div>   
+    
+         
+  <div class="modal-footer window-center-align">
+          <button type="button" class="btn motum-btn-cancel button-long " (click)="c(true)">
+          Cancelar
+          </button>
+    <button type="button" class="btn motum-btn-confirm button-long " (click)="c(true)">{{ 'pages.confirmationwindow.sendbutton' | translate}}</button>
+  </div>
+
+</ng-template>
+
+  
+  
   <ag-grid-angular style="width:100%;height: calc(100vh - 210px)"  *ngIf="showTableTranslated"
     class="ag-theme-material" 
     [gridOptions]="gridOptions"

@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit,OnDestroy, HostListener, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import {GridOptions} from "ag-grid";
 import { Subscription } from 'rxjs/Subscription';
 import { ViajesService } from '../viajes.service';
@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../../../../shared/providers/login.service';
 import {Router} from "@angular/router";
 import {ClientProductService} from "../clients.service";
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ps-current-table',
@@ -21,6 +22,10 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   @Output() selectedItems = new EventEmitter<any>();
   @Output() columnDefCurrent = new EventEmitter<any>();
   @Output() totalRows = new EventEmitter<number>();
+
+  @ViewChild('modalUpdateAdmin')  modalUpdateAdm : ElementRef;
+  @ViewChild('modalUpdateOper') modalUpdateOper : ElementRef;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
   private gridApi;
   private gridColumnApi;
@@ -58,6 +63,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
   constructor(private translate:TranslateService,
       private _servicePatrimonialSecurity:ViajesService,
+      private modalService:NgbModal, 
       private router : Router,
       private _loginService: LoginService,
       private clientProductService :ClientProductService
@@ -471,16 +477,17 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   translateHeaderTable(){
     this.$subscriptionTranslate = this.translate.get('pages.monitoringreaction.patrimonial_security').subscribe( res =>{
       this.arrTranslate = res;
-      this.columnDefs[0].headerName = "Folio Despacho"; //this.arrTranslate.economic;
-      this.columnDefs[1].headerName = "Operador"; //this.arrTranslate.carrier;
-      this.columnDefs[2].headerName = "# Economico"; //this.arrTranslate.location;
-      this.columnDefs[3].headerName = "Territorio"; //this.arrTranslate.state;
-      this.columnDefs[4].headerName = "Fecha de Asignacion"; //this.arrTranslate.risk;
-      this.columnDefs[5].headerName = "Estado Operativo"; //this.arrTranslate.dateOfPosition;
-      this.columnDefs[6].headerName = "Estado Administrativo";//this.arrTranslate.motorStopStatus;
-      this.columnDefs[7].headerName = "Fecha TEA"; //this.arrTranslate.transmitter;
-      this.columnDefs[8].headerName = "Estado TEA";//this.arrTranslate.commandSent;
-      this.columnDefs[9].headerName = "Fin de Viaje"; //this.arrTranslate.shippingDate;
+      this.columnDefs[0].headerName = "#"; //this.arrTranslate.economic;
+      this.columnDefs[1].headerName = "Folio Despacho"; //this.arrTranslate.economic;
+      this.columnDefs[2].headerName = "Operador"; //this.arrTranslate.carrier;
+      this.columnDefs[3].headerName = "# Economico"; //this.arrTranslate.location;
+      this.columnDefs[4].headerName = "Territorio"; //this.arrTranslate.state;
+      this.columnDefs[5].headerName = "Fecha de Asignacion"; //this.arrTranslate.risk;
+      this.columnDefs[6].headerName = "Estado Operativo"; //this.arrTranslate.dateOfPosition;
+      this.columnDefs[7].headerName = "Estado Administrativo";//this.arrTranslate.motorStopStatus;
+      this.columnDefs[8].headerName = "Fecha TEA"; //this.arrTranslate.transmitter;
+      this.columnDefs[9].headerName = "Estado TEA";//this.arrTranslate.commandSent;
+      this.columnDefs[10].headerName = "Fin de Viaje"; //this.arrTranslate.shippingDate;
       //this.columnDefs[10].headerName = ""; //this.arrTranslate.dateOfApplication;
       this.gridOptions.columnDefs = this.columnDefs;
 
@@ -690,13 +697,25 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
     if(event.column.colId == 'statusadm'){
       //alert("estado adm");
-      this.createClientStatusAdm();
+     // this.createClientStatusAdm();
+     const modalRef = this.modalService.open(this.modalUpdateAdm, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+        modalRef.result.then((userResponse) => {
+          if(userResponse) {
+          }
+        }); 
+
     }
 
     if(event.column.colId == 'statusoper'){
      // this.createClientObs();
      //alert("estado oper");
-      this.createClientStatusOper();
+     // this.createClientStatusOper();
+     const modalRef = this.modalService.open(this.modalUpdateOper, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+        modalRef.result.then((userResponse) => {
+          if(userResponse) {
+          }
+        }); 
+
 
     }  
 
