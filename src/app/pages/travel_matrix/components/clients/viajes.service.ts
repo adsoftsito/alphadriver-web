@@ -20,7 +20,7 @@ export class ViajesService{
     ENDPOINT: string = '';
     ENDPOINT_SAFETIES: string = '';
     ENDPOINT_ORDERS: string = 'viajes';
-    ENDPOINT_ROUTES: string = 'viajes_detail/1';
+    ENDPOINT_ROUTES: string = 'rutas';
     
     ENPOINT_SEARCH: string = '/search';
     

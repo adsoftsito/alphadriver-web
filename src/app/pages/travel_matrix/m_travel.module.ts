@@ -95,7 +95,7 @@ import { AgmCoreModule } from '@agm/core';
       MonitoringReactionService
     ],
     schemas: [NO_ERRORS_SCHEMA],
-    entryComponents: [TableDetailComponent]
+    entryComponents: [TableDetailComponent, TableDetailRouteComponent]
 
 })
 

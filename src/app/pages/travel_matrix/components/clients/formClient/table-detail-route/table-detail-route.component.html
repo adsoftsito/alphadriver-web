@@ -1,15 +1,16 @@
 <div class="full-width-panel" >
-    <ag-grid-angular *ngIf ="translated"
-    id="tableDetailRoute"
-    class="full-width-grid"
+ 
+  <ag-grid-angular *ngIf ="translated"
+  id="tableDetail"
+  class="full-width-grid"
+
+      [gridOptions]="gridOptions"
+      [icons]="customIcons"
+      [suppressRowClickSelection]="true"
+      [suppressAggFuncInHeader]="true"
   
-        [gridOptions]="gridOptions"
-        [icons]="customIcons"
-        [suppressRowClickSelection]="true"
-        [suppressAggFuncInHeader]="true"
-    
-        (cellClicked)="onCellClicked($event)"
-  
-        (gridSizeChanged)="onGridResize($event)">
-    </ag-grid-angular>
-  </div>
+      (cellClicked)="onCellClicked($event)"
+
+      (gridSizeChanged)="onGridResize($event)">
+  </ag-grid-angular>
+</div>

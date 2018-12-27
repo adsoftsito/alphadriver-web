@@ -3,6 +3,8 @@ import {GridOptions} from "ag-grid";
 import { Subscription } from 'rxjs/Subscription';
 import { ViajesService } from '../../viajes.service';
 import { TableDetailRouteComponent } from '../table-detail-route/table-detail-route.component';
+//import { TableDetailComponent } from '../../table-detail/table-detail.component';
+
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../../../../../shared/providers/login.service';
 
@@ -692,25 +694,28 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
 
   public getFullWidthCellRenderer() {
     return TableDetailRouteComponent;
+    //return TableDetailComponent;
 }
-  public getRowHeight(params) {
+
+public getRowHeight(params) {
     let rowIsDetailRow = params.node.level === 1;
     // return 100 when detail row, otherwise return 25
-    return rowIsDetailRow ? 192 : 40.58;
+    //return rowIsDetailRow ? 192 : 40.58;
+    return rowIsDetailRow ? 70 : 40.58;
 }
 
 public getNodeChildDetails(record) { 
   console.log(this.data);
-  console.log("detail node route ..." + JSON.stringify(record.orderdetail));
+  console.log("detail node route ..." + JSON.stringify(record.route_details));
   //console.log("detail node..." + JSON.stringify(record.ordedetail));
  
- if (record.orderdetail) {
+ if (record.route_details) {
  // if (record.orderdetail) {
 
         return {
             group: true,
             // provide ag-Grid with the children of this group
-            children: [JSON.stringify(record.orderdetail)],
+            children: [JSON.stringify(record.route_details)],
             //children: [JSON.stringify(record.orderdetail)],
             
             // for  expand the third row by default
