@@ -59,6 +59,7 @@ import { ViajesService } from "../viajes.service";
  * Created by Tech Group BWL on 25/06/2018.
  */
 
+//st GOOGLE_MAPS_KEY: string = environment.googleMapsKey;
 const GOOGLE_MAPS_KEY: string = environment.googleMapsKey;
 
 @NgModule({
@@ -110,7 +111,7 @@ const GOOGLE_MAPS_KEY: string = environment.googleMapsKey;
     // AgGridModule.withComponents([]),
     AngularDualListBoxModule ,
      AgmCoreModule.forRoot({
-       apiKey: GOOGLE_MAPS_KEY
+      apiKey: 'AIzaSyD9xXq1L6UtsTBi8miLM0FJU2erOkwW_0I'
        
      }),
      AgGridModule.withComponents([])

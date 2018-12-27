@@ -682,10 +682,22 @@
                                     
                                     <div  class="row motum-label-form">
                                       <div class="col-md-12">
+
+                                        <h3>{{ title }}</h3> 
+
+              <!-- this creates a google map on the page with the given lat/lng from -->
+              <!-- the component as the initial center of the map: -->
+              <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+              
+              <!--
                                       <img src="https://alicantenews.es/wp-content/uploads/2015/06/Google-Maps.jpg" width="600" height="500"> 
+              -->                   
+                                    </div>
                                       </div>
-                                      </div>
-                                     </div>class="col-md-1 col-sm-4"
+                                     </div>
+                                     
                                 </div>
                               </div>
                             </form>
@@ -903,7 +915,18 @@
                                   
                                   <div  class="row motum-label-form">
                                     <div class="col-md-12">
+
+                                        <h3>{{ title }}</h3> 
+
+                                        <!-- this creates a google map on the page with the given lat/lng from -->
+                                        <!-- the component as the initial center of the map: -->
+                                        <agm-map [latitude]="lat" [longitude]="lng">
+                                          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                        </agm-map>
+
+                                      <!--
                                       <img src="https://alicantenews.es/wp-content/uploads/2015/06/Google-Maps.jpg" width="600" height="500"> 
+                                      -->
                                     </div>
                                   </div>
                                 </div>
