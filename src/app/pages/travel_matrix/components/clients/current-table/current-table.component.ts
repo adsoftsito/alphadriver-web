@@ -72,7 +72,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     this.columnDefs = [
       {
         colId:'#',
-        field: "id",
+        field: "orderid",
         suppressSizeToFit:true,
         suppressMenu: true,
         width:20,
@@ -826,6 +826,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 }
 
 public getNodeChildDetails(record) { 
+  
   console.log(this.data);
  // console.log("detail node..." + JSON.stringify(record.route_details));
   console.log("detail node..." + JSON.stringify(record.ordedetail));

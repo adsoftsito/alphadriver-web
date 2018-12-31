@@ -3,7 +3,7 @@ import {Constants} from "../../../../shared/providers/constants";
 import {ApiCrudService} from "../../../../shared/providers/api.crud.service";
 import { Subject } from "rxjs";
 import { User } from '../../../../shared/models/user.model';
-import { ClientModel } from '../../../../shared/models/clients/client.model';
+import { ViajeModel } from '../../../../shared/models/despacho/viaje.model';
 /**
  * Created by Tech Group BWL on 30/05/2018.
  */
@@ -42,7 +42,7 @@ export class ClientProductService {
     updateClient$ = this.showUpdateClient.asObservable();
 
     // create new client
-     private ShowNewClient = new Subject<ClientModel>();
+     private ShowNewClient = new Subject<ViajeModel>();
      newClient$ = this.ShowNewClient.asObservable();
 
     // Show create Order
@@ -267,18 +267,27 @@ export class ClientProductService {
     createClientProduct() {
         this.showCreateClient.next();
     }
-    createClientProductEnd(ClientModel: ClientModel) {
-      let userJson = JSON.stringify(ClientModel);
-      // this.api.post(this.C.ENDPOINT_USER, userJson)
-      // .subscribe(
-      //   res => {
-      //     if(res.status == 200){ // Falta devolver el usuario con su respectivo id o genera errores en la tabla
-            this.ShowNewClient.next(ClientModel);
-        //   }
-        // },
-        // err => {
-        //   console.log("Error occured "+err);
-        // });
+    createClientProductEnd(orderModel: ViajeModel) {
+    
+      let orderJson = JSON.stringify(orderModel);
+        
+        //'{  "order": { "orderid": 11, "source": "x" },   "orderdetail": [] }';
+
+      // JSON.stringify(orderModel);
+      console.log(orderJson);
+
+      this.api.post(this.ENDPOINTORDERS, orderJson)
+       .subscribe(
+         res => {
+             console.log("res : " + res);
+           if(res.status == 200){ // Falta devolver el usuario con su respectivo id o genera errores en la tabla
+             console.log("200 : " + res);
+            // this.ShowNewClient.next(OrderModel);
+           }
+         },
+         err => {
+           console.log("Error occured "+ err);
+         });
     }
     updateClientProduct(ClientModel: any) {
         this.showUpdateClient.next(ClientModel);

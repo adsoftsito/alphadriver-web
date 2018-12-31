@@ -50,11 +50,14 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
         headerName: "Partida",
         cellStyle:{'text-align':'center'},
         suppressMenu: true,
+        width:180,
         cellRenderer:(params) => {
          // if(params.value){
             let iconsSignal: string;
            
-            iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
+            iconsSignal = ' <input type="datetime-local" class="form-control input-sm" id="orderKm" required>';
+            
+            
             return iconsSignal;//motum-i tm-e98d
           }
        // }
@@ -66,11 +69,19 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
         cellStyle:{'text-align':'center'},
         pinned:"left",
         suppressMenu:true,
+        width:90,
         cellRenderer:(params) => {
           // if(params.value){
              let iconsSignal: string;
             
-             iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
+            // iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
+            iconsSignal = '<select class="form-control input-sm"> ' + 
+           ' <option value="car">Carga</option> ' + 
+           ' <option value="des">Descarga</option> ' + 
+           ' <option value="bas">Bascula</option> ' + 
+           ' <option value="rev">Revision</option> ' + 
+          '</select>';
+            
              return iconsSignal;//motum-i tm-e98d
            }
       },
@@ -85,7 +96,14 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
           // if(params.value){
              let iconsSignal: string;
             
-             iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
+             //iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
+             iconsSignal = '<select class="form-control input-sm"> ' + 
+             ' <option value="car">Azucar</option> ' + 
+             ' <option value="des">Arroz</option> ' + 
+             ' <option value="bas">Cemento</option> ' + 
+             ' <option value="rev">Cerveza</option> ' + 
+            '</select>';
+              
              return iconsSignal;//motum-i tm-e98d
            }
       },
@@ -96,7 +114,7 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
         
         pinned:"right",
         suppressMenu: true,
-        width:100,
+        width:80,
         cellRenderer:(params) => {
           // if(params.value){
              let iconsSignal: string;
@@ -111,19 +129,41 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
         headerName:"Firmas",
         cellStyle:{'text-align':'center'},
         cellClass:['cell-motum-hover-statusMotorStop'],        
-
+        width:80,
         pinned:"right",
         suppressMenu: true,
         cellRenderer:(params) => {
           // if(params.value){
              let iconsSignal: string;
             
-             iconsSignal = ' <input type="text" class="form-control input-sm" id="orderKm" required>';
-             return iconsSignal;//motum-i tm-e98d
+             iconsSignal = '<select class="form-control input-sm"> ' + 
+             ' <option value="bul">Bulto</option> ' + 
+             ' <option value="caj">Caja</option> ' + 
+             ' <option value="kg">Kg</option> ' + 
+             ' <option value="lt">Lt</option> ' + 
+            '</select>';
+                         return iconsSignal;//motum-i tm-e98d
            },
-        width:150
       }
-      /*,
+     /* ,
+      {
+        colId:'firmas',
+        field: "status",
+        headerName:"Firmas",
+        cellStyle:{'text-align':'center'},
+        cellClass:['cell-motum-hover-statusMotorStop'],        
+        width:50,
+        pinned:"right",
+        suppressMenu: true,
+        cellRenderer:(params) => {
+          // if(params.value){
+             let iconsSignal: string;
+            
+             iconsSignal = '<input type="checkbox" id="scales" name="scales">';
+            return iconsSignal;//motum-i tm-e98d
+           },
+      }
+      ,
       {
         colId:'fotos',
         field: "orderdetailproductunitid",
@@ -400,7 +440,7 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
     this.gridOptions.enableColResize = false;
     this.gridOptions.columnDefs = this.columnDefs; 
     this.gridOptions.headerHeight = 20.58;   
-    this.gridOptions.rowHeight = 26.58;
+    this.gridOptions.rowHeight = 30.58;
     this.gridOptions.animateRows = true;
   }
 
@@ -423,6 +463,7 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
           this.columnDefs[2].headerName = "Producto"; //res.locationOrPointInterest;
           this.columnDefs[3].headerName = "Cantidad"; //res.locationOrPointInterest;
           this.columnDefs[4].headerName = "Unidad de Medida"; //res.locationOrPointInterest;
+      //    this.columnDefs[5].headerName = "Status"; //res.locationOrPointInterest;
 
           this.gridOptions.columnDefs = this.columnDefs;
           this.translated = true;
@@ -434,7 +475,7 @@ export class TableDetailRouteComponent implements OnInit, OnDestroy{
 
   
   agInit(params:any){
-    console.log("data detail: " + JSON.stringify(params.node.parent.data));
+  //  console.log("data detail: " + JSON.stringify(params.node.parent.data));
 //    this.parentRecord = params.node.parent.data;
     this.parentRecord = this.data;
 

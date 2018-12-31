@@ -429,7 +429,7 @@ export class OrderDetailComponent implements OnInit {
          if (this.editar) {
            this.clientProductService.updateClientProduct(this.clientModel);
          }else {
-           this.clientProductService.createClientProductEnd(this.clientModel);
+           //this.clientProductService.createClientProductEnd(this.clientModel);
          }
         //  this.clearModels();
        }, 200);

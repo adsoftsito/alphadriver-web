@@ -1,12 +1,15 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { ClientModel } from '../../../../../shared/models/clients/client.model';
-import { InterfaceModel } from '../../../../../shared/models/clients/interface.model';
-import { NumberModel } from '../../../../../shared/models/clients/number.model';
+
+import { ViajeModel } from '../../../../../shared/models/despacho/viaje.model';
+import { OrderModel } from '../../../../../shared/models/despacho/order.model';
+import { OrderDetailModel } from '../../../../../shared/models/despacho/orderdetail.model';
+/*import { NumberModel } from '../../../../../shared/models/clients/number.model';
 import { PhoneModel } from '../../../../../shared/models/clients/phone.model';
 import { PlataformModel } from '../../../../../shared/models/clients/plataform.model';
 import { AccountModel } from '../../../../../shared/models/clients/account.model';
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
+*/
 
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
@@ -42,13 +45,16 @@ export class FormClientProductComponent implements OnInit {
   @ViewChild('window') window: ElementRef;
   @ViewChild('backdrop') windowBackdrop: ElementRef;
   windowState: string = 'hidden';
-  clientModel: ClientModel;
-  interfaceModel: InterfaceModel;
-  numberModel: NumberModel ;
+  viajeModel: ViajeModel;
+  orderModel: OrderModel;
+  
+  orderdetailModel: Array<OrderDetailModel>;
+ 
+ /* numberModel: NumberModel ;
   phoneModel: PhoneModel ;
   plataformModel: PlataformModel;
   accountModel: AccountModel;
-  billingModel: BillingModel;
+  billingModel: BillingModel; */
   
   flagCheck1: boolean = false;
   flagCheck2: boolean = false;
@@ -299,8 +305,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
 
 
    // title: string = 'My first AGM project';
-    lat: number = 51.678418;
-    lng: number = 7.809007;
+    lat: number = 19.6613;
+    lng: number = -96.8875;
   
 
     arrDrivers:Array<any> =[];
@@ -372,8 +378,11 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     
       this.source = JSON.parse(JSON.stringify(this.dataExample));
     // this.validateForm();
-    this.clientModel = new ClientModel();
-    this.interfaceModel = new InterfaceModel();
+    this.viajeModel = new ViajeModel();
+    this.orderModel = new OrderModel();
+    this.orderdetailModel = new Array<OrderDetailModel>();
+
+    /* this.interfaceModel = new InterfaceModel();
     this.numberModel = new  NumberModel();
     this.phoneModel = new  PhoneModel();
     this.plataformModel = new PlataformModel();
@@ -385,7 +394,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.clientModel.phone = this.phoneModel;
     this.clientModel.account = this.accountModel;
     this.clientModel.billing = this.billingModel;
-    this.clientModel.billing.number = this.numberModel;
+    this.clientModel.billing.number = this.numberModel;*/
   
     this.subscriptionCreate = clientProductService.createClient$.subscribe(
       state => {
@@ -400,9 +409,9 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
       client => {
         console.info(client);
         this.editar = true;
-        this.clientModel.account.name = '';
+       /* this.clientModel.account.name = '';
         this.clientModel.commercialName = client.accountOwner;
-        this.clientModel.businessName = client.businessName;
+        this.clientModel.businessName = client.businessName;*/
         this.windowPosition = 'right';
         let cadena: string = String (this.userName = client.accountOwner);
         let cadena2: string = String (client.businessName);
@@ -777,21 +786,26 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   //   }
   // }
   
-  createClient() {
-    this.router.navigate(['/', 'pages', 'usersControl', 'clients-products']).then(nav => {
-      this.clientModel.plataforms = this.confirmed;
-      setTimeout(() => {
-         if (this.editar) {
-           this.clientProductService.updateClientProduct(this.clientModel);
-         }else {
-           this.clientProductService.createClientProductEnd(this.clientModel);
-         }
+  createOrder() {
+    console.log('create order..');
+    this.orderModel.orderid = 888;
+    this.viajeModel.order = this.orderModel;
+    this.viajeModel.orderdetail = this.orderdetailModel;
+   // this.router.navigate(['/', 'pages', 'usersControl', 'clients-products']).then(nav => {
+      //this.orderModel.plataforms = this.confirmed;
+     
+     // setTimeout(() => {
+    //     if (this.editar) {
+    //       this.clientProductService.updateClientProduct(this.clientModel);
+    //     }else {
+           this.clientProductService.createClientProductEnd(this.viajeModel);
+    //     }
         //  this.clearModels();
-       }, 200);
+    //   }, 200);
        //console.log(nav); // true if navigation is successful
-      }, err => {
-        console.log(err) // when there's an error
-    });
+    //  }, err => {
+    //    console.log(err) // when there's an error
+   // });
   }
   
   // clearModels() {

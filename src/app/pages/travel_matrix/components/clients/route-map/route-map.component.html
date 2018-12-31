@@ -257,16 +257,17 @@
                   </agm-polygon>
               </agm-map>
             -->
-              <h3>map</h3>
-              <h1>{{ title }}</h1>
+             <!-- <h3>map</h3>
+              <h1>{{ title }}</h1> -->
 
               <!-- this creates a google map on the page with the given lat/lng from -->
               <!-- the component as the initial center of the map: -->
-              <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-map [latitude]="lat" [longitude]="lng" width="800" height="600">
                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
               </agm-map>
+              <!--
               <h3>end ap</h3>
-              
+              -->
               <!--                                  
               
                 <div  class="row motum-label-form">

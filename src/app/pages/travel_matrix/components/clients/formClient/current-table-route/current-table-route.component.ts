@@ -65,7 +65,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
     this.columnDefs = [
       {
         colId:'number',
-        field: "id",
+        field: "position",
         suppressSizeToFit:true,
         suppressMenu: true,
         width:40,
@@ -83,9 +83,10 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
         width:120
       },
       {
-        field: "id",
+        field: "category",
         suppressMenu: true,
-        width:40,
+        width:40
+        /*
         cellRenderer:(params) => {
            console.log("params: " + params)
           if(params.value){
@@ -104,14 +105,16 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
                 status = 'Operación'
               }
             }
+
             return  status ;//motum-i tm-e98d
           }
-        }
+      } */
       },
       { 
-        field: "id",
+        field: "type",
         suppressMenu:true,
-         width:40,       
+         width:40
+         /* ,       
         
          cellRenderer:(params) => {
            console.log("params: " + params)
@@ -134,7 +137,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
             return  status ;//motum-i tm-e98d
           }
         }
-
+*/
 
       },
       {
@@ -156,10 +159,29 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
         }*/,
         width:150
       }
+      ,
+      {
+        colId:'firmas',
+        field: "status",
+        headerName:"Firmas",
+        cellStyle:{'text-align':'center'},
+        cellClass:['cell-motum-hover-statusMotorStop'],        
+        width:15,
+        pinned:"right",
+        suppressMenu: true,
+        cellRenderer:(params) => {
+          // if(params.value){
+             let iconsSignal: string;
+            
+             iconsSignal = '<input type="checkbox" id="scales" name="scales">';
+            return iconsSignal;//motum-i tm-e98d
+           },
+      }
       
     ];
 
-
+    
+/*
     this.data = [
       {
       "numberEconomic": 222111,
@@ -360,7 +382,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
       ]
     }
     ];    
-
+*/
     this.gridOptions = <GridOptions>{};
     this.translateHeaderTable();
     this.gridOptions.columnDefs = this.columnDefs;
@@ -422,12 +444,12 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
     this.$subscriptionTranslate = this.translate.get('pages.monitoringreaction.patrimonial_security').subscribe( res =>{
       this.arrTranslate = res;
       this.columnDefs[0].headerName = "#"; //this.arrTranslate.economic;
-      this.columnDefs[1].headerName = "Nombre ruta";//this.arrTranslate.carrier;
+      this.columnDefs[1].headerName = "Punto de interes";//this.arrTranslate.carrier;
       this.columnDefs[2].headerName = "Categoria";//this.arrTranslate.location;
       this.columnDefs[3].headerName = "Clasificación";//this.arrTranslate.state;
       this.columnDefs[4].headerName = "Audio en trayecto"; //this.arrTranslate.risk;
-    /*  this.columnDefs[5].headerName = this.arrTranslate.dateOfPosition;
-      this.columnDefs[6].headerName = this.arrTranslate.motorStopStatus;
+      this.columnDefs[5].headerName = "St";//this.arrTranslate.dateOfPosition;
+    /*  this.columnDefs[6].headerName = this.arrTranslate.motorStopStatus;
       this.columnDefs[7].headerName = this.arrTranslate.transmitter;
       this.columnDefs[8].headerName = this.arrTranslate.commandSent;
       this.columnDefs[9].headerName = this.arrTranslate.shippingDate;
@@ -705,18 +727,18 @@ public getRowHeight(params) {
 }
 
 public getNodeChildDetails(record) { 
-  console.log(this.data);
-  console.log("detail node route ..." + JSON.stringify(record.route_details));
-  //console.log("detail node..." + JSON.stringify(record.ordedetail));
+  //console.log(this.data);
+  //console.log("detail node route ..." + JSON.stringify(record.orderdetail));
+  console.log("detail node..." + JSON.stringify(record.category));
  
- if (record.route_details) {
- // if (record.orderdetail) {
+ if (record.category == 'Logistico') {
+ // if (record.orderdetail) { 
 
         return {
             group: true,
             // provide ag-Grid with the children of this group
-            children: [JSON.stringify(record.route_details)],
-            //children: [JSON.stringify(record.orderdetail)],
+            //children: [JSON.stringify(record)],
+            children: [JSON.stringify(record.category)],
             
             // for  expand the third row by default
             //expanded: record.detail.length == 6

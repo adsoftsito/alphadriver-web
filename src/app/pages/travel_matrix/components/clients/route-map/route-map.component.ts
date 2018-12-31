@@ -41,10 +41,10 @@ export class RouteMapComponent implements OnInit {
 
 
   title: string = 'My first AGM project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = 19.6613;
+  lng: number = -96.8875;
 
-
+  
   constructor() { }
 
   ngOnInit() {
