@@ -47,7 +47,7 @@ export class FormClientProductComponent implements OnInit {
   windowState: string = 'hidden';
   viajeModel: ViajeModel;
   orderModel: OrderModel;
-  
+  myorderdetail : OrderDetailModel;
   orderdetailModel: Array<OrderDetailModel>;
  
  /* numberModel: NumberModel ;
@@ -309,13 +309,14 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     lng: number = -96.8875;
   
 
+
     arrDrivers:Array<any> =[];
     arrTrucks:Array<any> =[];
     arrTrailers:Array<any> =[];
     arrDollys:Array<any> =[];
     arrRoutes:Array<any> =[];
     
-
+    viajeid : number;
     url : string;
     driverId : string;
     driverCode : string;
@@ -787,8 +788,113 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   // }
   
   createOrder() {
-    console.log('create order..');
-    this.orderModel.orderid = 888;
+  //  this.orderModel.orderid = 7711;
+    this.orderModel.orderid = this.viajeid;
+    this.orderModel.companyid= "hesa";
+    this.orderModel.customerid= "ING-01";
+    this.orderModel.driverid= "op-01";
+    this.orderModel.truckid= "TR-890";
+    this.orderModel.trailerid1= "R-01";
+    this.orderModel.dollyid= "D-01";
+    this.orderModel.trailerid2= "R-02";
+    this.orderModel.zone= "CENTRO";
+    this.orderModel.assigndate= "2019-01-01 10:00";
+    this.orderModel.teadate= "2019-01-01 11:00";
+    this.orderModel.enddate= "2019-01-01 13:00";
+    this.orderModel.teastatus= "A tiempo";
+    this.orderModel.source= "ORIZABA";
+    this.orderModel.sourceaddr= "PTE 7 COL CENTRO";
+    this.orderModel.target= "CD MEXICO";
+    this.orderModel.targetaddr= "REFORMA 130";
+    this.orderModel.km= "100";
+    this.orderModel.lt= "10";
+    this.orderModel.km_lt= "89";
+    this.orderModel.price_lt= "10";
+    this.orderModel.cost= "10000";
+    this.orderModel.routeid= "r01";
+    this.orderModel.orderadminid= 1;
+    this.orderModel.orderstatusid= 1;
+
+    console.log('create order..' + JSON.stringify(this.orderModel));
+    
+    this.myorderdetail = new OrderDetailModel();
+    this.myorderdetail.companyid= "hesa";
+    this.myorderdetail.customerid= "ING-01";
+    this.myorderdetail.orderdetailid= 1;
+    this.myorderdetail.routedetailid= "r01-01";
+    this.myorderdetail.category= "Logistico";
+    this.myorderdetail.type= "Bodega";
+    this.myorderdetail.orderdetaildescription= "caseta";
+    this.myorderdetail.orderdetailmessage= "reducir vel";
+    this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30";
+    this.myorderdetail.orderdetailactivity= "DESCARGANDO";
+    this.myorderdetail.orderdetailproductid= "p-01";
+    this.myorderdetail.orderdetailproductdescription= "AZUCAR";
+    this.myorderdetail.orderdetailproductquantity= "10";
+    this.myorderdetail.orderdetailproductunitid= "1";
+    this.myorderdetail.orderdetailproductunitdescription= "PZA";
+    this.myorderdetail.orderdetailstatus= "1";
+    this.myorderdetail.signsnumber= 1;
+    this.myorderdetail.picturesnumber= 1;
+    this.myorderdetail.commentsnumber= 1;
+    this.myorderdetail.qrsnumber= 1;
+    this.myorderdetail.codebarsnumber= 1;
+
+    this.orderdetailModel.push(this.myorderdetail);
+    
+    this.myorderdetail = new OrderDetailModel();
+    this.myorderdetail.companyid= "hesa";
+    this.myorderdetail.customerid= "ING-01";
+    this.myorderdetail.orderdetailid= 2;
+    this.myorderdetail.routedetailid= "r01-01";
+    this.myorderdetail.category= "Base";
+    this.myorderdetail.type= "Operativo";
+    this.myorderdetail.orderdetaildescription= "Comedor";
+    this.myorderdetail.orderdetailmessage= "Pueder permanecer una hora";
+    this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30";
+    this.myorderdetail.orderdetailactivity= "-";
+    this.myorderdetail.orderdetailproductid= "p-01";
+    this.myorderdetail.orderdetailproductdescription= "AZUCAR";
+    this.myorderdetail.orderdetailproductquantity= "10";
+    this.myorderdetail.orderdetailproductunitid= "1";
+    this.myorderdetail.orderdetailproductunitdescription= "PZA";
+    this.myorderdetail.orderdetailstatus= "1";
+    this.myorderdetail.signsnumber= 1;
+    this.myorderdetail.picturesnumber= 1;
+    this.myorderdetail.commentsnumber= 1;
+    this.myorderdetail.qrsnumber= 1;
+    this.myorderdetail.codebarsnumber= 1;
+
+    this.orderdetailModel.push(this.myorderdetail);
+    
+    this.myorderdetail = new OrderDetailModel();
+    this.myorderdetail.companyid= "hesa";
+    this.myorderdetail.customerid= "ING-01";
+    this.myorderdetail.orderdetailid= 3;
+    this.myorderdetail.routedetailid= "r01-01";
+    this.myorderdetail.category= "Logistico";
+    this.myorderdetail.type= "Bodega";
+    this.myorderdetail.orderdetaildescription= "Descarga";
+    this.myorderdetail.orderdetailmessage= "Pueder permanecer una hora";
+    this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30";
+    this.myorderdetail.orderdetailactivity= "Descarga";
+    this.myorderdetail.orderdetailproductid= "p-01";
+    this.myorderdetail.orderdetailproductdescription= "AZUCAR";
+    this.myorderdetail.orderdetailproductquantity= "10";
+    this.myorderdetail.orderdetailproductunitid= "1";
+    this.myorderdetail.orderdetailproductunitdescription= "PZA";
+    this.myorderdetail.orderdetailstatus= "1";
+    this.myorderdetail.signsnumber= 1;
+    this.myorderdetail.picturesnumber= 1;
+    this.myorderdetail.commentsnumber= 1;
+    this.myorderdetail.qrsnumber= 1;
+    this.myorderdetail.codebarsnumber= 1;
+
+    this.orderdetailModel.push(this.myorderdetail);
+    
+
+    console.log('create order detail..' + JSON.stringify(this.orderdetailModel));
+    
     this.viajeModel.order = this.orderModel;
     this.viajeModel.orderdetail = this.orderdetailModel;
    // this.router.navigate(['/', 'pages', 'usersControl', 'clients-products']).then(nav => {
