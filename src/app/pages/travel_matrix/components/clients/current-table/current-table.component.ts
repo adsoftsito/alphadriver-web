@@ -83,7 +83,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
       },
       {
         colId:'foliodesp',
-        field: "truckid",
+        field: "orderid",
         suppressSizeToFit:true,
         suppressMenu: true,
         width:81,

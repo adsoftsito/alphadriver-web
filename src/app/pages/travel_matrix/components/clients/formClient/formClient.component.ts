@@ -10,6 +10,8 @@ import { PlataformModel } from '../../../../../shared/models/clients/plataform.m
 import { AccountModel } from '../../../../../shared/models/clients/account.model';
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
 */
+import {StorageService} from "../../../../../shared/providers/storage.service";
+
 
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
@@ -308,13 +310,16 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     lat: number = 19.6613;
     lng: number = -96.8875;
   
-
-
     arrDrivers:Array<any> =[];
     arrTrucks:Array<any> =[];
     arrTrailers:Array<any> =[];
     arrDollys:Array<any> =[];
     arrRoutes:Array<any> =[];
+   
+    i : number;
+
+    beginData : string;
+    endData : string;
     
     viajeid : number;
     url : string;
@@ -356,7 +361,13 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     routeTarget : string;
     routeSourceDir : string;
     routeTargetDir : string;
-    
+
+    orderKm : string;
+    orderLt : string;
+    orderKmLt : string;
+    orderPrecioLt : string;
+    orderCosto : string;
+
     arrRouteDetail:Array<any> =[];
     
 
@@ -368,8 +379,14 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   display = 'plataform';
   filter = true;
   
-  constructor(private renderer: Renderer2, private clientProductService: ClientProductService,
-     private formBuilder: FormBuilder, private router: Router, private modalService: NgbModal) {
+  constructor(private renderer: Renderer2, 
+     private clientProductService: ClientProductService,
+     private formBuilder: FormBuilder, 
+     private router: Router, 
+     private modalService: NgbModal,
+     private myStorage: StorageService,
+     ) 
+     {
       // this.clientModel = new User();
     
       this.gridOptionsModal = <GridOptions>{};
@@ -559,11 +576,53 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   this.routeSource = myRoute.placesource;
   this.routeTarget = myRoute.placetarget;
 
-  this.routeSourceDir = "Calle Abc 23, Coatzacoalcos, Ver";
-  this.routeTargetDir = "Villahermosa, Tab.";
+  this.routeSourceDir = myRoute.sourceaddr;
+  this.routeTargetDir = myRoute.targetaddr;
+  this.orderKm = myRoute.km;
+  this.orderLt = myRoute.lt;
+  this.orderKmLt = myRoute.km_lt;
+  this.orderPrecioLt = myRoute.price_lt;
+  this.orderCosto = myRoute.cost;
+
 
   this.arrRouteDetail = myRoute.route_details;
-  //alert(this.arrRouteDetail)
+  this.i = 1;
+  
+  this.arrRouteDetail.forEach( (item) => {
+
+    
+    this.myorderdetail = new OrderDetailModel();
+
+    this.myorderdetail.companyid= "hesa";
+    this.myorderdetail.customerid= "ING-01";
+    this.myorderdetail.orderdetailid= this.i;
+    this.myorderdetail.routedetailid= item.routedetailid;
+    this.myorderdetail.category= item.category;
+    this.myorderdetail.type= item.type;
+    this.myorderdetail.orderdetaildescription= item.orderdetaildescription;
+    this.myorderdetail.orderdetailmessage= item.orderdetailmessage;
+  
+    this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30"; //item.orderdetailarrivedate;
+    this.myorderdetail.orderdetailactivity= "DESCARGANDO"; //item.orderdetailactivity;
+    this.myorderdetail.orderdetailproductid= "p-01"; //item.orderdetailproductid;
+    this.myorderdetail.orderdetailproductdescription= "AZUCAR"; //item.orderdetailproductdescription;
+    this.myorderdetail.orderdetailproductquantity= "10"; //item.orderdetailproductquantity;
+    this.myorderdetail.orderdetailproductunitid= "1"; //item.orderdetailproductunitid;
+    this.myorderdetail.orderdetailproductunitdescription= "PZA"; //item.orderdetailproductunitdescription;
+  
+    this.myorderdetail.orderdetailstatus= "1";
+    this.myorderdetail.signsnumber= 1;
+    this.myorderdetail.picturesnumber= 1;
+    this.myorderdetail.commentsnumber= 1;
+    this.myorderdetail.qrsnumber= 1;
+    this.myorderdetail.codebarsnumber= 1;
+
+    this.orderdetailModel.push(this.myorderdetail);
+    this.i ++;
+    alert (JSON.stringify(this.orderdetailModel));
+  });
+  this.myStorage.setSession("myCurrentRoute", this.arrRouteDetail);
+  //alert(this.myStorage.getSession("myCurrentRoute"))
   
   
   }
@@ -792,31 +851,31 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.orderModel.orderid = this.viajeid;
     this.orderModel.companyid= "hesa";
     this.orderModel.customerid= "ING-01";
-    this.orderModel.driverid= "op-01";
-    this.orderModel.truckid= "TR-890";
-    this.orderModel.trailerid1= "R-01";
-    this.orderModel.dollyid= "D-01";
-    this.orderModel.trailerid2= "R-02";
+    this.orderModel.driverid= this.driverId;
+    this.orderModel.truckid= this.truckId;
+    this.orderModel.trailerid1= this.trailer1Id;
+    this.orderModel.dollyid= this.dollyId;
+    this.orderModel.trailerid2= this.trailer2Id;
     this.orderModel.zone= "CENTRO";
-    this.orderModel.assigndate= "2019-01-01 10:00";
-    this.orderModel.teadate= "2019-01-01 11:00";
-    this.orderModel.enddate= "2019-01-01 13:00";
+    this.orderModel.assigndate= this.beginData;
+    this.orderModel.teadate= this.endData;
+    this.orderModel.enddate= this.endData;;
     this.orderModel.teastatus= "A tiempo";
-    this.orderModel.source= "ORIZABA";
-    this.orderModel.sourceaddr= "PTE 7 COL CENTRO";
-    this.orderModel.target= "CD MEXICO";
-    this.orderModel.targetaddr= "REFORMA 130";
-    this.orderModel.km= "100";
-    this.orderModel.lt= "10";
-    this.orderModel.km_lt= "89";
-    this.orderModel.price_lt= "10";
-    this.orderModel.cost= "10000";
-    this.orderModel.routeid= "r01";
+    this.orderModel.source= this.routeSource;
+    this.orderModel.sourceaddr= this.routeSourceDir;
+    this.orderModel.target= this.routeTarget;
+    this.orderModel.targetaddr= this.routeTargetDir;
+    this.orderModel.km= this.orderKm;
+    this.orderModel.lt= this.orderLt;
+    this.orderModel.km_lt= this.orderKmLt;
+    this.orderModel.price_lt= this.orderPrecioLt;
+    this.orderModel.cost= this.orderCosto;
+    this.orderModel.routeid= this.routeId;
     this.orderModel.orderadminid= 1;
     this.orderModel.orderstatusid= 1;
 
     console.log('create order..' + JSON.stringify(this.orderModel));
-    
+    /*
     this.myorderdetail = new OrderDetailModel();
     this.myorderdetail.companyid= "hesa";
     this.myorderdetail.customerid= "ING-01";
@@ -839,9 +898,9 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.commentsnumber= 1;
     this.myorderdetail.qrsnumber= 1;
     this.myorderdetail.codebarsnumber= 1;
-
-    this.orderdetailModel.push(this.myorderdetail);
-    
+*/
+    //this.orderdetailModel.push(this.myorderdetail);
+ /*   
     this.myorderdetail = new OrderDetailModel();
     this.myorderdetail.companyid= "hesa";
     this.myorderdetail.customerid= "ING-01";
@@ -865,7 +924,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.qrsnumber= 1;
     this.myorderdetail.codebarsnumber= 1;
 
-    this.orderdetailModel.push(this.myorderdetail);
+    //this.orderdetailModel.push(this.myorderdetail);
     
     this.myorderdetail = new OrderDetailModel();
     this.myorderdetail.companyid= "hesa";
@@ -889,8 +948,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.commentsnumber= 1;
     this.myorderdetail.qrsnumber= 1;
     this.myorderdetail.codebarsnumber= 1;
-
-    this.orderdetailModel.push(this.myorderdetail);
+*/
+    //this.orderdetailModel.push(this.myorderdetail);
     
 
     console.log('create order detail..' + JSON.stringify(this.orderdetailModel));

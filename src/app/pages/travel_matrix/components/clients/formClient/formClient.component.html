@@ -132,7 +132,7 @@
                                     <div class="col-md-6 ">
                                       <label for="inputComercialName">{{ begin | translate }}  </label>
                                       <div class="form-group has-success motum-input-form">
-                                          <input [(ngModel)]="beginData" type="date" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required>
+                                          <input [(ngModel)]="beginData" type="datetime-local" class="form-control input-sm" id="inputComercialName" [ngModelOptions]="{standalone: true}" required>
                                           
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                     <div class="col-md-6">
                                       <label for="inputBusinessName">{{ end | translate }}</label>
                                       <div class="form-group has-success motum-input-form">
-                                          <input [(ngModel)]="endData" type="date" class="form-control input-sm" id="inputBusinessName" [ngModelOptions]="{standalone: true}" required>
+                                          <input [(ngModel)]="endData" type="datetime-local" class="form-control input-sm" id="inputBusinessName" [ngModelOptions]="{standalone: true}" required>
                                         </div>
                                     </div>
                                     <div class=" col-md-4 col-sm-4">

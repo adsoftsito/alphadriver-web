@@ -7,6 +7,7 @@ import { TableDetailRouteComponent } from '../table-detail-route/table-detail-ro
 
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../../../../../shared/providers/login.service';
+import {StorageService} from "../../../../../../shared/providers/storage.service";
 
 @Component({
   
@@ -60,6 +61,8 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
   constructor(private translate:TranslateService,
       private _servicePatrimonialSecurity:ViajesService,
       private _loginService: LoginService,
+      private myStorage: StorageService,
+      
         ) { 
 
     this.columnDefs = [
@@ -470,6 +473,9 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
   }
 
   getDataForTable(){
+
+    this.data = this.myStorage.getSession("myCurrentRoute");
+    console.log("Session : " + this.data);
     /**local */
     /*
     this.gridOptions.api.setRowData(this.data);
@@ -479,6 +485,19 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
     /**** */
     /** service**/
     console.log("getting routes..");
+    if(this.data)
+         {
+           //this.data = body;
+           
+           this.gridOptions.api.setRowData(this.data);  
+           this.resizingColumns();
+           this.totalRows.emit(this.data.length);
+           //console.log("this body:" + body);
+         
+           console.log("this data: " + this.data);
+
+         }
+    /*
      this.$subcriptionGetUnitSafeties = this._servicePatrimonialSecurity.getRoutes(null,null).subscribe(
        res =>{
          const body = JSON.parse(res['_body']);
@@ -498,7 +517,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
        err =>
        {console.log("Error"+err)}
      );
-
+*/
   }
   
   /***tools***/
