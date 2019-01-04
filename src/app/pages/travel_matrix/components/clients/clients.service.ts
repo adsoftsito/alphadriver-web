@@ -288,6 +288,7 @@ export class ClientProductService {
          err => {
            console.log("Error occured "+ err);
          });
+         
     }
     updateClientProduct(ClientModel: any) {
         this.showUpdateClient.next(ClientModel);

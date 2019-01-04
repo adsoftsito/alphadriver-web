@@ -20,5 +20,9 @@ export class OrderDetailModel {
   public commentsnumber: number;
   public qrsnumber: number;
   public codebarsnumber: number;
+  public lat: string;
+  public lng: string;
+  public radio: string;
+  public polygon: string;
 
 }

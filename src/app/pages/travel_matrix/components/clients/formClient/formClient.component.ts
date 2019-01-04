@@ -617,6 +617,12 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.qrsnumber= 1;
     this.myorderdetail.codebarsnumber= 1;
 
+    this.myorderdetail.lat = "94.568373";
+    this.myorderdetail.lng = "-120.9847595";
+    this.myorderdetail.radio = "300";
+    this.myorderdetail.polygon = "[{}]";
+
+
     this.orderdetailModel.push(this.myorderdetail);
     this.i ++;
     alert (JSON.stringify(this.orderdetailModel));
