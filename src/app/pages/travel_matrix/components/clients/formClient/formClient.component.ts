@@ -11,6 +11,7 @@ import { AccountModel } from '../../../../../shared/models/clients/account.model
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
 */
 import {StorageService} from "../../../../../shared/providers/storage.service";
+//import { MatSelectChange } from '@angular/material/select';
 
 
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
@@ -21,7 +22,19 @@ import { ClientProductService } from '../clients.service';
 import { DualListComponent } from 'angular-dual-listbox';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {GridOptions} from "ag-grid";
+class Marker {
+  public lat: number;
+  public lng: number;
+  public name: string;
+  public image_url: boolean;
 
+  constructor(lat: number, lng: number, name: string, image_url) {
+      this.lat = lat;
+      this.lng = lng;
+      this.name = name;
+      this.image_url = image_url;
+  }
+}
 @Component({
   selector: 'form-client-product-component',
   templateUrl: './formClient.component.html',
@@ -41,6 +54,9 @@ import {GridOptions} from "ag-grid";
   encapsulation: ViewEncapsulation.None
 })
 
+
+
+
 export class FormClientProductComponent implements OnInit {
   
   
@@ -51,6 +67,9 @@ export class FormClientProductComponent implements OnInit {
   orderModel: OrderModel;
   myorderdetail : OrderDetailModel;
   orderdetailModel: Array<OrderDetailModel>;
+
+  markersOnMap: Marker[] = [];
+
  
  /* numberModel: NumberModel ;
   phoneModel: PhoneModel ;
@@ -307,8 +326,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
 
 
    // title: string = 'My first AGM project';
-    lat: number = 19.6613;
-    lng: number = -96.8875;
+    lat: number = 17.980593;
+    lng: number = -92.951054;
   
     arrDrivers:Array<any> =[];
     arrTrucks:Array<any> =[];
@@ -568,6 +587,28 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   
   }
   
+
+  drawMarkersOnMap(arrayOfPlaces) {
+    this.markersOnMap = [];
+    this.i = 1;
+    arrayOfPlaces.forEach((place) => {
+        if (this.i == 1) 
+        {
+          this.lat = Number.parseFloat(place.lat);
+          this.lng = Number.parseFloat(place.lng);
+          this.i ++;
+        }
+        this.markersOnMap.push(new Marker(
+            Number.parseFloat(place.lat),
+            Number.parseFloat(place.lng),
+            place.orderdetaildescription,
+            'http://simpleicon.com/wp-content/uploads/map-marker-13.png'
+        ));
+        console.log("lat " +   Number.parseFloat(place.lat) + "lng " +   Number.parseFloat(place.lng) );
+
+    })
+  }
+
   selectRouteData()
   {
     
@@ -588,6 +629,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   this.arrRouteDetail = myRoute.route_details;
   this.i = 1;
   
+  this.drawMarkersOnMap(this.arrRouteDetail);
+
   this.arrRouteDetail.forEach( (item) => {
 
     
@@ -625,7 +668,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
 
     this.orderdetailModel.push(this.myorderdetail);
     this.i ++;
-    alert (JSON.stringify(this.orderdetailModel));
+    //alert (JSON.stringify(this.orderdetailModel));
   });
   this.myStorage.setSession("myCurrentRoute", this.arrRouteDetail);
   //alert(this.myStorage.getSession("myCurrentRoute"))
@@ -862,7 +905,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.orderModel.trailerid1= this.trailer1Id;
     this.orderModel.dollyid= this.dollyId;
     this.orderModel.trailerid2= this.trailer2Id;
-    this.orderModel.zone= "CENTRO";
+    this.orderModel.zone= "Zona Centro";
     this.orderModel.assigndate= this.beginData;
     this.orderModel.teadate= this.endData;
     this.orderModel.enddate= this.endData;;
@@ -962,21 +1005,17 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     
     this.viajeModel.order = this.orderModel;
     this.viajeModel.orderdetail = this.orderdetailModel;
-   // this.router.navigate(['/', 'pages', 'usersControl', 'clients-products']).then(nav => {
+    this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products']).then(nav => {
       //this.orderModel.plataforms = this.confirmed;
      
-     // setTimeout(() => {
-    //     if (this.editar) {
-    //       this.clientProductService.updateClientProduct(this.clientModel);
-    //     }else {
+      setTimeout(() => {
            this.clientProductService.createClientProductEnd(this.viajeModel);
-    //     }
-        //  this.clearModels();
-    //   }, 200);
-       //console.log(nav); // true if navigation is successful
-    //  }, err => {
-    //    console.log(err) // when there's an error
-   // });
+         
+       }, 200);
+       console.log(nav); // true if navigation is successful
+      }, err => {
+        console.log(err) // when there's an error
+    });
   }
   
   // clearModels() {
