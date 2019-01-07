@@ -342,6 +342,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     
     viajeid : number;
     url : string;
+    transpId : string;
     driverId : string;
     driverCode : string;
     driverName : string;
@@ -513,6 +514,8 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     }
   
   this.url = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+ //this.url = 'https://00e9e64bac243ea5cce55146ecf2b3329ffc53d4dc771c1335-apidata.googleusercontent.com/download/storage/v1/b/kubeet/o/motum%2Fdrivers%2Faaron.jpg?qk=AD5uMEvSVdkj_r8Wktv92hhW0UY6lNctN0Giyc46R7KAWJXzzehCCuhGyufuZlDUiZZ0YON037w3VY2z7QkkxhopDgrlMjpAWhP0T7skwkrUuEDqbqoHWIOXVKe97Ii4xo7CEREDtJ48ReR5qT2JM2Xj619cQnBKHgx3jtfPqrTOYcXYZuj5XsFoRcsWSRLrLpPitM6f4hKRE-Yp7decrB4QJNeEw5nEA4_GjbmU-mOU8f2BUG6yd40HHxsvxv1LJvpbGYknl30Brdqh2kC_gHrmwxRkcQwT1x9fO2YYLFSNJMoE6dTAhS3UmjpRK3TwzQ-gCMzcgsHzPygDWOvCRnRIvbngBs-6oeQiBSL60YoO5tKq1ThkZ-3VMpw5hy9vKqYrDh0hlW4Sj4-_22rfMvFm4DwQpxNPDiCU-bAIGBQJoZ42GI0eATF4lsXSckJ-To6KwG_PYls0in1aYG3JVLkiiu1dhr-Cs0e-ss5UaMgBXPuFB00qBDkyhSZCUnP7nsQY--35smJamg8ORS3QUCHzfIc83TuoJfMLPIBnZpZqpu1xdZ6CZ7urfBkKgO0rBeW7Cw7-o5D5YlNB2hDp6ye8od2oRgvNj5UxMQ4Kv4U0FArl_yz51AXkF7QaJY1XOERy0PsOCR-Aj3HeLGVDiwH7J9B7MtJXRhYf766tkTzDcsPPfN6W2dkxSLSR6BhI8249x105HBGhIsSS1EwuwlLJsHjgvmfroZ33ycVM0RqwNYMR_GGjcHZzfEkeTdd6YqBvHc-t8GNaRzXhGxFMQzf0gFVc0iuXnA';
+
   this.driverCode = "Clave operador : 000-0000"
     this.getDriversData();
     this.getTrucksData();
@@ -531,7 +534,24 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   //alert(this.driverId);
   let myDriver = this.arrDrivers.find(x => x.driverid === this.driverId);
   this.driverCode = "Clave operador : " + this.driverId;
-  this.url = 'https://experience.sap.com/fiori-design-web/wp-content/uploads/sites/5/2017/02/Avatar-Sizes-Custom-1.png'
+  
+  if (this.driverId == 'op-01')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/adolfo.jpg' 
+
+  if (this.driverId == 'op-02')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/alejandro.jpg' 
+  
+  if (this.driverId == 'op-03')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/jesus.jpg' 
+
+  if (this.driverId == 'op-04')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/armando.jpg' 
+
+  if (this.driverId == 'op-05')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/mauricio.jpg' 
+  
+  if (this.driverId == 'op-06')
+    this.url = 'https://storage.googleapis.com/kubeet/motum/drivers/aaron.jpg' 
   this.driverName = myDriver.name;
   this.driverLicense = myDriver.license;
   } 
@@ -626,7 +646,10 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
   this.orderCosto = myRoute.cost;
 
 
-  this.arrRouteDetail = myRoute.route_details;
+  this.arrRouteDetail = myRoute.route_details.sort(function(a,b){
+    return a.position >b.position?1:a.position <b.position?-1:0
+   })
+ 
   this.i = 1;
   
   this.drawMarkersOnMap(this.arrRouteDetail);

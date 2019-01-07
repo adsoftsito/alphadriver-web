@@ -145,21 +145,16 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
       },
       {
         field:"orderdetailmessage",
-        suppressMenu: true
+        suppressMenu: true,
         
-/*        cellRenderer : (params)=>{
-          let risk = '';
+        cellRenderer : (params)=>{
+            // if(params.value){
+               let iconsSignal: string;
+              
+              iconsSignal = '<input type="text" id="scales" name="scales" value=\"'+ params.value + '\" size="140">';
+              return iconsSignal;//motum-i tm-e98d
           
-          if(params.data.transmitter.toUpperCase() == 'ANTITAMPER')
-          {
-            risk = this.paintRiskLevel(6);
-            params.data.numberEvents = 6;
-          }
-          else{
-            risk = this.paintRiskLevel(params.value);
-          }
-        return risk;
-        }*/,
+        },
         width:150
       }
       ,
@@ -176,7 +171,7 @@ export class CurrentTableRouteComponent implements OnInit,OnDestroy {
           // if(params.value){
              let iconsSignal: string;
             
-             iconsSignal = '<input type="checkbox" id="scales" name="scales">';
+             iconsSignal = '<input type="checkbox" id="scales" name="scales" checked="checked">';
             return iconsSignal;//motum-i tm-e98d
            },
       }
