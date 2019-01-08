@@ -8,6 +8,7 @@ import { LoginService } from '../../../../../shared/providers/login.service';
 import {Router} from "@angular/router";
 import {ClientProductService} from "../clients.service";
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ps-current-table',
@@ -146,21 +147,16 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
       },
       {
         field:"assigndate",
-        suppressMenu: true
+        suppressMenu: true,
         
-/*        cellRenderer : (params)=>{
-          let risk = '';
+        cellRenderer : (params)=>{
+          let value = params.value;
+          var datePipe = new DatePipe("en-US");
+          value = datePipe.transform(value, 'dd/MM/yyyy - hh:mm:ss');
+          value = value + ' h';
           
-          if(params.data.transmitter.toUpperCase() == 'ANTITAMPER')
-          {
-            risk = this.paintRiskLevel(6);
-            params.data.numberEvents = 6;
-          }
-          else{
-            risk = this.paintRiskLevel(params.value);
-          }
-        return risk;
-        }*/,
+        return value;
+        },
         width:100
       },
       {
@@ -196,7 +192,15 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
       {
         field:"teadate",
         suppressMenu: true,
-        width:92
+        width:92,
+        cellRenderer : (params)=>{
+          let value = params.value;
+          var datePipe = new DatePipe("en-US");
+          value = datePipe.transform(value, 'dd/MM/yyyy - hh:mm:ss');
+          value = value + ' h';
+          
+        return value;
+        },
       },
       {
         field:"teastatus",
@@ -214,13 +218,14 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         field:"enddate",
         suppressMenu: true,
         cellStyle:{'text-align':'center'},
-       /* cellRenderer:(params) =>{
-            if(params.value.length == 0)
-            {
-                return '-';
-            }
-            else return params.value+ ' h';
-        },*/
+        cellRenderer : (params)=>{
+          let value = params.value;
+          var datePipe = new DatePipe("en-US");
+          value = datePipe.transform(value, 'dd/MM/yyyy - hh:mm:ss');
+          value = value + ' h';
+          
+        return value;
+        },
         width:108
       }
     ];
