@@ -187,7 +187,7 @@ onChangePassword(alert) {
   } 
 
   refresh(){   
-    console.log("refresh.."); 
+    console.log("refresh 0.."); 
     this._servicePatrimonialSecurity.updateTable(true);
   }
 
@@ -240,9 +240,22 @@ onChangePassword(alert) {
     changeStatusControl(value){
       this.checkControl = value;
     }
-    onFilterChanged(data){     
-     this._servicePatrimonialSecurity.search(data);
-  }
+  
+  /*  onFilterChanged(data){     
+    
+      // this._servicePatrimonialSecurity.search(data);
+  }*/
+
+
+onFilterChanged(event) {
+  console.log("filtering 0...");
+  //this.gridApi.setQuickFilter(event);
+  //this.clientProductService.getDataForTableFilter(event);
+  
+    this._servicePatrimonialSecurity.search(event);
+
+}
+
     changeStatusRemember(value:boolean){
       this.isRemember = value;      
     }

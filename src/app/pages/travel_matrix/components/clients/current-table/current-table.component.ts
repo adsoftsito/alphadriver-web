@@ -89,7 +89,10 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         width:81,
         checkboxSelection: false,
         cellClass:['cell-motum-hover-statusMotorStop'],        
-
+        
+        getQuickFilterText: function(params) {
+          return params.value;
+        }
         
         /**properties detail table */
        // cellRenderer:'group',
@@ -100,12 +103,19 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         field: "driver.name",
         suppressMenu: true,
         suppressSizeToFit:true,
-        width:150
+        width:150,
+        getQuickFilterText: function(params) {
+          return params.value;
+        }
+
       },
       {
         field: "truckid",
         suppressMenu: true,
-        width:50
+        width:50,
+        getQuickFilterText: function(params) {
+          return params.value;
+        }
       },
       { 
         field: "zone",
@@ -384,7 +394,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
           "locationOrPointInterest": "Desvío de ruta"
         }
       ]
-    },
+    },  
     {
       "numberEconomic": 222144,
       "carrier": "Maverick",
@@ -456,8 +466,10 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
           this.makeSelectableRow();
         }
       });
+      
       this.$dataToSearch = this._servicePatrimonialSecurity.dataSearch$.subscribe(
         value=>{
+          console.log('adsoft filter..');
           this.gridOptions.api.setQuickFilter(value);
         });
 
@@ -574,6 +586,15 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   refresh(){   
     this.getDataForTable();
   }
+
+  onFilterChanged(data) {
+    console.log("filter 1...");
+    this.gridApi.setQuickFilter(data);
+    //this.clientProductService.getDataForTableFilter(event);
+  }
+
+  
+
   makeSelectableRow() {
 
     if(this.checkControl == true && this.isRemember == true){
