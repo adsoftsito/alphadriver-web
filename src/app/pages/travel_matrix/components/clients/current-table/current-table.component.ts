@@ -536,6 +536,34 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
   }
   
+
+  getClientsData(){
+    this.$subcriptionGetUnitSafeties = this._servicePatrimonialSecurity.getUnitsSafeties(null,null)
+      .subscribe(
+            res => {
+                const body = JSON.parse(res['_body']);
+                this.data = body;
+
+                //const dataToSetup: any = body.clients;
+                this.gridOptions.api.setRowData(this.data);
+                this.totalRows.emit(this.data.length);
+
+                //this.tableCount = dataToSetup.length;
+                setTimeout(() => {
+                    // console.info("Resize columns");
+                    this.gridApi.sizeColumnsToFit();
+                }, 200);
+            },
+            err => {
+                console.info(err);
+
+                this.gridOptions.api.setRowData([]);
+                this.gridApi.sizeColumnsToFit();
+                alert("An error has occurred, check your browser console");
+            }
+        );
+}
+
   /***tools***/
   exportToExel() {
     let params = {
@@ -544,7 +572,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     this.gridApi.exportDataAsExcel(params);
   } 
   refresh(){   
-    //this.getDataForTable();
+    this.getDataForTable();
   }
   makeSelectableRow() {
 

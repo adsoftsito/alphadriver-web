@@ -1,7 +1,7 @@
 /**
  * Created by Tech Group BWL on 25/07/2018.
  */
-export class StorageService {
+export class  StorageService {
   constructor(){}
 
   setSession(key: string, obj: any) {

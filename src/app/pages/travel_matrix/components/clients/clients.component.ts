@@ -169,7 +169,6 @@ onChangePassword(alert) {
 
 
 
-
   changeLanguage(){
     this.lang = localStorage.getItem('lang');
     if(this.lang === null){
@@ -187,7 +186,8 @@ onChangePassword(alert) {
      this._servicePatrimonialSecurity.exportToExcell(true);
   } 
 
-  refresh(){    
+  refresh(){   
+    console.log("refresh.."); 
     this._servicePatrimonialSecurity.updateTable(true);
   }
 

@@ -45,21 +45,27 @@ export class TableDetailComponent implements OnInit, OnDestroy{
     ) { 
     this.columnDefs = [
       {
-        field: "orderdetaildescription",
-        headerName: "Partida",
-        cellStyle:{'text-align':'center'},
-        suppressMenu: true,
-        cellRenderer: (params) => {
-          return params.value +' h';
-        }
-      },
-      {
         field: "orderdetailproductdescription",
         headerName: "Producto",
+        cellStyle:{'text-align':'center'},
+        suppressMenu: true
+       
+      },
+      {
+        field: "orderdetaildescription", // 0
+        headerName: "Partida",
         cellStyle:{'text-align':'center'},
         pinned:"left",
         suppressMenu:true
       },
+      {
+        field: "category",
+        headerName: "Categoria",
+        cellStyle:{'text-align':'center'},
+        pinned:"left",
+        suppressMenu:true
+      },
+      
       {
         field: "orderdetailproductquantity",
         headerName:"Cant",
@@ -330,12 +336,18 @@ export class TableDetailComponent implements OnInit, OnDestroy{
   translateHeaderTable(){
     this.$subscriptionTranslate = this._translate.get('pages.monitoringreaction.patrimonial_security').subscribe(
       res => {
+        /*
           this.columnDefs[0].headerName = "Partida"; //res.event;
-          this.columnDefs[1].headerName = "Producto"; //res.date;
-          this.columnDefs[2].headerName = "Cantidad"; //res.locationOrPointInterest;
-          this.columnDefs[3].headerName = "Unidad"; //res.locationOrPointInterest;
-          this.columnDefs[4].headerName = "Pruebas de viaje"; //res.locationOrPointInterest;
+          this.columnDefs[1].headerName = "Categoria"; //res.event;
+          this.columnDefs[2].headerName = "Producto"; //res.date;
+          this.columnDefs[3].headerName = "Cantidad"; //res.locationOrPointInterest;
+          this.columnDefs[4].headerName = "Unidad"; //res.locationOrPointInterest;
+          this.columnDefs[5].headerName = "Pruebas de viaje"; //res.locationOrPointInterest;
+          this.columnDefs[6].headerName = "Cantidad"; //res.locationOrPointInterest;
+          this.columnDefs[7].headerName = "Unidad"; //res.locationOrPointInterest;
+          this.columnDefs[8].headerName = "Pruebas de viaje"; //res.locationOrPointInterest;
 
+*/
           this.gridOptions.columnDefs = this.columnDefs;
           this.translated = true;
       }
