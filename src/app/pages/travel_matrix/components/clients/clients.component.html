@@ -191,96 +191,65 @@
 <ba-card>
         <router-outlet></router-outlet>
 
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12"> 
-   <!--  <div class="col-md-12 col-sm-12">  -->
-
-          
-          <div class="checkboxUnits">
-            <form class="row form-inline align-items-center">
-            <!--    <div class="btn-group">
-            
-            
-                    <motum-group-btn
-                id="BG"
-                [buttonsArray]="btnArray"
-                (selectedItem)="changeSelectedItem($event)">
-                </motum-group-btn>
-             
-            
-            </div> -->
-            <!--
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button> -->
-              <div class="btnCreateClients"> <!--se cambio de 4 a 2 last-->
-                <button class="btn btn-primary btn-with-icon motum-btn-create"
-                        routerLink="/pages/usersControl/clients-products/create"
-                        (click)="createClientProduct()"
-                        type="button">
-                    <i class="motum-i tm-e926"></i>
-                    <!--{{ newClient | translate }}--> New Order
-                </button>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div>
+                
+                <div class="checkboxUnits">
+                  <form class="row form-inline align-items-center">
+                    
+                    <div class="btnCreateClients"> <!--se cambio de 4 a 2 last-->
+                        <button class="btn btn-primary btn-with-icon motum-btn-create"
+                                routerLink="/pages/usersControl/clients-products/create"
+                                (click)="createClientProduct()"
+                                type="button">
+                            <i class="motum-i tm-e926"></i>
+                            <!--{{ newClient | translate }}--> Nuevo Viaje
+                        </button>
+                    </div>
+                    <div class="col-1 col-sm-1 onApClick">
+                      <i class="motum-i tm-e91b i-style table-tools-icons-margin" (click)="refresh()"></i>
+                    </div>
+                    <div class="col-1 col-sm-1 onApClick">
+                      <i class="motum-i tm-e91c" (click)='exportToExel();'></i>
+                    </div>
+                    <div class="form-group col-sm-1 col-1" [ngClass]="showCheckBox == false? 'invisible':''">
+                      <div class="checkbox custom-checkbox" style="margin-top: 4px;" >
+                        <ba-checkbox [(ngModel)]="isRemember"
+                                     [label]="' '"
+                                     (change)="makeSelectableRow()"
+                                     [ngModelOptions]="{standalone: true}">
+                        </ba-checkbox>
+                      </div>
+                    </div>
+                    <div class="btnShowModal animated fadeIn">
+                        <button *ngIf="isRemember==true" motum-button color="danger" isRectangle=true  (mouseenter) ="changeClassBtnStop='true'"
+                         (mouseleave)="changeClassBtnStop=''" (click)="openModalMotorStop('massive')">{{arrTranslate.motorStop}}</button>
+                      <!-- <button class="button motum-btn-motor-stop" *ngIf="isRemember==true"  (click)="openModalMotorStop('massive')">Paro de motor</button> -->            </div>
+                  </form>
+                </div>
+              </div>
             </div>
-
-
-              <div class="col-1 col-sm-1 onApClick">
-                <i class="motum-i tm-e91b i-style table-tools-icons-margin" (click)="refresh()"></i>
-              </div>
-              <div class="col-1 col-sm-1 onApClick">
-                <i class="motum-i tm-e91c" (click)='exportToExel();'></i>
-              </div>
-              <div class="form-group col-sm-1 col-1" [ngClass]="showCheckBox == false? 'invisible':''">
-                <div class="checkbox custom-checkbox" style="margin-top: 4px;" >
-                  <ba-checkbox [(ngModel)]="isRemember"
-                               [label]="' '"
-                               (change)="makeSelectableRow()"
-                               [ngModelOptions]="{standalone: true}">
-                  </ba-checkbox>
-                </div>
-              </div>
-              <!--
-              <div class="btnShowModal animated fadeIn">
-                  <button motum-button color="danger" isRectangle=true  (mouseenter) ="changeClassBtnStop='true'"
-                   (mouseleave)="changeClassBtnStop=''" (click)="openModalMotorStop('massive')">{{arrTranslate.motorStop}}</button>
-               </div>
-
-
-               <div class="btnShowModal animated fadeIn">
-                    <button type="button" (click)="onChangePassword(modalPassword)" class="motum-btnSendInvitation">test</button>
-                </div>
--->
-
-<div *ngIf="visibleTable == 'current'"class="col-xl-2 col-lg-2 col-md-2">
-    <div class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
-      <span class="calendar-lbl-container">{{calendarLabel}}</span>
-      <i class="motum-i tm-e925"></i>
-    </div>
-  <!--Boton Search-->
-</div>
-
-            </form>
-      
-        </div>
-       <!-- 
-      <div *ngIf="visibleTable == 'current'"class="col-xl-5 col-lg-5 col-md-5 .hidden-sm"></div>
-      <div *ngIf="visibleTable != 'current'"class="col-xl-3 col-lg-3 col-md-3 .hidden-sm"></div>
-       -->
-      
-      
-
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3" style="margin-top: 3px;">
-        <motum-search-input
-        [styleInput]="'table'"
-        [placeholder]="'adsoft' | translate"
-        [defaultWidthPercent]=20
-        (changesSearchValue)="onFilterChanged($event)">
-        </motum-search-input>
-      </div>
-    </div>
-
-    </div>
-
+            <div *ngIf="visibleTable == 'current'"class="col-xl-3 col-lg-3 col-md-3 .hidden-sm"></div>
+           
+            <div *ngIf="visibleTable != 'current'"class="col-xl-3 col-lg-3 col-md-3 .hidden-sm"></div>
+           
+            <div *ngIf="visibleTable == 'current'"class="col-xl-2 col-lg-2 col-md-2">
+              <div class="animated fadeIn calendar-btn-container" (click)="showCalendar()">
+                <span class="calendar-lbl-container">{{calendarLabel}}</span>
+                <i class="motum-i tm-e925"></i>
+            </div>
+            </div>
+            <!--Boton Search-->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="margin-top: 3px;">
+              <motum-search-input
+              [styleInput]="'table'"
+              [placeholder]="'pages.userControl.client_user.busqueda' | translate"
+              [defaultWidthPercent]=100
+              (changesSearchValue)="onFilterChanged($event)">
+              </motum-search-input>
+            </div>
+          </div>
 
     <!--Table-->
     <div class="row">
