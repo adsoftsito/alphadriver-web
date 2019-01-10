@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {ClientProductService} from "../clients.service";
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import {StorageService} from "../../../../../shared/providers/storage.service";
 
 @Component({
   selector: 'ps-current-table',
@@ -31,6 +32,10 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   private gridApi;
   private gridColumnApi;
   private data:any[];
+  private dataOrder:any;
+  private orderid : number;
+  private statusadmin : number;
+  private statusoper : number;
   private columnDefs;
   private rowSelection;
   private gridOptions:GridOptions;
@@ -68,7 +73,9 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
       private modalService:NgbModal, 
       private router : Router,
       private _loginService: LoginService,
-      private clientProductService :ClientProductService
+      private clientProductService :ClientProductService,
+      private myStorage : StorageService,
+      
         ) { 
 
     this.columnDefs = [
@@ -744,15 +751,28 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     console.log("selected..." + event.rowIndex);
    // console.log("selected data..." + JSON.stringify(event.data.route_details));
     console.log("selected data..." + JSON.stringify(event.data.orderdetail));
-  
+    this.myStorage.setSession("myCurrentOrder", (event.data));
+
+    this.dataOrder = this.myStorage.getSession("myCurrentOrder");
+    this.orderid = this.dataOrder.orderid;
+    this.statusadmin = this.dataOrder.orderadminid;
+    this.statusoper = this.dataOrder.orderstatusid;
+
     if(event.column.colId == 'foliodesp'){
      // alert("consulta viaje");
       this.createClientOrderDetail();
     }
 
     if(event.column.colId == 'statusadm'){
+      
       //alert("estado adm");
      // this.createClientStatusAdm();
+     console.log("Session orderid : " + this.orderid);
+     
+     console.log("Session admin : " + this.statusadmin);
+     console.log("Session oper : " +  this.statusoper);
+ 
+
      const modalRef = this.modalService.open(this.modalUpdateAdm, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
