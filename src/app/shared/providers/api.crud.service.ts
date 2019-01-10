@@ -47,21 +47,6 @@ export class ApiCrudService {
      */
     post(endpoint: string, body: any, options?: RequestOptions) {
 
-       /* let headers: Headers = new Headers();
-        headers.append('Access-Control-Allow-Origin', '*');
-        //headers.append('Access-Control-Request-Method', 'POST');
-       // headers.append('Accept', 'application/json');
-
-        headers.append('Content-Type', 'application/json; charset=utf-8');
-       
-        console.log('headers : ' + headers);
-
-        let myoptions = new RequestOptions({ headers: headers }); 
-       */
-      //console.log("headers1: value" + JSON.stringify(headers));
-      //console.log('headers myoptions : ' + JSON.stringify(myoptions.headers));
-      
-
         let headers = new Headers({ 'Content-Type' : 'application/json' }); // ... Set content type to JSON
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Accept', 'application/json');
@@ -93,7 +78,14 @@ export class ApiCrudService {
      * @returns {Observable<Response>}
      */
     put(endpoint: string, body?: any, options?: RequestOptions) {
-        return this.http.put(this.DOMAIN + '/' + endpoint, body, options);
+        let headers = new Headers({ 'Content-Type' : 'application/json' }); // ... Set content type to JSON
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Accept', 'application/json');
+
+        let myoptions = new RequestOptions({ headers: headers });
+        
+      
+        return this.http.put(this.DOMAIN + '/' + endpoint, body, myoptions);
     }
     /**
      * Allows to use http delete as goal to edit all data of the endpoint.

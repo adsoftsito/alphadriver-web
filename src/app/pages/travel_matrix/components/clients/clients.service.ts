@@ -4,6 +4,8 @@ import {ApiCrudService} from "../../../../shared/providers/api.crud.service";
 import { Subject } from "rxjs";
 import { User } from '../../../../shared/models/user.model';
 import { ViajeModel } from '../../../../shared/models/despacho/viaje.model';
+import {OrderStatus} from "../../../../shared/models/despacho/orderstatus.model";
+
 /**
  * Created by Tech Group BWL on 30/05/2018.
  */
@@ -267,6 +269,31 @@ export class ClientProductService {
     createClientProduct() {
         this.showCreateClient.next();
     }
+   
+    updateStatusOrder(orderStatus: OrderStatus) {
+    
+        let orderJson = JSON.stringify(orderStatus);
+          
+          //'{  "order": { "orderid": 11, "source": "x" },   "orderdetail": [] }';
+  
+        // JSON.stringify(orderModel);
+        console.log("status admin : " + orderJson);
+  
+        this.api.put(this.ENDPOINTORDERS, orderJson)
+         .subscribe(
+           res => {
+               console.log("res : " + res);
+             if(res.status == 200){ // Falta devolver el usuario con su respectivo id o genera errores en la tabla
+               console.log("200 : " + res);
+              // this.ShowNewClient.next(OrderModel);
+             }
+           },
+           err => {
+             console.log("Error occured "+ err);
+           });
+           
+      }
+    
     createClientProductEnd(orderModel: ViajeModel) {
     
       let orderJson = JSON.stringify(orderModel);

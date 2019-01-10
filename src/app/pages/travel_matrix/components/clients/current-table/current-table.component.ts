@@ -10,6 +10,7 @@ import {ClientProductService} from "../clients.service";
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import {StorageService} from "../../../../../shared/providers/storage.service";
+import {OrderStatus} from "../../../../../shared/models/despacho/orderstatus.model";
 
 @Component({
   selector: 'ps-current-table',
@@ -27,7 +28,9 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
   @ViewChild('modalUpdateAdmin')  modalUpdateAdm : ElementRef;
   @ViewChild('modalUpdateOper') modalUpdateOper : ElementRef;
+  @ViewChild('modalConfirmStatus') modalConfirmStatus : ElementRef;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+  
 
   private gridApi;
   private gridColumnApi;
@@ -36,6 +39,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   private orderid : number;
   private statusadmin : number;
   private statusoper : number;
+  private statusDescription : number;
   private columnDefs;
   private rowSelection;
   private gridOptions:GridOptions;
@@ -52,6 +56,22 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
   isRemember:boolean = false;
   checkControl:boolean = true;
+  
+  disableStateAdmin1 : boolean = false;
+  disableStateAdmin2 : boolean = false;
+  disableStateAdmin3 : boolean = false;
+  disableStateAdmin4 : boolean = false;
+  disableStateAdmin5 : boolean = false;
+  
+
+  disableStateOper1 : boolean = false;
+  disableStateOper2 : boolean = false;
+  disableStateOper3 : boolean = false;
+  disableStateOper4 : boolean = false;
+  disableStateOper5 : boolean = false;
+  disableStateOper6 : boolean = false;
+  disableStateOper7 : boolean = false;
+  
   /***Service */
   /***********/
   private $subscriptionExportToExcel:Subscription;
@@ -66,7 +86,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   arrTranslate:any = [];
   arrTranslateOfGeneral:any = [];
   showTableTranslated: boolean = false;
-
+  myOrderStatus : OrderStatus;
 
   constructor(private translate:TranslateService,
       private _servicePatrimonialSecurity:ViajesService,
@@ -742,6 +762,76 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         });
   }
 
+  setButtonAdmin()
+  {
+     if (this.statusadmin ==1 ) this.disableStateAdmin1 = true; else this.disableStateAdmin1 = false; 
+     if (this.statusadmin ==2 ) this.disableStateAdmin2 = true; else this.disableStateAdmin2 = false;
+     if (this.statusadmin ==3 ) this.disableStateAdmin3 = true; else this.disableStateAdmin3 = false;
+     if (this.statusadmin ==4 ) this.disableStateAdmin4 = true; else this.disableStateAdmin4 = false;
+     if (this.statusadmin ==5 ) this.disableStateAdmin5 = true; else this.disableStateAdmin5 = false;
+
+  }
+
+  setButtonOper()
+  {
+     if (this.statusoper ==1 ) this.disableStateOper1 = true; else this.disableStateOper1 = false; 
+     if (this.statusoper ==2 ) this.disableStateOper2 = true; else this.disableStateOper2 = false; 
+     if (this.statusoper ==3 ) this.disableStateOper3 = true; else this.disableStateOper3 = false; 
+     if (this.statusoper ==4 ) this.disableStateOper4 = true; else this.disableStateOper4 = false; 
+     if (this.statusoper ==5 ) this.disableStateOper5 = true; else this.disableStateOper5 = false; 
+     if (this.statusoper ==6 ) this.disableStateOper6 = true; else this.disableStateOper6 = false; 
+     if (this.statusoper ==7 ) this.disableStateOper7 = true; else this.disableStateOper7 = false; 
+   
+  }
+
+  setStatusAdmin(statusAdmin, statusDescription)
+  {
+    this.statusadmin = statusAdmin;
+    this.statusDescription = statusDescription;
+    
+    const modalRef = this.modalService.open(this.modalConfirmStatus, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-delete', backdrop: true });
+        modalRef.result.then((userResponse) => {
+
+          if(userResponse) {
+
+            this.myOrderStatus = new OrderStatus();
+            this.myOrderStatus.orderid = this.orderid;
+            
+            this.myOrderStatus.orderadminid = this.statusadmin;
+            this.myOrderStatus.orderstatusid = this.statusoper;
+            
+            this.clientProductService.updateStatusOrder(this.myOrderStatus);
+            this.setButtonAdmin();
+                   
+          }
+        });
+
+  }
+ 
+  setStatusOper(statusOper, statusDescription)
+  {
+    this.statusoper = statusOper;
+    this.statusDescription = statusDescription;
+    
+    const modalRef = this.modalService.open(this.modalConfirmStatus, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-delete', backdrop: true });
+        modalRef.result.then((userResponse) => {
+
+          if(userResponse) {
+
+            this.myOrderStatus = new OrderStatus();
+            this.myOrderStatus.orderid = this.orderid;
+            
+            this.myOrderStatus.orderadminid = this.statusadmin;
+            this.myOrderStatus.orderstatusid = this.statusoper;
+            
+            this.clientProductService.updateStatusOrder(this.myOrderStatus);
+            this.setButtonOper();
+                   
+          }
+        });
+
+  }
+ 
   /**
    * 
    * Get information about the selected vehicle, from the current or binnacle table
@@ -765,33 +855,39 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
 
     if(event.column.colId == 'statusadm'){
       
-      //alert("estado adm");
-     // this.createClientStatusAdm();
      console.log("Session orderid : " + this.orderid);
      
      console.log("Session admin : " + this.statusadmin);
      console.log("Session oper : " +  this.statusoper);
- 
+     this.setButtonAdmin();
+     
+     console.log("Session oper : " +  this.disableStateAdmin1);
 
      const modalRef = this.modalService.open(this.modalUpdateAdm, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
+             this.getDataForTable();
           }
         }); 
 
     }
 
     if(event.column.colId == 'statusoper'){
-     // this.createClientObs();
-     //alert("estado oper");
-     // this.createClientStatusOper();
-     const modalRef = this.modalService.open(this.modalUpdateOper, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
-        modalRef.result.then((userResponse) => {
-          if(userResponse) {
-          }
-        }); 
-
-
+     
+      console.log("Session orderid : " + this.orderid);
+     
+      console.log("Session admin : " + this.statusadmin);
+      console.log("Session oper : " +  this.statusoper);
+      this.setButtonOper();
+      
+      console.log("Session oper : " +  this.disableStateAdmin1);
+ 
+      const modalRef = this.modalService.open(this.modalUpdateOper, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+         modalRef.result.then((userResponse) => {
+           if(userResponse) {
+              this.getDataForTable();
+           }
+         });
     }  
 
 
