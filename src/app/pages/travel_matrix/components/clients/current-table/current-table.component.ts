@@ -38,6 +38,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
   
   rowSelected:any; //mode selection 'multple '  or one
   selectedRows:any[];
+  arrRouteDetail:Array<any> =[];
 
   customIcons: any = {
     sortAscending: '<i class="fa fa-caret-down"/>',
@@ -752,7 +753,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
     if(event.column.colId == 'statusadm'){
       //alert("estado adm");
      // this.createClientStatusAdm();
-     const modalRef = this.modalService.open(this.modalUpdateAdm, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+     const modalRef = this.modalService.open(this.modalUpdateAdm, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
           }
@@ -764,7 +765,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
      // this.createClientObs();
      //alert("estado oper");
      // this.createClientStatusOper();
-     const modalRef = this.modalService.open(this.modalUpdateOper, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+     const modalRef = this.modalService.open(this.modalUpdateOper, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
           }
@@ -883,8 +884,13 @@ public getNodeChildDetails(record) {
   
   console.log(this.data);
  // console.log("detail node..." + JSON.stringify(record.route_details));
-  console.log("detail node..." + JSON.stringify(record.ordedetail));
+  console.log("detail node..." + JSON.stringify(record.orderdetail));
  
+
+  
+ //this.arrRouteDetail = JSON.parse(record.orderdetail);
+
+  
 // if (record.route_details) {
   if (record.orderdetail) {
 
@@ -893,6 +899,7 @@ public getNodeChildDetails(record) {
             // provide ag-Grid with the children of this group
             //children: [JSON.stringify(record.route_details)],
             children: [JSON.stringify(record.orderdetail)],
+            //children: [JSON.stringify(this.arrRouteDetail)],
             
             // for  expand the third row by default
             //expanded: record.detail.length == 6

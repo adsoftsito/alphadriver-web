@@ -72,10 +72,16 @@ export class TableDetailComponent implements OnInit, OnDestroy{
         cellStyle:{'text-align':'center'},
         pinned:"right",
         suppressMenu: true,
+        cellRenderer:(params)=>{
+          if(params.value=='0')
+          return '-';
+          else//class="motum-i tm-ea00 
+          return params.value;
+        },
         width:100
       },
       {
-        field: "orderdetailproductunitid",
+        field: "orderdetailproductunitdescription",
         headerName:"Unidad",
         cellStyle:{'text-align':'center'},
         

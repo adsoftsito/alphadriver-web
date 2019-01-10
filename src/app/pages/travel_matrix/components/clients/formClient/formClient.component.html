@@ -202,7 +202,23 @@
                                    
                                           
                                         </div>
-                                      
+
+                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+                                        <div class="has-success motum-input-form">
+                                          <label for="inputCountry" >Remolque</label>
+                                   
+                                          <select [(ngModel)]="trailer1Id" name="trailer1Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer1Data();">
+                                            <option selected="" value=""></option>  
+                                            <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
+                                              {{k.trailernumber}}  
+                                            </option>  
+                                         </select>
+                                   
+                                        
+                                          
+                                        </div>
+
                                     </div>
 
                                       
@@ -216,7 +232,7 @@
 
                                             <label for="inputMunicipality"> <b>{{ driverCode }}</b> </label>
                                          <!--   <img src="{{ driveImage }}" width="60" height="60"> -->
-                                            <img id="blah" [src]="url" height="60">
+                                            <img id="blah" [src]="url" height="30" width="30">
                                            
                                            
                                            
@@ -276,22 +292,6 @@
                                   <div class="row motum-label-form">
                                       <div class="col-sm-6">
                                        
-                                        <div class="has-success motum-input-form">
-                                          <label for="inputCountry" >Remolque</label>
-                                   
-                                          <select [(ngModel)]="trailer1Id" name="trailer1Id" id="inputCountry" class="form-control input-sm" (change)="selectTrailer1Data();">
-                                            <option selected="" value=""></option>  
-                                            <option [ngValue]="k.trailernumber" *ngFor="let k of arrTrailers">  
-                                              {{k.trailernumber}}  
-                                            </option>  
-                                         </select>
-                                   
-                                        
-                                          
-                                        </div>
-
-                                        <hr style="border-top: 0px solid #ccc; background: transparent;">
-
                                           <div class="has-success motum-input-form">
                                             <label for="inputState">Dolly</label>
                                             <select [(ngModel)]="dollyId" name="dollyId" id="inputCountry" class="form-control input-sm" (change)="selectDollyData();">
@@ -484,9 +484,14 @@
                   [strokeWeight]="3"
                   [paths]="markersOnMap">
                       <agm-marker
-                          *ngFor="let marker of markersOnMap"
+                          [label]="labelOptions"
+
+                          *ngFor="let marker of markersOnMap; index as i"
                           [latitude]="marker.lat" 
-                          [longitude]="marker.lng">
+                          [longitude]="marker.lng"
+                          [label]="marker.pos"
+                          [iconUrl]="marker.image_url"> 
+
                           <agm-info-window
                               [maxWidth]="150">
                               <div class="container">

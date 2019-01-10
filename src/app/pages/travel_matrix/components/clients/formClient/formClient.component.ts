@@ -23,12 +23,14 @@ import { DualListComponent } from 'angular-dual-listbox';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {GridOptions} from "ag-grid";
 class Marker {
+  public pos: number;
   public lat: number;
   public lng: number;
   public name: string;
   public image_url: boolean;
 
-  constructor(lat: number, lng: number, name: string, image_url) {
+  constructor(pos: number, lat: number, lng: number, name: string, image_url) {
+      this.pos = pos;
       this.lat = lat;
       this.lng = lng;
       this.name = name;
@@ -71,6 +73,21 @@ export class FormClientProductComponent implements OnInit {
   markersOnMap: Marker[] = [];
 
  
+  private icon = {
+    url: 'https://storage.googleapis.com/kubeet/motum/markers/m2.png', 
+    scaledSize: {
+      height: 40,
+      width: 40
+    }
+  };
+
+  labelOptions = {
+    color: '#ee4646',
+    fontFamily: '',
+    fontSize: '10px',
+    fontWeight: 'bold',
+    letterSpacing:'0.5px'
+  }
  /* numberModel: NumberModel ;
   phoneModel: PhoneModel ;
   plataformModel: PlataformModel;
@@ -616,15 +633,16 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
         {
           this.lat = Number.parseFloat(place.lat);
           this.lng = Number.parseFloat(place.lng);
-          this.i ++;
         }
         this.markersOnMap.push(new Marker(
+            this.i,
             Number.parseFloat(place.lat),
             Number.parseFloat(place.lng),
             place.orderdetaildescription,
-            'http://simpleicon.com/wp-content/uploads/map-marker-13.png'
+            'https://storage.googleapis.com/kubeet/motum/markers/m' + this.i + '.png'
         ));
         console.log("lat " +   Number.parseFloat(place.lat) + "lng " +   Number.parseFloat(place.lng) );
+        this.i ++;
 
     })
   }
@@ -668,14 +686,27 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.orderdetaildescription= item.orderdetaildescription;
     this.myorderdetail.orderdetailmessage= item.orderdetailmessage;
   
-    this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30"; //item.orderdetailarrivedate;
-    this.myorderdetail.orderdetailactivity= "DESCARGANDO"; //item.orderdetailactivity;
-    this.myorderdetail.orderdetailproductid= "p-01"; //item.orderdetailproductid;
-    this.myorderdetail.orderdetailproductdescription= "AZUCAR"; //item.orderdetailproductdescription;
-    this.myorderdetail.orderdetailproductquantity= "10"; //item.orderdetailproductquantity;
-    this.myorderdetail.orderdetailproductunitid= "1"; //item.orderdetailproductunitid;
-    this.myorderdetail.orderdetailproductunitdescription= "PZA"; //item.orderdetailproductunitdescription;
-  
+    if (this.myorderdetail.category == 'Logistico')
+    {
+      this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30"; //item.orderdetailarrivedate;
+      this.myorderdetail.orderdetailactivity= "DESCARGANDO"; //item.orderdetailactivity;
+      this.myorderdetail.orderdetailproductid= "p-01"; //item.orderdetailproductid;
+      this.myorderdetail.orderdetailproductdescription= "AZUCAR"; //item.orderdetailproductdescription;
+      this.myorderdetail.orderdetailproductquantity= "10"; //item.orderdetailproductquantity;
+      this.myorderdetail.orderdetailproductunitid= "1"; //item.orderdetailproductunitid;
+      this.myorderdetail.orderdetailproductunitdescription= "PZA"; //item.orderdetailproductunitdescription;
+    }
+    else
+    {
+      this.myorderdetail.orderdetailarrivedate= "2019-01-01 11:30"; //item.orderdetailarrivedate;
+      this.myorderdetail.orderdetailactivity= "-"; //item.orderdetailactivity;
+      this.myorderdetail.orderdetailproductid= "p-01"; //item.orderdetailproductid;
+      this.myorderdetail.orderdetailproductdescription= "-"; //item.orderdetailproductdescription;
+      this.myorderdetail.orderdetailproductquantity= "0"; //item.orderdetailproductquantity;
+      this.myorderdetail.orderdetailproductunitid= "1"; //item.orderdetailproductunitid;
+      this.myorderdetail.orderdetailproductunitdescription= "-"; //item.orderdetailproductunitdescription;
+   
+    }
     this.myorderdetail.orderdetailstatus= "1";
     this.myorderdetail.signsnumber= 1;
     this.myorderdetail.picturesnumber= 1;
@@ -946,7 +977,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.orderModel.orderadminid= 1;
     this.orderModel.orderstatusid= 1;
 
-    console.log('create order..' + JSON.stringify(this.orderModel));
+    //console.log('create order..' + JSON.stringify(this.orderModel));
     /*
     this.myorderdetail = new OrderDetailModel();
     this.myorderdetail.companyid= "hesa";
@@ -1024,7 +1055,7 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     //this.orderdetailModel.push(this.myorderdetail);
     
 
-    console.log('create order detail..' + JSON.stringify(this.orderdetailModel));
+    //console.log('create order detail..' + JSON.stringify(this.orderdetailModel));
     
     this.viajeModel.order = this.orderModel;
     this.viajeModel.orderdetail = this.orderdetailModel;
