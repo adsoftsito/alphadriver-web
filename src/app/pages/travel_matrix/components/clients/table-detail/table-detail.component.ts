@@ -22,6 +22,14 @@ export class TableDetailComponent implements OnInit, OnDestroy{
   parentRecord:any;
   columnDefs:any;
 
+  //heroes = HEROES;
+  selectedHero: Asset;
+
+
+  onSelect(hero: Asset): void {
+    this.selectedHero = hero;
+  }
+
   customIcons: any = {
     sortAscending: '<i class="fa fa-caret-down"/>',
     sortDescending: '<i class="fa fa-caret-up"/>',
@@ -191,9 +199,9 @@ export class TableDetailComponent implements OnInit, OnDestroy{
 
   arrSigns:Array<any> = [
     new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 'http://www.peritocaligrafojuancarlosgonzalez.com/images/firmas/bruce-springsteen.jpg'),
-    new Asset(13, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg')
-    //new Asset(15, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)'),
-    //new Asset(20, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)')
+    new Asset(2, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg'),
+    new Asset(3, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)', 'http://www.peritocaligrafojuancarlosgonzalez.com/images/firmas/bruce-springsteen.jpg'),
+    new Asset(4, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg')
   ];
 
 
@@ -453,7 +461,7 @@ export class TableDetailComponent implements OnInit, OnDestroy{
         //alert("firmas");
         //this.createClientProduct();
 
-        const modalRef = this.modalService.open(this.modalSigns, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+        const modalRef = this.modalService.open(this.modalSigns, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
           }
