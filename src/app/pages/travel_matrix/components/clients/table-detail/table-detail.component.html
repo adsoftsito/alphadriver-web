@@ -188,14 +188,19 @@
   
       <div class="modal-body">
 
+        <!--
           <ul class="heroes">
               <li *ngFor="let hero of arrSigns"
                 [class.selected]="hero === selectedHero"
                 (click)="onSelect(hero)">
-                <span class="badge">{{hero.id}}</span> <img src={{hero.url}} height="100" width="100">
+                <span class="badge">{{hero.id}}</span> <img src={{hero.url}} height="100" width="140">
               </li>
             </ul>
-             
+            </div>
+          -->
+          <img ng-repeat="let hero of arrSigns" src="{{ hero.url }}"/>
+          
+ 
             <div *ngIf="selectedHero">
              
               <h2>{{selectedHero.name | uppercase}} Details</h2>
@@ -477,7 +482,8 @@
   
     
 <div class="full-width-panel" >
- 
+  
+
   <ag-grid-angular *ngIf ="translated"
   id="tableDetail"
   class="full-width-grid"

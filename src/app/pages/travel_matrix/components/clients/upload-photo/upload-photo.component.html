@@ -1,0 +1,82 @@
+<motum-modal-form *ngIf="windowPosition != null"  [align]="'center'" [hasTabs]="false" [cols]="2">
+    <div modal-form-header>
+        <div class="row" *ngIf="editar && windowPosition === 'right'">
+            <div class="motum-avatar-section">
+                <motum-avatar [name]="initials"
+                              [type]="'NAME'"></motum-avatar>
+              </div>
+              <div class="motum-avatar-labelEdit">
+                  <div class="name">
+                    {{clientModel.commercialName}}
+                  </div>
+                  <div>
+                    {{clientModel.businessName}}
+                  </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!editar">
+            <div class="motum-avatar-section">
+              <motum-avatar [name]="'motum-i tm-e932'"
+                            [textColor]="'#ffffff'"
+                            [bgColor]="'#6666f7'"
+                            [isIconResize]="true"
+                            [hasBorder]="false"
+                            [type]="'ICON'"></motum-avatar>
+            </div>
+            <div>
+              <div class="motum-avatar-labelCreate"> <!--{{ title | translate }} --> VIAJE 0001 </div>
+            </div>
+        </div>
+    </div> <!--END MODAL-FORM-HEADER-->
+    <div modal-form-content>
+
+      
+      <ul class="heroes">
+        <li *ngFor="let hero of arrSigns"
+          [class.selected]="hero === selectedHero"
+          (click)="onSelect(hero)">
+          <!--  <span class="badge">{{hero.id}}</span> -->
+          <img src={{hero.url}} height="150" width="150">
+        </li>
+      </ul>
+    
+    <!--
+    <div *ngFor="let hero of arrSigns">
+      <img src={{hero.url}}>
+    </div> -->
+      <div *ngIf="selectedHero">
+       
+        <h2>{{selectedHero.name | uppercase}} Details</h2>
+        <div><span>id: </span>{{selectedHero.id}}</div>
+        <div>
+          <label>name:
+            <input [(ngModel)]="selectedHero.name" placeholder="name">
+          </label>
+        </div>
+       
+      </div>
+
+    
+    </div> <!--END MODAL-FORM-CONTENT-->
+    <div class="motum-floating-btns" align="right" modal-form-footer>
+        <button motum-button
+        [color]="'danger'"
+        [outline]="true"
+        routerLink="/pages/usersControl/clients-products">
+        {{ cancel | translate }}
+        </button>
+
+        <button motum-button
+        *ngIf="activeTab=='tabBilling' || activeTab=='tabAccount' || activeTab=='tabPermissions' || activeTab=='tabInterface'"
+        (click)="activeTab=='tabInterface' ? t.select('tabPermissions'):'' || activeTab=='tabPermissions' ? t.select('tabAccount'):'' || activeTab=='tabAccount' ? t.select('tabBilling'):'' || activeTab=='tabBilling' ? t.select('tabClient'):''"
+        [outline]="true"
+        [color]="'grey'">{{activeTab=='tabBilling' ? (back | translate) : '' || activeTab=='tabAccount' ? (back | translate) : '' || activeTab=='tabPermissions' ? (back | translate) : '' || activeTab=='tabInterface' ? (back | translate) : ''}}</button>
+
+        <button motum-button
+        color="secondary"
+        (click)="activeTab=='tabClient' ? t.select('tabBilling'):''|| activeTab=='tabBilling' ? t.select('tabAccount'):'' || activeTab=='tabAccount' ? t.select('tabPermissions'):'' || activeTab=='tabPermissions' ?  t.select('tabInterface'):'' || activeTab=='tabInterface' ?  createClient():createClient()">
+        {{activeTab=='tabClient' ? (next | translate):'' || activeTab=='tabBilling' ? (next | translate):'' || activeTab=='tabAccount' ? (next | translate):'' || activeTab=='tabPermissions' ? (next | translate):'' || activeTab=='tabInterface' ? (save | translate):''}}
+        </button>
+  </div> <!--END MODAL-FORM-FOOTER-->
+</motum-modal-form>
+

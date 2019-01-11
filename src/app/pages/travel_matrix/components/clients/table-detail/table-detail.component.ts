@@ -393,8 +393,7 @@ export class TableDetailComponent implements OnInit, OnDestroy{
      * Method to show client form to create a clientProduct
      */
   createClientProduct() {
-    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
-      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','upload-sign']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','upload-photo']).then(nav => {
     
       setTimeout(() => {
              this.clientProductService.createClientProduct();
@@ -459,24 +458,25 @@ export class TableDetailComponent implements OnInit, OnDestroy{
 
       if(event.column.colId == 'firmas'){
         //alert("firmas");
-        //this.createClientProduct();
-
+        this.createClientProduct();
+/*
         const modalRef = this.modalService.open(this.modalSigns, { size: 'sm' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
         modalRef.result.then((userResponse) => {
           if(userResponse) {
           }
-        }); 
+        }); */
 
       }
 
       if(event.column.colId == 'fotos'){
-       // this.createClientPhotos();
+        this.createClientPhotos();
 
+       /*
        const modalRef = this.modalService.open(this.modalPhotos, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
        modalRef.result.then((userResponse) => {
          if(userResponse) {
          }
-       });
+       });*/
       }
 
       if(event.column.colId == 'obs'){

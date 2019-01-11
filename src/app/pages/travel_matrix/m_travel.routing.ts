@@ -10,7 +10,7 @@ import {FormClientProductComponent} from "./components/clients/formClient/formCl
 //import {FormOrderComponent} from "./components/clients/formOrder/formOrder.component";
 //import {MemberModalComponent} from "./components/clients/memberModal/memberModal.component";
 //import {UploadSignComponent} from "./components/clients/upload-sign/upload-sign.component";
-//import {UploadPhotoComponent} from "./components/clients/upload-photo/upload-photo.component";
+import {UploadPhotoComponent} from "./components/clients/upload-photo/upload-photo.component";
 //import {UploadObsComponent} from "./components/clients/upload-obs/upload-obs.component";
 
 //import {UpdateadmStatusComponent} from "./components/clients/updateadm-status/updateadm-status.component";
@@ -53,13 +53,13 @@ const routes: Routes = [
         path: 'upload-sign',
         component: UploadSignComponent,
         data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
-      },
+      },*/
       {
         path: 'upload-photo',
         component: UploadPhotoComponent,
         data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
       },
-      {
+      /*{
         path: 'upload-obs',
         component: UploadObsComponent,
         data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
