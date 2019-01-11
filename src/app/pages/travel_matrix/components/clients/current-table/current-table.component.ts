@@ -838,9 +838,9 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
    * @param event 
    */
   onCellClicked( event){
-    console.log("selected..." + event.rowIndex);
+   // console.log("selected..." + event.rowIndex);
    // console.log("selected data..." + JSON.stringify(event.data.route_details));
-    console.log("selected data..." + JSON.stringify(event.data.orderdetail));
+    //console.log("selected data..." + JSON.stringify(event.data.orderdetail));
     this.myStorage.setSession("myCurrentOrder", (event.data));
 
     this.dataOrder = this.myStorage.getSession("myCurrentOrder");

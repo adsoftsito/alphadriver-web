@@ -51,6 +51,7 @@ export class TableDetailComponent implements OnInit, OnDestroy{
               private clientProductService :ClientProductService,
 
     ) { 
+      /*
     this.columnDefs = [
       {
         field: "orderdetailproductdescription",
@@ -173,7 +174,137 @@ export class TableDetailComponent implements OnInit, OnDestroy{
       }
 
     ];
+*/
+this.columnDefs = [
+  {
+    field: "orderdetailproductdescription",
+    headerName: "Producto",
+    cellStyle:{'text-align':'center',
+    'border': 'solid 1px #ECE7E6',
+    'border-top': '1px solid #F1F1F1',
+    'border-bottom': '1px solid #F1F1F1' 
+   },
+  suppressMenu: true
+   
+  },
+  {
+    field: "orderdetaildescription", // 0
+    headerName: "Partida",
+    cellStyle:{'text-align':'center',
+    'border': 'solid 1px #ECE7E6',
+    'border-top': '1px solid #F1F1F1',
+    'border-bottom': '1px solid #F1F1F1' 
+   },
+pinned:"left",
+    suppressMenu:true
+  },
+  {
+    field: "category",
+    headerName: "Categoria",
+    cellStyle:{'text-align':'center',
+    'border': 'solid 1px #ECE7E6',
+    'border-top': '1px solid #F1F1F1',
+    'border-bottom': '1px solid #F1F1F1' 
+   },
+  pinned:"left",
+    suppressMenu:true
+  },
+    {
+    field: "orderdetailproductquantity",
+    headerName:"Cant",
+    cellStyle:{'text-align':'center',
+               'border': 'solid 1px #ECE7E6',
+               'border-top': '1px solid #F1F1F1',
+               'border-bottom': '1px solid #F1F1F1' 
+              },
+    width:100
+  },
+  {
+    field: "orderdetailproductunitid",
+    headerName:"Unidad",
+    cellStyle:{'text-align':'center',
+               'border': 'solid 1px #ECE7E6',
+               'border-top': '1px solid #F1F1F1',
+               'border-bottom': '1px solid #F1F1F1' 
+              },
+    suppressMenu: true,
+    width:100
+  },
+  {
+    colId:'firmas',
+    field: "orderdetailproductunitid",
+    headerName:"",
+    cellStyle:{'text-align':'center'},
+    cellClass:['cell-motum-hover-statusMotorStop'],        
+  //  pinned:"right",
+    
+    suppressMenu: true,
+    cellRenderer:(params)=>{
+      return 'Firmas - '+ params.value;
+    },
+    width: 120
+  },
+  {
+    colId:'fotos',
+    field: "orderdetailproductunitid",
+    headerName:"",
+    cellStyle:{'text-align':'center'},
+    cellClass:['cell-motum-hover-statusMotorStop'],        
 
+//    pinned:"right",
+    suppressMenu: true,
+    cellRenderer:(params)=>{
+      return 'Fotos - '+ params.value;
+    },
+    width: 120
+  },
+  
+  {
+    colId:'obs',
+    field: "orderdetailproductunitid",
+    headerName:"Pruebas de viaje",
+    cellStyle:{'text-align':'center'},
+    cellClass:['cell-motum-hover-statusMotorStop'],        
+
+    //pinned:"right",
+    suppressMenu: true,
+    cellRenderer:(params)=>{
+      return 'Obs - '+ params.value;
+    },
+
+  },
+  
+  {
+    colId:'codqr',
+    field: "orderdetailproductunitid",
+    headerName:"",
+    cellStyle:{'text-align':'center'},
+    cellClass:['cell-motum-hover-statusMotorStop'],        
+
+   // pinned:"right",
+    suppressMenu: true,
+    cellRenderer:(params)=>{
+      return 'Cod QR - '+ params.value;
+    },
+    width: 130
+  },
+  
+  {
+    colId:'codbarra',
+    field: "orderdetailproductunitid",
+    headerName:"",
+    cellStyle:{'text-align':'center'},
+    cellClass:['cell-motum-hover-statusMotorStop'],        
+
+   // pinned:"right",
+    suppressMenu: true,
+    cellRenderer:(params)=>{
+      return 'Cod Barras - '+ params.value;
+    },
+    width: 140
+  }
+
+];
     this.gridOptions =<GridOptions>{};
     this.translateHeaderTable();
     this.gridOptions.enableSorting = true;
