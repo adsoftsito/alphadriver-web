@@ -42,7 +42,7 @@ const routes: Routes = [
       children: [{
         path: 'create',
         component: FormClientProductComponent,
-        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+        data: {breadcrumb: 'crear-viaje', inAction: 1}
       },
      /* {
         path: 'route-map',
@@ -57,7 +57,7 @@ const routes: Routes = [
       {
         path: 'upload-photo',
         component: UploadPhotoComponent,
-        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+        data: {breadcrumb: 'upload-photo', inAction: 1}
       },
       /*{
         path: 'upload-obs',
@@ -109,7 +109,7 @@ const routes: Routes = [
         component: CreateUserComponent,
         data: {breadcrumb: 'pages.userControl.editMembers.editMember', inAction: 1} 
       }*/],
-      data: {breadcrumb: 'pages.userControl.client_product.section', inAction: 0}
+      data: {breadcrumb: 'despacho', inAction: 0}
     }, {
      // path: 'client-orders',
      // component: ClientsOrdersComponent,

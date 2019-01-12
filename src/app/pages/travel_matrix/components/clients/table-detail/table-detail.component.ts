@@ -184,12 +184,12 @@ this.columnDefs = [
     'border-top': '1px solid #F1F1F1',
     'border-bottom': '1px solid #F1F1F1' 
    },
-  suppressMenu: true
-   
+  suppressMenu: true,
+   width:100
   },
   {
     field: "orderdetaildescription", // 0
-    headerName: "Partida",
+    headerName: "Punto de interés",
     cellStyle:{'text-align':'center',
     'border': 'solid 1px #ECE7E6',
     'border-top': '1px solid #F1F1F1',
@@ -199,19 +199,20 @@ pinned:"left",
     suppressMenu:true
   },
   {
-    field: "category",
-    headerName: "Categoria",
+    field: "orderdetailactivity",
+    headerName: "Actividad",
     cellStyle:{'text-align':'center',
     'border': 'solid 1px #ECE7E6',
     'border-top': '1px solid #F1F1F1',
     'border-bottom': '1px solid #F1F1F1' 
    },
   pinned:"left",
-    suppressMenu:true
+    suppressMenu:true,
+    width:100
   },
     {
     field: "orderdetailproductquantity",
-    headerName:"Cant",
+    headerName:"Cantidad",
     cellStyle:{'text-align':'center',
                'border': 'solid 1px #ECE7E6',
                'border-top': '1px solid #F1F1F1',
@@ -221,7 +222,7 @@ pinned:"left",
   },
   {
     field: "orderdetailproductunitid",
-    headerName:"Unidad",
+    headerName:"Unidad de medida",
     cellStyle:{'text-align':'center',
                'border': 'solid 1px #ECE7E6',
                'border-top': '1px solid #F1F1F1',
@@ -240,7 +241,7 @@ pinned:"left",
     
     suppressMenu: true,
     cellRenderer:(params)=>{
-      return 'Firmas - '+ params.value;
+      return 'Firmas ('+ params.value + ')';
     },
     width: 120
   },
@@ -254,7 +255,7 @@ pinned:"left",
 //    pinned:"right",
     suppressMenu: true,
     cellRenderer:(params)=>{
-      return 'Fotos - '+ params.value;
+      return 'Fotos ('+ params.value + ')';
     },
     width: 120
   },
@@ -269,7 +270,7 @@ pinned:"left",
     //pinned:"right",
     suppressMenu: true,
     cellRenderer:(params)=>{
-      return 'Obs - '+ params.value;
+      return 'Obs. ('+ params.value + ')';
     },
 
   },
@@ -284,7 +285,7 @@ pinned:"left",
    // pinned:"right",
     suppressMenu: true,
     cellRenderer:(params)=>{
-      return 'Cod QR - '+ params.value;
+      return 'Cod. QR ('+ params.value + ')';
     },
     width: 130
   },
@@ -299,7 +300,7 @@ pinned:"left",
    // pinned:"right",
     suppressMenu: true,
     cellRenderer:(params)=>{
-      return 'Cod Barras - '+ params.value;
+      return 'Cod. Barras ('+ params.value + ')';
     },
     width: 140
   }

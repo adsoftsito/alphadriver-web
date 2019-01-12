@@ -29,8 +29,8 @@ export const routes: Routes = [
     component: Pages,
     children: [
       { path: 'usersControl', loadChildren: './usersControl/usersControl.module#UsersControlModule',data: {breadcrumb: 'Menu.usuarios', inAction: 0} },
-      // { path: 'travel_matrix', loadChildren: './travel_matrix/m_travel.module#MTravelModule' },
-      { path: 'travel_matrix', loadChildren: './travel_matrix/m_travel.module#MTravelModule' },
+      // { path: 'travel_matrix', loadChildren: './travel_matrix/m_travel.module#MTravelModule' }
+      { path: 'travel_matrix', loadChildren: './travel_matrix/m_travel.module#MTravelModule', data: {breadcrumb: 'Logística', inAction: 'despacho'}},
       { path: 'monitoring-and-reaction', loadChildren: './monitoringReaction/monitoringReaction.module#MonitoringReactionModule' },
       { path: 'reports', loadChildren: './reports/reports.module#ReportsModule',data: {breadcrumb: 'Menu.reportes', inAction: 0} },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', data: {breadcrumb: 'Menu.dashboard', inAction: 0} },

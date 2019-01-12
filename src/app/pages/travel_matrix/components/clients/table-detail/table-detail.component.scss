@@ -80,7 +80,7 @@ motum-table-detail {
 
     motum-table-detail{
           .ag-header-cell{
-            border:1px solid $gray-color !important;
+            border:1px none $gray-color !important;
             background-color: $gray-color2 !important;
         }
         .ag-header-cell-label {

@@ -33,23 +33,23 @@
               
         <div class="row">
           <div class="col">    
-            <button  [disabled]="disableStateAdmin1" style="width:100%;" (click)="setStatusAdmin(1, 'Asignado')"><i class="fa fa-home"></i> Asignado</button>
+            <button  [disabled]="disableStateAdmin1" style="width:100%;" (click)="setStatusAdmin(1, 'Asignado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-13.svg"> En transito</button>
           </div>
           <div class="col">
-              <button [disabled]="disableStateAdmin2" style="width:100%;" (click)="setStatusAdmin(2, 'Iniciado')"><i class="fa fa-bars"></i> Iniciado</button>
+              <button [disabled]="disableStateAdmin2" style="width:100%;" (click)="setStatusAdmin(2, 'Iniciado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-12.svg"> Asignado</button>
 
           </div>
-        </div>
+        
         
         <hr style="border-top: 0px solid #ccc; background: transparent;">
 
-        <div class="row">
+        
           <div class="col">
-              <button [disabled]="disableStateAdmin3" style="width:100%;" (click)="setStatusAdmin(3, 'En tránsito')"><i class="fa fa-trash"></i> En tránsito</button>
+              <button [disabled]="disableStateAdmin3" style="width:100%;" (click)="setStatusAdmin(3, 'En tránsito')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-11.svg"> Iniciado</button>
 
           </div>
           <div class="col">
-              <button [disabled]="disableStateAdmin4" style="width:100%;" (click)="setStatusAdmin(4, 'Finalizado')"><i class="fa fa-close"></i> Finalizado</button>
+              <button [disabled]="disableStateAdmin4" style="width:100%;" (click)="setStatusAdmin(4, 'Finalizado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-15.svg"> Finalizado</button>
 
           </div>
         </div>
@@ -57,7 +57,7 @@
 
         <div class="row">
           <div class="col">
-            <button [disabled]="disableStateAdmin5" style="width:100%;" (click)="setStatusAdmin(5,'Cancelado')"><i class="fa fa-folder"></i> Cancelado </button>
+            <button [disabled]="disableStateAdmin5" style="width:100%;" (click)="setStatusAdmin(5,'Cancelado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-14.svg"> Cancelado </button>
           </div>
           <div class="col">
           
@@ -97,35 +97,22 @@
               
         <div class="row">
           <div class="col">    
-            <button  [disabled]="disableStateOper1" style="width:100%;" (click)="setStatusOper(1, 'Disponible')"><i class="fa fa-home"></i> Disponible</button>
+            <button  [disabled]="disableStateOper1" style="width:100%;" (click)="setStatusOper(1, 'Disponible')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-16.svg"> Disponible</button>
           </div>
           <div class="col">
-              <button [disabled]="disableStateOper2" style="width:100%;" (click)="setStatusOper(2, 'En curso vacío')"><i class="fa fa-bars"></i> En curso vacío</button>
+              <button [disabled]="disableStateOper2" style="width:100%;" (click)="setStatusOper(2, 'En curso vacío')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-17.svg"> En curso vacío</button>
 
           </div>
-        </div>
         
         <hr style="border-top: 0px solid #ccc; background: transparent;">
 
-        <div class="row">
+        
           <div class="col">
-              <button [disabled]="disableStateOper3" style="width:100%;" (click)="setStatusOper(3, 'En fila para carga')"><i class="fa fa-trash"></i> En fila para carga</button>
+              <button [disabled]="disableStateOper3" style="width:100%;" (click)="setStatusOper(3, 'En fila para carga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-18.svg"> En fila para carga</button>
 
           </div>
           <div class="col">
-              <button [disabled]="disableStateOper4" style="width:100%;" (click)="setStatusOper(4, 'Cargando')"><i class="fa fa-close"></i> Cargando</button>
-
-          </div>
-        </div>
-        <hr style="border-top: 0px solid #ccc; background: transparent;">
-
-        <div class="row">
-          <div class="col">
-              <button [disabled]="disableStateOper5" style="width:100%;" (click)="setStatusOper(5, 'En curso cargando')"><i class="fa fa-trash"></i> En curso cargando</button>
-
-          </div>
-          <div class="col">
-              <button [disabled]="disableStateOper6" style="width:100%;" (click)="setStatusOper(6, 'En fila para descarga')"><i class="fa fa-close"></i> En fila para descarga</button>
+              <button [disabled]="disableStateOper4" style="width:100%;" (click)="setStatusOper(4, 'Cargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-19.svg"> Cargando</button>
 
           </div>
         </div>
@@ -133,10 +120,20 @@
 
         <div class="row">
           <div class="col">
-            <button [disabled]="disableStateOper7" style="width:100%;" (click)="setStatusOper(7,'Descargando')"><i class="fa fa-folder"></i> Descargando </button>
+              <button [disabled]="disableStateOper5" style="width:100%;" (click)="setStatusOper(5, 'En curso cargando')"><img src=""> En curso cargado</button>
+
           </div>
           <div class="col">
-          
+              <button [disabled]="disableStateOper6" style="width:100%;" (click)="setStatusOper(6, 'En fila para descarga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-20.svg"> En fila para descarga</button>
+
+          </div>
+        <hr style="border-top: 0px solid #ccc; background: transparent;">
+
+          <div class="col">
+            <button [disabled]="disableStateOper7" style="width:100%;" (click)="setStatusOper(7,'Descargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-21.svg"> Descargando </button>
+          </div>
+          <div class="col">
+            <button  style="width:100%;" ><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-22.svg"> En curso vacio</button>
           </div>
         </div>
                   
