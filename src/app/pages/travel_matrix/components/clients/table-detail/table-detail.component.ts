@@ -221,7 +221,7 @@ pinned:"left",
     width:100
   },
   {
-    field: "orderdetailproductunitid",
+    field: "orderdetailproductunitdescription",
     headerName:"Unidad de medida",
     cellStyle:{'text-align':'center',
                'border': 'solid 1px #ECE7E6',

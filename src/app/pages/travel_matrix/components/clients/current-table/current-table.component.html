@@ -12,7 +12,11 @@
     </button>
   </div>
 
+  <div>
+    <h5>Seleccionar un estado</h5>
+  </div>
   <div class="modal-body">
+    <div class="modal-dialog" id="modal">
 <!--
       <div class="motum-content-title">
           
@@ -33,10 +37,10 @@
               
         <div class="row">
           <div class="col">    
-            <button  [disabled]="disableStateAdmin1" style="width:100%;" (click)="setStatusAdmin(1, 'Asignado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-13.svg"> En transito</button>
+            <button id="btn"  [disabled]="disableStateAdmin1" (click)="setStatusAdmin(1, 'Asignado')"><img class="original" src="https://storage.googleapis.com/kubeet/motum/assets/4LO-13.svg"><label>En transito</label></button>
           </div>
           <div class="col">
-              <button [disabled]="disableStateAdmin2" style="width:100%;" (click)="setStatusAdmin(2, 'Iniciado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-12.svg"> Asignado</button>
+              <button id="btn" [disabled]="disableStateAdmin2" (click)="setStatusAdmin(2, 'Iniciado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-12.svg"><label>Asignado</label></button>
 
           </div>
         
@@ -45,11 +49,11 @@
 
         
           <div class="col">
-              <button [disabled]="disableStateAdmin3" style="width:100%;" (click)="setStatusAdmin(3, 'En tránsito')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-11.svg"> Iniciado</button>
+              <button id="btn" [disabled]="disableStateAdmin3" (click)="setStatusAdmin(3, 'En tránsito')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-11.svg"><label>Iniciado</label></button>
 
           </div>
           <div class="col">
-              <button [disabled]="disableStateAdmin4" style="width:100%;" (click)="setStatusAdmin(4, 'Finalizado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-15.svg"> Finalizado</button>
+              <button id="btn" [disabled]="disableStateAdmin4" (click)="setStatusAdmin(4, 'Finalizado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-15.svg"><label>Finalizado</label></button>
 
           </div>
         </div>
@@ -57,7 +61,7 @@
 
         <div class="row">
           <div class="col">
-            <button [disabled]="disableStateAdmin5" style="width:100%;" (click)="setStatusAdmin(5,'Cancelado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-14.svg"> Cancelado </button>
+            <button id="btn" [disabled]="disableStateAdmin5" (click)="setStatusAdmin(5,'Cancelado')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-14.svg"><label>Cancelado</label></button>
           </div>
           <div class="col">
           
@@ -65,7 +69,7 @@
         </div>
                   
 
-            
+    </div>     
   </div>
 <!--
   <div class="modal-footer window-center-align">
@@ -97,10 +101,10 @@
               
         <div class="row">
           <div class="col">    
-            <button  [disabled]="disableStateOper1" style="width:100%;" (click)="setStatusOper(1, 'Disponible')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-16.svg"> Disponible</button>
+            <button id="btn" [disabled]="disableStateOper1" (click)="setStatusOper(1, 'Disponible')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-16.svg"><label>Disponible</label></button>
           </div>
           <div class="col">
-              <button [disabled]="disableStateOper2" style="width:100%;" (click)="setStatusOper(2, 'En curso vacío')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-17.svg"> En curso vacío</button>
+              <button id="btn" [disabled]="disableStateOper2" (click)="setStatusOper(2, 'En curso vacío')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-17.svg"><label>En curso vacío</label></button>
 
           </div>
         
@@ -108,11 +112,11 @@
 
         
           <div class="col">
-              <button [disabled]="disableStateOper3" style="width:100%;" (click)="setStatusOper(3, 'En fila para carga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-18.svg"> En fila para carga</button>
+              <button id="btn" [disabled]="disableStateOper3" (click)="setStatusOper(3, 'En fila para carga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-18.svg"><label>En fila para carga</label></button>
 
           </div>
           <div class="col">
-              <button [disabled]="disableStateOper4" style="width:100%;" (click)="setStatusOper(4, 'Cargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-19.svg"> Cargando</button>
+              <button id="btn" [disabled]="disableStateOper4" (click)="setStatusOper(4, 'Cargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-19.svg"><label>Cargando</label></button>
 
           </div>
         </div>
@@ -120,20 +124,20 @@
 
         <div class="row">
           <div class="col">
-              <button [disabled]="disableStateOper5" style="width:100%;" (click)="setStatusOper(5, 'En curso cargando')"><img src=""> En curso cargado</button>
+              <button id="btn" [disabled]="disableStateOper5" (click)="setStatusOper(5, 'En curso cargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/Estado-17.png"><label>En curso cargado</label></button>
 
           </div>
           <div class="col">
-              <button [disabled]="disableStateOper6" style="width:100%;" (click)="setStatusOper(6, 'En fila para descarga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-20.svg"> En fila para descarga</button>
+              <button id="btn" [disabled]="disableStateOper6" (click)="setStatusOper(6, 'En fila para descarga')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-20.svg"><label>En fila para descargar</label></button>
 
           </div>
         <hr style="border-top: 0px solid #ccc; background: transparent;">
 
           <div class="col">
-            <button [disabled]="disableStateOper7" style="width:100%;" (click)="setStatusOper(7,'Descargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-21.svg"> Descargando </button>
+            <button id="btn" [disabled]="disableStateOper7" (click)="setStatusOper(7,'Descargando')"><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-21.svg"><label>Descargando</label></button>
           </div>
           <div class="col">
-            <button  style="width:100%;" ><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-22.svg"> En curso vacio</button>
+            <button id="btn" ><img src="https://storage.googleapis.com/kubeet/motum/assets/4LO-22.svg"><label>En curso vacio</label></button>
           </div>
         </div>
                   

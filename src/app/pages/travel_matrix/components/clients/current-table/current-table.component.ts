@@ -187,7 +187,7 @@ export class CurrentTableComponent implements OnInit,OnDestroy {
         },
         width:100
       },
-      {
+      {                                                                                                                                                                                                                                                       
         colId:'statusoper',
         field: "orderstatus.description",
         suppressMenu: true,

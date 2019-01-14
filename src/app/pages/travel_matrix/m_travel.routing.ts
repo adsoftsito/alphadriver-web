@@ -74,7 +74,7 @@ const routes: Routes = [
       {
         path: 'order-detail',
         component: OrderDetailComponent,
-        data: {breadcrumb: 'pages.userControl.client_product.create_section', inAction: 1}
+        data: {breadcrumb: '', inAction: 0}
       }
       /*,
       {
@@ -116,7 +116,7 @@ const routes: Routes = [
       path: 'route-map',
       component: RouteMapComponent,
      
-     data: {breadcrumb: 'pages.userControl.clientsOrders.section', inAction:0 }
+     data: {breadcrumb: 'viaje 001', inAction:0 }
     }]
   }
 
