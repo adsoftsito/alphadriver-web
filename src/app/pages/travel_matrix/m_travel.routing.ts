@@ -17,6 +17,7 @@ import {UploadPhotoComponent} from "./components/clients/upload-photo/upload-pho
 //import {UpdateoperStatusComponent} from "./components/clients/updateoper-status/updateoper-status.component";
 import {OrderDetailComponent} from "./components/clients/order-detail/order-detail.component";
 import {RouteMapComponent} from "./components/clients/route-map/route-map.component";
+import {ViewImageComponent} from "./components/clients/view-image/view-image.component";
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
       children: [{
         path: 'create',
         component: FormClientProductComponent,
-        data: {breadcrumb: 'crear-viaje', inAction: 1}
+        data: {breadcrumb: 'Crear-viaje', inAction: 1}
       },
      /* {
         path: 'route-map',
@@ -57,7 +58,7 @@ const routes: Routes = [
       {
         path: 'upload-photo',
         component: UploadPhotoComponent,
-        data: {breadcrumb: 'upload-photo', inAction: 1}
+        data: {breadcrumb: 'upload-photo', inAction: 0}
       },
       /*{
         path: 'upload-obs',
@@ -75,6 +76,13 @@ const routes: Routes = [
         path: 'order-detail',
         component: OrderDetailComponent,
         data: {breadcrumb: '', inAction: 0}
+
+      },
+      {
+        path: 'view-image',
+        component: ViewImageComponent,
+  
+        data: {breadcrumb: 'image', inAction:0}
       }
       /*,
       {
@@ -109,7 +117,7 @@ const routes: Routes = [
         component: CreateUserComponent,
         data: {breadcrumb: 'pages.userControl.editMembers.editMember', inAction: 1} 
       }*/],
-      data: {breadcrumb: 'despacho', inAction: 0}
+      data: {breadcrumb: 'Despacho', inAction: 0}
     }, {
      // path: 'client-orders',
      // component: ClientsOrdersComponent,
@@ -117,7 +125,8 @@ const routes: Routes = [
       component: RouteMapComponent,
      
      data: {breadcrumb: 'viaje 001', inAction:0 }
-    }]
+    }
+  ]
   }
 
 ];

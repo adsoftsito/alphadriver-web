@@ -1,0 +1,55 @@
+<motum-modal-form *ngIf="windowPosition != null"  [align]="'center'" [hasTabs]="false" [cols]="2">
+
+    <div modal-form-content> 
+         <div class="photo">
+                <img [src]="imgUrl1">
+            </div>
+          <!--  <div class="heroes">
+                <img [src]="imgUrl4" style="width:100%">
+            </div>
+            
+            <div class="heroes">
+                <img [src]="imgUrl7" style="width:100%">
+            </div>
+            <div class="heroes" >
+                <img [src]="imgUrl10" style="width:100%">
+            </div>
+          
+            <div class="heroes">
+                <img [src]="imgUrl2" style="width:100%">
+            </div>
+            <div class="heroes">
+                <img [src]="imgUrl5" style="width:100%">
+            </div>
+            <div class="heroes">
+                <img [src]="imgUrl8" style="width:100%">
+            </div>
+            <div class="heroes">
+                <img [src]="imgUrl11" style="width:100%">
+            </div>
+
+            <div class="heroes">
+                <img [src]="imgUrl3" style="width:100%">
+            </div>
+            <div class="heroes">
+                <img [src]="imgUrl6" style="width:100%">
+            </div>
+            
+            <div class="heroes">
+                <img [src]="imgUrl9" style="width:100%">
+            </div>
+            <div class="heroes">
+                <img [src]="imgUrl12" style="width:100%">
+
+        </div>-->
+    </div> <!--END MODAL-FORM-CONTENT-->
+    <div class="motum-floating-btns" align="right" modal-form-footer>
+      <button motum-button
+          [color]="'danger'"
+          [outline]="true"
+          routerLink="/pages/travel_matrix/clients-products/">
+          Cerrar
+      </button>
+      
+  </div> <!--END MODAL-FORM-FOOTER-->
+</motum-modal-form>

@@ -8,6 +8,7 @@ import { PlataformModel } from '../../../../../shared/models/clients/plataform.m
 import { AccountModel } from '../../../../../shared/models/clients/account.model';
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
 
+import {StorageService} from "../../../../../shared/providers/storage.service";
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 import { Select2OptionData } from 'ng2-select2';
@@ -15,12 +16,14 @@ import { Subscription } from 'rxjs/Subscription';
 import { ClientProductService } from '../clients.service';
 import { DualListComponent } from 'angular-dual-listbox';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {StorageService} from "../../../../../shared/providers/storage.service";
+
+
+import { Asset } from '../Asset';
 
 @Component({
-  selector: 'app-order-detail',
-  templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.scss'],
+  selector: 'app-view-image',
+  templateUrl: './view-image.component.html',
+  styleUrls: ['./view-image.component.scss'],
     
   animations: [
     trigger('slideHiddenShow', [
@@ -36,11 +39,13 @@ import {StorageService} from "../../../../../shared/providers/storage.service";
   encapsulation: ViewEncapsulation.None
 })
 
-export class OrderDetailComponent implements OnInit {
+export class ViewImageComponent implements OnInit {
   
   
   @ViewChild('window') window: ElementRef;
   @ViewChild('backdrop') windowBackdrop: ElementRef;
+  @ViewChild('modalPhotos') modalPhotos : ElementRef;
+
   windowState: string = 'hidden';
   clientModel: ClientModel;
   interfaceModel: InterfaceModel;
@@ -79,10 +84,60 @@ export class OrderDetailComponent implements OnInit {
   public options: Select2Options;
   public optionsPermits: Select2Options;
   
+  imgUrl1 : String;
+  imgUrl2 : String;
+  imgUrl3 : String;
+  imgUrl4 : String;
+  imgUrl5 : String;
+  imgUrl6 : String;
+  imgUrl7 : String;
+  imgUrl8 : String;
+  imgUrl9 : String;
+  imgUrl10 : String;
+  imgUrl11 : String;
+  imgUrl12 : String;
 
-  private dataOrder:any;
-  private orderid : number;
+  currentImg : string;
+  i: number;
+
+  arrPhotos:Array<any> = [
+    new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/tickets/ticket1.jpg'),
+
+    new Asset(2, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/tickets/ticket2.jpg'),
+    
+    new Asset(3, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/tickets/ticket3.jpg'),
+    
+    new Asset(4, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/tickets/ticket4.jpg'),
+    
+    new Asset(5, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/tickets/ticket5.jpg'),
+  ];
+  /*
+  arrPhotos:Array<any> = [
+    new Asset(1, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/firms/firms1.jpg'),  
+    new Asset(2, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/firms/firms2.png'),
+    
+    new Asset(3, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/firms/firms3.png'),
+    
+    new Asset(4, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/firms/firms4.png'),
+    
+    new Asset(5, '2018-11-13 10:15 subido por ', 'Juan Perez (operador)', 
+    'https://storage.googleapis.com/kubeet/motum/firms/firms5.jpg'),
+    //new Asset(6, '2018-10-13 11:40 subido por ', 'Adolfo Centeno (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg'),
+   // new Asset(7, '2018-09-13 13:03 subido por ', 'Alejandro Reyes (operador)', 'http://www.peritocaligrafojuancarlosgonzalez.com/images/firmas/bruce-springsteen.jpg'),
+   // new Asset(8, '2018-05-13 15:07 subido por ', 'Jesus Velez (operador)', 'https://www.laguiadelvaron.com/wp-content/uploads/2018/06/firma.jpg')
   
+  ];
+*/
+
   //translate
   title = 'pages.userControl.clients.formClient.title';
   edit = 'pages.userControl.clients.formClient.edit';
@@ -261,14 +316,14 @@ export class OrderDetailComponent implements OnInit {
   keepSorted = true;
   display = 'plataform';
   filter = true;
-  
-  constructor(private renderer: Renderer2, 
+  selectedHero: Asset;
+
+  constructor(private renderer: Renderer2,
      private clientProductService: ClientProductService,
      private formBuilder: FormBuilder,
-      private router: Router, 
-      private modalService: NgbModal,
-      private myStorage: StorageService
-      ) {
+     private router: Router,
+     private myStorage : StorageService,
+     private modalService: NgbModal) {
       // this.clientModel = new User();
       this.source = JSON.parse(JSON.stringify(this.dataExample));
     // this.validateForm();
@@ -286,12 +341,11 @@ export class OrderDetailComponent implements OnInit {
     this.clientModel.account = this.accountModel;
     this.clientModel.billing = this.billingModel;
     this.clientModel.billing.number = this.numberModel;
-  
-    this.dataOrder = this.myStorage.getSession("myCurrentOrder");
-    this.orderid = this.dataOrder.orderid;
-    console.log(this.dataOrder);
-    console.log(this.orderid);
-        
+    
+    
+    this.imgUrl1 = this.myStorage.getSession("myimage");
+    console.log(this.imgUrl1);
+    
     this.subscriptionCreate = clientProductService.createClient$.subscribe(
       state => {
   
@@ -357,7 +411,7 @@ export class OrderDetailComponent implements OnInit {
   ngOnInit() {
   
     //DELETE THIS ON PRODUCTION MODE
-      this.confirmed = this.confirmedDummi;
+    this.confirmed = this.confirmedDummi;
   
     this.exampleData = [{id:'eje1', text:'RoadAdvisor'},{id:'eje2', text:'MotumWeb'}];
     this.options = {
@@ -370,8 +424,91 @@ export class OrderDetailComponent implements OnInit {
       theme: 'classic',
       closeOnSelect: true,
     }
+
   }
+
   
+  
+  updateArrPhotos()
+  {
+    this.i = 1;
+
+    this.arrPhotos.forEach(item =>
+    {
+      if (this.i == 1) this.imgUrl1= item.url;
+      if (this.i == 2) this.imgUrl2= item.url;
+      if (this.i == 3) this.imgUrl3= item.url;
+      if (this.i == 4) this.imgUrl4= item.url;
+      if (this.i == 5) this.imgUrl5= item.url;
+      if (this.i == 6) this.imgUrl6= item.url;
+      if (this.i == 7) this.imgUrl7= item.url;
+      if (this.i == 8) this.imgUrl8= item.url;
+      if (this.i == 9) this.imgUrl9= item.url;
+      if (this.i == 10) this.imgUrl10= item.url;
+      if (this.i == 11) this.imgUrl11= item.url;
+      if (this.i == 12) this.imgUrl12= item.url;
+      this.i ++;
+
+    });
+
+
+  }
+  addNewPhoto()
+  {
+    const modalRef = this.modalService.open(this.modalPhotos, { size: 'lg' , keyboard: true, windowClass: 'motum-modal-confirm', backdrop: true });
+    modalRef.result.then((userResponse) => {
+      if(userResponse) {
+        this.addPhoto();
+      }
+    });
+
+  }
+
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      console.log("preview..." + event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (e:any) => {
+        (<HTMLImageElement>document.getElementById('blah')).src=e.target.result 
+        //assuming element with id blah will always be an ImageElement
+      };
+    }
+  }
+
+
+
+  addPhoto()
+  {
+    console.log("adding ...");  
+    this.arrPhotos.push(
+      new Asset(3, 'Caseta', '2018-11-13 10:15', 'https://storage.googleapis.com/kubeet/motum/tickets/ticket6.jpg')
+    ); 
+    this.updateArrPhotos();
+
+//    alert("inserted..");
+  }
+
+  onSelect(hero) {
+    
+    this.i = 1;
+
+    this.arrPhotos.forEach(item =>
+    {
+      if (this.i == hero) this.currentImg= item.url;
+      this.i ++;
+
+    });
+
+    //  this.selectedHero = hero;
+    var getPrint = window.open(this.currentImg, '_blank');
+    setTimeout(getPrint.print(), 600000);
+
+  }
+
+
   onButtonGroupClick($event){
     let clickedElement = $event.target || $event.srcElement;
   

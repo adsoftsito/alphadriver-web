@@ -46,6 +46,7 @@ import { OrderDetailComponent } from './components/clients/order-detail/order-de
 import { RouteMapComponent } from './components/clients/route-map/route-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { UploadPhotoComponent } from './components/clients/upload-photo/upload-photo.component';
+import { ViewImageComponent } from './components/clients/view-image/view-image.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,8 @@ import { UploadPhotoComponent } from './components/clients/upload-photo/upload-p
   //    UpdateadmStatusComponent,
   //    UpdateoperStatusComponent,
       RouteMapComponent,
-  UploadPhotoComponent
+  UploadPhotoComponent,
+  ViewImageComponent
     ],
     imports: [
       CommonModule,

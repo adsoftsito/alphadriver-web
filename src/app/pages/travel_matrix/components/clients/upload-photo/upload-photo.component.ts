@@ -8,6 +8,7 @@ import { PlataformModel } from '../../../../../shared/models/clients/plataform.m
 import { AccountModel } from '../../../../../shared/models/clients/account.model';
 import { BillingModel } from '../../../../../shared/models/clients/billing.model';
 
+import {StorageService} from "../../../../../shared/providers/storage.service";
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from "@angular/router";
 import { Select2OptionData } from 'ng2-select2';
@@ -317,8 +318,12 @@ export class UploadPhotoComponent implements OnInit {
   filter = true;
   selectedHero: Asset;
 
-  constructor(private renderer: Renderer2, private clientProductService: ClientProductService,
-     private formBuilder: FormBuilder, private router: Router, private modalService: NgbModal) {
+  constructor(private renderer: Renderer2,
+     private clientProductService: ClientProductService,
+     private formBuilder: FormBuilder,
+     private router: Router,
+     private modalService: NgbModal,
+     private myStorage : StorageService) {
       // this.clientModel = new User();
       this.source = JSON.parse(JSON.stringify(this.dataExample));
     // this.validateForm();
@@ -482,6 +487,9 @@ export class UploadPhotoComponent implements OnInit {
 //    alert("inserted..");
   }
 
+  
+  
+
   onSelect(hero) {
     
     this.i = 1;
@@ -492,11 +500,22 @@ export class UploadPhotoComponent implements OnInit {
       this.i ++;
 
     });
+    this.myStorage.setSession("myimage", (this.currentImg));
+  
+    this.createClientStatusAdm();
+  }
 
-    //  this.selectedHero = hero;
-    var getPrint = window.open(this.currentImg, '_blank');
-    setTimeout(getPrint.print(), 3000);
-
+  createClientStatusAdm() {
+    //  this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','create']).then(nav => {
+      this.router.navigate(['/', 'pages', 'travel_matrix', 'clients-products','view-image']).then(nav => {
+    
+      setTimeout(() => {
+             this.clientProductService.createClientProduct();
+           }, 200);
+          }, err => {
+            console.log(err) // when there's an error
+            console.log('error router');
+        });
   }
 
 
