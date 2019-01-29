@@ -670,9 +670,10 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     return a.position >b.position?1:a.position <b.position?-1:0
    })
  
-  this.i = 1;
   
   this.drawMarkersOnMap(this.arrRouteDetail);
+
+  this.i = 1;
 
   this.arrRouteDetail.forEach( (item) => {
 
@@ -716,11 +717,50 @@ ubicacionesDef = 'pages.logistica.clients.formClient.ubicacionesDef';
     this.myorderdetail.qrsnumber= 1;
     this.myorderdetail.codebarsnumber= 1;
 
-    this.myorderdetail.lat = "94.568373";
-    this.myorderdetail.lng = "-120.9847595";
+    this.myorderdetail.lat = item.lat;
+    this.myorderdetail.lng = item.lng;
     this.myorderdetail.radio = "300";
-    this.myorderdetail.polygon = "[{}]";
 
+    if (this.i ==1)
+      this.myorderdetail.polygon = '['+
+        '{"lat": 18.849016, "lng": -97.090476},' +
+        '{"lat": 18.849306, "lng": -97.089554},' +
+        '{"lat": 18.849448, "lng": -97.088621},' +
+        '{"lat": 18.847849, "lng": -97.088015},' +
+        '{"lat": 18.847199, "lng": -97.089678},' +
+        '{"lat": 18.849016, "lng": -97.090476}' +
+         ']';
+
+                                          
+         if (this.i ==2)
+         this.myorderdetail.polygon = '['+
+         '{"lat": 18.851186, "lng": -97.081820}, ' +
+         '{"lat": 18.852228, "lng": -97.080868}, ' +
+         '{"lat": 18.852125, "lng": -97.080673}, ' +
+         '{"lat": 18.851057, "lng": -97.081636}, ' +
+         '{"lat": 18.851186, "lng": -97.081820} ' +
+          ']'; 
+
+            if (this.i ==3)
+      this.myorderdetail.polygon = '['+
+          '{"lat": 18.858504, "lng": -97.071334}, ' +
+          '{"lat": 18.860809, "lng": -97.069349}, ' +
+          '{"lat": 18.860850, "lng": -97.068963}, ' +
+          '{"lat": 18.859581, "lng": -97.067558}, ' +
+          '{"lat": 18.859287, "lng": -97.067537}, ' +
+          '{"lat": 18.857236, "lng": -97.069157}, ' +
+          '{"lat": 18.857338, "lng": -97.069533}, ' +
+          '{"lat": 18.858504, "lng": -97.071334}' +
+            ']';
+
+         if (this.i ==4)
+      this.myorderdetail.polygon = '['+
+          '{"lat": 18.862724, "lng": -97.050269}, ' +
+          '{"lat": 18.862298, "lng": -97.047501}, ' +
+          '{"lat": 18.870786, "lng": -97.044181}, ' +
+          '{"lat": 18.869893, "lng": -97.052431}, ' +
+          '{"lat": 18.862724, "lng": -97.050269} ' +
+          ']';
 
     this.orderdetailModel.push(this.myorderdetail);
     this.i ++;
